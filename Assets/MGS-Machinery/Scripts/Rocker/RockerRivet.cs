@@ -31,7 +31,7 @@ namespace Developer.Machinery
         {
             if (!Application.isPlaying && rockJoint)
                 DriveMechanism();
-        }//Update()_end
+        }
 #endif
         #endregion
 
@@ -39,10 +39,10 @@ namespace Developer.Machinery
         /// <summary>
         /// Drive the mechanism.
         /// </summary>
-        public override void DriveMechanism ()
+        public override void DriveMechanism()
         {
             transform.position = rockJoint.position;
-        }//DriveM...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

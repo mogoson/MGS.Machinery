@@ -52,7 +52,7 @@ namespace Developer.Machinery
         protected virtual void Start()
         {
             mechanism = GetComponent<Mechanism>();
-        }//Start()_end
+        }
 
         /// <summary>
         /// Check input and drive mechanism.
@@ -63,7 +63,7 @@ namespace Developer.Machinery
                 mechanism.DriveMechanism(1);
             if (Input.GetKey(negativeKey))
                 mechanism.DriveMechanism(-1);
-        }//U...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

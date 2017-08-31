@@ -39,7 +39,7 @@ namespace Developer.Machinery
             Handles.color = blue;
             Handles.Label(script.transform.position, "Rivet");
             Handles.SphereCap(0, script.transform.position, Quaternion.identity, nodeSize);
-        }//OnSceneGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

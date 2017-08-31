@@ -30,7 +30,7 @@ namespace Developer.Machinery
         {
             DrawArrow(zeroPoint, axis, script.stroke, nodeSize, "+Stroke", blue);
             DrawArrow(zeroPoint, -axis, script.stroke, nodeSize, "-Stroke", blue);
-        }//DrawStroke()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

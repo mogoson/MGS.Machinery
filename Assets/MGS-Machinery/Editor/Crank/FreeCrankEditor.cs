@@ -41,13 +41,13 @@ namespace Developer.Machinery
             DrawArrow(script.transform.position, script.transform.up, areaRadius, nodeSize, string.Empty, blue);
             DrawArea();
             DrawRockers(script.rockers, script.transform, blue);
-        }//OnSceneGUI()_end
+        }
 
         protected virtual void DrawArea()
         {
             Handles.color = transparentBlue;
             Handles.DrawSolidDisc(script.transform.position, axis, areaRadius);
-        }//DrawArea()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

@@ -21,29 +21,29 @@ namespace Developer.Machinery
 {
     using System.Collections.Generic;
     using UnityEngine;
-	
-	[AddComponentMenu("Developer/Machinery/SynchroCrank")]
-	public class SynchroCrank : Mechanism
+
+    [AddComponentMenu("Developer/Machinery/SynchroCrank")]
+    public class SynchroCrank : Mechanism
     {
-		#region Property and Field
+        #region Property and Field
         /// <summary>
         /// Crank mechanism.
         /// </summary>
-		public List<CrankMechanism> cranks = new List<CrankMechanism>();
+        public List<CrankMechanism> cranks = new List<CrankMechanism>();
         #endregion
 
         #region Public Method
-		/// <summary>
-		/// Drive the mechanism.
-		/// </summary>
-		/// <param name="speedControl">Speed control.</param>
-		public override void DriveMechanism (float speedControl)
-		{
-			foreach (var crank in cranks) 
-			{
+        /// <summary>
+        /// Drive the mechanism.
+        /// </summary>
+        /// <param name="speedControl">Speed control.</param>
+        public override void DriveMechanism(float speedControl)
+        {
+            foreach (var crank in cranks)
+            {
                 crank.DriveMechanism(speedControl);
-            }//foreach()_end
-        }//DriveM...()_end
+            }
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

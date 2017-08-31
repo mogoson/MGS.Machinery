@@ -29,7 +29,7 @@ namespace Developer.Machinery
     public enum EditMode
     {
         Edit, Hinge, Lock
-    }//enum_end
+    }
 
     /// <summary>
     /// Custom Axis.
@@ -37,7 +37,7 @@ namespace Developer.Machinery
     public enum CustomAxis
     {
         Default, TransformForward
-    }//enum_end
+    }
 
     /// <summary>
     /// Telescopic Mechanism's State.
@@ -45,7 +45,7 @@ namespace Developer.Machinery
     public enum TelescopicState
     {
         Shrink, Drift, Extend
-    }//enum_end
+    }
 
     /// <summary>
     /// Mechanism.
@@ -57,7 +57,7 @@ namespace Developer.Machinery
         /// </summary>
         /// <param name="speedControl">Speed control.</param>
         public abstract void DriveMechanism(float speedControl);
-    }//class_end
+    }
 
     /// <summary>
     /// Crank Mechanism.
@@ -89,7 +89,7 @@ namespace Developer.Machinery
         {
             transform.localRotation = Quaternion.Euler(startAngles + new Vector3(0, 0, angle));
             DriveRockers();
-        }//DriveArm()_end
+        }
         #endregion
 
         #region Public Method
@@ -100,9 +100,9 @@ namespace Developer.Machinery
         {
             base.Awake();
             startAngles = transform.localEulerAngles;
-        }//Awake()_end
+        }
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Crank Link Mechanism.
@@ -150,7 +150,7 @@ namespace Developer.Machinery
         protected virtual Vector3 GetLinkPosition()
         {
             return transform.InverseTransformPoint(linkBar.transform.position);
-        }//GetLP()_end
+        }
 
         /// <summary>
         /// Correct position to project point.
@@ -160,7 +160,7 @@ namespace Developer.Machinery
         protected Point CorrectPoint(Vector3 position)
         {
             return new Point(position.x, position.y);
-        }//CorrectPoint()_end
+        }
 
         /// <summary>
         /// Clear angles x and y.
@@ -170,7 +170,7 @@ namespace Developer.Machinery
         protected Vector3 CorrectAngles(Vector3 angles)
         {
             return new Vector3(0, 0, angles.z);
-        }//CorrectAngles()_end
+        }
 
         /// <summary>
         /// Clear position z.
@@ -180,7 +180,7 @@ namespace Developer.Machinery
         protected Vector3 CorrectPosition(Vector3 position)
         {
             return new Vector3(position.x, position.y, 0);
-        }//CorrectPosition()_end
+        }
 
         /// <summary>
         /// Drive bars.
@@ -211,12 +211,12 @@ namespace Developer.Machinery
                 if (Lock && !positive)
                     return;
                 positive = false;
-            }//if()_end
+            }
             crank.DriveMechanism(speedControl);
             DriveLinkBars();
-        }//DriveM...()_end
+        }
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Telescopic Joint Mechanism.
@@ -260,8 +260,8 @@ namespace Developer.Machinery
                 if (transform.parent)
                     forward = transform.parent.InverseTransformDirection(forward);
                 return forward;
-            }//get_end
-        }//aixs_end
+            }
+        }
         #endregion
 
         #region Protected Method
@@ -270,7 +270,7 @@ namespace Developer.Machinery
             base.Awake();
             startPosition = transform.localPosition;
             tState = TelescopicState.Shrink;
-        }//Awake()_end
+        }
 
         /// <summary>
         /// Drive joint.
@@ -280,9 +280,9 @@ namespace Developer.Machinery
             tState = TelescopicState.Drift;
             transform.localPosition = startPosition + aixs * displacement;
             DriveRockers();
-        }//DriveJoint()_end
+        }
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Telescopic Arm Mechanism.
@@ -295,7 +295,7 @@ namespace Developer.Machinery
         /// </summary>
         public List<TelescopicJointMechanism> tJoints = new List<TelescopicJointMechanism>();
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Rocker Mechanism.
@@ -315,7 +315,7 @@ namespace Developer.Machinery
         /// </summary>
         public abstract void DriveMechanism();
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Rocker Lock Mechanism.
@@ -342,8 +342,8 @@ namespace Developer.Machinery
             {
                 var distance = GetDistance();
                 return distance <= minStroke || distance >= maxStroke;
-            }//get_end
-        }//isLock_end
+            }
+        }
 
         /// <summary>
         /// Lock target roker joint.
@@ -358,7 +358,7 @@ namespace Developer.Machinery
         protected virtual void Awake()
         {
             rJoint = GetComponent<RockerJoint>();
-        }//Awake()_end
+        }
         #endregion
 
         #region Public Method
@@ -369,9 +369,9 @@ namespace Developer.Machinery
         public virtual float GetDistance()
         {
             return Vector3.Distance(transform.position, rJoint.rockJoint.position);
-        }//Get...()_end
+        }
         #endregion
-    }//class_end
+    }
 
     /// <summary>
     /// Rocker Lock Link Mechanism.
@@ -406,8 +406,8 @@ namespace Developer.Machinery
                 var rlock = rocker.GetComponent<RockerLockMechanism>();
                 if (rlock)
                     rLocks.Add(rlock);
-            }//foreach()_end
-        }//Awake()_end
+            }
+        }
 
         /// <summary>
         /// Check rockers's lock state.
@@ -419,9 +419,9 @@ namespace Developer.Machinery
             {
                 if (rLock.isLock)
                     return true;
-            }//foreach()_end
+            }
             return false;
-        }//Check...()_end
+        }
 
         /// <summary>
         /// Drive the rockers that join at this mechanism.
@@ -432,7 +432,7 @@ namespace Developer.Machinery
             {
                 rocker.DriveMechanism();
             }
-        }//DriveRockers()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

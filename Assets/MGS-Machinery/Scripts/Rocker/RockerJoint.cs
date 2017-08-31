@@ -49,7 +49,7 @@ namespace Developer.Machinery
                 else
                     return transform.up;
             }
-        }//worldUp_end
+        }
         #endregion
 
         #region Protected Method
@@ -58,7 +58,7 @@ namespace Developer.Machinery
         {
             if (!Application.isPlaying && rockJoint)
                 DriveMechanism();
-        }//Update()_end
+        }
 #endif
         #endregion
 
@@ -69,7 +69,7 @@ namespace Developer.Machinery
         public override void DriveMechanism()
         {
             transform.LookAt(rockJoint, worldUp);
-        }//DriveM...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

@@ -38,30 +38,30 @@ namespace Developer.Machinery
         protected virtual void ClampIndex()
         {
             jointIndex = Mathf.Clamp(jointIndex, 0, tJoints.Count - 1);
-        }//ClampIndex()_end
+        }
         #endregion
 
         #region Public Method
-		/// <summary>
-		/// Drive the mechanism.
-		/// </summary>
-		/// <param name="speedControl">Speed control.</param>
-		public override void DriveMechanism (float speedControl)
-		{
-			ClampIndex();
+        /// <summary>
+        /// Drive the mechanism.
+        /// </summary>
+        /// <param name="speedControl">Speed control.</param>
+        public override void DriveMechanism(float speedControl)
+        {
+            ClampIndex();
             var currentJoint = tJoints[jointIndex];
             currentJoint.DriveMechanism(speedControl);
-			if(currentJoint.speed * speedControl >= 0)
-			{
-				if (currentJoint.tState == TelescopicState.Extend)
+            if (currentJoint.speed * speedControl >= 0)
+            {
+                if (currentJoint.tState == TelescopicState.Extend)
                     jointIndex++;
-			}
-			else
-			{
-				if (currentJoint.tState == TelescopicState.Shrink)
+            }
+            else
+            {
+                if (currentJoint.tState == TelescopicState.Shrink)
                     jointIndex--;
-            }//if()_end
-        }//DriveM...()_end
+            }
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

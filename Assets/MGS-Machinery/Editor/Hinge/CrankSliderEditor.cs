@@ -36,8 +36,8 @@ namespace Developer.Machinery
                     return script.transform.TransformPoint(script.lsJointPosition);
                 else
                     return script.lsJoint.position;
-            }//get_end
-        }//zeroPoint_end
+            }
+        }
         #endregion
 
         #region Protected Method
@@ -52,8 +52,8 @@ namespace Developer.Machinery
                 DrawPositionHandle(script.linkBar.transform);
                 DrawPositionHandle(script.lsJoint);
                 DrawRotationHandle(script.lsJoint);
-            }//if()_end
-            if(script.editMode == EditMode.Hinge)
+            }
+            if (script.editMode == EditMode.Hinge)
                 DrawRotationHandle(script.crank.transform);
 
             Handles.SphereCap(0, script.crank.transform.position, Quaternion.identity, nodeSize);
@@ -71,7 +71,7 @@ namespace Developer.Machinery
             DrawArrow(zeroPoint, -axis, arrowLength, nodeSize, string.Empty, blue);
 
             DrawSceneTool();
-        }//OnSceneGUI()_end
+        }
 
         protected virtual void DrawSceneTool()
         {
@@ -81,7 +81,7 @@ namespace Developer.Machinery
             DrawHingeEditorTools();
             GUILayout.EndArea();
             Handles.EndGUI();
-        }//DrawSceneTool()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

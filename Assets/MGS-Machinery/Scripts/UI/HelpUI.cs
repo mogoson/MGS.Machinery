@@ -42,7 +42,7 @@ namespace Developer.Machinery
             GUILayout.Space(xOffset);
             GUILayout.Label(text);
             GUILayout.EndHorizontal();
-        }//OnGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

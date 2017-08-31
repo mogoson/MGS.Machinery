@@ -22,20 +22,20 @@ namespace Developer.Machinery
     using UnityEngine;
 
     [AddComponentMenu("Developer/Machinery/SyTelescopicArm")]
-	public class SyTelescopicArm : TelescopicArmMechanism
+    public class SyTelescopicArm : TelescopicArmMechanism
     {
         #region Public Method
-		/// <summary>
-		/// Drive the mechanism.
-		/// </summary>
-		/// <param name="speedControl">Speed control.</param>
-		public override void DriveMechanism (float speedControl)
-		{
-			foreach (var joint in tJoints) 
-			{
+        /// <summary>
+        /// Drive the mechanism.
+        /// </summary>
+        /// <param name="speedControl">Speed control.</param>
+        public override void DriveMechanism(float speedControl)
+        {
+            foreach (var joint in tJoints)
+            {
                 joint.DriveMechanism(speedControl);
-			}
-		}//DriveM...()_end
+            }
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

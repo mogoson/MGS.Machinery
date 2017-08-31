@@ -42,7 +42,7 @@ namespace Developer.Machinery
                 DrawPositionHandle(script.linkBar.transform);
                 DrawPositionHandle(script.rocker.transform);
                 DrawPositionHandle(script.lrJoint);
-            }//if()_end
+            }
             if (script.editMode == EditMode.Hinge)
                 DrawRotationHandle(script.crank.transform);
 
@@ -57,7 +57,7 @@ namespace Developer.Machinery
             DrawArrow(script.rocker.transform.position, script.crank.transform.position, nodeSize, string.Empty, blue);
 
             DrawSceneTool();
-        }//OnSceneGUI()_end
+        }
 
         protected virtual void DrawSceneTool()
         {
@@ -73,7 +73,7 @@ namespace Developer.Machinery
 
             GUILayout.EndArea();
             Handles.EndGUI();
-        }//DrawSceneTool()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

@@ -52,7 +52,7 @@ namespace Developer.Vector3
             if ((ncDot > 0 && tcDot >= 0) || (ncDot < 0 && tcDot <= 0))
                 a = 360 - a;
             return a;
-        }//RotateAngle()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

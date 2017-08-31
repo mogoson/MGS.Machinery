@@ -38,8 +38,8 @@ namespace Developer.Machinery
             {
                 angle = lockRecord;
                 DriveCrank();
-            }//if()_end
-        }//DriveCrank()_end
+            }
+        }
         #endregion
 
         #region Public Method
@@ -47,10 +47,10 @@ namespace Developer.Machinery
         /// Drive the mechanism.
         /// </summary>
         /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism (float speedControl)
-		{
+        public override void DriveMechanism(float speedControl)
+        {
             DriveCrank(speed * speedControl);
-		}//DriveM...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

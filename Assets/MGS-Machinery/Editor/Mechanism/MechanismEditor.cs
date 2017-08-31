@@ -50,13 +50,13 @@ namespace Developer.Machinery
 
             GUI.color = gC;
             Handles.color = hC;
-        }//DrawArrow()_end
+        }
 
         protected virtual void DrawArrow(Vector3 start, Vector3 direction, float length, float size, string text, Color color)
         {
             var end = start + direction.normalized * length;
             DrawArrow(start, end, size, text, color);
-        }//DrawArrow()_end
+        }
 
         protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver, Color color)
         {
@@ -71,9 +71,9 @@ namespace Developer.Machinery
                     DrawArrow(driver.position, rocker.transform.position, nodeSize, string.Empty, blue);
                     if (rocker.rockJoint)
                         DrawArrow(rocker.transform.position, rocker.rockJoint.transform.position, nodeSize, string.Empty, blue);
-                }//if()_end
-            }//foreach()_end
-        }//DrawRocker()_end
+                }
+            }
+        }
 
         protected void DrawPositionHandle(Transform transform)
         {
@@ -83,8 +83,8 @@ namespace Developer.Machinery
             {
                 Undo.RecordObject(transform, "Change Position");
                 transform.position = position;
-            }//if()_end
-        }//DrawP...()_end
+            }
+        }
 
         protected void DrawRotationHandle(Transform transform)
         {
@@ -94,8 +94,8 @@ namespace Developer.Machinery
             {
                 Undo.RecordObject(transform, "Change Rotation");
                 transform.rotation = rotation;
-            }//if()_end
-        }//DrawR...()_end
+            }
+        }
 
         protected Quaternion GetPivotRotation(Transform transform)
         {
@@ -103,7 +103,7 @@ namespace Developer.Machinery
             if (Tools.pivotRotation == PivotRotation.Local)
                 rotation = transform.rotation;
             return rotation;
-        }//GetP...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

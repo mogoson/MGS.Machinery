@@ -34,7 +34,7 @@ namespace Developer.Machinery
             Handles.color = blue;
             Handles.DrawLine(script.transform.position, script.transform.position + script.transform.right * lineLength);
             Handles.DrawLine(script.transform.position, script.transform.position + script.transform.up * lineLength);
-        }//OnSceneGUI()_end
+        }
 
         protected void DrawHingeEditorTools()
         {
@@ -44,23 +44,23 @@ namespace Developer.Machinery
             {
                 script.enabled = false;
                 script.editMode = EditMode.Edit;
-            }//if()_end
+            }
             GUI.color = script.editMode == EditMode.Hinge ? blue : Color.white;
             if (GUILayout.Button("Hinge"))
             {
                 script.enabled = true;
                 script.editMode = EditMode.Hinge;
-            }//if()_end
+            }
             GUI.color = script.editMode == EditMode.Lock ? blue : Color.white;
             if (GUILayout.Button("Lock"))
             {
                 script.Initialize();
                 script.enabled = true;
                 script.editMode = EditMode.Lock;
-            }//if()_end
+            }
             GUI.color = Color.white;
             GUILayout.EndHorizontal();
-        }//DrawH...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

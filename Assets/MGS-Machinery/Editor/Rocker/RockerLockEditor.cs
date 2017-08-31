@@ -43,7 +43,7 @@ namespace Developer.Machinery
             var nearMax = center - maxOffset;
             var farMin = center + minOffset;
             var farMax = center + maxOffset;
-            
+
             Handles.color = GUI.color = blue;
             Handles.DrawLine(nearMax, farMax);
 
@@ -58,7 +58,7 @@ namespace Developer.Machinery
             Handles.SphereCap(0, farMax, Quaternion.identity, nodeSize);
 
             DrawSceneTool();
-        }//OnSceneGUI()_end
+        }
 
         protected virtual void DrawSceneTool()
         {
@@ -78,7 +78,7 @@ namespace Developer.Machinery
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
             Handles.EndGUI();
-        }//DrawSceneTool()_end
+        }
         #endregion
 
         #region Public Method
@@ -87,7 +87,7 @@ namespace Developer.Machinery
             DrawDefaultInspector();
             script.minStroke = Mathf.Clamp(script.minStroke, 0, float.MaxValue);
             script.maxStroke = Mathf.Clamp(script.maxStroke, script.minStroke, float.MaxValue);
-        }//OnInspectorGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

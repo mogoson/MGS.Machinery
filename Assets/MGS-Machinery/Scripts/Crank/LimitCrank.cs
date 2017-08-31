@@ -51,8 +51,8 @@ namespace Developer.Machinery
             {
                 angle = lockRecord;
                 DriveCrank();
-            }//if()_end
-        }//DriveCrank()_end
+            }
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

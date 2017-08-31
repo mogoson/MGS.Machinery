@@ -41,8 +41,8 @@ namespace Developer.Machinery
                 }
                 else
                     return script.transform.up;
-            }//get_end
-        }//zeroAxis_end
+            }
+        }
         #endregion
 
         #region Protected Method
@@ -57,7 +57,7 @@ namespace Developer.Machinery
 
             Handles.color = transparentBlue;
             Handles.DrawSolidArc(script.transform.position, axis, minAxis, script.maxAngle - script.minAngle, areaRadius);
-        }//DrawArea()_end
+        }
         #endregion
 
         #region Public Method
@@ -65,7 +65,7 @@ namespace Developer.Machinery
         {
             DrawDefaultInspector();
             script.maxAngle = Mathf.Clamp(script.maxAngle, script.minAngle, float.MaxValue);
-        }//OnInspectorGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

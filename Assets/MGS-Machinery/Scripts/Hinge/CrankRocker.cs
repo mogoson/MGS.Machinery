@@ -94,7 +94,7 @@ namespace Developer.Machinery
 #else
             Initialize();
 #endif
-        }//Awake()_end
+        }
 
 #if UNITY_EDITOR
         /// <summary>
@@ -112,7 +112,7 @@ namespace Developer.Machinery
             }
             else
                 initialized = false;
-        }//U...()_end
+        }
 #endif
         /// <summary>
         /// Drive link bar and rocker.
@@ -142,13 +142,13 @@ namespace Developer.Machinery
                 //Adapt intertia and restrict.
                 var rID = restrict ? 1 : 0;
                 point = inertia ? points[rID] : (points[0].y - points[1].y >= 0 == top ? points[rID] : points[1 - rID]);
-            }//else_end
+            }
             lrJoint.localPosition = new Vector3((float)point.x, (float)point.y, 0);
 
             //Drive bars.
             rocker.DriveMechanism();
-			linkBar.DriveMechanism();
-        }//DriveBars()_end
+            linkBar.DriveMechanism();
+        }
         #endregion
 
         #region Public Method
@@ -174,7 +174,7 @@ namespace Developer.Machinery
             rockerCircle = new Circle(rockerPoint, rockerRadius);
             linkRadius = Planimetry.GetDistance(linkPoint, lrJointPoint);
             initialized = true;
-        }//Initialize()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

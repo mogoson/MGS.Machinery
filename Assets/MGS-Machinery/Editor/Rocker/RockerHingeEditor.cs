@@ -45,7 +45,7 @@ namespace Developer.Machinery
 
             if (script.rockJoint)
                 DrawArrow(script.transform.position, script.rockJoint.forward, areaRadius, nodeSize, string.Empty, blue);
-        }//OnSceneGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

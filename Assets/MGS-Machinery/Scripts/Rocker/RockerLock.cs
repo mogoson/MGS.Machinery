@@ -33,7 +33,7 @@ namespace Developer.Machinery
         protected override void Awake()
         {
             base.Awake();
-        }//Awake()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

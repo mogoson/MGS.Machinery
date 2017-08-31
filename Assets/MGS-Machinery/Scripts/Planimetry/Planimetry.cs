@@ -53,7 +53,7 @@ namespace Developer.Math.Planimetry
             this.x = x;
             this.y = y;
         }
-    }//Point_end
+    }
 
     /// <summary>
     /// Circle in plane rectangular coordinate system.
@@ -89,7 +89,7 @@ namespace Developer.Math.Planimetry
             this.c = c;
             this.r = r;
         }
-    }//Circle_end
+    }
 
     /// <summary>
     /// Line in plane rectangular coordinate system.
@@ -133,7 +133,7 @@ namespace Developer.Math.Planimetry
         /// Get a line that pass point A and point B.
         /// </summary>
         public static Line GetLine(Point A, Point B)
-        { 
+        {
             //------------------------------------------
             //  Ay = kAx + b, By = kBx + b
             //
@@ -173,7 +173,7 @@ namespace Developer.Math.Planimetry
             this.k = k;
             this.b = b;
         }
-    }//Line_end
+    }
 
     /// <summary>
     /// Triangle in plane rectangular coordinate system.
@@ -263,7 +263,7 @@ namespace Developer.Math.Planimetry
                 return false;
             else
                 return true;
-        }//Check()_end
+        }
 
         /// <summary>
         /// /Check the three side can be constituted a triangle.
@@ -271,7 +271,7 @@ namespace Developer.Math.Planimetry
         public static bool Check(double a, double b, double c)
         {
             return a > 0 && b > 0 && c > 0 && a + b > c && a - b < c;
-        }//Check()_end
+        }
 
         /// <summary>
         /// Check the triangle is reasonable or not.
@@ -279,25 +279,25 @@ namespace Developer.Math.Planimetry
         public static bool Check(Triangle t)
         {
             return Check(t.A, t.B, t.C);
-        }//Check()_end
+        }
 
-		public static double GetAngleABC(double a, double b, double c)
-		{
-			//-----------------------------
-			//             2   2   2
-			//            a + c - b
-			//	cos x = ---------------
-			//               2ac
-			//-----------------------------
+        public static double GetAngleABC(double a, double b, double c)
+        {
+            //-----------------------------
+            //             2   2   2
+            //            a + c - b
+            //	cos x = ---------------
+            //               2ac
+            //-----------------------------
 
-			if(a == 0 || b == 0 || c == 0)
-				return double.NaN;
+            if (a == 0 || b == 0 || c == 0)
+                return double.NaN;
 
-			var m = Math.Pow (a, 2) + Math.Pow (c, 2) - Math.Pow (b, 2);
-			var d = 2 * a * c;
-			return Math.Acos (m / d);
-		}//GetCAB()_end
-    }//Triangle_end
+            var m = Math.Pow(a, 2) + Math.Pow(c, 2) - Math.Pow(b, 2);
+            var d = 2 * a * c;
+            return Math.Acos(m / d);
+        }
+    }
     #endregion
 
     #region Enum
@@ -310,7 +310,7 @@ namespace Developer.Math.Planimetry
         External, Internal,
         Parallel, Vertical, Intersect,
         OutsideTangent, InsideTangent
-    }//Relation_end
+    }
     #endregion
 
     /// <summary>
@@ -318,15 +318,15 @@ namespace Developer.Math.Planimetry
     /// </summary>
     public static class Planimetry
     {
-		#region Distance
-		/// <summary>
+        #region Distance
+        /// <summary>
         /// Gets the distance from point1 to point2.
-		/// </summary>
-		/// <returns>The distance.</returns>
-		/// <param name="p1">Point 1.</param>
-		/// <param name="p2">Point 2.</param>
-		public static double GetDistance(Point p1, Point p2)
-		{
+        /// </summary>
+        /// <returns>The distance.</returns>
+        /// <param name="p1">Point 1.</param>
+        /// <param name="p2">Point 2.</param>
+        public static double GetDistance(Point p1, Point p2)
+        {
             //----------------------------------------
             //              _______________________
             //             /        2           2
@@ -336,7 +336,7 @@ namespace Developer.Math.Planimetry
             var dx_2 = Math.Pow(p2.x - p1.x, 2);
             var dy_2 = Math.Pow(p2.y - p1.y, 2);
             return Math.Sqrt(dx_2 + dy_2);
-		}//GetD...()_end
+        }
 
         /// <summary>
         /// Gets the distance from line1 to line2,
@@ -357,7 +357,7 @@ namespace Developer.Math.Planimetry
             //       \/ A + B                    \/ 1 + k
             //------------------------------------------------------------------
 
-            if(L1.k == L2.k)
+            if (L1.k == L2.k)
             {
                 var dB = Math.Abs(L2.b - L1.b);
                 if (L1.k == 0 || L1.k == double.PositiveInfinity)
@@ -367,7 +367,7 @@ namespace Developer.Math.Planimetry
             }
             else
                 return 0;
-        }//GetD...()_end
+        }
 
         /// <summary>
         /// Gets the distance from point to line.
@@ -376,7 +376,7 @@ namespace Developer.Math.Planimetry
         /// <param name="L">Line</param>
         /// <returns>Distance</returns>
 		public static double GetDistance(Point p, Line L)
-		{
+        {
             //------------------------------------------------------------------
             //  y = kx + b <=> kx - y + b = 0 <=> A = k, B = -1, C = b
             //
@@ -387,14 +387,14 @@ namespace Developer.Math.Planimetry
             //       \/ A + B                    \/ 1 + k
             //------------------------------------------------------------------
 
-			if(L.k == 0)
-				return Math.Abs(p.y - L.b);
+            if (L.k == 0)
+                return Math.Abs(p.y - L.b);
             if (L.k == double.PositiveInfinity)
                 return Math.Abs(p.x - L.b);
             else
                 return Math.Abs(L.k * p.x - p.y + L.b) / Math.Sqrt(1 + Math.Pow(L.k, 2));
-		}//GetD...()_end
-		#endregion
+        }
+        #endregion
 
         #region Relation
         /// <summary>
@@ -410,20 +410,20 @@ namespace Developer.Math.Planimetry
             var d = c1.r + c2.r;
             var p = Math.Abs(c1.r - c2.r);
 
-            if(cd > d)
+            if (cd > d)
                 re = Relation.External;
-            if(cd == d)
+            if (cd == d)
                 re = Relation.OutsideTangent;
-            if(cd < d)
+            if (cd < d)
                 re = Relation.Intersect;
-            if(cd == p)
+            if (cd == p)
                 re = Relation.InsideTangent;
-            if(cd < p)
+            if (cd < p)
                 re = Relation.Internal;
             if (cd == 0 && p == 0)
                 re = Relation.Coincidence;
             return re;
-        }//GetR...()_end
+        }
 
         /// <summary>
         /// Get relation of circle and line.
@@ -435,14 +435,14 @@ namespace Developer.Math.Planimetry
         {
             var re = Relation.External;
             var d = GetDistance(c.c, L);
-            if(d > c.r)
+            if (d > c.r)
                 re = Relation.External;
-            if(d == c.r)
+            if (d == c.r)
                 re = Relation.OutsideTangent;
-            if(d < c.r)
+            if (d < c.r)
                 re = Relation.Intersect;
             return re;
-        }//GetR...()_end
+        }
 
         /// <summary>
         /// Get relation of circle and point.
@@ -454,14 +454,14 @@ namespace Developer.Math.Planimetry
         {
             var re = Relation.External;
             var cp = GetDistance(c.c, p);
-            if(cp > c.r)
+            if (cp > c.r)
                 re = Relation.External;
-            if(cp == c.r)
+            if (cp == c.r)
                 re = Relation.Coincidence;
-            if(cp < c.r)
+            if (cp < c.r)
                 re = Relation.Internal;
             return re;
-        }//GetR...()_end
+        }
 
         /// <summary>
         /// Get relation of two lines.
@@ -482,7 +482,7 @@ namespace Developer.Math.Planimetry
             else
                 re = Relation.Intersect;
             return re;
-        }//GetR...()_end
+        }
 
         /// <summary>
         /// Get relation of line and point.
@@ -509,7 +509,7 @@ namespace Developer.Math.Planimetry
                     re = Relation.External;
             }
             return re;
-        }//GetR...()_end
+        }
         #endregion
 
         #region Intersection
@@ -543,14 +543,14 @@ namespace Developer.Math.Planimetry
             //-------------------------------------------------------
 
             var re = GetRelation(c1, c2);
-            if(re == Relation.InsideTangent || re == Relation.OutsideTangent || re == Relation.Intersect)
+            if (re == Relation.InsideTangent || re == Relation.OutsideTangent || re == Relation.Intersect)
             {
                 var k = 0d;
                 var b = 0d;
                 var dx = c2.c.x - c1.c.x;
                 var dy = c2.c.y - c1.c.y;
                 var temp = Math.Pow(c2.c.x, 2) + Math.Pow(c2.c.y, 2) + Math.Pow(c1.r, 2)
-                          -Math.Pow(c1.c.x, 2) - Math.Pow(c1.c.y, 2) - Math.Pow(c2.r, 2);
+                          - Math.Pow(c1.c.x, 2) - Math.Pow(c1.c.y, 2) - Math.Pow(c2.r, 2);
                 if (dy == 0)
                 {
                     k = double.PositiveInfinity;
@@ -565,7 +565,7 @@ namespace Developer.Math.Planimetry
             }
             else
                 return null;
-        }//GetI...()_end
+        }
 
         /// <summary>
         /// Get intersections of circle and line.
@@ -599,7 +599,7 @@ namespace Developer.Math.Planimetry
             {
                 var I = new List<Point>();
 
-                if(L.k == double.PositiveInfinity)
+                if (L.k == double.PositiveInfinity)
                 {
                     var x1 = L.b;
                     var dy = Math.Sqrt(Math.Pow(C.r, 2) - Math.Pow(x1 - C.c.x, 2));
@@ -620,7 +620,7 @@ namespace Developer.Math.Planimetry
                     var c = Math.Pow(C.c.x, 2) + Math.Pow(L.b - C.c.y, 2) - Math.Pow(C.r, 2);
                     var delta = Math.Pow(b, 2) - 4 * a * c;
 
-                    var x1 = (-b + Math.Sqrt(delta))/ (2 * a);
+                    var x1 = (-b + Math.Sqrt(delta)) / (2 * a);
                     var y1 = L.k * x1 + L.b;
                     I.Add(new Point(x1, y1));
 
@@ -635,7 +635,7 @@ namespace Developer.Math.Planimetry
             }
             else
                 return null;
-        }//GetI...()_end
+        }
 
         /// <summary>
         /// Get intersections of two lines,
@@ -644,7 +644,7 @@ namespace Developer.Math.Planimetry
         /// <param name="L1">Line 1</param>
         /// <param name="L2">Line 2</param>
         /// <returns>Intersections</returns>
-        public static List<Point> GetIntersections(Line L1, Line L2) 
+        public static List<Point> GetIntersections(Line L1, Line L2)
         {
             //--------------------------------------------
             //  y = k1x + b1    y = k2x + b2
@@ -663,7 +663,7 @@ namespace Developer.Math.Planimetry
             var I = new List<Point>();
             I.Add(new Point(x, y));
             return I;
-        }//GetI...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

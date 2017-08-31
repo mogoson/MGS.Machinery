@@ -36,7 +36,7 @@ namespace Developer.Machinery
         /// All mechanism is set Intact.
         /// </summary>
         public bool isIntact { get { return crank && linkBar && lsJoint; } }
-        
+
         /// <summary>
         /// lsJoint start local position.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Developer.Machinery
 #else
             Initialize();
 #endif
-        }//Awake()_end
+        }
 
 #if UNITY_EDITOR
         /// <summary>
@@ -100,7 +100,7 @@ namespace Developer.Machinery
             }
             else
                 initialized = false;
-        }//U...()_end
+        }
 #endif
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Developer.Machinery
 
             //Drive linkBar.
             linkBar.DriveMechanism();
-        }//DriveBars()_end
+        }
 
         /// <summary>
         /// Clear angles z and set y 90.
@@ -141,7 +141,7 @@ namespace Developer.Machinery
         protected Vector3 CorrectLSJointAngles(Vector3 angles)
         {
             return new Vector3(angles.x, 90, 0);
-        }//CorrectL...()_end
+        }
         #endregion
 
         #region Public Method
@@ -171,7 +171,7 @@ namespace Developer.Machinery
             linkLine = Line.GetLine(lsJointPoint, directionPoint);
             right = lsJointPoint.x - linkPoint.x >= 0;
             initialized = true;
-        }//Initialize()_end
+        }
 
         /// <summary>
         /// Project direction vector on plane[Normal is transform.forward].
@@ -184,7 +184,7 @@ namespace Developer.Machinery
             if (direction == Vector3.zero)
                 direction = transform.right;
             return direction;
-        }//ProjectD...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

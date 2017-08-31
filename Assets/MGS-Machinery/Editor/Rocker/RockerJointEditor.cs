@@ -35,7 +35,7 @@ namespace Developer.Machinery
         protected virtual void OnEnable()
         {
             upTransform = serializedObject.FindProperty("upTransform");
-        }//OnEnable()_end
+        }
 
         protected virtual void OnSceneGUI()
         {
@@ -47,7 +47,7 @@ namespace Developer.Machinery
             Handles.SphereCap(0, script.rockJoint.position, Quaternion.identity, nodeSize);
             Handles.DrawLine(script.transform.position, script.rockJoint.position);
             DrawArrow(script.transform.position, script.worldUp, arrowLength, nodeSize, "Up", blue);
-        }//OnSceneGUI()_end
+        }
         #endregion
 
         #region Public Method
@@ -58,8 +58,8 @@ namespace Developer.Machinery
             {
                 EditorGUILayout.PropertyField(upTransform);
                 serializedObject.ApplyModifiedProperties();
-            }//if()_end
-        }//OnInspectorGUI()_end
+            }
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

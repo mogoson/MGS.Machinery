@@ -39,8 +39,8 @@ namespace Developer.Machinery
             {
                 displacement = lockRecord;
                 DriveJoint();
-            }//if()_end
-        }//DriveJoint()_end
+            }
+        }
         #endregion
 
         #region Public Method
@@ -48,14 +48,14 @@ namespace Developer.Machinery
         /// Drive the mechanism.
         /// </summary>
         /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism (float speedControl)
-		{
+        public override void DriveMechanism(float speedControl)
+        {
             DriveJoint(speed * speedControl);
             if (displacement <= 0)
                 tState = TelescopicState.Shrink;
             else if (displacement >= stroke)
-				tState = TelescopicState.Extend;
-		}//DriveM...()_end
+                tState = TelescopicState.Extend;
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

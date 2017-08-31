@@ -44,7 +44,7 @@ namespace Developer.Machinery
                 else
                     return Vector3.up;
             }
-        }//zeroAxis_end
+        }
         #endregion
 
         #region Protected Method
@@ -53,7 +53,7 @@ namespace Developer.Machinery
         {
             if (!Application.isPlaying && rockJoint)
                 DriveMechanism();
-        }//Update()_end
+        }
 #endif
         #endregion
 
@@ -66,7 +66,7 @@ namespace Developer.Machinery
             rockJoint.position = transform.position;
             var angle = -DVector3.RotateAngle(rockJoint.forward, zeroAxis, axis);
             transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
-        }//DriveM...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

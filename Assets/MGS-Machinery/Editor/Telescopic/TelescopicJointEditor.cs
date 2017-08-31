@@ -42,8 +42,8 @@ namespace Developer.Machinery
                 }
                 else
                     return script.transform.position;
-            }//get_end
-        }//zeroPoint_end
+            }
+        }
         #endregion
 
         #region Protected Method
@@ -56,12 +56,12 @@ namespace Developer.Machinery
             Handles.SphereCap(0, script.transform.position, Quaternion.identity, nodeSize);
             DrawStroke();
             DrawRockers(script.rockers, script.transform, blue);
-        }//OnSceneGUI()_end
+        }
 
         protected virtual void DrawStroke()
         {
             DrawArrow(zeroPoint, axis, script.stroke, nodeSize, "Stroke", blue);
-        }//DrawStroke()_end
+        }
         #endregion
 
         #region Public Method
@@ -69,7 +69,7 @@ namespace Developer.Machinery
         {
             DrawDefaultInspector();
             script.stroke = Mathf.Clamp(script.stroke, 0, float.MaxValue);
-        }//OnInspectorGUI()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}

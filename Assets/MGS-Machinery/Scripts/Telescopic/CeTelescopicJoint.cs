@@ -39,8 +39,8 @@ namespace Developer.Machinery
             {
                 displacement = lockRecord;
                 DriveJoint();
-            }//if()_end
-        }//DriveJoint()_end
+            }
+        }
         #endregion
 
         #region Public Method
@@ -55,7 +55,7 @@ namespace Developer.Machinery
                 tState = TelescopicState.Shrink;
             else if (displacement <= -stroke || displacement >= stroke)
                 tState = TelescopicState.Extend;
-        }//DriveM...()_end
+        }
         #endregion
-    }//class_end
-}//namespace_end
+    }
+}
