@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
  *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
  *------------------------------------------------------------------------
- *  File         :  SynchroCrank.cs
- *  Description  :  Define SynchroCrank component.
+ *  File         :  SynchroMechanism.cs
+ *  Description  :  Define SynchroMechanism component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
@@ -15,26 +15,26 @@ using UnityEngine;
 
 namespace Developer.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/SynchroCrank")]
-    public class SynchroCrank : Mechanism
+    [AddComponentMenu("Developer/Machinery/SynchroMechanism")]
+    public class SynchroMechanism : Mechanism
     {
         #region Property and Field
         /// <summary>
-        /// Crank mechanism.
+        /// Mechanisms.
         /// </summary>
-        public List<CrankMechanism> cranks = new List<CrankMechanism>();
+        public List<Mechanism> mechanisms = new List<Mechanism>();
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive the mechanisms.
         /// </summary>
         /// <param name="speedControl">Speed control.</param>
         public override void DriveMechanism(float speedControl)
         {
-            foreach (var crank in cranks)
+            foreach (var mechanism in mechanisms)
             {
-                crank.DriveMechanism(speedControl);
+                mechanism.DriveMechanism(speedControl);
             }
         }
         #endregion
