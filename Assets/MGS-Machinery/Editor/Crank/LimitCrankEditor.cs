@@ -45,8 +45,8 @@ namespace Developer.Machinery
             var maxAxis = Quaternion.AngleAxis(script.maxAngle, axis) * zeroAxis;
 
             DrawArrow(script.transform.position, zeroAxis, arrowLength, nodeSize, "Zero", blue);
-            DrawArrow(script.transform.position, minAxis, arrowLength, nodeSize, "MinAngle", blue);
-            DrawArrow(script.transform.position, maxAxis, arrowLength, nodeSize, "MaxAngle", blue);
+            DrawArrow(script.transform.position, minAxis, arrowLength, nodeSize, "Min Angle", blue);
+            DrawArrow(script.transform.position, maxAxis, arrowLength, nodeSize, "Max Angle", blue);
 
             Handles.color = transparentBlue;
             Handles.DrawSolidArc(script.transform.position, axis, minAxis, script.maxAngle - script.minAngle, areaRadius);

@@ -36,6 +36,7 @@ namespace Developer.Machinery
                 return;
 
             DrawPositionHandle(script.rockJoint);
+
             Handles.color = blue;
             DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
             DrawSphereCap(script.rockJoint.position, Quaternion.identity, nodeSize);

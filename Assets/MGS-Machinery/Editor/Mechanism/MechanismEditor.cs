@@ -35,8 +35,8 @@ namespace Developer.Machinery
         #region Protected Method
         protected virtual void DrawArrow(Vector3 start, Vector3 end, float size, string text, Color color)
         {
-            var gC = GUI.color;
-            var hC = Handles.color;
+            var gColor = GUI.color;
+            var hColor = Handles.color;
 
             GUI.color = color;
             Handles.color = color;
@@ -45,8 +45,8 @@ namespace Developer.Machinery
             DrawSphereCap(end, Quaternion.identity, size);
             Handles.Label(end, text);
 
-            GUI.color = gC;
-            Handles.color = hC;
+            GUI.color = gColor;
+            Handles.color = hColor;
         }
 
         protected virtual void DrawArrow(Vector3 start, Vector3 direction, float length, float size, string text, Color color)
@@ -59,6 +59,7 @@ namespace Developer.Machinery
         {
             if (rockers == null)
                 return;
+
             Handles.color = color;
             foreach (var rocker in rockers)
             {
@@ -80,6 +81,7 @@ namespace Developer.Machinery
             {
                 Undo.RecordObject(transform, "Change Position");
                 transform.position = position;
+                MarkSceneDirty();
             }
         }
 
@@ -91,15 +93,16 @@ namespace Developer.Machinery
             {
                 Undo.RecordObject(transform, "Change Rotation");
                 transform.rotation = rotation;
+                MarkSceneDirty();
             }
         }
 
         protected Quaternion GetPivotRotation(Transform transform)
         {
-            var rotation = Quaternion.identity;
             if (Tools.pivotRotation == PivotRotation.Local)
-                rotation = transform.rotation;
-            return rotation;
+                return transform.rotation;
+            else
+                return Quaternion.identity;
         }
 
         protected void DrawSphereCap(Vector3 position, Quaternion rotation, float size)

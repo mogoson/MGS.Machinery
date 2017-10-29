@@ -1,4 +1,4 @@
-# MGS-Machinery
+﻿# MGS-Machinery
 
 ## Summary
 - Unity plugin for binding machinery joint.
@@ -10,7 +10,7 @@
 ## Achieve
 
 ## Demo
-- Demos in the path “MGS-ContextMenu\Scenes” provide reference to you.
+- Demos in the path “MGS-Machinery\Scenes” provide reference to you.
 
 ## Contact
 - If you have any questions, feel free to contact me at mogoson@qq.com.

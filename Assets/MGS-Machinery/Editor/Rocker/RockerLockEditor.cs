@@ -21,6 +21,7 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected RockerLock script { get { return target as RockerLock; } }
+        protected const float half = 0.5f;
         #endregion
 
         #region Private Method
@@ -30,9 +31,9 @@ namespace Developer.Machinery
                 return;
 
             var offset = script.rJoint.rockJoint.position - script.transform.position;
-            var center = script.transform.position + offset * 0.5f;
-            var minOffset = offset.normalized * script.minStroke * 0.5f;
-            var maxOffset = offset.normalized * script.maxStroke * 0.5f;
+            var center = script.transform.position + offset * half;
+            var minOffset = offset.normalized * script.minStroke * half;
+            var maxOffset = offset.normalized * script.maxStroke * half;
             var nearMin = center - minOffset;
             var nearMax = center - maxOffset;
             var farMin = center + minOffset;
@@ -41,13 +42,13 @@ namespace Developer.Machinery
             Handles.color = GUI.color = blue;
             Handles.DrawLine(nearMax, farMax);
 
-            Handles.Label(nearMin, "NearMin");
-            Handles.Label(nearMax, "NearMax");
+            Handles.Label(nearMin, "Near Min");
+            Handles.Label(nearMax, "Near Max");
             DrawSphereCap(nearMin, Quaternion.identity, nodeSize);
             DrawSphereCap(nearMax, Quaternion.identity, nodeSize);
 
-            Handles.Label(farMin, "FarMin");
-            Handles.Label(farMax, "FarMax");
+            Handles.Label(farMin, "Far Min");
+            Handles.Label(farMax, "Far Max");
             DrawSphereCap(farMin, Quaternion.identity, nodeSize);
             DrawSphereCap(farMax, Quaternion.identity, nodeSize);
 

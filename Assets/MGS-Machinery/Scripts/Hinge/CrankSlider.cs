@@ -71,10 +71,8 @@ namespace Developer.Machinery
         {
 #if UNITY_EDITOR
             if (Application.isPlaying)
-                Initialize();
-#else
-            Initialize();
 #endif
+                Initialize();
         }
 
 #if UNITY_EDITOR

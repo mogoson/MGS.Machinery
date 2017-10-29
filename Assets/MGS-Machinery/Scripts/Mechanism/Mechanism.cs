@@ -367,7 +367,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Get distance from this transform to rJoint.rockJoint transform.
         /// </summary>
-        /// <returns>Distance</returns>
+        /// <returns>Distance.</returns>
         public virtual float GetDistance()
         {
             return Vector3.Distance(transform.position, rJoint.rockJoint.position);
