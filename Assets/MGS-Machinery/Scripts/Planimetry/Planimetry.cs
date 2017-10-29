@@ -1,32 +1,24 @@
 /*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: Planimetry.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/9/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.          Planimetry              Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/9/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  Planimetry.cs
+ *  Description  :  Define planimetry.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/9/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
 
-namespace Developer.Math.Planimetry
-{
-    using System;
-    using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
+namespace Developer.MathExtension.Planimetry
+{
     #region Struct
     /// <summary>
     /// Express a point in the plane rectangular coordinate system.
     /// </summary>
-    [Serializable]
     public struct Point
     {
         //========Point Definition===================
@@ -58,7 +50,6 @@ namespace Developer.Math.Planimetry
     /// <summary>
     /// Circle in plane rectangular coordinate system.
     /// </summary>
-    [Serializable]
     public struct Circle
     {
         //========Circle Definition==================
@@ -94,7 +85,6 @@ namespace Developer.Math.Planimetry
     /// <summary>
     /// Line in plane rectangular coordinate system.
     /// </summary>
-    [Serializable]
     public struct Line
     {
         //========Line Definition===========
@@ -178,7 +168,6 @@ namespace Developer.Math.Planimetry
     /// <summary>
     /// Triangle in plane rectangular coordinate system.
     /// </summary>
-    [Serializable]
     public struct Triangle
     {
         //========Triangle Definition=======

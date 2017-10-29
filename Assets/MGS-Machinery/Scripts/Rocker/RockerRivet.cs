@@ -1,26 +1,19 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2016-2017, Mogoson tech. Co., Ltd.
- *  FileName: RockerRivet.cs
- *  Author: Mogoson   Version: 1.0   Date: 9/12/2016
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.          RockerRivet             Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     9/12/2016       1.0        Build this file.
+ *  Copyright (C), 2016-2017, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  RockerRivet.cs
+ *  Description  :  Define RockerRivet component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  9/12/2016
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEngine;
-
     [AddComponentMenu("Developer/Machinery/RockerRivet")]
     [ExecuteInEditMode]
     public class RockerRivet : RockerMechanism

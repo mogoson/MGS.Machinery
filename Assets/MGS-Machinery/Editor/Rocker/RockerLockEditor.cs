@@ -1,27 +1,20 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson tech. Co., Ltd.
- *  FileName: RockerLockEditor.cs
- *  Author: Mogoson   Version: 1.0   Date: 1/19/2017
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.        RockerLockEditor          Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     1/19/2017       1.0        Build this file.
+ *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  RockerLockEditor.cs
+ *  Description  :  Custom editor for RockerLock.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  1/19/2017
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEditor;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEditor;
-    using UnityEngine;
-
     [CustomEditor(typeof(RockerLock), true)]
     [CanEditMultipleObjects]
     public class RockerLockEditor : MechanismEditor
@@ -35,6 +28,7 @@ namespace Developer.Machinery
         {
             if (!script.rJoint.rockJoint)
                 return;
+
             var offset = script.rJoint.rockJoint.position - script.transform.position;
             var center = script.transform.position + offset * 0.5f;
             var minOffset = offset.normalized * script.minStroke * 0.5f;
@@ -49,13 +43,13 @@ namespace Developer.Machinery
 
             Handles.Label(nearMin, "NearMin");
             Handles.Label(nearMax, "NearMax");
-            Handles.SphereCap(0, nearMin, Quaternion.identity, nodeSize);
-            Handles.SphereCap(0, nearMax, Quaternion.identity, nodeSize);
+            DrawSphereCap(nearMin, Quaternion.identity, nodeSize);
+            DrawSphereCap(nearMax, Quaternion.identity, nodeSize);
 
             Handles.Label(farMin, "FarMin");
             Handles.Label(farMax, "FarMax");
-            Handles.SphereCap(0, farMin, Quaternion.identity, nodeSize);
-            Handles.SphereCap(0, farMax, Quaternion.identity, nodeSize);
+            DrawSphereCap(farMin, Quaternion.identity, nodeSize);
+            DrawSphereCap(farMax, Quaternion.identity, nodeSize);
 
             DrawSceneTool();
         }

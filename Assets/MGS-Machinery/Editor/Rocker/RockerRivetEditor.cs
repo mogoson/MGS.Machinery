@@ -1,27 +1,20 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson tech. Co., Ltd.
- *  FileName: RockerRivetEditor.cs
- *  Author: Mogoson   Version: 1.0   Date: 1/17/2017
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.       RockerRivetEditor          Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     1/17/2017       1.0        Build this file.
+ *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  RockerRivetEditor.cs
+ *  Description  :  Custom editor for RockerRivet.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  1/17/2017
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEditor;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEditor;
-    using UnityEngine;
-
     [CustomEditor(typeof(RockerRivet), true)]
     [CanEditMultipleObjects]
     public class RockerRivetEditor : MechanismEditor
@@ -35,10 +28,11 @@ namespace Developer.Machinery
         {
             if (!script.rockJoint)
                 return;
+
             GUI.color = blue;
             Handles.color = blue;
             Handles.Label(script.transform.position, "Rivet");
-            Handles.SphereCap(0, script.transform.position, Quaternion.identity, nodeSize);
+            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
         }
         #endregion
     }

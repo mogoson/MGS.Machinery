@@ -1,27 +1,20 @@
 /*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson tech. Co., Ltd.
- *  FileName: CrankSliderEditor.cs
- *  Author: Mogoson   Version: 1.0   Date: 3/13/2017
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.       CrankSliderEditor          Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     3/13/2017       1.0        Build this file.
+ *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  CrankSliderEditor.cs
+ *  Description  :  Custom editor for CrankSlider.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  3/13/2017
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEditor;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEditor;
-    using UnityEngine;
-
     [CustomEditor(typeof(CrankSlider), true)]
     [CanEditMultipleObjects]
     public class CrankSliderEditor : CrankLinkEditor
@@ -44,20 +37,23 @@ namespace Developer.Machinery
         protected override void OnSceneGUI()
         {
             base.OnSceneGUI();
+
             if (!script.isIntact)
                 return;
-            if (script.editMode == EditMode.Edit)
+
+            if (script.editMode == EditMode.Free)
             {
                 DrawRotationHandle(script.crank.transform);
                 DrawPositionHandle(script.linkBar.transform);
                 DrawPositionHandle(script.lsJoint);
                 DrawRotationHandle(script.lsJoint);
             }
+
             if (script.editMode == EditMode.Hinge)
                 DrawRotationHandle(script.crank.transform);
 
-            Handles.SphereCap(0, script.crank.transform.position, Quaternion.identity, nodeSize);
-            Handles.CircleCap(0, script.crank.transform.position, script.crank.transform.rotation, areaRadius);
+            DrawSphereCap(script.crank.transform.position, Quaternion.identity, nodeSize);
+            DrawCircleCap(script.crank.transform.position, script.crank.transform.rotation, areaRadius);
             DrawArrow(script.crank.transform.position, script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
 
             var offset = (script.linkBar.transform.position - script.crank.transform.position).normalized;
@@ -75,10 +71,10 @@ namespace Developer.Machinery
 
         protected virtual void DrawSceneTool()
         {
-            var rect = new Rect(Screen.width - 150, Screen.height - 95, 140, 45);
+            var rect = new Rect(Screen.width - 160, Screen.height - 95, 150, 45);
             Handles.BeginGUI();
             GUILayout.BeginArea(rect, "Hinge Editor", "Window");
-            DrawHingeEditorTools();
+            DrawHingeEditorTool();
             GUILayout.EndArea();
             Handles.EndGUI();
         }

@@ -1,31 +1,25 @@
 /*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson tech. Co., Ltd.
- *  FileName: CrankLinkEditor.cs
- *  Author: Mogoson   Version: 1.0   Date: 3/13/2017
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.         CrankLinkEditor          Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     3/13/2017       1.0        Build this file.
+ *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  CrankLinkEditor.cs
+ *  Description  :  Custom editor for CrankLink.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  3/13/2017
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEditor;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEditor;
-    using UnityEngine;
-
     public class CrankLinkEditor : MechanismEditor
     {
         #region Property and Field
         protected CrankLinkMechanism script { get { return target as CrankLinkMechanism; } }
+        protected readonly string[] hingeEditorButtons = { "Free", "Hinge", "Lock" };
         #endregion
 
         #region Protected Method
@@ -36,30 +30,17 @@ namespace Developer.Machinery
             Handles.DrawLine(script.transform.position, script.transform.position + script.transform.up * lineLength);
         }
 
-        protected void DrawHingeEditorTools()
+        protected void DrawHingeEditorTool()
         {
-            GUILayout.BeginHorizontal();
-            GUI.color = script.editMode == EditMode.Edit ? blue : Color.white;
-            if (GUILayout.Button("Edit"))
-            {
+            EditorGUI.BeginChangeCheck();
+            script.editMode = (EditMode)GUILayout.SelectionGrid((int)script.editMode, hingeEditorButtons, hingeEditorButtons.Length);
+            if (EditorGUI.EndChangeCheck())
+                MarkSceneDirty();
+
+            if (script.editMode == EditMode.Free)
                 script.enabled = false;
-                script.editMode = EditMode.Edit;
-            }
-            GUI.color = script.editMode == EditMode.Hinge ? blue : Color.white;
-            if (GUILayout.Button("Hinge"))
-            {
+            else
                 script.enabled = true;
-                script.editMode = EditMode.Hinge;
-            }
-            GUI.color = script.editMode == EditMode.Lock ? blue : Color.white;
-            if (GUILayout.Button("Lock"))
-            {
-                script.Initialize();
-                script.enabled = true;
-                script.editMode = EditMode.Lock;
-            }
-            GUI.color = Color.white;
-            GUILayout.EndHorizontal();
         }
         #endregion
     }

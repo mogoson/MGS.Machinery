@@ -1,36 +1,29 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2016-2017, Mogoson tech. Co., Ltd.
- *  FileName: VectorExtension.cs
- *  Author: Mogoson   Version: 1.0   Date: 1/6/2016
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.        VectorExtension           Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     1/6/2016       1.0        Build this file.
+ *  Copyright (C), 2016-2017, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  VectorExtension.cs
+ *  Description  :  Extension of UnityEngine.Vector3.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  1/6/2016
+ *  Description  :  Initial development version.
  *************************************************************************/
 
-namespace Developer.Vector3
-{
-    using UnityEngine;
+using UnityEngine;
 
-    public static class DVector3
+namespace Developer.VectorExtention
+{
+    public static class EVector3
     {
         #region Public Method
         /// <summary>
-        /// Calculate rotate angle of two vector int the range[0 ~ 360].
+        /// Calculate rotate angle of two vectors int the range(0~360).
         /// </summary>
         /// <param name="from">Start vector.</param>
         /// <param name="to">End vector.</param>
         /// <param name="normal">Custom normal.</param>
-        /// <returns>Rotate angle of two vector.</returns>
+        /// <returns>Rotate angle of two vectors.</returns>
         public static float RotateAngle(Vector3 from, Vector3 to, Vector3 normal)
         {
             //Project.
@@ -48,10 +41,10 @@ namespace Developer.Vector3
             var ncDot = Vector3.Dot(normal, ftCross);
 
             //Convert to rotate angle.
-            var a = Vector3.Angle(from, to);
+            var angle = Vector3.Angle(from, to);
             if ((ncDot > 0 && tcDot >= 0) || (ncDot < 0 && tcDot <= 0))
-                a = 360 - a;
-            return a;
+                angle = 360 - angle;
+            return angle;
         }
         #endregion
     }

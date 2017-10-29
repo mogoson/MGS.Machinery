@@ -1,27 +1,20 @@
 /*************************************************************************
- *  Copyright (C), 2016-2017, Mogoson tech. Co., Ltd.
- *  FileName: RockerHinge.cs
- *  Author: Mogoson   Version: 1.0   Date: 9/5/2016
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.          RockerHinge             Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     9/5/2016       1.0        Build this file.
+ *  Copyright (C), 2016-2017, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  RockerHinge.cs
+ *  Description  :  Define RockerHinge component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  9/5/2016
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using Developer.VectorExtention;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEngine;
-    using Vector3;
-
     [AddComponentMenu("Developer/Machinery/RockerHinge")]
     [ExecuteInEditMode]
     public class RockerHinge : RockerMechanism
@@ -64,8 +57,10 @@ namespace Developer.Machinery
         public override void DriveMechanism()
         {
             rockJoint.position = transform.position;
-            var angle = -DVector3.RotateAngle(rockJoint.forward, zeroAxis, axis);
-            transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
+
+            var angle = -EVector3.RotateAngle(rockJoint.forward, zeroAxis, axis);
+            var euler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
+            transform.localRotation = Quaternion.Euler(euler);
         }
         #endregion
     }

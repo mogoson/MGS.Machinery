@@ -1,27 +1,20 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: CrankSlider.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/25/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.         CrankSlider              Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/25/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  CrankSlider.cs
+ *  Description  :  Define CrankSlider component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/25/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using Developer.MathExtension.Planimetry;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using Math.Planimetry;
-    using UnityEngine;
-
     [AddComponentMenu("Developer/Machinery/CrankSlider")]
     [ExecuteInEditMode]
     public class CrankSlider : CrankLinkMechanism
@@ -70,7 +63,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Link bar and slider joint is on the right of link bar on start.
         /// </summary>
-		protected bool right;
+		protected bool isRight;
         #endregion
 
         #region Protected Method
@@ -92,14 +85,16 @@ namespace Developer.Machinery
         {
             if (Application.isPlaying)
                 return;
+
             if (isIntact)
             {
-                if (!initialized)
+                if (!isInitialized)
                     Initialize();
+
                 DriveLinkBars();
             }
             else
-                initialized = false;
+                isInitialized = false;
         }
 #endif
 
@@ -118,15 +113,16 @@ namespace Developer.Machinery
             var points = Planimetry.GetIntersections(linkCircle, linkLine);
             if (points == null)
             {
-                Lock = true;
+                isLock = true;
                 return;
             }
-            Lock = false;
+
+            isLock = false;
             Point point;
             if (points.Count == 1)
                 point = points[0];
             else
-                point = right ? points[0] : points[1];
+                point = isRight ? points[0] : points[1];
             lsJoint.localPosition = new Vector3((float)point.x, (float)point.y, 0);
 
             //Drive linkBar.
@@ -134,7 +130,7 @@ namespace Developer.Machinery
         }
 
         /// <summary>
-        /// Clear angles z and set y 90.
+        /// Clear angles z and set y to 90.
         /// </summary>
         /// <param name="angles">Local euler angles.</param>
         /// <returns>Correct lsJoint angles.</returns>
@@ -169,12 +165,12 @@ namespace Developer.Machinery
             var directionPoint = CorrectPoint(lsJoint.localPosition + direction);
             linkRadius = Planimetry.GetDistance(linkPoint, lsJointPoint);
             linkLine = Line.GetLine(lsJointPoint, directionPoint);
-            right = lsJointPoint.x - linkPoint.x >= 0;
-            initialized = true;
+            isRight = lsJointPoint.x - linkPoint.x >= 0;
+            isInitialized = true;
         }
 
         /// <summary>
-        /// Project direction vector on plane[Normal is transform.forward].
+        /// Project direction vector on plane(Normal is transform.forward).
         /// </summary>
         /// <param name="direction">World space direction.</param>
         /// <returns>Project direction.</returns>

@@ -1,26 +1,19 @@
 /*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: CeTelescopicJoint.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/24/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.       CeTelescopicJoint          Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/24/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  CeTelescopicJoint.cs
+ *  Description  :  Define CeTelescopicJoint component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/24/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEngine;
-
     [AddComponentMenu("Developer/Machinery/CeTelescopicJoint")]
     public class CeTelescopicJoint : TelescopicJoint
     {
@@ -35,6 +28,7 @@ namespace Developer.Machinery
             displacement += mSpeed * Time.deltaTime;
             displacement = Mathf.Clamp(displacement, -stroke, stroke);
             DriveJoint();
+
             if (CheckRockersLock())
             {
                 displacement = lockRecord;
@@ -51,6 +45,7 @@ namespace Developer.Machinery
         public override void DriveMechanism(float speedControl)
         {
             DriveJoint(speed * speedControl);
+
             if (displacement == 0)
                 tState = TelescopicState.Shrink;
             else if (displacement <= -stroke || displacement >= stroke)

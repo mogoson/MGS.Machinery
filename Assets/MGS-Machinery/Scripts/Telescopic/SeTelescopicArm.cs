@@ -1,26 +1,19 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: SeTelescopicArm.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/24/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.       SeTelescopicArm            Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/24/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  SeTelescopicArm.cs
+ *  Description  :  Define SeTelescopicArm component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/24/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEngine;
-
     [AddComponentMenu("Developer/Machinery/SeTelescopicArm")]
     public class SeTelescopicArm : TelescopicArmMechanism
     {
@@ -51,6 +44,7 @@ namespace Developer.Machinery
             ClampIndex();
             var currentJoint = tJoints[jointIndex];
             currentJoint.DriveMechanism(speedControl);
+
             if (currentJoint.speed * speedControl >= 0)
             {
                 if (currentJoint.tState == TelescopicState.Extend)

@@ -1,27 +1,20 @@
 /*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson tech. Co., Ltd.
- *  FileName: TelescopicJointEditor.cs
- *  Author: Mogoson   Version: 1.0   Date: 3/2/2017
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.      TelescopicJointEditor       Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     3/2/2017       1.0        Build this file.
+ *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  TelescopicJointEditor.cs
+ *  Description  :  Custom editor for TelescopicJoint.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  3/2/2017
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using UnityEditor;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using UnityEditor;
-    using UnityEngine;
-
     [CustomEditor(typeof(TelescopicJoint), true)]
     [CanEditMultipleObjects]
     public class TelescopicJointEditor : MechanismEditor
@@ -52,8 +45,8 @@ namespace Developer.Machinery
             GUI.color = blue;
             Handles.color = blue;
             Handles.Label(zeroPoint, "Zero");
-            Handles.SphereCap(0, zeroPoint, Quaternion.identity, nodeSize);
-            Handles.SphereCap(0, script.transform.position, Quaternion.identity, nodeSize);
+            DrawSphereCap(zeroPoint, Quaternion.identity, nodeSize);
+            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
             DrawStroke();
             DrawRockers(script.rockers, script.transform, blue);
         }

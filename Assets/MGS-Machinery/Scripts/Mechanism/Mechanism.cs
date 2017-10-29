@@ -1,42 +1,40 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: Mechanism.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/24/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/24/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  Mechanism.cs
+ *  Description  :  Define abstract mechanism.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/24/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using Developer.MathExtension.Planimetry;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using Math.Planimetry;
-    using System.Collections.Generic;
-    using UnityEngine;
-
+#if UNITY_EDITOR
     /// <summary>
-    /// Custom Edit Mode.
+    /// Custom Edit Mode (Only work in editor script).
     /// </summary>
     public enum EditMode
     {
-        Edit, Hinge, Lock
+        Free = 0,
+        Hinge = 1,
+        Lock = 2
     }
+#endif
 
     /// <summary>
     /// Custom Axis.
     /// </summary>
     public enum CustomAxis
     {
-        Default, TransformForward
+        Default = 0,
+        TransformForward = 1
     }
 
     /// <summary>
@@ -44,7 +42,9 @@ namespace Developer.Machinery
     /// </summary>
     public enum TelescopicState
     {
-        Shrink, Drift, Extend
+        Shrink = 0,
+        Drift = 1,
+        Extend = 2
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Crank drive speed.
         /// </summary>
-        public float speed = 60;
+        public float speed = 50;
 
         /// <summary>
         /// Current angle of crank.
@@ -120,26 +120,28 @@ namespace Developer.Machinery
         /// </summary>
         public RockerMechanism linkBar;
 
+#if UNITY_EDITOR
         /// <summary>
-        /// Custom edit mode [Only work in editor script].
+        /// Custom edit mode (Only work in editor script).
         /// </summary>
         [HideInInspector]
         public EditMode editMode = EditMode.Lock;
+#endif
 
         /// <summary>
         /// Dead lock state.
         /// </summary>
-        public bool Lock { protected set; get; }
+        public bool isLock { protected set; get; }
 
         /// <summary>
         /// Drive direction.
         /// </summary>
-        public bool positive { protected set; get; }
+        public bool isPositive { protected set; get; }
 
         /// <summary>
         /// Mechanism is initialized.
         /// </summary>
-        public bool initialized { protected set; get; }
+        public bool isInitialized { protected set; get; }
         #endregion
 
         #region Protected Method
@@ -202,15 +204,15 @@ namespace Developer.Machinery
         {
             if (crank.speed * speedControl >= 0)
             {
-                if (Lock && positive)
+                if (isLock && isPositive)
                     return;
-                positive = true;
+                isPositive = true;
             }
             else
             {
-                if (Lock && !positive)
+                if (isLock && !isPositive)
                     return;
-                positive = false;
+                isPositive = false;
             }
             crank.DriveMechanism(speedControl);
             DriveLinkBars();

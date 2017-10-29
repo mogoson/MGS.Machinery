@@ -1,27 +1,20 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson tech. Co., Ltd.
- *  FileName: CrankRocker.cs
- *  Author: Mogoson   Version: 1.0   Date: 12/25/2015
- *  Version Description:
- *    Internal develop version,mainly to achieve its function.
- *  File Description:
- *    Ignore.
- *  Class List:
- *    <ID>           <name>             <description>
- *     1.         CrankRocker              Ignore.
- *  Function List:
- *    <class ID>     <name>             <description>
- *     1.
- *  History:
- *    <ID>    <author>      <time>      <version>      <description>
- *     1.     Mogoson     12/25/2015       1.0        Build this file.
+ *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *------------------------------------------------------------------------
+ *  File         :  CrankRocker.cs
+ *  Description  :  Define CrankRocker component.
+ *------------------------------------------------------------------------
+ *  Author       :  Mogoson
+ *  Version      :  0.1.0
+ *  Date         :  12/25/2015
+ *  Description  :  Initial development version.
  *************************************************************************/
+
+using Developer.MathExtension.Planimetry;
+using UnityEngine;
 
 namespace Developer.Machinery
 {
-    using Math.Planimetry;
-    using UnityEngine;
-
     [AddComponentMenu("Developer/Machinery/CrankRocker")]
     [ExecuteInEditMode]
     public class CrankRocker : CrankLinkMechanism
@@ -41,13 +34,13 @@ namespace Developer.Machinery
         /// Use inertia to limit crankrocker.
         /// </summary>
         [HideInInspector]
-        public bool inertia = false;
+        public bool useInertia = false;
 
         /// <summary>
         /// Use virtual restrict to limit crankrocker.
         /// </summary>
         [HideInInspector]
-        public bool restrict = false;
+        public bool useRestrict = false;
 
         /// <summary>
         /// All mechanism is set Intact.
@@ -82,7 +75,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Rocker and link bar joint is on the top of rocker on start.
         /// </summary>
-        protected bool top;
+        protected bool isTop;
         #endregion
 
         #region Protected Method
@@ -104,14 +97,16 @@ namespace Developer.Machinery
         {
             if (Application.isPlaying)
                 return;
+
             if (isIntact)
             {
-                if (!initialized)
+                if (!isInitialized)
                     Initialize();
+
                 DriveLinkBars();
             }
             else
-                initialized = false;
+                isInitialized = false;
         }
 #endif
         /// <summary>
@@ -130,18 +125,19 @@ namespace Developer.Machinery
             var points = Planimetry.GetIntersections(linkCircle, rockerCircle);
             if (points == null)
             {
-                Lock = true;
+                isLock = true;
                 return;
             }
-            Lock = false;
+
+            isLock = false;
             Point point;
             if (points.Count == 1)
                 point = points[0];
             else
             {
                 //Adapt intertia and restrict.
-                var rID = restrict ? 1 : 0;
-                point = inertia ? points[rID] : (points[0].y - points[1].y >= 0 == top ? points[rID] : points[1 - rID]);
+                var rID = useRestrict ? 1 : 0;
+                point = useInertia ? points[rID] : (points[0].y - points[1].y >= 0 == isTop ? points[rID] : points[1 - rID]);
             }
             lrJoint.localPosition = new Vector3((float)point.x, (float)point.y, 0);
 
@@ -170,10 +166,10 @@ namespace Developer.Machinery
             var lrJointPoint = CorrectPoint(lrJoint.localPosition);
             var rockerRadius = Planimetry.GetDistance(rockerPoint, lrJointPoint);
             var linkPoint = CorrectPoint(GetLinkPosition());
-            top = lrJointPoint.y - rockerPoint.y >= 0;
+            isTop = lrJointPoint.y - rockerPoint.y >= 0;
             rockerCircle = new Circle(rockerPoint, rockerRadius);
             linkRadius = Planimetry.GetDistance(linkPoint, lrJointPoint);
-            initialized = true;
+            isInitialized = true;
         }
         #endregion
     }
