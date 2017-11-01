@@ -81,7 +81,7 @@
 
 - Excavator
 
-![Excavator](./Attachments/Image/Excavator.png)
+![Excavator](./Attachments/Image/Excavator.gif)
 
 ## Tutorial
 - Documentation (Unfinished).

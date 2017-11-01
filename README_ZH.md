@@ -81,7 +81,7 @@
 
 - Excavator
 
-![Excavator](./Attachments/Image/Excavator.png)
+![Excavator](./Attachments/Image/Excavator.gif)
 
 ## 教程
 - 文档（未完成）。
