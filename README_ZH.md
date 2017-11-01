@@ -77,7 +77,7 @@
 
 - Grader
 
-![Grader](./Attachments/Image/Grader.png)
+![Grader](./Attachments/Image/Grader.gif)
 
 - Excavator
 
