@@ -41,39 +41,39 @@
 ## Preview
 - CrankRocker
 
-![CrankRocker](./Attachments/Image/CrankRocker.png)
+![CrankRocker](./Attachments/Image/CrankRocker.gif)
 
 - CrankSlider
 
-![CrankSlider](./Attachments/Image/CrankSlider.png)
+![CrankSlider](./Attachments/Image/CrankSlider.gif)
 
 - RockerHinge
 
-![RockerHinge](./Attachments/Image/RockerHinge.png)
+![RockerHinge](./Attachments/Image/RockerHinge.gif)
 
 - InternalGearing
 
-![InternalGearing](./Attachments/Image/InternalGearing.png)
+![InternalGearing](./Attachments/Image/InternalGearing.gif)
 
 - AirplaneEngine
 
-![AirplaneEngine](./Attachments/Image/AirplaneEngine.png)
+![AirplaneEngine](./Attachments/Image/AirplaneEngine.gif)
 
 - GasEngine
 
-![GasEngine](./Attachments/Image/GasEngine.png)
+![GasEngine](./Attachments/Image/GasEngine.gif)
 
 - Crane
 
-![Crane](./Attachments/Image/Crane.png)
+![Crane](./Attachments/Image/Crane.gif)
 
 - RoadRoller
 
-![RoadRoller](./Attachments/Image/RoadRoller.png)
+![RoadRoller](./Attachments/Image/RoadRoller.gif)
 
 - Loader
 
-![Loader](./Attachments/Image/Loader.png)
+![Loader](./Attachments/Image/Loader.gif)
 
 - Grader
 
