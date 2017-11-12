@@ -67,6 +67,7 @@ namespace Developer.Machinery
                 {
                     DrawPositionHandle(rocker.transform);
                     DrawArrow(driver.position, rocker.transform.position, nodeSize, string.Empty, blue);
+
                     if (rocker.rockJoint)
                         DrawArrow(rocker.transform.position, rocker.rockJoint.transform.position, nodeSize, string.Empty, blue);
                 }
@@ -108,7 +109,8 @@ namespace Developer.Machinery
         protected void DrawSphereCap(Vector3 position, Quaternion rotation, float size)
         {
 #if UNITY_5_5_OR_NEWER
-            Handles.SphereHandleCap(0, position, rotation, size, EventType.Ignore);
+            if (Event.current.type == EventType.Repaint)
+                Handles.SphereHandleCap(0, position, rotation, size, EventType.Repaint);
 #else
             Handles.SphereCap(0, position, rotation, size);
 #endif
@@ -117,7 +119,8 @@ namespace Developer.Machinery
         protected void DrawCircleCap(Vector3 position, Quaternion rotation, float size)
         {
 #if UNITY_5_5_OR_NEWER
-            Handles.CircleHandleCap(0, position, rotation, size, EventType.Ignore);
+            if (Event.current.type == EventType.Repaint)
+                Handles.CircleHandleCap(0, position, rotation, size, EventType.Repaint);
 #else
             Handles.CircleCap(0, position, rotation, size);
 #endif

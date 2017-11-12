@@ -21,6 +21,7 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected new CrankSlider script { get { return target as CrankSlider; } }
+
         protected Vector3 zeroPoint
         {
             get

@@ -21,6 +21,7 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected FreeCrank script { get { return target as FreeCrank; } }
+
         protected Vector3 axis { get { return script.transform.forward; } }
         #endregion
 

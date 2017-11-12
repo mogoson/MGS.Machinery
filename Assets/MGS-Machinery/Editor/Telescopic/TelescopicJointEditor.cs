@@ -21,7 +21,9 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected TelescopicJoint script { get { return target as TelescopicJoint; } }
+
         protected Vector3 axis { get { return script.transform.forward; } }
+
         protected Vector3 zeroPoint
         {
             get

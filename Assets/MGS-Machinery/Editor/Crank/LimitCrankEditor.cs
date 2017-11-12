@@ -21,6 +21,7 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected new LimitCrank script { get { return target as LimitCrank; } }
+
         protected Vector3 zeroAxis
         {
             get
