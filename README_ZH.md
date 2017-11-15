@@ -83,9 +83,5 @@
 
 ![Excavator](./Attachments/README_Image/Excavator.gif)
 
-## 教程
-- 文档（未完成）。
-- 视频（未完成）。
-
 ## 联系
 - 如果你有任何问题或者建议，欢迎通过mogoson@qq.com联系我。

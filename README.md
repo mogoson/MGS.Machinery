@@ -83,9 +83,5 @@
 
 ![Excavator](./Attachments/README_Image/Excavator.gif)
 
-## Tutorial
-- Documentation (Unfinished).
-- Video (Unfinished).
-
 ## Contact
 - If you have any questions, feel free to contact me at mogoson@qq.com.
