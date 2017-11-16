@@ -17,7 +17,7 @@ namespace Developer.MathExtension.Planimetry
 {
     #region Struct
     /// <summary>
-    /// Express a point in the plane rectangular coordinate system.
+    /// Point in plane rectangular coordinate system.
     /// </summary>
     public struct Point
     {
@@ -223,7 +223,7 @@ namespace Developer.MathExtension.Planimetry
 
                     var L1 = Line.GetLine(p1, C);
                     var L2 = Line.GetLine(p2, B);
-                    return Planimetry.GetIntersections(L1, L2)[0];
+                    return Planimetry.GetIntersections(L1, L2);
                 }
                 else
                     return new Point(double.NaN, double.NaN);
@@ -238,7 +238,7 @@ namespace Developer.MathExtension.Planimetry
         }
 
         /// <summary>
-        /// /Check the three vertexs can be constituted a triangle.
+        /// /Check the three vertexes can be constituted a triangle.
         /// </summary>
         public static bool Check(Point A, Point B, Point C)
         {
@@ -311,9 +311,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Gets the distance from point1 to point2.
         /// </summary>
-        /// <returns>The distance.</returns>
         /// <param name="p1">Point 1.</param>
         /// <param name="p2">Point 2.</param>
+        /// <returns>The distance.</returns>
         public static double GetDistance(Point p1, Point p2)
         {
             //----------------------------------------
@@ -328,17 +328,17 @@ namespace Developer.MathExtension.Planimetry
         }
 
         /// <summary>
-        /// Gets the distance from line1 to line2,
-        /// The two lines must are parallel.
+        /// Gets the distance from line1 to line2.
         /// </summary>
-        /// <param name="L1">line1</param>
-        /// <param name="L2">line2</param>
-        /// <returns>Distance</returns>
+        /// <param name="L1">line 1.</param>
+        /// <param name="L2">line 2.</param>
+        /// <returns>Distance.</returns>
         public static double GetDistance(Line L1, Line L2)
         {
             //------------------------------------------------------------------
-            //  y = kx + b <=> kx - y + b = 0 <=> A = k, B = -1, C = b
-            //
+            //  y = kx + b <=> kx - y + b = 0
+            //  let: A = k, B = -1, C = b
+            //  so:
             //         |C1 - C2|                  |b1 - b2|
             //  d = _________________ <=> d = ___________________
             //          _______                     _______
@@ -361,14 +361,15 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Gets the distance from point to line.
         /// </summary>
-        /// <param name="p">Point</param>
-        /// <param name="L">Line</param>
-        /// <returns>Distance</returns>
+        /// <param name="p">Point.</param>
+        /// <param name="L">Line.</param>
+        /// <returns>Distance.</returns>
 		public static double GetDistance(Point p, Line L)
         {
             //------------------------------------------------------------------
-            //  y = kx + b <=> kx - y + b = 0 <=> A = k, B = -1, C = b
-            //
+            //  y = kx + b <=> kx - y + b = 0
+            //  let: A = k, B = -1, C = b
+            //  so:
             //       |Ax0 + By0 + C|             |kx0 -y0 + b|
             //  d = _________________ <=> d = ___________________
             //          _______                     _______
@@ -389,9 +390,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get relation of two circles.
         /// </summary>
-        /// <param name="c1">Circle 1</param>
-        /// <param name="c2">Circle 2</param>
-        /// <returns>Position relation</returns>
+        /// <param name="c1">Circle 1.</param>
+        /// <param name="c2">Circle 2.</param>
+        /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c1, Circle c2)
         {
             var re = Relation.External;
@@ -417,9 +418,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get relation of circle and line.
         /// </summary>
-        /// <param name="c">Circle</param>
-        /// <param name="L">Line</param>
-        /// <returns>Position relation</returns>
+        /// <param name="c">Circle.</param>
+        /// <param name="L">Line.</param>
+        /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c, Line L)
         {
             var re = Relation.External;
@@ -436,9 +437,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get relation of circle and point.
         /// </summary>
-        /// <param name="c">Circle</param>
-        /// <param name="p">Point</param>
-        /// <returns>Position relation</returns>
+        /// <param name="c">Circle.</param>
+        /// <param name="p">Point.</param>
+        /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c, Point p)
         {
             var re = Relation.External;
@@ -455,9 +456,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get relation of two lines.
         /// </summary>
-        /// <param name="L1">Line 1</param>
-        /// <param name="L2">Line 2</param>
-        /// <returns>Position relation</returns>
+        /// <param name="L1">Line 1.</param>
+        /// <param name="L2">Line 2.</param>
+        /// <returns>Position relation.</returns>
         public static Relation GetRelation(Line L1, Line L2)
         {
             var re = Relation.Coincidence;
@@ -476,9 +477,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get relation of line and point.
         /// </summary>
-        /// <param name="L">Line</param>
-        /// <param name="p">Point</param>
-        /// <returns>Position relation</returns>
+        /// <param name="L">Line.</param>
+        /// <param name="p">Point.</param>
+        /// <returns>Position relation.</returns>
         public static Relation GetRelation(Line L, Point p)
         {
             var re = Relation.External;
@@ -505,9 +506,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get two circles's intersections.
         /// </summary>
-        /// <param name="c1">Circle 1</param>
-        /// <param name="c2">Circle 2</param>
-        /// <returns>Intersections</returns>
+        /// <param name="c1">Circle 1.</param>
+        /// <param name="c2">Circle 2.</param>
+        /// <returns>Intersections.</returns>
         public static List<Point> GetIntersections(Circle c1, Circle c2)
         {
             //-------------------------------------------------------
@@ -559,9 +560,9 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Get intersections of circle and line.
         /// </summary>
-        /// <param name="c">Circle</param>
-        /// <param name="L">Line</param>
-        /// <returns>Intersections</returns>
+        /// <param name="c">Circle.</param>
+        /// <param name="L">Line.</param>
+        /// <returns>Intersections.</returns>
         public static List<Point> GetIntersections(Circle C, Line L)
         {
             //--------------------------------------------------------------------
@@ -627,13 +628,12 @@ namespace Developer.MathExtension.Planimetry
         }
 
         /// <summary>
-        /// Get intersections of two lines,
-        /// The two lines must are Vertical.
+        /// Get intersection of two lines.
         /// </summary>
-        /// <param name="L1">Line 1</param>
-        /// <param name="L2">Line 2</param>
-        /// <returns>Intersections</returns>
-        public static List<Point> GetIntersections(Line L1, Line L2)
+        /// <param name="L1">Line 1.</param>
+        /// <param name="L2">Line 2.</param>
+        /// <returns>Intersection.</returns>
+        public static Point GetIntersections(Line L1, Line L2)
         {
             //--------------------------------------------
             //  y = k1x + b1    y = k2x + b2
@@ -644,14 +644,11 @@ namespace Developer.MathExtension.Planimetry
             //--------------------------------------------
 
             if (L1.k == L2.k)
-                return null;
+                return new Point(double.NaN, double.NaN);
 
             var x = (L1.b - L2.b) / (L2.k - L1.k);
             var y = L1.k * x + L1.b;
-
-            var I = new List<Point>();
-            I.Add(new Point(x, y));
-            return I;
+            return new Point(x, y);
         }
         #endregion
     }
