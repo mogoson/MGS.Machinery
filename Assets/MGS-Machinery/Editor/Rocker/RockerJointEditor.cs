@@ -21,13 +21,13 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected RockerJoint script { get { return target as RockerJoint; } }
-        protected SerializedProperty upTransform;
+        protected SerializedProperty reference;
         #endregion
 
         #region Protected Method
         protected virtual void OnEnable()
         {
-            upTransform = serializedObject.FindProperty("upTransform");
+            reference = serializedObject.FindProperty("reference");
         }
 
         protected virtual void OnSceneGUI()
@@ -41,7 +41,7 @@ namespace Developer.Machinery
             DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
             DrawSphereCap(script.rockJoint.position, Quaternion.identity, nodeSize);
             Handles.DrawLine(script.transform.position, script.rockJoint.position);
-            DrawArrow(script.transform.position, script.worldUp, arrowLength, nodeSize, "Up", blue);
+            DrawArrow(script.transform.position, script.worldUp, arrowLength, nodeSize, "Keep Up", blue);
         }
         #endregion
 
@@ -50,9 +50,9 @@ namespace Developer.Machinery
         {
             DrawDefaultInspector();
 
-            if (script.keepUp == CustomAxis.TransformForward)
+            if (script.keepUp == KeepUpMode.ReferenceForward)
             {
-                EditorGUILayout.PropertyField(upTransform);
+                EditorGUILayout.PropertyField(reference);
                 serializedObject.ApplyModifiedProperties();
             }
         }

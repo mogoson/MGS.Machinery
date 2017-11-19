@@ -29,12 +29,12 @@ namespace Developer.Machinery
 #endif
 
     /// <summary>
-    /// Custom Axis.
+    /// Keep up mode.
     /// </summary>
-    public enum CustomAxis
+    public enum KeepUpMode
     {
-        Default = 0,
-        TransformForward = 1
+        TransformUp = 0,
+        ReferenceForward = 1
     }
 
     /// <summary>

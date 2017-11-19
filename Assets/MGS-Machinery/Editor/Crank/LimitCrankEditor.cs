@@ -21,22 +21,6 @@ namespace Developer.Machinery
     {
         #region Property and Field
         protected new LimitCrank script { get { return target as LimitCrank; } }
-
-        protected Vector3 zeroAxis
-        {
-            get
-            {
-                if (Application.isPlaying)
-                {
-                    var up = Quaternion.Euler(script.startAngles) * Vector3.up;
-                    if (script.transform.parent)
-                        up = script.transform.parent.rotation * up;
-                    return up;
-                }
-                else
-                    return script.transform.up;
-            }
-        }
         #endregion
 
         #region Protected Method
@@ -45,9 +29,8 @@ namespace Developer.Machinery
             var minAxis = Quaternion.AngleAxis(script.minAngle, axis) * zeroAxis;
             var maxAxis = Quaternion.AngleAxis(script.maxAngle, axis) * zeroAxis;
 
-            DrawArrow(script.transform.position, zeroAxis, arrowLength, nodeSize, "Zero", blue);
-            DrawArrow(script.transform.position, minAxis, arrowLength, nodeSize, "Min Angle", blue);
-            DrawArrow(script.transform.position, maxAxis, arrowLength, nodeSize, "Max Angle", blue);
+            DrawArrow(script.transform.position, minAxis, arrowLength, nodeSize, "Min", blue);
+            DrawArrow(script.transform.position, maxAxis, arrowLength, nodeSize, "Max", blue);
 
             Handles.color = transparentBlue;
             Handles.DrawSolidArc(script.transform.position, axis, minAxis, script.maxAngle - script.minAngle, areaRadius);

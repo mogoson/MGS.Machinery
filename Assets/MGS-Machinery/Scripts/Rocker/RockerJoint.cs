@@ -22,23 +22,23 @@ namespace Developer.Machinery
         /// <summary>
         /// Keep up mode.
         /// </summary>
-        public CustomAxis keepUp = CustomAxis.Default;
+        public KeepUpMode keepUp = KeepUpMode.TransformUp;
 
         /// <summary>
         /// Transform's forward as world up for look at.
         /// </summary>
         [HideInInspector]
-        public Transform upTransform;
+        public Transform reference;
 
         /// <summary>
-        /// World Up for look at.
+        /// World up for look at.
         /// </summary>
         public Vector3 worldUp
         {
             get
             {
-                if (keepUp == CustomAxis.TransformForward && upTransform)
-                    return upTransform.forward;
+                if (keepUp == KeepUpMode.ReferenceForward && reference)
+                    return reference.forward;
                 else
                     return transform.up;
             }
