@@ -38,9 +38,10 @@ namespace Developer.Machinery
                 DrawPositionHandle(script.rocker.transform);
                 DrawPositionHandle(script.lrJoint);
             }
-
-            if (script.editMode == EditMode.Hinge)
+            else if (script.editMode == EditMode.Hinge)
+            {
                 DrawRotationHandle(script.crank.transform);
+            }
 
             DrawCircleCap(script.crank.transform.position, script.crank.transform.rotation, areaRadius);
             DrawArrow(script.crank.transform.position, script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);

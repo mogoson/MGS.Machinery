@@ -49,9 +49,10 @@ namespace Developer.Machinery
                 DrawPositionHandle(script.lsJoint);
                 DrawRotationHandle(script.lsJoint);
             }
-
-            if (script.editMode == EditMode.Hinge)
+            else if (script.editMode == EditMode.Hinge)
+            {
                 DrawRotationHandle(script.crank.transform);
+            }
 
             DrawSphereCap(script.crank.transform.position, Quaternion.identity, nodeSize);
             DrawCircleCap(script.crank.transform.position, script.crank.transform.rotation, areaRadius);
