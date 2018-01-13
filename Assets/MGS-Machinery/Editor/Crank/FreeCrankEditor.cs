@@ -20,23 +20,23 @@ namespace Developer.Machinery
     public class FreeCrankEditor : MechanismEditor
     {
         #region Property and Field
-        protected FreeCrank script { get { return target as FreeCrank; } }
+        protected FreeCrank Script { get { return target as FreeCrank; } }
 
-        protected Vector3 axis { get { return script.transform.forward; } }
+        protected Vector3 Axis { get { return Script.transform.forward; } }
 
-        protected Vector3 zeroAxis
+        protected Vector3 ZeroAxis
         {
             get
             {
                 if (Application.isPlaying)
                 {
-                    var up = Quaternion.Euler(script.startAngles) * Vector3.up;
-                    if (script.transform.parent)
-                        up = script.transform.parent.rotation * up;
+                    var up = Quaternion.Euler(Script.StartAngles) * Vector3.up;
+                    if (Script.transform.parent)
+                        up = Script.transform.parent.rotation * up;
                     return up;
                 }
                 else
-                    return script.transform.up;
+                    return Script.transform.up;
             }
         }
         #endregion
@@ -45,19 +45,19 @@ namespace Developer.Machinery
         protected virtual void OnSceneGUI()
         {
             Handles.color = blue;
-            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
-            DrawCircleCap(script.transform.position, script.transform.rotation, areaRadius);
-            DrawArrow(script.transform.position, axis, arrowLength, nodeSize, "Axis", blue);
-            DrawArrow(script.transform.position, zeroAxis, arrowLength, nodeSize, "Zero", blue);
-            DrawArrow(script.transform.position, script.transform.up, areaRadius, nodeSize, string.Empty, blue);
+            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
+            DrawCircleCap(Script.transform.position, Script.transform.rotation, areaRadius);
+            DrawArrow(Script.transform.position, Axis, arrowLength, nodeSize, "Axis", blue);
+            DrawArrow(Script.transform.position, ZeroAxis, arrowLength, nodeSize, "Zero", blue);
+            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, string.Empty, blue);
             DrawArea();
-            DrawRockers(script.rockers, script.transform, blue);
+            DrawRockers(Script.rockers, Script.transform, blue);
         }
 
         protected virtual void DrawArea()
         {
             Handles.color = transparentBlue;
-            Handles.DrawSolidDisc(script.transform.position, axis, areaRadius);
+            Handles.DrawSolidDisc(Script.transform.position, Axis, areaRadius);
         }
         #endregion
     }

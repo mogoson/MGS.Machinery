@@ -19,6 +19,7 @@ namespace Developer.MathExtension.Planimetry
     /// <summary>
     /// Point in plane rectangular coordinate system.
     /// </summary>
+    [Serializable]
     public struct Point
     {
         //========Point Definition===================
@@ -50,6 +51,7 @@ namespace Developer.MathExtension.Planimetry
     /// <summary>
     /// Circle in plane rectangular coordinate system.
     /// </summary>
+    [Serializable]
     public struct Circle
     {
         //========Circle Definition==================
@@ -85,6 +87,7 @@ namespace Developer.MathExtension.Planimetry
     /// <summary>
     /// Line in plane rectangular coordinate system.
     /// </summary>
+    [Serializable]
     public struct Line
     {
         //========Line Definition===========
@@ -106,7 +109,7 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Horizontal line(x axis).
         /// </summary>
-        public static Line horizontal
+        public static Line Horizontal
         {
             get { return new Line(0, 0); }
         }
@@ -114,7 +117,7 @@ namespace Developer.MathExtension.Planimetry
         /// <summary>
         /// Vertical line(y axis).
         /// </summary>
-        public static Line vertical
+        public static Line Vertical
         {
             get { return new Line(double.PositiveInfinity, 0); }
         }
@@ -168,6 +171,7 @@ namespace Developer.MathExtension.Planimetry
     /// <summary>
     /// Triangle in plane rectangular coordinate system.
     /// </summary>
+    [Serializable]
     public struct Triangle
     {
         //========Triangle Definition=======
@@ -295,10 +299,10 @@ namespace Developer.MathExtension.Planimetry
     /// </summary>
     public enum Relation
     {
-        Coincidence,
-        External, Internal,
-        Parallel, Vertical, Intersect,
-        OutsideTangent, InsideTangent
+        Coincidence = 0,
+        External = 1, Internal = 2,
+        Parallel = 3, Vertical = 4, Intersect = 5,
+        OutsideTangent = 6, InsideTangent = 7
     }
     #endregion
 
@@ -397,21 +401,27 @@ namespace Developer.MathExtension.Planimetry
         {
             var re = Relation.External;
             var cd = GetDistance(c1.c, c2.c);
-            var d = c1.r + c2.r;
-            var p = Math.Abs(c1.r - c2.r);
+            var rd = c1.r + c2.r;
+            var rp = Math.Abs(c1.r - c2.r);
 
-            if (cd > d)
+            if (cd > rd)
                 re = Relation.External;
-            if (cd == d)
+            else if (cd == rd)
                 re = Relation.OutsideTangent;
-            if (cd < d)
-                re = Relation.Intersect;
-            if (cd == p)
-                re = Relation.InsideTangent;
-            if (cd < p)
-                re = Relation.Internal;
-            if (cd == 0 && p == 0)
-                re = Relation.Coincidence;
+            else
+            {
+                if (cd > rp)
+                    re = Relation.Intersect;
+                else if (cd == rp)
+                {
+                    if (rp == 0)
+                        re = Relation.Coincidence;
+                    else
+                        re = Relation.InsideTangent;
+                }
+                else
+                    re = Relation.Internal;
+            }
             return re;
         }
 
@@ -427,9 +437,9 @@ namespace Developer.MathExtension.Planimetry
             var d = GetDistance(c.c, L);
             if (d > c.r)
                 re = Relation.External;
-            if (d == c.r)
+            else if (d == c.r)
                 re = Relation.OutsideTangent;
-            if (d < c.r)
+            else
                 re = Relation.Intersect;
             return re;
         }
@@ -446,9 +456,9 @@ namespace Developer.MathExtension.Planimetry
             var cp = GetDistance(c.c, p);
             if (cp > c.r)
                 re = Relation.External;
-            if (cp == c.r)
+            else if (cp == c.r)
                 re = Relation.Coincidence;
-            if (cp < c.r)
+            else
                 re = Relation.Internal;
             return re;
         }

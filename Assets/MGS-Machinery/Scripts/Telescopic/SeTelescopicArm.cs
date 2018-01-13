@@ -21,7 +21,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Current id of drive joint.
         /// </summary>
-        public int jointIndex { protected set; get; }
+        public int JointIndex { protected set; get; }
         #endregion
 
         #region Protected Method
@@ -30,7 +30,7 @@ namespace Developer.Machinery
         /// </summary>
         protected virtual void ClampIndex()
         {
-            jointIndex = Mathf.Clamp(jointIndex, 0, tJoints.Count - 1);
+            JointIndex = Mathf.Clamp(JointIndex, 0, tJoints.Count - 1);
         }
         #endregion
 
@@ -42,18 +42,18 @@ namespace Developer.Machinery
         public override void DriveMechanism(float speedControl)
         {
             ClampIndex();
-            var currentJoint = tJoints[jointIndex];
+            var currentJoint = tJoints[JointIndex];
             currentJoint.DriveMechanism(speedControl);
 
             if (currentJoint.speed * speedControl >= 0)
             {
-                if (currentJoint.tState == TelescopicState.Extend)
-                    jointIndex++;
+                if (currentJoint.TState == TelescopicState.Extend)
+                    JointIndex++;
             }
             else
             {
-                if (currentJoint.tState == TelescopicState.Shrink)
-                    jointIndex--;
+                if (currentJoint.TState == TelescopicState.Shrink)
+                    JointIndex--;
             }
         }
         #endregion

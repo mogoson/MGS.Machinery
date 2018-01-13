@@ -20,19 +20,19 @@ namespace Developer.Machinery
     public class RockerRivetEditor : MechanismEditor
     {
         #region Property and Field
-        protected RockerRivet script { get { return target as RockerRivet; } }
+        protected RockerRivet Script { get { return target as RockerRivet; } }
         #endregion
 
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            if (!script.rockJoint)
+            if (!Script.rockJoint)
                 return;
 
             GUI.color = blue;
             Handles.color = blue;
-            Handles.Label(script.transform.position, "Rivet");
-            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
+            Handles.Label(Script.transform.position, "Rivet");
+            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
         }
         #endregion
     }

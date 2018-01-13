@@ -20,16 +20,16 @@ namespace Developer.Machinery
     public class CrankSliderEditor : CrankLinkEditor
     {
         #region Property and Field
-        protected new CrankSlider script { get { return target as CrankSlider; } }
+        protected new CrankSlider Script { get { return target as CrankSlider; } }
 
-        protected Vector3 zeroPoint
+        protected Vector3 ZeroPoint
         {
             get
             {
                 if (Application.isPlaying)
-                    return script.transform.TransformPoint(script.lsJointPosition);
+                    return Script.transform.TransformPoint(Script.LSJointPosition);
                 else
-                    return script.lsJoint.position;
+                    return Script.lsJoint.position;
             }
         }
         #endregion
@@ -39,34 +39,34 @@ namespace Developer.Machinery
         {
             base.OnSceneGUI();
 
-            if (!script.isIntact)
+            if (!Script.IsIntact)
                 return;
 
-            if (script.editMode == EditMode.Free)
+            if (Script.editMode == EditMode.Free)
             {
-                DrawRotationHandle(script.crank.transform);
-                DrawPositionHandle(script.linkBar.transform);
-                DrawPositionHandle(script.lsJoint);
-                DrawRotationHandle(script.lsJoint);
+                DrawRotationHandle(Script.crank.transform);
+                DrawPositionHandle(Script.linkBar.transform);
+                DrawPositionHandle(Script.lsJoint);
+                DrawRotationHandle(Script.lsJoint);
             }
-            else if (script.editMode == EditMode.Hinge)
+            else if (Script.editMode == EditMode.Hinge)
             {
-                DrawRotationHandle(script.crank.transform);
+                DrawRotationHandle(Script.crank.transform);
             }
 
-            DrawSphereCap(script.crank.transform.position, Quaternion.identity, nodeSize);
-            DrawCircleCap(script.crank.transform.position, script.crank.transform.rotation, areaRadius);
-            DrawArrow(script.crank.transform.position, script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
+            DrawSphereCap(Script.crank.transform.position, Quaternion.identity, nodeSize);
+            DrawCircleCap(Script.crank.transform.position, Script.crank.transform.rotation, areaRadius);
+            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
 
-            var offset = (script.linkBar.transform.position - script.crank.transform.position).normalized;
-            DrawArrow(script.crank.transform.position, offset, areaRadius, nodeSize, string.Empty, blue);
-            DrawArrow(script.crank.transform.position, script.linkBar.transform.position, nodeSize, string.Empty, blue);
-            DrawArrow(script.linkBar.transform.position, script.lsJoint.position, nodeSize, string.Empty, blue);
+            var offset = (Script.linkBar.transform.position - Script.crank.transform.position).normalized;
+            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, string.Empty, blue);
+            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, string.Empty, blue);
+            DrawArrow(Script.linkBar.transform.position, Script.lsJoint.position, nodeSize, string.Empty, blue);
 
-            var axis = script.ProjectDirection(script.lsJoint.forward).normalized;
-            Handles.DrawLine(zeroPoint, script.lsJoint.position);
-            DrawArrow(zeroPoint, axis, arrowLength, nodeSize, string.Empty, blue);
-            DrawArrow(zeroPoint, -axis, arrowLength, nodeSize, string.Empty, blue);
+            var axis = Script.ProjectDirection(Script.lsJoint.forward).normalized;
+            Handles.DrawLine(ZeroPoint, Script.lsJoint.position);
+            DrawArrow(ZeroPoint, axis, arrowLength, nodeSize, string.Empty, blue);
+            DrawArrow(ZeroPoint, -axis, arrowLength, nodeSize, string.Empty, blue);
 
             DrawSceneTool();
         }

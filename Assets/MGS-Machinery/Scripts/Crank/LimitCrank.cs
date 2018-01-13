@@ -36,14 +36,14 @@ namespace Developer.Machinery
         /// <param name="rSpeed">Rotate speed.</param>
         protected override void DriveCrank(float rSpeed)
         {
-            lockRecord = angle;
-            angle += rSpeed * Time.deltaTime;
-            angle = Mathf.Clamp(angle, minAngle, maxAngle);
+            lockRecord = Angle;
+            Angle += rSpeed * Time.deltaTime;
+            Angle = Mathf.Clamp(Angle, minAngle, maxAngle);
             DriveCrank();
 
             if (CheckRockersLock())
             {
-                angle = lockRecord;
+                Angle = lockRecord;
                 DriveCrank();
             }
         }

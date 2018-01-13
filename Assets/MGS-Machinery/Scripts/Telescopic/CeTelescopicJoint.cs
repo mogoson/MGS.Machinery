@@ -24,14 +24,14 @@ namespace Developer.Machinery
         /// <param name="mSpeed">Move speed.</param>
         protected override void DriveJoint(float mSpeed)
         {
-            lockRecord = displacement;
-            displacement += mSpeed * Time.deltaTime;
-            displacement = Mathf.Clamp(displacement, -stroke, stroke);
+            lockRecord = Displacement;
+            Displacement += mSpeed * Time.deltaTime;
+            Displacement = Mathf.Clamp(Displacement, -stroke, stroke);
             DriveJoint();
 
             if (CheckRockersLock())
             {
-                displacement = lockRecord;
+                Displacement = lockRecord;
                 DriveJoint();
             }
         }
@@ -46,10 +46,10 @@ namespace Developer.Machinery
         {
             DriveJoint(speed * speedControl);
 
-            if (displacement == 0)
-                tState = TelescopicState.Shrink;
-            else if (displacement <= -stroke || displacement >= stroke)
-                tState = TelescopicState.Extend;
+            if (Displacement == 0)
+                TState = TelescopicState.Shrink;
+            else if (Displacement <= -stroke || Displacement >= stroke)
+                TState = TelescopicState.Extend;
         }
         #endregion
     }

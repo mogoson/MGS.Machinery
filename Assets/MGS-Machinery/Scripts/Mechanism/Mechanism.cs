@@ -10,8 +10,8 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Developer.MathExtension.Planimetry;
 using System.Collections.Generic;
+using Developer.MathExtension.Planimetry;
 using UnityEngine;
 
 namespace Developer.Machinery
@@ -73,12 +73,12 @@ namespace Developer.Machinery
         /// <summary>
         /// Current angle of crank.
         /// </summary>
-        public float angle { protected set; get; }
+        public float Angle { protected set; get; }
 
         /// <summary>
         /// Start eulerAngles.
         /// </summary>
-        public Vector3 startAngles { protected set; get; }
+        public Vector3 StartAngles { protected set; get; }
         #endregion
 
         #region Protected Method
@@ -87,7 +87,7 @@ namespace Developer.Machinery
         /// </summary>
         protected virtual void DriveCrank()
         {
-            transform.localRotation = Quaternion.Euler(startAngles + new Vector3(0, 0, angle));
+            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, Angle));
             DriveRockers();
         }
         #endregion
@@ -99,7 +99,7 @@ namespace Developer.Machinery
         public new virtual void Awake()
         {
             base.Awake();
-            startAngles = transform.localEulerAngles;
+            StartAngles = transform.localEulerAngles;
         }
         #endregion
     }
@@ -131,17 +131,17 @@ namespace Developer.Machinery
         /// <summary>
         /// Dead lock state.
         /// </summary>
-        public bool isLock { protected set; get; }
+        public bool IsLock { protected set; get; }
 
         /// <summary>
         /// Drive direction.
         /// </summary>
-        public bool isPositive { protected set; get; }
+        public bool IsPositive { protected set; get; }
 
         /// <summary>
         /// Mechanism is initialized.
         /// </summary>
-        public bool isInitialized { protected set; get; }
+        public bool IsInitialized { protected set; get; }
         #endregion
 
         #region Protected Method
@@ -204,15 +204,15 @@ namespace Developer.Machinery
         {
             if (crank.speed * speedControl >= 0)
             {
-                if (isLock && isPositive)
+                if (IsLock && IsPositive)
                     return;
-                isPositive = true;
+                IsPositive = true;
             }
             else
             {
-                if (isLock && !isPositive)
+                if (IsLock && !IsPositive)
                     return;
-                isPositive = false;
+                IsPositive = false;
             }
             crank.DriveMechanism(speedControl);
             DriveLinkBars();
@@ -239,22 +239,22 @@ namespace Developer.Machinery
         /// <summary>
         /// Displacement of joint.
         /// </summary>
-        public float displacement { protected set; get; }
+        public float Displacement { protected set; get; }
 
         /// <summary>
         /// Telescopic joint state.
         /// </summary>
-        public TelescopicState tState { protected set; get; }
+        public TelescopicState TState { protected set; get; }
 
         /// <summary>
         /// Start position of joint.
         /// </summary>
-        public Vector3 startPosition { protected set; get; }
+        public Vector3 StartPosition { protected set; get; }
 
         /// <summary>
         /// Local move axis.
         /// </summary>
-        protected Vector3 aixs
+        protected Vector3 Aixs
         {
             get
             {
@@ -270,8 +270,8 @@ namespace Developer.Machinery
         protected override void Awake()
         {
             base.Awake();
-            startPosition = transform.localPosition;
-            tState = TelescopicState.Shrink;
+            StartPosition = transform.localPosition;
+            TState = TelescopicState.Shrink;
         }
 
         /// <summary>
@@ -279,8 +279,8 @@ namespace Developer.Machinery
         /// </summary>
         protected virtual void DriveJoint()
         {
-            tState = TelescopicState.Drift;
-            transform.localPosition = startPosition + aixs * displacement;
+            TState = TelescopicState.Drift;
+            transform.localPosition = StartPosition + Aixs * Displacement;
             DriveRockers();
         }
         #endregion
@@ -338,7 +338,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Rocker's lock state.
         /// </summary>
-        public bool isLock
+        public bool IsLock
         {
             get
             {
@@ -350,7 +350,7 @@ namespace Developer.Machinery
         /// <summary>
         /// Lock target roker joint.
         /// </summary>
-        public RockerJoint rJoint { protected set; get; }
+        public RockerJoint RJoint { protected set; get; }
         #endregion
 
         #region Protected Method
@@ -359,7 +359,7 @@ namespace Developer.Machinery
         /// </summary>
         protected virtual void Awake()
         {
-            rJoint = GetComponent<RockerJoint>();
+            RJoint = GetComponent<RockerJoint>();
         }
         #endregion
 
@@ -370,7 +370,7 @@ namespace Developer.Machinery
         /// <returns>Distance.</returns>
         public virtual float GetDistance()
         {
-            return Vector3.Distance(transform.position, rJoint.rockJoint.position);
+            return Vector3.Distance(transform.position, RJoint.rockJoint.position);
         }
         #endregion
     }
@@ -419,7 +419,7 @@ namespace Developer.Machinery
         {
             foreach (var rLock in rLocks)
             {
-                if (rLock.isLock)
+                if (rLock.IsLock)
                     return true;
             }
             return false;

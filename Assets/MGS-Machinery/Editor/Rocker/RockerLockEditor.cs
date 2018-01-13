@@ -20,20 +20,20 @@ namespace Developer.Machinery
     public class RockerLockEditor : MechanismEditor
     {
         #region Property and Field
-        protected RockerLock script { get { return target as RockerLock; } }
+        protected RockerLock Script { get { return target as RockerLock; } }
         protected const float half = 0.5f;
         #endregion
 
         #region Private Method
         protected virtual void OnSceneGUI()
         {
-            if (!script.rJoint.rockJoint)
+            if (!Script.RJoint.rockJoint)
                 return;
 
-            var offset = script.rJoint.rockJoint.position - script.transform.position;
-            var center = script.transform.position + offset * half;
-            var minOffset = offset.normalized * script.minStroke * half;
-            var maxOffset = offset.normalized * script.maxStroke * half;
+            var offset = Script.RJoint.rockJoint.position - Script.transform.position;
+            var center = Script.transform.position + offset * half;
+            var minOffset = offset.normalized * Script.minStroke * half;
+            var maxOffset = offset.normalized * Script.maxStroke * half;
             var nearMin = center - minOffset;
             var nearMax = center - maxOffset;
             var farMin = center + minOffset;
@@ -62,13 +62,13 @@ namespace Developer.Machinery
             GUI.color = Color.white;
             Handles.BeginGUI();
             GUILayout.BeginArea(rect, "Stroke Editor", "Window");
-            GUILayout.Label("Current Distance: " + script.GetDistance(), "TextField");
+            GUILayout.Label("Current Distance: " + Script.GetDistance(), "TextField");
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Set To Min"))
-                script.minStroke = script.GetDistance();
+                Script.minStroke = Script.GetDistance();
             if (GUILayout.Button("Set To Max"))
-                script.maxStroke = script.GetDistance();
+                Script.maxStroke = Script.GetDistance();
 
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
@@ -80,8 +80,8 @@ namespace Developer.Machinery
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            script.minStroke = Mathf.Clamp(script.minStroke, 0, float.MaxValue);
-            script.maxStroke = Mathf.Clamp(script.maxStroke, script.minStroke, float.MaxValue);
+            Script.minStroke = Mathf.Clamp(Script.minStroke, 0, float.MaxValue);
+            Script.maxStroke = Mathf.Clamp(Script.maxStroke, Script.minStroke, float.MaxValue);
         }
         #endregion
     }

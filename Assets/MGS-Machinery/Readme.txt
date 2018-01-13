@@ -1,7 +1,7 @@
 ==========================================================================
   Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
   Name: MGS-Machinery
-  Author: Mogoson   Version: 0.1.0   Date: 10/30/2017
+  Author: Mogoson   Version: 0.1.1   Date: 1/13/2018
 ==========================================================================
   [Summary]
     Unity plugin for binding machinery joint in scene.

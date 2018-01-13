@@ -23,12 +23,12 @@ namespace Developer.Machinery
         /// <summary>
         /// Rotate Axis.
         /// </summary>
-        public Vector3 axis { get { return transform.forward; } }
+        public Vector3 Axis { get { return transform.forward; } }
 
         /// <summary>
         /// Zero Axis.
         /// </summary>
-        public Vector3 zeroAxis
+        public Vector3 ZeroAxis
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Developer.Machinery
         {
             rockJoint.position = transform.position;
 
-            var angle = -EVector3.RotateAngle(rockJoint.forward, zeroAxis, axis);
+            var angle = -EVector3.RotateAngle(rockJoint.forward, ZeroAxis, Axis);
             var euler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
             transform.localRotation = Quaternion.Euler(euler);
         }

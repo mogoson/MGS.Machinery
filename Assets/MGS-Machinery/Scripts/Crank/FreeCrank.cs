@@ -24,13 +24,13 @@ namespace Developer.Machinery
         /// <param name="rSpeed">Speed of rotate crank.</param>
         protected virtual void DriveCrank(float rSpeed)
         {
-            lockRecord = angle;
-            angle += rSpeed * Time.deltaTime;
+            lockRecord = Angle;
+            Angle += rSpeed * Time.deltaTime;
             DriveCrank();
 
             if (CheckRockersLock())
             {
-                angle = lockRecord;
+                Angle = lockRecord;
                 DriveCrank();
             }
         }

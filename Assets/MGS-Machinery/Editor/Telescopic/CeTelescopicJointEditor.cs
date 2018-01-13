@@ -21,8 +21,8 @@ namespace Developer.Machinery
         #region Protected Method
         protected override void DrawStroke()
         {
-            DrawArrow(zeroPoint, axis, script.stroke, nodeSize, "+Stroke", blue);
-            DrawArrow(zeroPoint, -axis, script.stroke, nodeSize, "-Stroke", blue);
+            DrawArrow(ZeroPoint, Axis, Script.stroke, nodeSize, "+Stroke", blue);
+            DrawArrow(ZeroPoint, -Axis, Script.stroke, nodeSize, "-Stroke", blue);
         }
         #endregion
     }

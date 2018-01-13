@@ -20,20 +20,20 @@ namespace Developer.Machinery
     public class LimitCrankEditor : FreeCrankEditor
     {
         #region Property and Field
-        protected new LimitCrank script { get { return target as LimitCrank; } }
+        protected new LimitCrank Script { get { return target as LimitCrank; } }
         #endregion
 
         #region Protected Method
         protected override void DrawArea()
         {
-            var minAxis = Quaternion.AngleAxis(script.minAngle, axis) * zeroAxis;
-            var maxAxis = Quaternion.AngleAxis(script.maxAngle, axis) * zeroAxis;
+            var minAxis = Quaternion.AngleAxis(Script.minAngle, Axis) * ZeroAxis;
+            var maxAxis = Quaternion.AngleAxis(Script.maxAngle, Axis) * ZeroAxis;
 
-            DrawArrow(script.transform.position, minAxis, arrowLength, nodeSize, "Min", blue);
-            DrawArrow(script.transform.position, maxAxis, arrowLength, nodeSize, "Max", blue);
+            DrawArrow(Script.transform.position, minAxis, arrowLength, nodeSize, "Min", blue);
+            DrawArrow(Script.transform.position, maxAxis, arrowLength, nodeSize, "Max", blue);
 
             Handles.color = transparentBlue;
-            Handles.DrawSolidArc(script.transform.position, axis, minAxis, script.maxAngle - script.minAngle, areaRadius);
+            Handles.DrawSolidArc(Script.transform.position, Axis, minAxis, Script.maxAngle - Script.minAngle, areaRadius);
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace Developer.Machinery
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            script.maxAngle = Mathf.Clamp(script.maxAngle, script.minAngle, float.MaxValue);
+            Script.maxAngle = Mathf.Clamp(Script.maxAngle, Script.minAngle, float.MaxValue);
         }
         #endregion
     }

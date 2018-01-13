@@ -20,7 +20,7 @@ namespace Developer.Machinery
     public class RockerJointEditor : MechanismEditor
     {
         #region Property and Field
-        protected RockerJoint script { get { return target as RockerJoint; } }
+        protected RockerJoint Script { get { return target as RockerJoint; } }
         protected SerializedProperty reference;
         #endregion
 
@@ -32,16 +32,16 @@ namespace Developer.Machinery
 
         protected virtual void OnSceneGUI()
         {
-            if (!script.rockJoint)
+            if (!Script.rockJoint)
                 return;
 
-            DrawPositionHandle(script.rockJoint);
+            DrawPositionHandle(Script.rockJoint);
 
             Handles.color = blue;
-            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
-            DrawSphereCap(script.rockJoint.position, Quaternion.identity, nodeSize);
-            Handles.DrawLine(script.transform.position, script.rockJoint.position);
-            DrawArrow(script.transform.position, script.worldUp, arrowLength, nodeSize, "Keep Up", blue);
+            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
+            DrawSphereCap(Script.rockJoint.position, Quaternion.identity, nodeSize);
+            Handles.DrawLine(Script.transform.position, Script.rockJoint.position);
+            DrawArrow(Script.transform.position, Script.WorldUp, arrowLength, nodeSize, "Keep Up", blue);
         }
         #endregion
 
@@ -50,7 +50,7 @@ namespace Developer.Machinery
         {
             DrawDefaultInspector();
 
-            if (script.keepUp == KeepUpMode.ReferenceForward)
+            if (Script.keepUp == KeepUpMode.ReferenceForward)
             {
                 EditorGUILayout.PropertyField(reference);
                 serializedObject.ApplyModifiedProperties();

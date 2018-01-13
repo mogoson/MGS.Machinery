@@ -20,23 +20,23 @@ namespace Developer.Machinery
     public class TelescopicJointEditor : MechanismEditor
     {
         #region Property and Field
-        protected TelescopicJoint script { get { return target as TelescopicJoint; } }
+        protected TelescopicJoint Script { get { return target as TelescopicJoint; } }
 
-        protected Vector3 axis { get { return script.transform.forward; } }
+        protected Vector3 Axis { get { return Script.transform.forward; } }
 
-        protected Vector3 zeroPoint
+        protected Vector3 ZeroPoint
         {
             get
             {
                 if (Application.isPlaying)
                 {
-                    var point = script.startPosition;
-                    if (script.transform.parent)
-                        point = script.transform.parent.TransformPoint(point);
+                    var point = Script.StartPosition;
+                    if (Script.transform.parent)
+                        point = Script.transform.parent.TransformPoint(point);
                     return point;
                 }
                 else
-                    return script.transform.position;
+                    return Script.transform.position;
             }
         }
         #endregion
@@ -46,16 +46,16 @@ namespace Developer.Machinery
         {
             GUI.color = blue;
             Handles.color = blue;
-            Handles.Label(zeroPoint, "Zero");
-            DrawSphereCap(zeroPoint, Quaternion.identity, nodeSize);
-            DrawSphereCap(script.transform.position, Quaternion.identity, nodeSize);
+            Handles.Label(ZeroPoint, "Zero");
+            DrawSphereCap(ZeroPoint, Quaternion.identity, nodeSize);
+            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
             DrawStroke();
-            DrawRockers(script.rockers, script.transform, blue);
+            DrawRockers(Script.rockers, Script.transform, blue);
         }
 
         protected virtual void DrawStroke()
         {
-            DrawArrow(zeroPoint, axis, script.stroke, nodeSize, "Stroke", blue);
+            DrawArrow(ZeroPoint, Axis, Script.stroke, nodeSize, "Stroke", blue);
         }
         #endregion
 
@@ -63,7 +63,7 @@ namespace Developer.Machinery
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            script.stroke = Mathf.Clamp(script.stroke, 0, float.MaxValue);
+            Script.stroke = Mathf.Clamp(Script.stroke, 0, float.MaxValue);
         }
         #endregion
     }

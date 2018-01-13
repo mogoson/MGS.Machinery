@@ -20,7 +20,7 @@ namespace Developer.Machinery
     public class CrankRockerEditor : CrankLinkEditor
     {
         #region Property and Field
-        protected new CrankRocker script { get { return target as CrankRocker; } }
+        protected new CrankRocker Script { get { return target as CrankRocker; } }
         #endregion
 
         #region Protected Method
@@ -28,30 +28,30 @@ namespace Developer.Machinery
         {
             base.OnSceneGUI();
 
-            if (!script.isIntact)
+            if (!Script.IsIntact)
                 return;
 
-            if (script.editMode == EditMode.Free)
+            if (Script.editMode == EditMode.Free)
             {
-                DrawRotationHandle(script.crank.transform);
-                DrawPositionHandle(script.linkBar.transform);
-                DrawPositionHandle(script.rocker.transform);
-                DrawPositionHandle(script.lrJoint);
+                DrawRotationHandle(Script.crank.transform);
+                DrawPositionHandle(Script.linkBar.transform);
+                DrawPositionHandle(Script.rocker.transform);
+                DrawPositionHandle(Script.lrJoint);
             }
-            else if (script.editMode == EditMode.Hinge)
+            else if (Script.editMode == EditMode.Hinge)
             {
-                DrawRotationHandle(script.crank.transform);
+                DrawRotationHandle(Script.crank.transform);
             }
 
-            DrawCircleCap(script.crank.transform.position, script.crank.transform.rotation, areaRadius);
-            DrawArrow(script.crank.transform.position, script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
+            DrawCircleCap(Script.crank.transform.position, Script.crank.transform.rotation, areaRadius);
+            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
 
-            var offset = (script.linkBar.transform.position - script.crank.transform.position).normalized;
-            DrawArrow(script.crank.transform.position, offset, areaRadius, nodeSize, string.Empty, blue);
-            DrawArrow(script.crank.transform.position, script.linkBar.transform.position, nodeSize, string.Empty, blue);
-            DrawArrow(script.linkBar.transform.position, script.lrJoint.position, nodeSize, string.Empty, blue);
-            DrawArrow(script.lrJoint.position, script.rocker.transform.position, nodeSize, string.Empty, blue);
-            DrawArrow(script.rocker.transform.position, script.crank.transform.position, nodeSize, string.Empty, blue);
+            var offset = (Script.linkBar.transform.position - Script.crank.transform.position).normalized;
+            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, string.Empty, blue);
+            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, string.Empty, blue);
+            DrawArrow(Script.linkBar.transform.position, Script.lrJoint.position, nodeSize, string.Empty, blue);
+            DrawArrow(Script.lrJoint.position, Script.rocker.transform.position, nodeSize, string.Empty, blue);
+            DrawArrow(Script.rocker.transform.position, Script.crank.transform.position, nodeSize, string.Empty, blue);
 
             DrawSceneTool();
         }
@@ -65,8 +65,8 @@ namespace Developer.Machinery
 
             GUILayout.BeginHorizontal("TextField");
             EditorGUI.BeginChangeCheck();
-            script.useInertia = GUILayout.Toggle(script.useInertia, "Inertia");
-            script.useRestrict = GUILayout.Toggle(script.useRestrict, "Restrict");
+            Script.useInertia = GUILayout.Toggle(Script.useInertia, "Inertia");
+            Script.useRestrict = GUILayout.Toggle(Script.useRestrict, "Restrict");
             if (EditorGUI.EndChangeCheck())
                 MarkSceneDirty();
             GUILayout.EndHorizontal();

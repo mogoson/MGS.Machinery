@@ -45,7 +45,7 @@ namespace Developer.Machinery
         /// <summary>
         /// All mechanism is set Intact.
         /// </summary>
-        public bool isIntact { get { return crank && linkBar && rocker && lrJoint; } }
+        public bool IsIntact { get { return crank && linkBar && rocker && lrJoint; } }
 
         /// <summary>
         /// link bar start local position.
@@ -96,15 +96,15 @@ namespace Developer.Machinery
             if (Application.isPlaying)
                 return;
 
-            if (isIntact)
+            if (IsIntact)
             {
-                if (!isInitialized)
+                if (!IsInitialized)
                     Initialize();
 
                 DriveLinkBars();
             }
             else
-                isInitialized = false;
+                IsInitialized = false;
         }
 #endif
         /// <summary>
@@ -123,11 +123,11 @@ namespace Developer.Machinery
             var points = Planimetry.GetIntersections(linkCircle, rockerCircle);
             if (points == null)
             {
-                isLock = true;
+                IsLock = true;
                 return;
             }
 
-            isLock = false;
+            IsLock = false;
             Point point;
             if (points.Count == 1)
                 point = points[0];
@@ -167,7 +167,7 @@ namespace Developer.Machinery
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
             rockerCircle = new Circle(rockerPoint, rockerRadius);
             linkRadius = Planimetry.GetDistance(linkPoint, lrJointPoint);
-            isInitialized = true;
+            IsInitialized = true;
         }
         #endregion
     }

@@ -33,7 +33,7 @@ namespace Developer.Machinery
         /// <summary>
         /// World up for look at.
         /// </summary>
-        public Vector3 worldUp
+        public Vector3 WorldUp
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Developer.Machinery
         /// </summary>
         public override void DriveMechanism()
         {
-            transform.LookAt(rockJoint, worldUp);
+            transform.LookAt(rockJoint, WorldUp);
         }
         #endregion
     }

@@ -28,12 +28,12 @@ namespace Developer.Machinery
         /// <summary>
         /// All mechanism is set Intact.
         /// </summary>
-        public bool isIntact { get { return crank && linkBar && lsJoint; } }
+        public bool IsIntact { get { return crank && linkBar && lsJoint; } }
 
         /// <summary>
         /// lsJoint start local position.
         /// </summary>
-        public Vector3 lsJointPosition { protected set; get; }
+        public Vector3 LSJointPosition { protected set; get; }
 
         /// <summary>
         /// link bar start local position.
@@ -84,15 +84,15 @@ namespace Developer.Machinery
             if (Application.isPlaying)
                 return;
 
-            if (isIntact)
+            if (IsIntact)
             {
-                if (!isInitialized)
+                if (!IsInitialized)
                     Initialize();
 
                 DriveLinkBars();
             }
             else
-                isInitialized = false;
+                IsInitialized = false;
         }
 #endif
 
@@ -111,11 +111,11 @@ namespace Developer.Machinery
             var points = Planimetry.GetIntersections(linkCircle, linkLine);
             if (points == null)
             {
-                isLock = true;
+                IsLock = true;
                 return;
             }
 
-            isLock = false;
+            IsLock = false;
             Point point;
             if (points.Count == 1)
                 point = points[0];
@@ -154,7 +154,7 @@ namespace Developer.Machinery
 
             //Save start local position.
             linkPosition = CorrectPosition(linkBar.transform.localPosition);
-            lsJointPosition = CorrectPosition(lsJoint.localPosition);
+            LSJointPosition = CorrectPosition(lsJoint.localPosition);
 
             //Initialize CrankSlider mathematical model.
             var lsJointPoint = CorrectPoint(lsJoint.localPosition);
@@ -164,7 +164,7 @@ namespace Developer.Machinery
             linkRadius = Planimetry.GetDistance(linkPoint, lsJointPoint);
             linkLine = Line.GetLine(lsJointPoint, directionPoint);
             isRight = lsJointPoint.x - linkPoint.x >= 0;
-            isInitialized = true;
+            IsInitialized = true;
         }
 
         /// <summary>
