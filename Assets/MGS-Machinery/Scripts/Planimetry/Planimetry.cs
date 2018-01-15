@@ -167,130 +167,6 @@ namespace Developer.MathExtension.Planimetry
             this.b = b;
         }
     }
-
-    /// <summary>
-    /// Triangle in plane rectangular coordinate system.
-    /// </summary>
-    [Serializable]
-    public struct Triangle
-    {
-        //========Triangle Definition=======
-        //                 A
-        //                /\
-        //            c  /  \ b
-        //              /    \
-        //           B /______\ C
-        //                 a
-        //==================================
-
-        /// <summary>
-        /// Vertex A;
-        /// </summary>
-        public Point A;
-
-        /// <summary>
-        /// Vertex B;
-        /// </summary>
-        public Point B;
-
-        /// <summary>
-        /// Vertex C;
-        /// </summary>
-        public Point C;
-
-        /// <summary>
-        /// AB length.
-        /// </summary>
-        public double a { get { return Planimetry.GetDistance(B, C); } }
-
-        /// <summary>
-        /// BC length.
-        /// </summary>
-        public double b { get { return Planimetry.GetDistance(A, C); } }
-
-        /// <summary>
-        /// AC length.
-        /// </summary>
-        public double c { get { return Planimetry.GetDistance(A, B); } }
-
-        /// <summary>
-        /// Center of gravity.
-        /// </summary>
-        public Point G
-        {
-            get
-            {
-                if (Check(A, B, C))
-                {
-                    var p1 = Line.GetCenter(A, B);
-                    var p2 = Line.GetCenter(A, C);
-
-                    var L1 = Line.GetLine(p1, C);
-                    var L2 = Line.GetLine(p2, B);
-                    return Planimetry.GetIntersections(L1, L2);
-                }
-                else
-                    return new Point(double.NaN, double.NaN);
-            }
-        }
-
-        public Triangle(Point A, Point B, Point C)
-        {
-            this.A = A;
-            this.B = B;
-            this.C = C;
-        }
-
-        /// <summary>
-        /// /Check the three vertexes can be constituted a triangle.
-        /// </summary>
-        public static bool Check(Point A, Point B, Point C)
-        {
-            var dABx = B.x - A.x;
-            var dABy = B.y - A.y;
-
-            var dBCx = C.x - B.x;
-            var dBCy = C.y - B.y;
-
-            if (dABx == dBCx && dABy == dBCy)
-                return false;
-            else
-                return true;
-        }
-
-        /// <summary>
-        /// /Check the three side can be constituted a triangle.
-        /// </summary>
-        public static bool Check(double a, double b, double c)
-        {
-            return a > 0 && b > 0 && c > 0 && a + b > c && a - b < c;
-        }
-
-        /// <summary>
-        /// Check the triangle is reasonable or not.
-        /// </summary>
-        public static bool Check(Triangle t)
-        {
-            return Check(t.A, t.B, t.C);
-        }
-
-        public static double GetAngleABC(double a, double b, double c)
-        {
-            //-----------------------------
-            //             2   2   2
-            //            a + c - b
-            //	cos x = ---------------
-            //               2ac
-            //-----------------------------
-
-            if (a == 0 || b == 0 || c == 0)
-                return double.NaN;
-
-            var m = Math.Pow(a, 2) + Math.Pow(c, 2) - Math.Pow(b, 2);
-            var d = 2 * a * c;
-            return Math.Acos(m / d);
-        }
-    }
     #endregion
 
     #region Enum
@@ -299,10 +175,11 @@ namespace Developer.MathExtension.Planimetry
     /// </summary>
     public enum Relation
     {
-        Coincidence = 0,
-        External = 1, Internal = 2,
-        Parallel = 3, Vertical = 4, Intersect = 5,
-        OutsideTangent = 6, InsideTangent = 7
+        Undefined = 0,
+        Coincidence = 1,
+        External = 2, Internal = 3,
+        Parallel = 4, Vertical = 5, Intersect = 6,
+        OutsideTangent = 7, InsideTangent = 8
     }
     #endregion
 
@@ -326,9 +203,9 @@ namespace Developer.MathExtension.Planimetry
             //  |p1p2| = \/(x2 - x1) + (y2 - y1)
             //----------------------------------------
 
-            var dx_2 = Math.Pow(p2.x - p1.x, 2);
-            var dy_2 = Math.Pow(p2.y - p1.y, 2);
-            return Math.Sqrt(dx_2 + dy_2);
+            var dx2 = Math.Pow(p2.x - p1.x, 2);
+            var dy2 = Math.Pow(p2.y - p1.y, 2);
+            return Math.Sqrt(dx2 + dy2);
         }
 
         /// <summary>
@@ -383,7 +260,7 @@ namespace Developer.MathExtension.Planimetry
 
             if (L.k == 0)
                 return Math.Abs(p.y - L.b);
-            if (L.k == double.PositiveInfinity)
+            else if (L.k == double.PositiveInfinity)
                 return Math.Abs(p.x - L.b);
             else
                 return Math.Abs(L.k * p.x - p.y + L.b) / Math.Sqrt(1 + Math.Pow(L.k, 2));
@@ -399,7 +276,7 @@ namespace Developer.MathExtension.Planimetry
         /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c1, Circle c2)
         {
-            var re = Relation.External;
+            var re = Relation.Undefined;
             var cd = GetDistance(c1.c, c2.c);
             var rd = c1.r + c2.r;
             var rp = Math.Abs(c1.r - c2.r);
@@ -433,8 +310,9 @@ namespace Developer.MathExtension.Planimetry
         /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c, Line L)
         {
-            var re = Relation.External;
+            var re = Relation.Undefined;
             var d = GetDistance(c.c, L);
+
             if (d > c.r)
                 re = Relation.External;
             else if (d == c.r)
@@ -452,8 +330,9 @@ namespace Developer.MathExtension.Planimetry
         /// <returns>Position relation.</returns>
         public static Relation GetRelation(Circle c, Point p)
         {
-            var re = Relation.External;
+            var re = Relation.Undefined;
             var cp = GetDistance(c.c, p);
+
             if (cp > c.r)
                 re = Relation.External;
             else if (cp == c.r)
@@ -471,7 +350,7 @@ namespace Developer.MathExtension.Planimetry
         /// <returns>Position relation.</returns>
         public static Relation GetRelation(Line L1, Line L2)
         {
-            var re = Relation.Coincidence;
+            var re = Relation.Undefined;
             if (L1.k == L2.k)
             {
                 if (L1.b == L2.b)
@@ -492,9 +371,10 @@ namespace Developer.MathExtension.Planimetry
         /// <returns>Position relation.</returns>
         public static Relation GetRelation(Line L, Point p)
         {
-            var re = Relation.External;
+            var re = Relation.Undefined;
             if (L.k == double.PositiveInfinity)
             {
+                //Meet the linear equation.
                 if (p.x == L.b)
                     re = Relation.Coincidence;
                 else
@@ -597,20 +477,20 @@ namespace Developer.MathExtension.Planimetry
             var re = GetRelation(C, L);
             if (re == Relation.OutsideTangent || re == Relation.Intersect)
             {
-                var I = new List<Point>();
+                var points = new List<Point>();
 
                 if (L.k == double.PositiveInfinity)
                 {
                     var x1 = L.b;
                     var dy = Math.Sqrt(Math.Pow(C.r, 2) - Math.Pow(x1 - C.c.x, 2));
                     var y1 = dy + C.c.y;
-                    I.Add(new Point(x1, y1));
+                    points.Add(new Point(x1, y1));
 
                     if (re == Relation.Intersect)
                     {
                         var x2 = x1;
                         var y2 = -dy + C.c.y;
-                        I.Add(new Point(x2, y2));
+                        points.Add(new Point(x2, y2));
                     }
                 }
                 else
@@ -622,16 +502,16 @@ namespace Developer.MathExtension.Planimetry
 
                     var x1 = (-b + Math.Sqrt(delta)) / (2 * a);
                     var y1 = L.k * x1 + L.b;
-                    I.Add(new Point(x1, y1));
+                    points.Add(new Point(x1, y1));
 
                     if (re == Relation.Intersect)
                     {
                         var x2 = (-b - Math.Sqrt(delta)) / (2 * a);
                         var y2 = L.k * x2 + L.b;
-                        I.Add(new Point(x2, y2));
+                        points.Add(new Point(x2, y2));
                     }
                 }
-                return I;
+                return points;
             }
             else
                 return null;
@@ -643,7 +523,7 @@ namespace Developer.MathExtension.Planimetry
         /// <param name="L1">Line 1.</param>
         /// <param name="L2">Line 2.</param>
         /// <returns>Intersection.</returns>
-        public static Point GetIntersections(Line L1, Line L2)
+        public static Point GetIntersection(Line L1, Line L2)
         {
             //--------------------------------------------
             //  y = k1x + b1    y = k2x + b2
