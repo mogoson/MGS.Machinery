@@ -128,16 +128,25 @@ namespace Developer.Machinery
             }
 
             IsLock = false;
-            Point point;
+            var point = Point.Zero;
             if (points.Count == 1)
                 point = points[0];
             else
             {
-                //Adapt intertia and restrict.
+                //Adapt restrict and intertia.
                 var rID = useRestrict ? 1 : 0;
-                point = useInertia ? points[rID] : (points[0].y - points[1].y >= 0 == isTop ? points[rID] : points[1 - rID]);
+                if (useInertia)
+                    point = points[rID];
+                else
+                {
+                    var isPointTop = points[0].y - points[1].y >= 0;
+                    if (isPointTop == isTop)
+                        point = points[rID];
+                    else
+                        point = points[1 - rID];
+                }
             }
-            lrJoint.localPosition = new Vector3((float)point.x, (float)point.y, 0);
+            lrJoint.localPosition = new Vector3((float)point.x, (float)point.y);
 
             //Drive bars.
             rocker.DriveMechanism();

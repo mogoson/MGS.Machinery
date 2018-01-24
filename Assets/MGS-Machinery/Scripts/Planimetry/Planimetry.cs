@@ -374,7 +374,6 @@ namespace Developer.MathExtension.Planimetry
             var re = Relation.Undefined;
             if (L.k == double.PositiveInfinity)
             {
-                //Meet the linear equation.
                 if (p.x == L.b)
                     re = Relation.Coincidence;
                 else
@@ -382,7 +381,6 @@ namespace Developer.MathExtension.Planimetry
             }
             else
             {
-                //Meet the linear equation.
                 if (p.y == L.k * p.x + L.b)
                     re = Relation.Coincidence;
                 else

@@ -116,12 +116,12 @@ namespace Developer.Machinery
             }
 
             IsLock = false;
-            Point point;
+            var point = Point.Zero;
             if (points.Count == 1)
                 point = points[0];
             else
                 point = isRight ? points[0] : points[1];
-            lsJoint.localPosition = new Vector3((float)point.x, (float)point.y, 0);
+            lsJoint.localPosition = new Vector3((float)point.x, (float)point.y);
 
             //Drive linkBar.
             linkBar.DriveMechanism();
@@ -134,7 +134,7 @@ namespace Developer.Machinery
         /// <returns>Correct lsJoint angles.</returns>
         protected Vector3 CorrectLSJointAngles(Vector3 angles)
         {
-            return new Vector3(angles.x, 90, 0);
+            return new Vector3(angles.x, 90);
         }
         #endregion
 

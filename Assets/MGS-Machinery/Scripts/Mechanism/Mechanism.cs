@@ -181,7 +181,7 @@ namespace Developer.Machinery
         /// <returns>Correct position.</returns>
         protected Vector3 CorrectPosition(Vector3 position)
         {
-            return new Vector3(position.x, position.y, 0);
+            return new Vector3(position.x, position.y);
         }
 
         /// <summary>
