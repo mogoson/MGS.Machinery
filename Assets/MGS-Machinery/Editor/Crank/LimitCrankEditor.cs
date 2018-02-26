@@ -1,12 +1,12 @@
-/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+﻿/*************************************************************************
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  LimitCrankEditor.cs
  *  Description  :  Custom editor for LimitCrank.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  3/2/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -29,8 +29,8 @@ namespace Developer.Machinery
             var minAxis = Quaternion.AngleAxis(Script.minAngle, Axis) * ZeroAxis;
             var maxAxis = Quaternion.AngleAxis(Script.maxAngle, Axis) * ZeroAxis;
 
-            DrawArrow(Script.transform.position, minAxis, arrowLength, nodeSize, "Min", blue);
-            DrawArrow(Script.transform.position, maxAxis, arrowLength, nodeSize, "Max", blue);
+            DrawArrow(Script.transform.position, minAxis, arrowLength, nodeSize, blue, "Min");
+            DrawArrow(Script.transform.position, maxAxis, arrowLength, nodeSize, blue, "Max");
 
             Handles.color = transparentBlue;
             Handles.DrawSolidArc(Script.transform.position, Axis, minAxis, Script.maxAngle - Script.minAngle, areaRadius);

@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2016-2017, Mogoson Tech. Co., Ltd.
+ *  Copyright © 2016-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  VectorExtension.cs
- *  Description  :  Extension of UnityEngine.Vector3.
+ *  Description  :  Extension for UnityEngine.Vector3.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
@@ -14,6 +14,9 @@ using UnityEngine;
 
 namespace Developer.VectorExtention
 {
+    /// <summary>
+    /// Extension for UnityEngine.Vector3.
+    /// </summary>
     public static class EVector3
     {
         #region Public Method

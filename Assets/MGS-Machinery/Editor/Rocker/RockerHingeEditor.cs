@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  RockerHingeEditor.cs
  *  Description  :  Custom editor for RockerHinge.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/16/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -30,14 +30,14 @@ namespace Developer.Machinery
             DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
             DrawCircleCap(Script.transform.position, Script.transform.rotation, areaRadius);
             Handles.DrawWireArc(Script.transform.position, Script.transform.right, Script.Axis, -180, areaRadius);
-            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, string.Empty, blue);
+            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, blue, string.Empty);
 
             var axisStart = Script.transform.position - Script.Axis * areaRadius;
             var axisEnd = Script.transform.position + Script.Axis * arrowLength;
-            DrawArrow(axisStart, axisEnd, nodeSize, "Axis", blue);
+            DrawArrow(axisStart, axisEnd, nodeSize, blue, "Axis");
 
             if (Script.rockJoint)
-                DrawArrow(Script.transform.position, Script.rockJoint.forward, areaRadius, nodeSize, string.Empty, blue);
+                DrawArrow(Script.transform.position, Script.rockJoint.forward, areaRadius, nodeSize, blue, string.Empty);
         }
         #endregion
     }

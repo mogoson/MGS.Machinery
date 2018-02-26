@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2015-2016, Mogoson Tech. Co., Ltd.
+ *  Copyright © 2015-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  SeTelescopicArm.cs
  *  Description  :  Define SeTelescopicArm component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  12/24/2015
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 

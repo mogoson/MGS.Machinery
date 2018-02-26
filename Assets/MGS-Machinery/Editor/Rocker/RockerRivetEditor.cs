@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  RockerRivetEditor.cs
  *  Description  :  Custom editor for RockerRivet.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  1/17/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 

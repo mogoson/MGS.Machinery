@@ -1,12 +1,12 @@
-/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+﻿/*************************************************************************
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  CrankRockerEditor.cs
  *  Description  :  Custom editor for CrankRocker.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  3/3/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -39,19 +39,17 @@ namespace Developer.Machinery
                 DrawPositionHandle(Script.lrJoint);
             }
             else if (Script.editMode == EditMode.Hinge)
-            {
                 DrawRotationHandle(Script.crank.transform);
-            }
 
             DrawCircleCap(Script.crank.transform.position, Script.crank.transform.rotation, areaRadius);
-            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, "Axis", blue);
+            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, blue, "Axis");
 
             var offset = (Script.linkBar.transform.position - Script.crank.transform.position).normalized;
-            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, string.Empty, blue);
-            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, string.Empty, blue);
-            DrawArrow(Script.linkBar.transform.position, Script.lrJoint.position, nodeSize, string.Empty, blue);
-            DrawArrow(Script.lrJoint.position, Script.rocker.transform.position, nodeSize, string.Empty, blue);
-            DrawArrow(Script.rocker.transform.position, Script.crank.transform.position, nodeSize, string.Empty, blue);
+            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, blue, string.Empty);
+            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, blue, string.Empty);
+            DrawArrow(Script.linkBar.transform.position, Script.lrJoint.position, nodeSize, blue, string.Empty);
+            DrawArrow(Script.lrJoint.position, Script.rocker.transform.position, nodeSize, blue, string.Empty);
+            DrawArrow(Script.rocker.transform.position, Script.crank.transform.position, nodeSize, blue, string.Empty);
 
             DrawSceneTool();
         }

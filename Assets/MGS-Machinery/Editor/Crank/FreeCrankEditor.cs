@@ -1,12 +1,12 @@
-/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+﻿/*************************************************************************
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  FreeCrankEditor.cs
  *  Description  :  Custom editor for FreeCrank.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  3/1/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -47,9 +47,9 @@ namespace Developer.Machinery
             Handles.color = blue;
             DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
             DrawCircleCap(Script.transform.position, Script.transform.rotation, areaRadius);
-            DrawArrow(Script.transform.position, Axis, arrowLength, nodeSize, "Axis", blue);
-            DrawArrow(Script.transform.position, ZeroAxis, arrowLength, nodeSize, "Zero", blue);
-            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, string.Empty, blue);
+            DrawArrow(Script.transform.position, Axis, arrowLength, nodeSize, blue, "Axis");
+            DrawArrow(Script.transform.position, ZeroAxis, arrowLength, nodeSize, blue, "Zero");
+            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, blue, string.Empty);
             DrawArea();
             DrawRockers(Script.rockers, Script.transform, blue);
         }

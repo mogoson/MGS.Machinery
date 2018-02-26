@@ -1,12 +1,12 @@
-/*************************************************************************
- *  Copyright (C), 2017-2018, Mogoson Tech. Co., Ltd.
+﻿/*************************************************************************
+ *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  TelescopicJointEditor.cs
  *  Description  :  Custom editor for TelescopicJoint.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  3/2/2017
+ *  Date         :  2/26/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -55,7 +55,7 @@ namespace Developer.Machinery
 
         protected virtual void DrawStroke()
         {
-            DrawArrow(ZeroPoint, Axis, Script.stroke, nodeSize, "Stroke", blue);
+            DrawArrow(ZeroPoint, Axis, Script.stroke, nodeSize, blue, "Stroke");
         }
         #endregion
 
