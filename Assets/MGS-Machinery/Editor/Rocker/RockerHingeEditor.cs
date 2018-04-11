@@ -6,38 +6,35 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerHinge), true)]
     [CanEditMultipleObjects]
-    public class RockerHingeEditor : MechanismEditor
+    public class RockerHingeEditor : BaseEditor
     {
-        #region Property and Field
-        protected RockerHinge Script { get { return target as RockerHinge; } }
+        #region Field and Property
+        protected RockerHinge Target { get { return target as RockerHinge; } }
         #endregion
 
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            Handles.color = blue;
-            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
-            DrawCircleCap(Script.transform.position, Script.transform.rotation, areaRadius);
-            Handles.DrawWireArc(Script.transform.position, Script.transform.right, Script.Axis, -180, areaRadius);
-            DrawArrow(Script.transform.position, Script.transform.up, areaRadius, nodeSize, blue, string.Empty);
+            Handles.color = Blue;
+            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+            DrawCircleCap(Target.transform.position, Target.transform.rotation, AreaRadius);
+            Handles.DrawWireArc(Target.transform.position, Target.transform.right, Target.Axis, -180, AreaRadius);
+            DrawSphereArrow(Target.transform.position, Target.transform.up, AreaRadius, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.transform.position - Target.Axis * AreaRadius, Target.transform.position + Target.Axis * ArrowLength, NodeSize, Blue, "Axis");
 
-            var axisStart = Script.transform.position - Script.Axis * areaRadius;
-            var axisEnd = Script.transform.position + Script.Axis * arrowLength;
-            DrawArrow(axisStart, axisEnd, nodeSize, blue, "Axis");
-
-            if (Script.rockJoint)
-                DrawArrow(Script.transform.position, Script.rockJoint.forward, areaRadius, nodeSize, blue, string.Empty);
+            if (Target.rockJoint)
+                DrawSphereArrow(Target.transform.position, Target.rockJoint.forward, AreaRadius, NodeSize, Blue, string.Empty);
         }
         #endregion
     }

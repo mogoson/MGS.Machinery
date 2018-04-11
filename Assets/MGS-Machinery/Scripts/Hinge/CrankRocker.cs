@@ -10,16 +10,16 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Developer.MathExtension.Planimetry;
+using Mogoson.MathExtension.Planimetry;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/CrankRocker")]
+    [AddComponentMenu("Mogoson/Machinery/CrankRocker")]
     [ExecuteInEditMode]
     public class CrankRocker : CrankLinkMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Rocker of crankrocker.
         /// </summary>

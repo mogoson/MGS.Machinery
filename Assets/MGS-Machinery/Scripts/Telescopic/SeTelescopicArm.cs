@@ -12,12 +12,12 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/SeTelescopicArm")]
+    [AddComponentMenu("Mogoson/Machinery/SeTelescopicArm")]
     public class SeTelescopicArm : TelescopicArmMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Current id of drive joint.
         /// </summary>

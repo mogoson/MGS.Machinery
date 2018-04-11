@@ -6,33 +6,34 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerRivet), true)]
     [CanEditMultipleObjects]
-    public class RockerRivetEditor : MechanismEditor
+    public class RockerRivetEditor : BaseEditor
     {
-        #region Property and Field
-        protected RockerRivet Script { get { return target as RockerRivet; } }
+        #region Field and Property
+        protected RockerRivet Target { get { return target as RockerRivet; } }
         #endregion
 
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            if (!Script.rockJoint)
+            if (Target.rockJoint == null)
                 return;
 
-            GUI.color = blue;
-            Handles.color = blue;
-            Handles.Label(Script.transform.position, "Rivet");
-            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
+            Handles.color = Blue;
+            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+
+            GUI.color = Blue;
+            Handles.Label(Target.transform.position, "Rivet");
         }
         #endregion
     }

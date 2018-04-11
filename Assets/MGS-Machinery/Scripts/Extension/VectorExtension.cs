@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace Developer.VectorExtention
+namespace Mogoson.VectorExtention
 {
     /// <summary>
     /// Extension for UnityEngine.Vector3.

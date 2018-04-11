@@ -12,13 +12,13 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/MeDriver")]
+    [AddComponentMenu("Mogoson/Machinery/MeDriver")]
     [RequireComponent(typeof(Mechanism))]
     public class MeDriver : MonoBehaviour
     {
-        #region Property and Field
+        #region Field and Property
         public KeyCode positiveKey = KeyCode.P;
         public KeyCode negativeKey = KeyCode.N;
 

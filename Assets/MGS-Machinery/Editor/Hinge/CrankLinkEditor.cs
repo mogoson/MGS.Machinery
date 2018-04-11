@@ -6,41 +6,41 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    public class CrankLinkEditor : MechanismEditor
+    public class CrankLinkEditor : BaseEditor
     {
-        #region Property and Field
-        protected CrankLinkMechanism Script { get { return target as CrankLinkMechanism; } }
-        protected readonly string[] hingeEditorButtons = { "Free", "Hinge", "Lock" };
+        #region Field and Property
+        protected CrankLinkMechanism Target { get { return target as CrankLinkMechanism; } }
+        protected readonly string[] HingeEditorButtons = { "Free", "Hinge", "Lock" };
         #endregion
 
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            Handles.color = blue;
-            Handles.DrawLine(Script.transform.position, Script.transform.position + Script.transform.right * lineLength);
-            Handles.DrawLine(Script.transform.position, Script.transform.position + Script.transform.up * lineLength);
+            Handles.color = Blue;
+            Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.right * LineLength);
+            Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.up * LineLength);
         }
 
         protected void DrawHingeEditorTool()
         {
             EditorGUI.BeginChangeCheck();
-            Script.editMode = (EditMode)GUILayout.SelectionGrid((int)Script.editMode, hingeEditorButtons, hingeEditorButtons.Length);
+            Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
             if (EditorGUI.EndChangeCheck())
                 MarkSceneDirty();
 
-            if (Script.editMode == EditMode.Free)
-                Script.enabled = false;
+            if (Target.editMode == EditMode.Free)
+                Target.enabled = false;
             else
-                Script.enabled = true;
+                Target.enabled = true;
         }
         #endregion
     }

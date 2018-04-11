@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/RockerLock")]
+    [AddComponentMenu("Mogoson/Machinery/RockerLock")]
     [RequireComponent(typeof(RockerJoint))]
     [ExecuteInEditMode]
     public class RockerLock : RockerLockMechanism

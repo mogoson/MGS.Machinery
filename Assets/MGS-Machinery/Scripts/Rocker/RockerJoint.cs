@@ -12,13 +12,13 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/RockerJoint")]
+    [AddComponentMenu("Mogoson/Machinery/RockerJoint")]
     [ExecuteInEditMode]
     public class RockerJoint : RockerMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Keep up mode.
         /// </summary>

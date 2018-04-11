@@ -6,21 +6,21 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerJoint), true)]
     [CanEditMultipleObjects]
-    public class RockerJointEditor : MechanismEditor
+    public class RockerJointEditor : BaseEditor
     {
-        #region Property and Field
-        protected RockerJoint Script { get { return target as RockerJoint; } }
+        #region Field and Property
+        protected RockerJoint Target { get { return target as RockerJoint; } }
         protected SerializedProperty reference;
         #endregion
 
@@ -32,16 +32,15 @@ namespace Developer.Machinery
 
         protected virtual void OnSceneGUI()
         {
-            if (!Script.rockJoint)
+            if (Target.rockJoint == null)
                 return;
 
-            DrawPositionHandle(Script.rockJoint);
-
-            Handles.color = blue;
-            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
-            DrawSphereCap(Script.rockJoint.position, Quaternion.identity, nodeSize);
-            Handles.DrawLine(Script.transform.position, Script.rockJoint.position);
-            DrawArrow(Script.transform.position, Script.WorldUp, arrowLength, nodeSize, blue, "Keep Up");
+            Handles.color = Blue;
+            DrawPositionHandle(Target.rockJoint);
+            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+            DrawSphereCap(Target.rockJoint.position, Quaternion.identity, NodeSize);
+            Handles.DrawLine(Target.transform.position, Target.rockJoint.position);
+            DrawSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, Blue, "Keep Up");
         }
         #endregion
 
@@ -50,7 +49,7 @@ namespace Developer.Machinery
         {
             DrawDefaultInspector();
 
-            if (Script.keepUp == KeepUpMode.ReferenceForward)
+            if (Target.keepUp == KeepUpMode.ReferenceForward)
             {
                 EditorGUILayout.PropertyField(reference);
                 serializedObject.ApplyModifiedProperties();

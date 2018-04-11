@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/FreeCrank")]
+    [AddComponentMenu("Mogoson/Machinery/FreeCrank")]
     public class FreeCrank : CrankMechanism
     {
         #region Protected Method

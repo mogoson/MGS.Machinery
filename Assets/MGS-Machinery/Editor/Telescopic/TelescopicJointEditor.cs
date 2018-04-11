@@ -6,23 +6,23 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(TelescopicJoint), true)]
     [CanEditMultipleObjects]
-    public class TelescopicJointEditor : MechanismEditor
+    public class TelescopicJointEditor : BaseEditor
     {
-        #region Property and Field
-        protected TelescopicJoint Script { get { return target as TelescopicJoint; } }
+        #region Field and Property
+        protected TelescopicJoint Target { get { return target as TelescopicJoint; } }
 
-        protected Vector3 Axis { get { return Script.transform.forward; } }
+        protected Vector3 Axis { get { return Target.transform.forward; } }
 
         protected Vector3 ZeroPoint
         {
@@ -30,13 +30,13 @@ namespace Developer.Machinery
             {
                 if (Application.isPlaying)
                 {
-                    var point = Script.StartPosition;
-                    if (Script.transform.parent)
-                        point = Script.transform.parent.TransformPoint(point);
+                    var point = Target.StartPosition;
+                    if (Target.transform.parent)
+                        point = Target.transform.parent.TransformPoint(point);
                     return point;
                 }
                 else
-                    return Script.transform.position;
+                    return Target.transform.position;
             }
         }
         #endregion
@@ -44,26 +44,29 @@ namespace Developer.Machinery
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            GUI.color = blue;
-            Handles.color = blue;
-            Handles.Label(ZeroPoint, "Zero");
-            DrawSphereCap(ZeroPoint, Quaternion.identity, nodeSize);
-            DrawSphereCap(Script.transform.position, Quaternion.identity, nodeSize);
+            Handles.color = Blue;
+            DrawSphereCap(ZeroPoint, Quaternion.identity, NodeSize);
+            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawStroke();
-            DrawRockers(Script.rockers, Script.transform, blue);
+            DrawRockers(Target.rockers, Target.transform, Blue);
+
+            GUI.color = Blue;
+            Handles.Label(ZeroPoint, "Zero");
         }
 
         protected virtual void DrawStroke()
         {
-            DrawArrow(ZeroPoint, Axis, Script.stroke, nodeSize, blue, "Stroke");
+            DrawSphereArrow(ZeroPoint, Axis, Target.stroke, NodeSize, Blue, "Stroke");
         }
         #endregion
 
         #region Public Method
         public override void OnInspectorGUI()
         {
+            EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
-            Script.stroke = Mathf.Clamp(Script.stroke, 0, float.MaxValue);
+            if (EditorGUI.EndChangeCheck())
+                Target.stroke = Mathf.Clamp(Target.stroke, 0, float.MaxValue);
         }
         #endregion
     }

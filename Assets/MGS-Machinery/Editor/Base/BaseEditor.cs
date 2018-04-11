@@ -1,23 +1,23 @@
 ﻿/*************************************************************************
  *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  MechanismEditor.cs
- *  Description  :  Custom editor for mechanism.
+ *  File         :  BaseEditor.cs
+ *  Description  :  Custom base editor.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  1/17/2017
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using Mogoson.UEditor;
 using System.Collections.Generic;
-using Developer.EditorExtension;
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    public class MechanismEditor : GenericEditor
+    public class BaseEditor : GenericEditor
     {
         #region Protected Method
         protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver, Color color)
@@ -31,10 +31,10 @@ namespace Developer.Machinery
                 if (rocker)
                 {
                     DrawPositionHandle(rocker.transform);
-                    DrawArrow(driver.position, rocker.transform.position, nodeSize, blue, string.Empty);
+                    DrawSphereArrow(driver.position, rocker.transform.position, NodeSize, Blue, string.Empty);
 
                     if (rocker.rockJoint)
-                        DrawArrow(rocker.transform.position, rocker.rockJoint.transform.position, nodeSize, blue, string.Empty);
+                        DrawSphereArrow(rocker.transform.position, rocker.rockJoint.transform.position, NodeSize, Blue, string.Empty);
                 }
             }
         }

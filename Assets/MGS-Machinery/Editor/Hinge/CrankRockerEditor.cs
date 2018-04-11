@@ -6,21 +6,21 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(CrankRocker), true)]
     [CanEditMultipleObjects]
     public class CrankRockerEditor : CrankLinkEditor
     {
-        #region Property and Field
-        protected new CrankRocker Script { get { return target as CrankRocker; } }
+        #region Field and Property
+        protected new CrankRocker Target { get { return target as CrankRocker; } }
         #endregion
 
         #region Protected Method
@@ -28,28 +28,28 @@ namespace Developer.Machinery
         {
             base.OnSceneGUI();
 
-            if (!Script.IsIntact)
+            if (!Target.IsIntact)
                 return;
 
-            if (Script.editMode == EditMode.Free)
+            if (Target.editMode == EditMode.Free)
             {
-                DrawRotationHandle(Script.crank.transform);
-                DrawPositionHandle(Script.linkBar.transform);
-                DrawPositionHandle(Script.rocker.transform);
-                DrawPositionHandle(Script.lrJoint);
+                DrawRotationHandle(Target.crank.transform);
+                DrawPositionHandle(Target.linkBar.transform);
+                DrawPositionHandle(Target.rocker.transform);
+                DrawPositionHandle(Target.lrJoint);
             }
-            else if (Script.editMode == EditMode.Hinge)
-                DrawRotationHandle(Script.crank.transform);
+            else if (Target.editMode == EditMode.Hinge)
+                DrawRotationHandle(Target.crank.transform);
 
-            DrawCircleCap(Script.crank.transform.position, Script.crank.transform.rotation, areaRadius);
-            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, blue, "Axis");
+            DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, AreaRadius);
+            DrawSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, Blue, "Axis");
 
-            var offset = (Script.linkBar.transform.position - Script.crank.transform.position).normalized;
-            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, blue, string.Empty);
-            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, blue, string.Empty);
-            DrawArrow(Script.linkBar.transform.position, Script.lrJoint.position, nodeSize, blue, string.Empty);
-            DrawArrow(Script.lrJoint.position, Script.rocker.transform.position, nodeSize, blue, string.Empty);
-            DrawArrow(Script.rocker.transform.position, Script.crank.transform.position, nodeSize, blue, string.Empty);
+            var offset = Target.linkBar.transform.position - Target.crank.transform.position;
+            DrawSphereArrow(Target.crank.transform.position, offset, AreaRadius, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.crank.transform.position, Target.linkBar.transform.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.linkBar.transform.position, Target.lrJoint.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.lrJoint.position, Target.rocker.transform.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.rocker.transform.position, Target.crank.transform.position, NodeSize, Blue, string.Empty);
 
             DrawSceneTool();
         }
@@ -63,8 +63,8 @@ namespace Developer.Machinery
 
             GUILayout.BeginHorizontal("TextField");
             EditorGUI.BeginChangeCheck();
-            Script.useInertia = GUILayout.Toggle(Script.useInertia, "Inertia");
-            Script.useRestrict = GUILayout.Toggle(Script.useRestrict, "Restrict");
+            Target.useInertia = GUILayout.Toggle(Target.useInertia, "Inertia");
+            Target.useRestrict = GUILayout.Toggle(Target.useRestrict, "Restrict");
             if (EditorGUI.EndChangeCheck())
                 MarkSceneDirty();
             GUILayout.EndHorizontal();

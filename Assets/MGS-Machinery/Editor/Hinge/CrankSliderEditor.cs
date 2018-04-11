@@ -6,30 +6,30 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(CrankSlider), true)]
     [CanEditMultipleObjects]
     public class CrankSliderEditor : CrankLinkEditor
     {
-        #region Property and Field
-        protected new CrankSlider Script { get { return target as CrankSlider; } }
+        #region Field and Property
+        protected new CrankSlider Target { get { return target as CrankSlider; } }
 
         protected Vector3 ZeroPoint
         {
             get
             {
                 if (Application.isPlaying)
-                    return Script.transform.TransformPoint(Script.LSJointPosition);
+                    return Target.transform.TransformPoint(Target.LSJointPosition);
                 else
-                    return Script.lsJoint.position;
+                    return Target.lsJoint.position;
             }
         }
         #endregion
@@ -39,34 +39,34 @@ namespace Developer.Machinery
         {
             base.OnSceneGUI();
 
-            if (!Script.IsIntact)
+            if (!Target.IsIntact)
                 return;
 
-            if (Script.editMode == EditMode.Free)
+            if (Target.editMode == EditMode.Free)
             {
-                DrawRotationHandle(Script.crank.transform);
-                DrawPositionHandle(Script.linkBar.transform);
-                DrawPositionHandle(Script.lsJoint);
-                DrawRotationHandle(Script.lsJoint);
+                DrawRotationHandle(Target.crank.transform);
+                DrawPositionHandle(Target.linkBar.transform);
+                DrawPositionHandle(Target.lsJoint);
+                DrawRotationHandle(Target.lsJoint);
             }
-            else if (Script.editMode == EditMode.Hinge)
+            else if (Target.editMode == EditMode.Hinge)
             {
-                DrawRotationHandle(Script.crank.transform);
+                DrawRotationHandle(Target.crank.transform);
             }
 
-            DrawSphereCap(Script.crank.transform.position, Quaternion.identity, nodeSize);
-            DrawCircleCap(Script.crank.transform.position, Script.crank.transform.rotation, areaRadius);
-            DrawArrow(Script.crank.transform.position, Script.crank.transform.forward, arrowLength, nodeSize, blue, "Axis");
+            DrawSphereCap(Target.crank.transform.position, Quaternion.identity, NodeSize);
+            DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, AreaRadius);
+            DrawSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, Blue, "Axis");
 
-            var offset = (Script.linkBar.transform.position - Script.crank.transform.position).normalized;
-            DrawArrow(Script.crank.transform.position, offset, areaRadius, nodeSize, blue, string.Empty);
-            DrawArrow(Script.crank.transform.position, Script.linkBar.transform.position, nodeSize, blue, string.Empty);
-            DrawArrow(Script.linkBar.transform.position, Script.lsJoint.position, nodeSize, blue, string.Empty);
+            var offset = Target.linkBar.transform.position - Target.crank.transform.position;
+            DrawSphereArrow(Target.crank.transform.position, offset, AreaRadius, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.crank.transform.position, Target.linkBar.transform.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.linkBar.transform.position, Target.lsJoint.position, NodeSize, Blue, string.Empty);
 
-            var axis = Script.ProjectDirection(Script.lsJoint.forward).normalized;
-            Handles.DrawLine(ZeroPoint, Script.lsJoint.position);
-            DrawArrow(ZeroPoint, axis, arrowLength, nodeSize, blue, string.Empty);
-            DrawArrow(ZeroPoint, -axis, arrowLength, nodeSize, blue, string.Empty);
+            var axis = Target.ProjectDirection(Target.lsJoint.forward);
+            Handles.DrawLine(ZeroPoint, Target.lsJoint.position);
+            DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize, Blue, string.Empty);
 
             DrawSceneTool();
         }

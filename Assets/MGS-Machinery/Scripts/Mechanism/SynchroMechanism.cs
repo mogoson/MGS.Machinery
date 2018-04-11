@@ -13,12 +13,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/SynchroMechanism")]
+    [AddComponentMenu("Mogoson/Machinery/SynchroMechanism")]
     public class SynchroMechanism : Mechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Mechanisms.
         /// </summary>

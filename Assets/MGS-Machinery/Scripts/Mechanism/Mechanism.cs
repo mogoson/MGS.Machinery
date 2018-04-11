@@ -11,10 +11,10 @@
  *************************************************************************/
 
 using System.Collections.Generic;
-using Developer.MathExtension.Planimetry;
+using Mogoson.MathExtension.Planimetry;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
 #if UNITY_EDITOR
     /// <summary>
@@ -64,7 +64,7 @@ namespace Developer.Machinery
     /// </summary>
 	public abstract class CrankMechanism : RockerLockLinkMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Crank drive speed.
         /// </summary>
@@ -109,7 +109,7 @@ namespace Developer.Machinery
     /// </summary>
 	public abstract class CrankLinkMechanism : Mechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Power crank.
         /// </summary>
@@ -225,7 +225,7 @@ namespace Developer.Machinery
     /// </summary>
 	public abstract class TelescopicJointMechanism : RockerLockLinkMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Stroke of joint.
         /// </summary>
@@ -291,7 +291,7 @@ namespace Developer.Machinery
     /// </summary>
 	public abstract class TelescopicArmMechanism : Mechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Telescopic joint of arm.
         /// </summary>
@@ -304,7 +304,7 @@ namespace Developer.Machinery
     /// </summary>
 	public abstract class RockerMechanism : MonoBehaviour
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Rocker look at joint.
         /// </summary>
@@ -324,7 +324,7 @@ namespace Developer.Machinery
     /// </summary>
     public abstract class RockerLockMechanism : MonoBehaviour
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Min stroke of the rocker.
         /// </summary>
@@ -380,7 +380,7 @@ namespace Developer.Machinery
     /// </summary>
     public abstract class RockerLockLinkMechanism : Mechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Rockers that drive by mechanism. 
         /// </summary>

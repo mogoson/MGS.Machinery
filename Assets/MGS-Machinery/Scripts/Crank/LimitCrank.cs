@@ -12,12 +12,12 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/LimitCrank")]
+    [AddComponentMenu("Mogoson/Machinery/LimitCrank")]
     public class LimitCrank : FreeCrank
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Min angle limit of crank.
         /// </summary>

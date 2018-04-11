@@ -6,42 +6,44 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/11/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using UnityEditor;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(LimitCrank), true)]
     [CanEditMultipleObjects]
     public class LimitCrankEditor : FreeCrankEditor
     {
-        #region Property and Field
-        protected new LimitCrank Script { get { return target as LimitCrank; } }
+        #region Field and Property
+        protected new LimitCrank Target { get { return target as LimitCrank; } }
         #endregion
 
         #region Protected Method
         protected override void DrawArea()
         {
-            var minAxis = Quaternion.AngleAxis(Script.minAngle, Axis) * ZeroAxis;
-            var maxAxis = Quaternion.AngleAxis(Script.maxAngle, Axis) * ZeroAxis;
+            var minAxis = Quaternion.AngleAxis(Target.minAngle, Axis) * ZeroAxis;
+            var maxAxis = Quaternion.AngleAxis(Target.maxAngle, Axis) * ZeroAxis;
 
-            DrawArrow(Script.transform.position, minAxis, arrowLength, nodeSize, blue, "Min");
-            DrawArrow(Script.transform.position, maxAxis, arrowLength, nodeSize, blue, "Max");
+            Handles.color = TransparentBlue;
+            Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.maxAngle - Target.minAngle, AreaRadius);
 
-            Handles.color = transparentBlue;
-            Handles.DrawSolidArc(Script.transform.position, Axis, minAxis, Script.maxAngle - Script.minAngle, areaRadius);
+            DrawSphereArrow(Target.transform.position, minAxis, ArrowLength, NodeSize, Blue, "Min");
+            DrawSphereArrow(Target.transform.position, maxAxis, ArrowLength, NodeSize, Blue, "Max");
         }
         #endregion
 
         #region Public Method
         public override void OnInspectorGUI()
         {
+            EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
-            Script.maxAngle = Mathf.Clamp(Script.maxAngle, Script.minAngle, float.MaxValue);
+            if (EditorGUI.EndChangeCheck())
+                Target.maxAngle = Mathf.Clamp(Target.maxAngle, Target.minAngle, float.MaxValue);
         }
         #endregion
     }

@@ -10,16 +10,16 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Developer.VectorExtention;
+using Mogoson.VectorExtention;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/RockerHinge")]
+    [AddComponentMenu("Mogoson/Machinery/RockerHinge")]
     [ExecuteInEditMode]
     public class RockerHinge : RockerMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Rotate Axis.
         /// </summary>

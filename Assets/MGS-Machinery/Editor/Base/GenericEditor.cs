@@ -1,4 +1,4 @@
-﻿/*************************************************************************
+/*************************************************************************
  *  Copyright © 2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  GenericEditor.cs
@@ -17,22 +17,31 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 #endif
 
-namespace Developer.EditorExtension
+namespace Mogoson.UEditor
 {
     public class GenericEditor : Editor
     {
-        #region Property and Field
-        protected readonly Color blue = new Color(0, 1, 1, 1);
-        protected readonly Color transparentBlue = new Color(0, 1, 1, 0.1f);
+        #region Field and Property
+        protected readonly Color Blue = new Color(0, 1, 1, 1);
+        protected readonly Color TransparentBlue = new Color(0, 1, 1, 0.1f);
 
-        protected const float nodeSize = 0.05f;
-        protected const float arrowLength = 0.75f;
-        protected const float lineLength = 10;
-        protected const float areaRadius = 0.5f;
+        protected readonly Vector3 MoveSnap = Vector3.one;
+
+#if UNITY_5_5_OR_NEWER
+        protected readonly Handles.CapFunction CircleCap = Handles.CircleHandleCap;
+        protected readonly Handles.CapFunction SphereCap = Handles.SphereHandleCap;
+#else
+        protected readonly Handles.DrawCapFunction CircleCap = Handles.CircleCap;
+        protected readonly Handles.DrawCapFunction SphereCap = Handles.SphereCap;
+#endif
+        protected const float AreaRadius = 0.5f;
+        protected const float ArrowLength = 0.75f;
+        protected const float LineLength = 10;
+        protected const float NodeSize = 0.05f;
         #endregion
 
         #region Protected Method
-        protected virtual void DrawArrow(Vector3 start, Vector3 end, float size, Color color, string text)
+        protected void DrawSphereArrow(Vector3 start, Vector3 end, float size, Color color, string text)
         {
             var gColor = GUI.color;
             var hColor = Handles.color;
@@ -48,10 +57,10 @@ namespace Developer.EditorExtension
             Handles.color = hColor;
         }
 
-        protected virtual void DrawArrow(Vector3 start, Vector3 direction, float length, float size, Color color, string text)
+        protected void DrawSphereArrow(Vector3 start, Vector3 direction, float length, float size, Color color, string text)
         {
             var end = start + direction.normalized * length;
-            DrawArrow(start, end, size, color, text);
+            DrawSphereArrow(start, end, size, color, text);
         }
 
         protected void DrawPositionHandle(Transform transform)
@@ -78,32 +87,32 @@ namespace Developer.EditorExtension
             }
         }
 
-        protected Quaternion GetPivotRotation(Transform transform)
+        protected void DrawCircleCap(Vector3 position, Quaternion rotation, float size)
         {
-            if (Tools.pivotRotation == PivotRotation.Local)
-                return transform.rotation;
-            else
-                return Quaternion.identity;
+#if UNITY_5_5_OR_NEWER
+            if (Event.current.type == EventType.Repaint)
+                CircleCap(0, position, rotation, size, EventType.Repaint);
+#else
+            CircleCap(0, position, rotation, size);
+#endif
         }
 
         protected void DrawSphereCap(Vector3 position, Quaternion rotation, float size)
         {
 #if UNITY_5_5_OR_NEWER
             if (Event.current.type == EventType.Repaint)
-                Handles.SphereHandleCap(0, position, rotation, size, EventType.Repaint);
+                SphereCap(0, position, rotation, size, EventType.Repaint);
 #else
-            Handles.SphereCap(0, position, rotation, size);
+            SphereCap(0, position, rotation, size);
 #endif
         }
 
-        protected void DrawCircleCap(Vector3 position, Quaternion rotation, float size)
+        protected Quaternion GetPivotRotation(Transform transform)
         {
-#if UNITY_5_5_OR_NEWER
-            if (Event.current.type == EventType.Repaint)
-                Handles.CircleHandleCap(0, position, rotation, size, EventType.Repaint);
-#else
-            Handles.CircleCap(0, position, rotation, size);
-#endif
+            if (Tools.pivotRotation == PivotRotation.Local)
+                return transform.rotation;
+            else
+                return Quaternion.identity;
         }
 
         protected void MarkSceneDirty()

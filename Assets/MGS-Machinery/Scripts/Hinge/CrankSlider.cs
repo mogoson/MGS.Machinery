@@ -10,16 +10,16 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Developer.MathExtension.Planimetry;
+using Mogoson.MathExtension.Planimetry;
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/CrankSlider")]
+    [AddComponentMenu("Mogoson/Machinery/CrankSlider")]
     [ExecuteInEditMode]
     public class CrankSlider : CrankLinkMechanism
     {
-        #region Property and Field
+        #region Field and Property
         /// <summary>
         /// Joint of link bar and slider.
         /// </summary>

@@ -13,7 +13,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Developer.MathExtension.Planimetry
+namespace Mogoson.MathExtension.Planimetry
 {
     #region Struct
     /// <summary>

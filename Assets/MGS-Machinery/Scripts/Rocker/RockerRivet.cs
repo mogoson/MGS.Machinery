@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/RockerRivet")]
+    [AddComponentMenu("Mogoson/Machinery/RockerRivet")]
     [ExecuteInEditMode]
     public class RockerRivet : RockerMechanism
     {

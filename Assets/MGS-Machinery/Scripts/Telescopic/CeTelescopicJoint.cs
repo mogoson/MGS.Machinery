@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Developer.Machinery
+namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Developer/Machinery/CeTelescopicJoint")]
+    [AddComponentMenu("Mogoson/Machinery/CeTelescopicJoint")]
     public class CeTelescopicJoint : TelescopicJoint
     {
         #region Protected Method
