@@ -11,7 +11,7 @@
  *************************************************************************/
 
 using System.Collections.Generic;
-using Mogoson.MathExtension.Planimetry;
+using Mogoson.Mathematics;
 using UnityEngine;
 
 namespace Mogoson.Machinery

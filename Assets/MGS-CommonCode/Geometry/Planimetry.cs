@@ -13,7 +13,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Mogoson.MathExtension.Planimetry
+namespace Mogoson.Mathematics
 {
     #region Struct
     /// <summary>
@@ -22,14 +22,14 @@ namespace Mogoson.MathExtension.Planimetry
     [Serializable]
     public struct Point
     {
-        //========Point Definition===================
+        //========Point Definition========================
         //             |
         //           y |________.point
         //             |        |
         //  ___________|________|_________________
         //             |        x
         //             |
-        //===========================================
+        //================================================
         public double x;
         public double y;
 
@@ -54,10 +54,10 @@ namespace Mogoson.MathExtension.Planimetry
     [Serializable]
     public struct Circle
     {
-        //========Circle Definition==================
+        //========Circle Definition=======================
         //                       2           2     2
         //  Circle is : (x - c.x) + (y - c.y)  = r
-        //===========================================
+        //================================================
 
         /// <summary>
         /// Center.
@@ -90,11 +90,11 @@ namespace Mogoson.MathExtension.Planimetry
     [Serializable]
     public struct Line
     {
-        //========Line Definition===========
+        //========Line Definition=========================
         //  if k == double.PositiveInfinity
         //  line is : x = b
         //  else line is : y = kx + b
-        //==================================
+        //================================================
 
         /// <summary>
         /// Slope of line.
@@ -127,13 +127,13 @@ namespace Mogoson.MathExtension.Planimetry
         /// </summary>
         public static Line GetLine(Point A, Point B)
         {
-            //------------------------------------------
+            //--------------------------------
             //  Ay = kAx + b, By = kBx + b
             //
             //       By - Ay
             //  k = --------- , b = Ay - kAx
             //       Bx - Ax
-            //------------------------------------------
+            //--------------------------------
 
             var dx = B.x - A.x;
             var dy = B.y - A.y;
@@ -216,7 +216,7 @@ namespace Mogoson.MathExtension.Planimetry
         /// <returns>Distance.</returns>
         public static double GetDistance(Line L1, Line L2)
         {
-            //------------------------------------------------------------------
+            //--------------------------------------------------------
             //  y = kx + b <=> kx - y + b = 0
             //  let: A = k, B = -1, C = b
             //  so:
@@ -225,7 +225,7 @@ namespace Mogoson.MathExtension.Planimetry
             //          _______                     _______
             //         / 2   2                     /     2
             //       \/ A + B                    \/ 1 + k
-            //------------------------------------------------------------------
+            //--------------------------------------------------------
 
             if (L1.k == L2.k)
             {
@@ -247,7 +247,7 @@ namespace Mogoson.MathExtension.Planimetry
         /// <returns>Distance.</returns>
 		public static double GetDistance(Point p, Line L)
         {
-            //------------------------------------------------------------------
+            //----------------------------------------------------------
             //  y = kx + b <=> kx - y + b = 0
             //  let: A = k, B = -1, C = b
             //  so:
@@ -256,7 +256,7 @@ namespace Mogoson.MathExtension.Planimetry
             //          _______                     _______
             //         / 2   2                     /     2
             //       \/ A + B                    \/ 1 + k
-            //------------------------------------------------------------------
+            //----------------------------------------------------------
 
             if (L.k == 0)
                 return Math.Abs(p.y - L.b);
@@ -523,13 +523,13 @@ namespace Mogoson.MathExtension.Planimetry
         /// <returns>Intersection.</returns>
         public static Point GetIntersection(Line L1, Line L2)
         {
-            //--------------------------------------------
+            //------------------------------------
             //  y = k1x + b1    y = k2x + b2
             //
             //              b1 - b2
             //  get: x = -------------
             //              k2 - k1
-            //--------------------------------------------
+            //------------------------------------
 
             if (L1.k == L2.k)
                 return new Point(double.NaN, double.NaN);

@@ -10,7 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Mogoson.MathExtension.Planimetry;
+using Mogoson.Mathematics;
 using UnityEngine;
 
 namespace Mogoson.Machinery
