@@ -161,8 +161,8 @@ namespace Mogoson.Machinery
             var linkPoint = CorrectPoint(GetLinkPosition());
             var direction = transform.InverseTransformDirection(ProjectDirection(lsJoint.forward));
             var directionPoint = CorrectPoint(lsJoint.localPosition + direction);
-            linkRadius = Planimetry.GetDistance(linkPoint, lsJointPoint);
-            linkLine = Line.GetLine(lsJointPoint, directionPoint);
+            linkRadius = Point.Distance(linkPoint, lsJointPoint);
+            linkLine = Line.FromPoints(lsJointPoint, directionPoint);
             isRight = lsJointPoint.x - linkPoint.x >= 0;
             IsInitialized = true;
         }

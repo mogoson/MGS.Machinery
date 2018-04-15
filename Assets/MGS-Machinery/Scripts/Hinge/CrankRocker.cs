@@ -171,11 +171,11 @@ namespace Mogoson.Machinery
             //Initialize CrankRocker mathematical model.
             var rockerPoint = CorrectPoint(rocker.transform.localPosition);
             var lrJointPoint = CorrectPoint(lrJoint.localPosition);
-            var rockerRadius = Planimetry.GetDistance(rockerPoint, lrJointPoint);
+            var rockerRadius = Point.Distance(rockerPoint, lrJointPoint);
             var linkPoint = CorrectPoint(GetLinkPosition());
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
             rockerCircle = new Circle(rockerPoint, rockerRadius);
-            linkRadius = Planimetry.GetDistance(linkPoint, lrJointPoint);
+            linkRadius = Point.Distance(linkPoint, lrJointPoint);
             IsInitialized = true;
         }
         #endregion

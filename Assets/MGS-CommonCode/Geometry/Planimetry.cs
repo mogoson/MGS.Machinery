@@ -30,7 +30,16 @@ namespace Mogoson.Mathematics
         //             |        x
         //             |
         //================================================
+
+        #region Field and Property
+        /// <summary>
+        /// X of point.
+        /// </summary>
         public double x;
+
+        /// <summary>
+        /// Y of point.
+        /// </summary>
         public double y;
 
         /// <summary>
@@ -41,11 +50,109 @@ namespace Mogoson.Mathematics
             get { return new Point(); }
         }
 
+        /// <summary>
+        /// Point(1,1) in plane rectangular coordinate system.
+        /// </summary>
+        public static Point One
+        {
+            get { return new Point(1, 1); }
+        }
+        #endregion
+
+        #region Public Method
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="x">X of point.</param>
+        /// <param name="y">Y of point.</param>
         public Point(double x, double y)
         {
             this.x = x;
             this.y = y;
         }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("({0}, {1})", x, y);
+        }
+        #endregion
+
+        #region Static Method
+        /// <summary>
+        /// Center of p1 and p2.
+        /// </summary>
+        /// <param name="p1">Point p1.</param>
+        /// <param name="p2">Point p2.</param>
+        /// <returns>The center of of p1 and p2.</returns>
+        public static Point Center(Point p1, Point p2)
+        {
+            return (p1 + p2) * 0.5;
+        }
+
+        /// <summary>
+        /// Distance from p1 to point p2.
+        /// </summary>
+        /// <param name="p1">Point p1.</param>
+        /// <param name="p2">Point p2.</param>
+        /// <returns>Distance from p1 to point p2.</returns>
+        public static double Distance(Point p1, Point p2)
+        {
+            //----------------------------------------
+            //              _______________________
+            //             /        2           2
+            //  |p1p2| = \/(x2 - x1) + (y2 - y1)
+            //----------------------------------------
+
+            var dx2 = Math.Pow(p2.x - p1.x, 2);
+            var dy2 = Math.Pow(p2.y - p1.y, 2);
+            return Math.Sqrt(dx2 + dy2);
+        }
+
+        public static Point operator +(Point lhs, Point rhs)
+        {
+            return new Point(lhs.x + rhs.x, lhs.y + rhs.y);
+        }
+
+        public static Point operator -(Point lhs, Point rhs)
+        {
+            return new Point(lhs.x - rhs.x, lhs.y - rhs.y);
+        }
+
+        public static Point operator -(Point p)
+        {
+            return new Point(-p.x, -p.y);
+        }
+
+        public static Point operator *(Point lhs, double rhs)
+        {
+            return new Point(lhs.x * rhs, lhs.y * rhs);
+        }
+
+        public static Point operator *(double lhs, Point rhs)
+        {
+            return rhs * lhs;
+        }
+
+        public static bool operator ==(Point lhs, Point rhs)
+        {
+            return lhs.x == rhs.x && lhs.y == rhs.y;
+        }
+
+        public static bool operator !=(Point lhs, Point rhs)
+        {
+            return !(lhs == rhs);
+        }
+        #endregion
     }
 
     /// <summary>
@@ -59,6 +166,7 @@ namespace Mogoson.Mathematics
         //  Circle is : (x - c.x) + (y - c.y)  = r
         //================================================
 
+        #region Field and Property
         /// <summary>
         /// Center.
         /// </summary>
@@ -76,12 +184,20 @@ namespace Mogoson.Mathematics
         {
             get { return new Circle(Point.Zero, 1); }
         }
+        #endregion
 
+        #region Public Method
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="c">Center.</param>
+        /// <param name="r">Radius.</param>
         public Circle(Point c, double r)
         {
             this.c = c;
             this.r = r;
         }
+        #endregion
     }
 
     /// <summary>
@@ -96,6 +212,7 @@ namespace Mogoson.Mathematics
         //  else line is : y = kx + b
         //================================================
 
+        #region Field and Property
         /// <summary>
         /// Slope of line.
         /// </summary>
@@ -107,7 +224,7 @@ namespace Mogoson.Mathematics
         public double b;
 
         /// <summary>
-        /// Horizontal line(x axis).
+        /// Horizontal line (x axis).
         /// </summary>
         public static Line Horizontal
         {
@@ -115,17 +232,35 @@ namespace Mogoson.Mathematics
         }
 
         /// <summary>
-        /// Vertical line(y axis).
+        /// Vertical line (y axis).
         /// </summary>
         public static Line Vertical
         {
             get { return new Line(double.PositiveInfinity, 0); }
         }
+        #endregion
 
+        #region Public Method
         /// <summary>
-        /// Get a line that pass point A and point B.
+        /// Constructor.
         /// </summary>
-        public static Line GetLine(Point A, Point B)
+        /// <param name="k">Slope of line.</param>
+        /// <param name="b">Intercept of line.</param>
+        public Line(double k, double b)
+        {
+            this.k = k;
+            this.b = b;
+        }
+        #endregion
+
+        #region Static Method
+        /// <summary>
+        /// Get the line that pass p1 and p2.
+        /// </summary>
+        /// <param name="p1">Point p1.</param>
+        /// <param name="p2">Point p2.</param>
+        /// <returns>The line that pass p1 and p2.</returns>
+        public static Line FromPoints(Point p1, Point p2)
         {
             //--------------------------------
             //  Ay = kAx + b, By = kBx + b
@@ -135,37 +270,24 @@ namespace Mogoson.Mathematics
             //       Bx - Ax
             //--------------------------------
 
-            var dx = B.x - A.x;
-            var dy = B.y - A.y;
+            var dx = p2.x - p1.x;
+            var dy = p2.y - p1.y;
             var k = 0d;
             var b = 0d;
 
             if (dx == 0)
             {
                 k = double.PositiveInfinity;
-                b = A.x;
+                b = p1.x;
             }
             else
             {
                 k = dy / dx;
-                b = A.y - k * A.x;
+                b = p1.y - k * p1.x;
             }
             return new Line(k, b);
         }
-
-        /// <summary>
-        /// Get center point of point A and point B.
-        /// </summary>
-        public static Point GetCenter(Point A, Point B)
-        {
-            return new Point((B.x + A.x) / 2, (B.y + A.y) / 2);
-        }
-
-        public Line(double k, double b)
-        {
-            this.k = k;
-            this.b = b;
-        }
+        #endregion
     }
     #endregion
 
@@ -190,30 +312,11 @@ namespace Mogoson.Mathematics
     {
         #region Distance
         /// <summary>
-        /// Gets the distance from point1 to point2.
+        /// Gets the distance from line L1 to line L2.
         /// </summary>
-        /// <param name="p1">Point 1.</param>
-        /// <param name="p2">Point 2.</param>
-        /// <returns>The distance.</returns>
-        public static double GetDistance(Point p1, Point p2)
-        {
-            //----------------------------------------
-            //              _______________________
-            //             /        2           2
-            //  |p1p2| = \/(x2 - x1) + (y2 - y1)
-            //----------------------------------------
-
-            var dx2 = Math.Pow(p2.x - p1.x, 2);
-            var dy2 = Math.Pow(p2.y - p1.y, 2);
-            return Math.Sqrt(dx2 + dy2);
-        }
-
-        /// <summary>
-        /// Gets the distance from line1 to line2.
-        /// </summary>
-        /// <param name="L1">line 1.</param>
-        /// <param name="L2">line 2.</param>
-        /// <returns>Distance.</returns>
+        /// <param name="L1">line L1.</param>
+        /// <param name="L2">line L2.</param>
+        /// <returns>The distance from line L1 to line L2.</returns>
         public static double GetDistance(Line L1, Line L2)
         {
             //--------------------------------------------------------
@@ -244,7 +347,7 @@ namespace Mogoson.Mathematics
         /// </summary>
         /// <param name="p">Point.</param>
         /// <param name="L">Line.</param>
-        /// <returns>Distance.</returns>
+        /// <returns>The distance from point to line.</returns>
 		public static double GetDistance(Point p, Line L)
         {
             //----------------------------------------------------------
@@ -271,13 +374,13 @@ namespace Mogoson.Mathematics
         /// <summary>
         /// Get relation of two circles.
         /// </summary>
-        /// <param name="c1">Circle 1.</param>
-        /// <param name="c2">Circle 2.</param>
-        /// <returns>Position relation.</returns>
+        /// <param name="c1">Circle c1.</param>
+        /// <param name="c2">Circle c2.</param>
+        /// <returns>Relation of two circles.</returns>
         public static Relation GetRelation(Circle c1, Circle c2)
         {
             var re = Relation.Undefined;
-            var cd = GetDistance(c1.c, c2.c);
+            var cd = Point.Distance(c1.c, c2.c);
             var rd = c1.r + c2.r;
             var rp = Math.Abs(c1.r - c2.r);
 
@@ -307,7 +410,7 @@ namespace Mogoson.Mathematics
         /// </summary>
         /// <param name="c">Circle.</param>
         /// <param name="L">Line.</param>
-        /// <returns>Position relation.</returns>
+        /// <returns>Relation of circle and line.</returns>
         public static Relation GetRelation(Circle c, Line L)
         {
             var re = Relation.Undefined;
@@ -327,11 +430,11 @@ namespace Mogoson.Mathematics
         /// </summary>
         /// <param name="c">Circle.</param>
         /// <param name="p">Point.</param>
-        /// <returns>Position relation.</returns>
+        /// <returns>Relation of circle and point.</returns>
         public static Relation GetRelation(Circle c, Point p)
         {
             var re = Relation.Undefined;
-            var cp = GetDistance(c.c, p);
+            var cp = Point.Distance(c.c, p);
 
             if (cp > c.r)
                 re = Relation.External;
@@ -345,9 +448,9 @@ namespace Mogoson.Mathematics
         /// <summary>
         /// Get relation of two lines.
         /// </summary>
-        /// <param name="L1">Line 1.</param>
-        /// <param name="L2">Line 2.</param>
-        /// <returns>Position relation.</returns>
+        /// <param name="L1">Line L1.</param>
+        /// <param name="L2">Line L2.</param>
+        /// <returns>Relation of two lines.</returns>
         public static Relation GetRelation(Line L1, Line L2)
         {
             var re = Relation.Undefined;
@@ -368,7 +471,7 @@ namespace Mogoson.Mathematics
         /// </summary>
         /// <param name="L">Line.</param>
         /// <param name="p">Point.</param>
-        /// <returns>Position relation.</returns>
+        /// <returns>Relation of line and point.</returns>
         public static Relation GetRelation(Line L, Point p)
         {
             var re = Relation.Undefined;
@@ -392,11 +495,11 @@ namespace Mogoson.Mathematics
 
         #region Intersection
         /// <summary>
-        /// Get two circles's intersections.
+        /// Get intersections of two circles.
         /// </summary>
-        /// <param name="c1">Circle 1.</param>
-        /// <param name="c2">Circle 2.</param>
-        /// <returns>Intersections.</returns>
+        /// <param name="c1">Circle c1.</param>
+        /// <param name="c2">Circle c2.</param>
+        /// <returns>Intersections of two circles.</returns>
         public static List<Point> GetIntersections(Circle c1, Circle c2)
         {
             //-------------------------------------------------------
@@ -448,9 +551,9 @@ namespace Mogoson.Mathematics
         /// <summary>
         /// Get intersections of circle and line.
         /// </summary>
-        /// <param name="c">Circle.</param>
+        /// <param name="C">Circle.</param>
         /// <param name="L">Line.</param>
-        /// <returns>Intersections.</returns>
+        /// <returns>Intersections of circle and line.</returns>
         public static List<Point> GetIntersections(Circle C, Line L)
         {
             //--------------------------------------------------------------------
@@ -518,10 +621,10 @@ namespace Mogoson.Mathematics
         /// <summary>
         /// Get intersection of two lines.
         /// </summary>
-        /// <param name="L1">Line 1.</param>
-        /// <param name="L2">Line 2.</param>
-        /// <returns>Intersection.</returns>
-        public static Point GetIntersection(Line L1, Line L2)
+        /// <param name="L1">Line L1.</param>
+        /// <param name="L2">Line L2.</param>
+        /// <returns>Intersection of two lines.</returns>
+        public static List<Point> GetIntersections(Line L1, Line L2)
         {
             //------------------------------------
             //  y = k1x + b1    y = k2x + b2
@@ -532,11 +635,26 @@ namespace Mogoson.Mathematics
             //------------------------------------
 
             if (L1.k == L2.k)
-                return new Point(double.NaN, double.NaN);
+                return null;
 
-            var x = (L1.b - L2.b) / (L2.k - L1.k);
-            var y = L1.k * x + L1.b;
-            return new Point(x, y);
+            var x = 0d;
+            var y = 0d;
+            if (L1.k == double.PositiveInfinity)
+            {
+                x = L1.b;
+                y = L2.k * x + L2.b;
+            }
+            else if (L2.k == double.PositiveInfinity)
+            {
+                x = L2.b;
+                y = L1.k * x + L1.b;
+            }
+            else
+            {
+                x = (L1.b - L2.b) / (L2.k - L1.k);
+                y = L1.k * x + L1.b;
+            }
+            return new List<Point> { new Point(x, y) };
         }
         #endregion
     }

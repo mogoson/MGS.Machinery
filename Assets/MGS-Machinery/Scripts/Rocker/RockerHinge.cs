@@ -10,7 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Mogoson.VectorExtention;
+using Mogoson.Extention;
 using UnityEngine;
 
 namespace Mogoson.Machinery
