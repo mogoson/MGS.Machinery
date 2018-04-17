@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -19,13 +19,13 @@ namespace Mogoson.Machinery
     {
         #region Protected Method
         /// <summary>
-        /// Drive joint.
+        /// Move joint.
         /// </summary>
-        /// <param name="mSpeed">Move speed.</param>
-        protected virtual void DriveJoint(float mSpeed)
+        /// <param name="moveSpeed">Move speed.</param>
+        protected virtual void DriveJoint(float moveSpeed)
         {
             lockRecord = Displacement;
-            Displacement += mSpeed * Time.deltaTime;
+            Displacement += moveSpeed * Time.deltaTime;
             Displacement = Mathf.Clamp(Displacement, 0, stroke);
             DriveJoint();
 
@@ -39,12 +39,12 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive joint.
         /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism(float speedControl)
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
-            DriveJoint(speed * speedControl);
+            DriveJoint(speed * speedRatio);
 
             if (Displacement <= 0)
                 TState = TelescopicState.Shrink;

@@ -21,13 +21,13 @@ namespace Mogoson.Extention
     {
         #region Public Method
         /// <summary>
-        /// Calculate rotate angle of two vectors int the range(0~360).
+        /// Calculate project angle of two vectors in the range(0~360).
         /// </summary>
         /// <param name="from">Start vector.</param>
         /// <param name="to">End vector.</param>
-        /// <param name="normal">Custom normal.</param>
-        /// <returns>Rotate angle of two vectors.</returns>
-        public static float RotateAngle(Vector3 from, Vector3 to, Vector3 normal)
+        /// <param name="normal">Normal of plane to project.</param>
+        /// <returns>Project angle of two vectors.</returns>
+        public static float ProjectAngle(Vector3 from, Vector3 to, Vector3 normal)
         {
             //Project.
             from = Vector3.ProjectOnPlane(from, normal);

@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -27,14 +27,14 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanisms.
+        /// Drive mechanism.
         /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism(float speedControl)
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
             foreach (var mechanism in mechanisms)
             {
-                mechanism.DriveMechanism(speedControl);
+                mechanism.Drive(speedRatio);
             }
         }
         #endregion

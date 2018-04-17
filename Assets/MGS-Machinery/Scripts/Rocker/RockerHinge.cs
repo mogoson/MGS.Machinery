@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -15,6 +15,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Hinge rotate around the axis base on rock joint.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerHinge")]
     [ExecuteInEditMode]
     public class RockerHinge : RockerMechanism
@@ -45,20 +48,19 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (!Application.isPlaying && rockJoint)
-                DriveMechanism();
+                Drive();
         }
 #endif
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive rocker.
         /// </summary>
-        public override void DriveMechanism()
+        public override void Drive()
         {
             rockJoint.position = transform.position;
-
-            var angle = -EVector3.RotateAngle(rockJoint.forward, ZeroAxis, Axis);
+            var angle = -EVector3.ProjectAngle(rockJoint.forward, ZeroAxis, Axis);
             var euler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
             transform.localRotation = Quaternion.Euler(euler);
         }

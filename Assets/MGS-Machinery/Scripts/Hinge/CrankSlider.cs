@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -124,7 +124,7 @@ namespace Mogoson.Machinery
             lsJoint.localPosition = new Vector3((float)point.x, (float)point.y);
 
             //Drive linkBar.
-            linkBar.DriveMechanism();
+            linkBar.Drive();
         }
 
         /// <summary>

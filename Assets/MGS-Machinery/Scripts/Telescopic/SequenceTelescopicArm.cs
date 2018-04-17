@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
  *  Copyright © 2015-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  SeTelescopicArm.cs
- *  Description  :  Define SeTelescopicArm component.
+ *  File         :  SequenceTelescopicArm.cs
+ *  Description  :  Define SequenceTelescopicArm component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,8 +14,8 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Mogoson/Machinery/SeTelescopicArm")]
-    public class SeTelescopicArm : TelescopicArmMechanism
+    [AddComponentMenu("Mogoson/Machinery/SequenceTelescopicArm")]
+    public class SequenceTelescopicArm : TelescopicArmMechanism
     {
         #region Field and Property
         /// <summary>
@@ -36,16 +36,16 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive arm.
         /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism(float speedControl)
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
             ClampIndex();
             var currentJoint = tJoints[JointIndex];
-            currentJoint.DriveMechanism(speedControl);
+            currentJoint.Drive(speedRatio);
 
-            if (currentJoint.speed * speedControl >= 0)
+            if (currentJoint.speed * speedRatio >= 0)
             {
                 if (currentJoint.TState == TelescopicState.Extend)
                     JointIndex++;

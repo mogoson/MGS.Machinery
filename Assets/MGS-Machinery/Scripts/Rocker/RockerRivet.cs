@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -23,16 +23,16 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (!Application.isPlaying && rockJoint)
-                DriveMechanism();
+                Drive();
         }
 #endif
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive rocker.
         /// </summary>
-        public override void DriveMechanism()
+        public override void Drive()
         {
             transform.position = rockJoint.position;
         }

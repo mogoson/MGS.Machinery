@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -18,7 +18,7 @@ namespace Mogoson.Machinery
 {
 #if UNITY_EDITOR
     /// <summary>
-    /// Custom Edit Mode (Only work in editor script).
+    /// Custom edit mode (Only work for editor script).
     /// </summary>
     public enum EditMode
     {
@@ -38,7 +38,7 @@ namespace Mogoson.Machinery
     }
 
     /// <summary>
-    /// Telescopic Mechanism's State.
+    /// Telescopic mechanism state.
     /// </summary>
     public enum TelescopicState
     {
@@ -53,10 +53,10 @@ namespace Mogoson.Machinery
     public abstract class Mechanism : MonoBehaviour
     {
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive mechanism.
         /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public abstract void DriveMechanism(float speedControl);
+        /// <param name="speedRatio">Speed ratio.</param>
+        public abstract void Drive(float speedControl);
     }
 
     /// <summary>
@@ -200,7 +200,7 @@ namespace Mogoson.Machinery
         /// Drive the mechanism.
         /// </summary>
         /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism(float speedControl)
+        public override void Drive(float speedControl)
         {
             if (crank.speed * speedControl >= 0)
             {
@@ -214,7 +214,7 @@ namespace Mogoson.Machinery
                     return;
                 IsPositive = false;
             }
-            crank.DriveMechanism(speedControl);
+            crank.Drive(speedControl);
             DriveLinkBars();
         }
         #endregion
@@ -313,9 +313,9 @@ namespace Mogoson.Machinery
 
         #region Public method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive rocker.
         /// </summary>
-        public abstract void DriveMechanism();
+        public abstract void Drive();
         #endregion
     }
 
@@ -432,7 +432,7 @@ namespace Mogoson.Machinery
         {
             foreach (var rocker in rockers)
             {
-                rocker.DriveMechanism();
+                rocker.Drive();
             }
         }
         #endregion

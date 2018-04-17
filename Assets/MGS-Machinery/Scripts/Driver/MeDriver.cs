@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,7 +14,6 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Mogoson/Machinery/MeDriver")]
     [RequireComponent(typeof(Mechanism))]
     public class MeDriver : MonoBehaviour
     {
@@ -34,9 +33,9 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (Input.GetKey(positiveKey))
-                mechanism.DriveMechanism(1.0f);
+                mechanism.Drive(1.0f);
             else if (Input.GetKey(negativeKey))
-                mechanism.DriveMechanism(-1.0f);
+                mechanism.Drive(-1.0f);
         }
         #endregion
     }

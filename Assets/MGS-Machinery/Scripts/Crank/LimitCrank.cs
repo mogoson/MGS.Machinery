@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,6 +14,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Crank rotate around the axis Z in the limit range.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/LimitCrank")]
     public class LimitCrank : FreeCrank
     {
@@ -31,13 +34,13 @@ namespace Mogoson.Machinery
 
         #region Protected Method
         /// <summary>
-        /// Rotate crank in the range by speed.
+        /// Rotate crank in the range(minAngle~maxAngle).
         /// </summary>
-        /// <param name="rSpeed">Rotate speed.</param>
-        protected override void DriveCrank(float rSpeed)
+        /// <param name="rotateSpeed">Rotate speed.</param>
+        protected override void DriveCrank(float rotateSpeed)
         {
             lockRecord = Angle;
-            Angle += rSpeed * Time.deltaTime;
+            Angle += rotateSpeed * Time.deltaTime;
             Angle = Mathf.Clamp(Angle, minAngle, maxAngle);
             DriveCrank();
 

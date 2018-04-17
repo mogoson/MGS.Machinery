@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
  *  Copyright © 2015-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  CeTelescopicJoint.cs
- *  Description  :  Define CeTelescopicJoint component.
+ *  File         :  CenterTelescopicJoint.cs
+ *  Description  :  Define CenterTelescopicJoint component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,18 +14,18 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    [AddComponentMenu("Mogoson/Machinery/CeTelescopicJoint")]
-    public class CeTelescopicJoint : TelescopicJoint
+    [AddComponentMenu("Mogoson/Machinery/CenterTelescopicJoint")]
+    public class CenterTelescopicJoint : TelescopicJoint
     {
         #region Protected Method
         /// <summary>
-        /// Drive joint.
+        /// Move joint.
         /// </summary>
-        /// <param name="mSpeed">Move speed.</param>
-        protected override void DriveJoint(float mSpeed)
+        /// <param name="moveSpeed">Move speed.</param>
+        protected override void DriveJoint(float moveSpeed)
         {
             lockRecord = Displacement;
-            Displacement += mSpeed * Time.deltaTime;
+            Displacement += moveSpeed * Time.deltaTime;
             Displacement = Mathf.Clamp(Displacement, -stroke, stroke);
             DriveJoint();
 
@@ -39,12 +39,12 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive joint.
         /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public override void DriveMechanism(float speedControl)
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
-            DriveJoint(speed * speedControl);
+            DriveJoint(speed * speedRatio);
 
             if (Displacement == 0)
                 TState = TelescopicState.Shrink;

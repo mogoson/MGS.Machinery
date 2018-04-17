@@ -14,7 +14,7 @@ using UnityEditor;
 
 namespace Mogoson.Machinery
 {
-    [CustomEditor(typeof(CeTelescopicJoint), true)]
+    [CustomEditor(typeof(CenterTelescopicJoint), true)]
     [CanEditMultipleObjects]
     public class CenterTelescopicJointEditor : TelescopicJointEditor
     {

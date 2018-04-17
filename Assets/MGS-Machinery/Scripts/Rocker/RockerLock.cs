@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,6 +14,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Lock for rocker joint.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerLock")]
     [RequireComponent(typeof(RockerJoint))]
     [ExecuteInEditMode]

@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  2/26/2018
+ *  Date         :  4/17/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -14,6 +14,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Joint look at the target rock joint.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerJoint")]
     [ExecuteInEditMode]
     public class RockerJoint : RockerMechanism
@@ -25,7 +28,7 @@ namespace Mogoson.Machinery
         public KeepUpMode keepUp = KeepUpMode.TransformUp;
 
         /// <summary>
-        /// Transform's forward as world up for look at.
+        /// Reference forward as world up for look at.
         /// </summary>
         [HideInInspector]
         public Transform reference;
@@ -50,16 +53,16 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (!Application.isPlaying && rockJoint)
-                DriveMechanism();
+                Drive();
         }
 #endif
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Drive the mechanism.
+        /// Drive rocker.
         /// </summary>
-        public override void DriveMechanism()
+        public override void Drive()
         {
             transform.LookAt(rockJoint, WorldUp);
         }
