@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  4/11/2018
+ *  Date         :  4/21/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -51,26 +51,7 @@ namespace Mogoson.Machinery
             DrawSphereArrow(Target.lrJoint.position, Target.rocker.transform.position, NodeSize, Blue, string.Empty);
             DrawSphereArrow(Target.rocker.transform.position, Target.crank.transform.position, NodeSize, Blue, string.Empty);
 
-            DrawSceneTool();
-        }
-
-        protected virtual void DrawSceneTool()
-        {
-            var rect = new Rect(Screen.width - 160, Screen.height - 120, 150, 70);
-            Handles.BeginGUI();
-            GUILayout.BeginArea(rect, "Hinge Editor", "Window");
-            DrawHingeEditorTool();
-
-            GUILayout.BeginHorizontal("TextField");
-            EditorGUI.BeginChangeCheck();
-            Target.useInertia = GUILayout.Toggle(Target.useInertia, "Inertia");
-            Target.useRestrict = GUILayout.Toggle(Target.useRestrict, "Restrict");
-            if (EditorGUI.EndChangeCheck())
-                MarkSceneDirty();
-            GUILayout.EndHorizontal();
-
-            GUILayout.EndArea();
-            Handles.EndGUI();
+            DrawHingeEditor();
         }
         #endregion
     }

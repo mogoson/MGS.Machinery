@@ -6,7 +6,7 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  4/11/2018
+ *  Date         :  4/21/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -30,17 +30,28 @@ namespace Mogoson.Machinery
             Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.up * LineLength);
         }
 
-        protected void DrawHingeEditorTool()
+        protected void DrawHingeEditor()
         {
+            var rect = new Rect(Screen.width - 160, Screen.height - 95, 150, 45);
+            Handles.BeginGUI();
+            GUILayout.BeginArea(rect, "Hinge Editor", "Window");
+
             EditorGUI.BeginChangeCheck();
             Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
-            if (EditorGUI.EndChangeCheck())
-                MarkSceneDirty();
 
             if (Target.editMode == EditMode.Free)
                 Target.enabled = false;
             else
                 Target.enabled = true;
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(Target);
+                MarkSceneDirty();
+            }
+
+            GUILayout.EndArea();
+            Handles.EndGUI();
         }
         #endregion
     }

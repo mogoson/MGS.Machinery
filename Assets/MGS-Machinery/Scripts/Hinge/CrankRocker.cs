@@ -33,13 +33,11 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Use inertia to limit crankrocker.
         /// </summary>
-        [HideInInspector]
         public bool useInertia = false;
 
         /// <summary>
         /// Use virtual restrict to limit crankrocker.
         /// </summary>
-        [HideInInspector]
         public bool useRestrict = false;
 
         /// <summary>
