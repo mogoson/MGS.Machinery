@@ -26,11 +26,11 @@ namespace Mogoson.Machinery
         #region Protected Method
         protected override void DrawArea()
         {
-            var minAxis = Quaternion.AngleAxis(Target.minAngle, Axis) * ZeroAxis;
-            var maxAxis = Quaternion.AngleAxis(Target.maxAngle, Axis) * ZeroAxis;
+            var minAxis = Quaternion.AngleAxis(Target.range.min, Axis) * ZeroAxis;
+            var maxAxis = Quaternion.AngleAxis(Target.range.max, Axis) * ZeroAxis;
 
             Handles.color = TransparentBlue;
-            Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.maxAngle - Target.minAngle, AreaRadius);
+            Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.range.max - Target.range.min, AreaRadius);
 
             DrawSphereArrow(Target.transform.position, minAxis, ArrowLength, NodeSize, Blue, "Min");
             DrawSphereArrow(Target.transform.position, maxAxis, ArrowLength, NodeSize, Blue, "Max");
@@ -43,7 +43,7 @@ namespace Mogoson.Machinery
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck())
-                Target.maxAngle = Mathf.Clamp(Target.maxAngle, Target.minAngle, float.MaxValue);
+                Target.range.max = Mathf.Clamp(Target.range.max, Target.range.min, float.MaxValue);
         }
         #endregion
     }

@@ -56,7 +56,8 @@ namespace Mogoson.Machinery
 
         protected virtual void DrawStroke()
         {
-            DrawSphereArrow(ZeroPoint, Axis, Target.stroke, NodeSize, Blue, "Stroke");
+            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.min, NodeSize, Blue, "Min");
+            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.max, NodeSize, Blue, "Max");
         }
         #endregion
 
@@ -66,7 +67,7 @@ namespace Mogoson.Machinery
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck())
-                Target.stroke = Mathf.Clamp(Target.stroke, 0, float.MaxValue);
+                Target.stroke.max = Mathf.Clamp(Target.stroke.max, Target.stroke.min, float.MaxValue);
         }
         #endregion
     }

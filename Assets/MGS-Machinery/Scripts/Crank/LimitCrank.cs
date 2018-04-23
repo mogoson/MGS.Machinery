@@ -22,31 +22,26 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Min angle limit of crank.
+        /// Angle limit range.
         /// </summary>
-        public float minAngle = -45;
-
-        /// <summary>
-        /// Max angle limit of crank.
-        /// </summary>
-        public float maxAngle = 45;
+        public Range range = new Range(-45, 45);
         #endregion
 
         #region Protected Method
         /// <summary>
         /// Rotate crank in the range(minAngle~maxAngle).
         /// </summary>
-        /// <param name="rotateSpeed">Rotate speed.</param>
+        /// <param name="rotateSpeed">Rotate speed of crank.</param>
         protected override void DriveCrank(float rotateSpeed)
         {
-            lockRecord = Angle;
+            triggerRecord = Angle;
             Angle += rotateSpeed * Time.deltaTime;
-            Angle = Mathf.Clamp(Angle, minAngle, maxAngle);
+            Angle = Mathf.Clamp(Angle, range.min, range.max);
             DriveCrank();
 
-            if (CheckRockersLock())
+            if (CheckLimiterTrigger())
             {
-                Angle = lockRecord;
+                Angle = triggerRecord;
                 DriveCrank();
             }
         }

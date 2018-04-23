@@ -33,8 +33,8 @@ namespace Mogoson.Machinery
             DrawSphereArrow(Target.transform.position, Target.transform.up, AreaRadius, NodeSize, Blue, string.Empty);
             DrawSphereArrow(Target.transform.position - Target.Axis * AreaRadius, Target.transform.position + Target.Axis * ArrowLength, NodeSize, Blue, "Axis");
 
-            if (Target.rockJoint)
-                DrawSphereArrow(Target.transform.position, Target.rockJoint.forward, AreaRadius, NodeSize, Blue, string.Empty);
+            if (Target.joint)
+                DrawSphereArrow(Target.transform.position, Target.joint.forward, AreaRadius, NodeSize, Blue, string.Empty);
         }
         #endregion
     }

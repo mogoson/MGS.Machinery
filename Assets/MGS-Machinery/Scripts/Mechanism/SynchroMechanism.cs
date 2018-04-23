@@ -15,6 +15,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Synchro mechanism group.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/SynchroMechanism")]
     public class SynchroMechanism : Mechanism
     {

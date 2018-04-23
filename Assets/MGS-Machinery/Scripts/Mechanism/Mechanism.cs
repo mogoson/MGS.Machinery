@@ -10,15 +10,16 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using Mogoson.Mathematics;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mogoson.Machinery
 {
 #if UNITY_EDITOR
     /// <summary>
-    /// Custom edit mode (Only work for editor script).
+    /// Edit mode of Hinge Editor (Only work for editor script).
     /// </summary>
     public enum EditMode
     {
@@ -29,7 +30,7 @@ namespace Mogoson.Machinery
 #endif
 
     /// <summary>
-    /// Keep up mode.
+    /// Mode of keep up.
     /// </summary>
     public enum KeepUpMode
     {
@@ -38,40 +39,130 @@ namespace Mogoson.Machinery
     }
 
     /// <summary>
-    /// Telescopic mechanism state.
+    /// State of telescopic joint.
     /// </summary>
     public enum TelescopicState
     {
-        Shrink = 0,
-        Drift = 1,
-        Extend = 2
+        Minimum = 0,
+        Between = 1,
+        Maximum = 2
     }
 
     /// <summary>
-    /// Mechanism.
+    /// Range from min to max.
+    /// </summary>
+    [Serializable]
+    public struct Range
+    {
+        /// <summary>
+        /// Min value of range.
+        /// </summary>
+        public float min;
+
+        /// <summary>
+        /// Max value of range.
+        /// </summary>
+        public float max;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="min">Min value of range.</param>
+        /// <param name="max">Max value of range.</param>
+        public Range(float min, float max)
+        {
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    /// <summary>
+    /// Base mechanism.
     /// </summary>
     public abstract class Mechanism : MonoBehaviour
     {
+        #region Public Method
         /// <summary>
         /// Drive mechanism.
         /// </summary>
         /// <param name="speedRatio">Speed ratio.</param>
         public abstract void Drive(float speedControl);
+        #endregion
     }
 
     /// <summary>
-    /// Crank Mechanism.
+    /// Mechanism with link rockers.
     /// </summary>
-	public abstract class CrankMechanism : RockerLockLinkMechanism
+    public abstract class RockerLinkMechanism : Mechanism
     {
         #region Field and Property
         /// <summary>
-        /// Crank drive speed.
+        /// Rockers that link with this mechanism. 
+        /// </summary>
+        public List<RockerMechanism> rockers = new List<RockerMechanism>();
+
+        /// <summary>
+        /// Limiters attached on link rockers.
+        /// </summary>
+        protected List<LimiterMechanism> limiters = new List<LimiterMechanism>();
+
+        /// <summary>
+        /// Record value on limiter is triggered.
+        /// </summary>
+        protected float triggerRecord = 0;
+        #endregion
+
+        #region Protected Method
+        protected virtual void Awake()
+        {
+            foreach (var rocker in rockers)
+            {
+                var limiter = rocker.GetComponent<LimiterMechanism>();
+                if (limiter)
+                    limiters.Add(limiter);
+            }
+        }
+
+        /// <summary>
+        /// Check limiter is triggered.
+        /// </summary>
+        /// <returns>Return true if one of the limiters is triggered.</returns>
+        protected bool CheckLimiterTrigger()
+        {
+            foreach (var limiter in limiters)
+            {
+                if (limiter.IsTrigger)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Drive the rockers that join at this mechanism.
+        /// </summary>
+        protected void DriveRockers()
+        {
+            foreach (var rocker in rockers)
+            {
+                rocker.Drive();
+            }
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Crank mechanism.
+    /// </summary>
+	public abstract class CrankMechanism : RockerLinkMechanism
+    {
+        #region Field and Property
+        /// <summary>
+        /// Rotate speed of crank.
         /// </summary>
         public float speed = 50;
 
         /// <summary>
-        /// Current angle of crank.
+        /// Current rotate angle of crank.
         /// </summary>
         public float Angle { protected set; get; }
 
@@ -83,29 +174,32 @@ namespace Mogoson.Machinery
 
         #region Protected Method
         /// <summary>
-        /// Rotate the crank by angle.
+        /// Rotate crank.
         /// </summary>
-        protected virtual void DriveCrank()
-        {
-            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, Angle));
-            DriveRockers();
-        }
+        /// <param name="rotateSpeed">Rotate speed of crank.</param>
+        protected abstract void DriveCrank(float rotateSpeed);
         #endregion
 
         #region Public Method
-        /// <summary>
-        /// Find rocker locks and save start angles.
-        /// </summary>
         public new virtual void Awake()
         {
             base.Awake();
             StartAngles = transform.localEulerAngles;
         }
+
+        /// <summary>
+        /// Drive crank.
+        /// </summary>
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
+        {
+            DriveCrank(speed * speedRatio);
+        }
         #endregion
     }
 
     /// <summary>
-    /// Crank Link Mechanism.
+    /// Crank mechanism with link joints.
     /// </summary>
 	public abstract class CrankLinkMechanism : Mechanism
     {
@@ -116,42 +210,36 @@ namespace Mogoson.Machinery
         public CrankMechanism crank;
 
         /// <summary>
-        /// Gearing link bar.
+        /// Link rocker.
         /// </summary>
-        public RockerMechanism linkBar;
+        public RockerMechanism link;
 
 #if UNITY_EDITOR
         /// <summary>
-        /// Custom edit mode (Only work in editor script).
+        /// Edit mode of Hinge Editor (Only work for editor script).
         /// </summary>
         [HideInInspector]
         public EditMode editMode = EditMode.Lock;
 #endif
-
         /// <summary>
-        /// Dead lock state.
+        /// Is dead lock?
         /// </summary>
         public bool IsLock { protected set; get; }
 
         /// <summary>
-        /// Drive direction.
+        /// Drive speed is positive?
         /// </summary>
-        public bool IsPositive { protected set; get; }
-
-        /// <summary>
-        /// Mechanism is initialized.
-        /// </summary>
-        public bool IsInitialized { protected set; get; }
+        private bool isPositive = false;
         #endregion
 
         #region Protected Method
         /// <summary>
-        /// Get link bar position base on this transform.
+        /// Get local position of link rocker base on this transform.
         /// </summary>
-        /// <returns>Local position.</returns>
+        /// <returns>Local position of link rocker.</returns>
         protected virtual Vector3 GetLinkPosition()
         {
-            return transform.InverseTransformPoint(linkBar.transform.position);
+            return transform.InverseTransformPoint(link.transform.position);
         }
 
         /// <summary>
@@ -175,7 +263,7 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Clear position z.
+        /// Clear position Z.
         /// </summary>
         /// <param name="position">Local position.</param>
         /// <returns>Correct position.</returns>
@@ -185,130 +273,46 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Drive bars.
+        /// Drive joints those link with this mechanism.
         /// </summary>
-        protected abstract void DriveLinkBars();
+        protected abstract void DriveLinkJoints();
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Initialize mechanism.
+        /// Drive crank link mechanism.
         /// </summary>
-        public abstract void Initialize();
-
-        /// <summary>
-        /// Drive the mechanism.
-        /// </summary>
-        /// <param name="speedControl">Speed control.</param>
-        public override void Drive(float speedControl)
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
-            if (crank.speed * speedControl >= 0)
+            if (crank.speed * speedRatio >= 0)
             {
-                if (IsLock && IsPositive)
+                if (IsLock && isPositive)
                     return;
-                IsPositive = true;
+                isPositive = true;
             }
             else
             {
-                if (IsLock && !IsPositive)
+                if (IsLock && !isPositive)
                     return;
-                IsPositive = false;
+                isPositive = false;
             }
-            crank.Drive(speedControl);
-            DriveLinkBars();
+            crank.Drive(speedRatio);
+            DriveLinkJoints();
         }
-        #endregion
-    }
-
-    /// <summary>
-    /// Telescopic Joint Mechanism.
-    /// </summary>
-	public abstract class TelescopicJointMechanism : RockerLockLinkMechanism
-    {
-        #region Field and Property
-        /// <summary>
-        /// Stroke of joint.
-        /// </summary>
-        public float stroke = 1;
-
-        /// <summary>
-        /// Drive speed of joint.
-        /// </summary>
-        public float speed = 1;
-
-        /// <summary>
-        /// Displacement of joint.
-        /// </summary>
-        public float Displacement { protected set; get; }
-
-        /// <summary>
-        /// Telescopic joint state.
-        /// </summary>
-        public TelescopicState TState { protected set; get; }
-
-        /// <summary>
-        /// Start position of joint.
-        /// </summary>
-        public Vector3 StartPosition { protected set; get; }
-
-        /// <summary>
-        /// Local move axis.
-        /// </summary>
-        protected Vector3 Aixs
-        {
-            get
-            {
-                var forward = transform.forward;
-                if (transform.parent)
-                    forward = transform.parent.InverseTransformDirection(forward);
-                return forward;
-            }
-        }
-        #endregion
-
-        #region Protected Method
-        protected override void Awake()
-        {
-            base.Awake();
-            StartPosition = transform.localPosition;
-            TState = TelescopicState.Shrink;
-        }
-
-        /// <summary>
-        /// Drive joint.
-        /// </summary>
-        protected virtual void DriveJoint()
-        {
-            TState = TelescopicState.Drift;
-            transform.localPosition = StartPosition + Aixs * Displacement;
-            DriveRockers();
-        }
-        #endregion
-    }
-
-    /// <summary>
-    /// Telescopic Arm Mechanism.
-    /// </summary>
-	public abstract class TelescopicArmMechanism : Mechanism
-    {
-        #region Field and Property
-        /// <summary>
-        /// Telescopic joint of arm.
-        /// </summary>
-        public List<TelescopicJointMechanism> tJoints = new List<TelescopicJointMechanism>();
         #endregion
     }
 
     /// <summary>
     /// Rocker Mechanism.
     /// </summary>
-	public abstract class RockerMechanism : MonoBehaviour
+    public abstract class RockerMechanism : MonoBehaviour
     {
         #region Field and Property
         /// <summary>
-        /// Rocker look at joint.
+        /// Look at joint.
         /// </summary>
-        public Transform rockJoint;
+        public Transform joint;
         #endregion
 
         #region Public method
@@ -320,120 +324,108 @@ namespace Mogoson.Machinery
     }
 
     /// <summary>
-    /// Rocker Lock Mechanism.
+    /// Limiter for mechanism.
     /// </summary>
-    public abstract class RockerLockMechanism : MonoBehaviour
+    public abstract class LimiterMechanism : MonoBehaviour
     {
         #region Field and Property
         /// <summary>
-        /// Min stroke of the rocker.
+        /// Limiter is trigger?
         /// </summary>
-        public float minStroke = 1;
+        public abstract bool IsTrigger { get; }
+        #endregion
+    }
+
+    /// <summary>
+    /// Telescopic joint mechanism.
+    /// </summary>
+    public abstract class TelescopicJointMechanism : RockerLinkMechanism
+    {
+        #region Field and Property
+        /// <summary>
+        /// Stroke of joint.
+        /// </summary>
+        public Range stroke = new Range(-1, 1);
 
         /// <summary>
-        /// Max stroke of the rocker.
+        /// Move speed of joint.
         /// </summary>
-        public float maxStroke = 10;
+        public float speed = 1;
 
         /// <summary>
-        /// Rocker's lock state.
+        /// Displacement of joint.
         /// </summary>
-        public bool IsLock
+        public float Displacement { protected set; get; }
+
+        /// <summary>
+        /// Telescopic state of joint.
+        /// </summary>
+        public TelescopicState State
         {
             get
             {
-                var distance = GetDistance();
-                return distance <= minStroke || distance >= maxStroke;
+                if (Displacement == stroke.min)
+                    return TelescopicState.Minimum;
+                else if (Displacement == stroke.max)
+                    return TelescopicState.Maximum;
+                else
+                    return TelescopicState.Between;
             }
         }
 
         /// <summary>
-        /// Lock target roker joint.
+        /// Start position of joint.
         /// </summary>
-        public RockerJoint RJoint { protected set; get; }
+        public Vector3 StartPosition { protected set; get; }
         #endregion
 
         #region Protected Method
-        /// <summary>
-        /// Find RockerJoint.
-        /// </summary>
-        protected virtual void Awake()
+        protected override void Awake()
         {
-            RJoint = GetComponent<RockerJoint>();
+            base.Awake();
+            StartPosition = transform.localPosition;
         }
+
+        /// <summary>
+        /// Move joint.
+        /// </summary>
+        /// <param name="moveSpeed">Speed of move joint.</param>
+        protected abstract void DriveJoint(float moveSpeed);
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Get distance from this transform to rJoint.rockJoint transform.
+        /// Drive joint.
         /// </summary>
-        /// <returns>Distance.</returns>
-        public virtual float GetDistance()
+        /// <param name="speedRatio">Speed ratio.</param>
+        public override void Drive(float speedRatio)
         {
-            return Vector3.Distance(transform.position, RJoint.rockJoint.position);
+            DriveJoint(speed * speedRatio);
         }
         #endregion
     }
 
     /// <summary>
-    /// Rocker Lock Link Mechanism.
+    /// Arm with telescopic joints.
     /// </summary>
-    public abstract class RockerLockLinkMechanism : Mechanism
+	public abstract class TelescopicArmMechanism : Mechanism
     {
         #region Field and Property
         /// <summary>
-        /// Rockers that drive by mechanism. 
+        /// Telescopic joints of arm.
         /// </summary>
-        public List<RockerMechanism> rockers = new List<RockerMechanism>();
-
-        /// <summary>
-        /// Rocker locks in this mechanism.
-        /// </summary>
-        protected List<RockerLockMechanism> rLocks = new List<RockerLockMechanism>();
-
-        /// <summary>
-        /// Record lock angle.
-        /// </summary>
-        protected float lockRecord = 0;
+        public List<TelescopicJointMechanism> joints = new List<TelescopicJointMechanism>();
         #endregion
 
         #region Protected Method
         /// <summary>
-        /// Find rocker locks.
+        /// Clamp joint index in the range.
         /// </summary>
-        protected virtual void Awake()
+        /// <param name="index">Index of joint.</param>
+        /// <returns>Correct index of joint.</returns>
+        protected int ClampIndex(int index)
         {
-            foreach (var rocker in rockers)
-            {
-                var rlock = rocker.GetComponent<RockerLockMechanism>();
-                if (rlock)
-                    rLocks.Add(rlock);
-            }
-        }
-
-        /// <summary>
-        /// Check rockers's lock state.
-        /// </summary>
-        /// <returns>Return true if one of the rockers is lock.</returns>
-        protected virtual bool CheckRockersLock()
-        {
-            foreach (var rLock in rLocks)
-            {
-                if (rLock.IsLock)
-                    return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Drive the rockers that join at this mechanism.
-        /// </summary>
-        protected virtual void DriveRockers()
-        {
-            foreach (var rocker in rockers)
-            {
-                rocker.Drive();
-            }
+            return Mathf.Clamp(index, 0, joints.Count - 1);
         }
         #endregion
     }

@@ -23,17 +23,17 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Joint of link bar and slider.
         /// </summary>
-        public Transform lsJoint;
+        public Transform joint;
 
         /// <summary>
         /// All mechanism is set Intact.
         /// </summary>
-        public bool IsIntact { get { return crank && linkBar && lsJoint; } }
+        public bool IsIntact { get { return crank && link && joint; } }
 
         /// <summary>
         /// lsJoint start local position.
         /// </summary>
-        public Vector3 LSJointPosition { protected set; get; }
+        public Vector3 JointPosition { protected set; get; }
 
         /// <summary>
         /// link bar start local position.
@@ -43,7 +43,7 @@ namespace Mogoson.Machinery
         /// <summary>
         /// lsJoint start local euler angles.
         /// </summary>
-        protected Vector3 lsJointAngles;
+        protected Vector3 JointAngles;
 
         /// <summary>
         /// Line from link bar to slider.
@@ -64,6 +64,13 @@ namespace Mogoson.Machinery
         /// Link bar and slider joint is on the right of link bar on start.
         /// </summary>
 		protected bool isRight;
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// This mechanism is initialized?
+        /// </summary>
+        private bool isInitialized = false;
+#endif
         #endregion
 
         #region Protected Method
@@ -76,9 +83,6 @@ namespace Mogoson.Machinery
         }
 
 #if UNITY_EDITOR
-        /// <summary>
-        /// Drive bars on editor node.
-        /// </summary>
         protected virtual void Update()
         {
             if (Application.isPlaying)
@@ -86,25 +90,23 @@ namespace Mogoson.Machinery
 
             if (IsIntact)
             {
-                if (!IsInitialized)
+                if (!isInitialized)
                     Initialize();
-
-                DriveLinkBars();
+                DriveLinkJoints();
             }
             else
-                IsInitialized = false;
+                isInitialized = false;
         }
 #endif
-
         /// <summary>
         /// Drive link bar and slider.
         /// </summary>
-		protected override void DriveLinkBars()
+		protected override void DriveLinkJoints()
         {
             //Rivet joints.
-            lsJoint.localEulerAngles = lsJointAngles;
+            joint.localEulerAngles = JointAngles;
             crank.transform.localPosition = Vector3.zero;
-            linkBar.transform.localPosition = linkPosition;
+            link.transform.localPosition = linkPosition;
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
@@ -121,10 +123,10 @@ namespace Mogoson.Machinery
                 point = points[0];
             else
                 point = isRight ? points[0] : points[1];
-            lsJoint.localPosition = new Vector3((float)point.x, (float)point.y);
+            joint.localPosition = new Vector3((float)point.x, (float)point.y);
 
             //Drive linkBar.
-            linkBar.Drive();
+            link.Drive();
         }
 
         /// <summary>
@@ -136,37 +138,33 @@ namespace Mogoson.Machinery
         {
             return new Vector3(angles.x, 90);
         }
-        #endregion
 
-        #region Public Method
-        /// <summary>
-        /// Initialize mechanism.
-        /// </summary>
-        public override void Initialize()
+        protected void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
             crank.Awake();
 
             //Correct lsJoint.
-            lsJointAngles = CorrectLSJointAngles(lsJoint.localEulerAngles);
-            lsJoint.localEulerAngles = lsJointAngles;
+            JointAngles = CorrectLSJointAngles(joint.localEulerAngles);
+            joint.localEulerAngles = JointAngles;
 
             //Save start local position.
-            linkPosition = CorrectPosition(linkBar.transform.localPosition);
-            LSJointPosition = CorrectPosition(lsJoint.localPosition);
+            linkPosition = CorrectPosition(link.transform.localPosition);
+            JointPosition = CorrectPosition(joint.localPosition);
 
             //Initialize CrankSlider mathematical model.
-            var lsJointPoint = CorrectPoint(lsJoint.localPosition);
+            var lsJointPoint = CorrectPoint(joint.localPosition);
             var linkPoint = CorrectPoint(GetLinkPosition());
-            var direction = transform.InverseTransformDirection(ProjectDirection(lsJoint.forward));
-            var directionPoint = CorrectPoint(lsJoint.localPosition + direction);
+            var direction = transform.InverseTransformDirection(ProjectDirection(joint.forward));
+            var directionPoint = CorrectPoint(joint.localPosition + direction);
             linkRadius = Point.Distance(linkPoint, lsJointPoint);
             linkLine = Line.FromPoints(lsJointPoint, directionPoint);
             isRight = lsJointPoint.x - linkPoint.x >= 0;
-            IsInitialized = true;
         }
+        #endregion
 
+        #region Public Method
         /// <summary>
         /// Project direction vector on plane(Normal is transform.forward).
         /// </summary>

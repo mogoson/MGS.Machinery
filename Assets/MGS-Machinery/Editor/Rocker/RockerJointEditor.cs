@@ -32,14 +32,14 @@ namespace Mogoson.Machinery
 
         protected virtual void OnSceneGUI()
         {
-            if (Target.rockJoint == null)
+            if (Target.joint == null)
                 return;
 
             Handles.color = Blue;
-            DrawPositionHandle(Target.rockJoint);
+            DrawPositionHandle(Target.joint);
             DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
-            DrawSphereCap(Target.rockJoint.position, Quaternion.identity, NodeSize);
-            Handles.DrawLine(Target.transform.position, Target.rockJoint.position);
+            DrawSphereCap(Target.joint.position, Quaternion.identity, NodeSize);
+            Handles.DrawLine(Target.transform.position, Target.joint.position);
             DrawSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, Blue, "Keep Up");
         }
         #endregion

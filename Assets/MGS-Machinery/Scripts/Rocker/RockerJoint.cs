@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Mogoson.Machinery
 {
     /// <summary>
-    /// Joint look at the target rock joint.
+    /// Rocker look at joint.
     /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerJoint")]
     [ExecuteInEditMode]
@@ -52,7 +52,7 @@ namespace Mogoson.Machinery
 #if UNITY_EDITOR
         protected virtual void Update()
         {
-            if (!Application.isPlaying && rockJoint)
+            if (!Application.isPlaying && joint)
                 Drive();
         }
 #endif
@@ -64,7 +64,7 @@ namespace Mogoson.Machinery
         /// </summary>
         public override void Drive()
         {
-            transform.LookAt(rockJoint, WorldUp);
+            transform.LookAt(joint, WorldUp);
         }
         #endregion
     }

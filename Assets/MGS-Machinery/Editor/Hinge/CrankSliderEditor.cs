@@ -27,9 +27,9 @@ namespace Mogoson.Machinery
             get
             {
                 if (Application.isPlaying)
-                    return Target.transform.TransformPoint(Target.LSJointPosition);
+                    return Target.transform.TransformPoint(Target.JointPosition);
                 else
-                    return Target.lsJoint.position;
+                    return Target.joint.position;
             }
         }
         #endregion
@@ -45,9 +45,9 @@ namespace Mogoson.Machinery
             if (Target.editMode == EditMode.Free)
             {
                 DrawRotationHandle(Target.crank.transform);
-                DrawPositionHandle(Target.linkBar.transform);
-                DrawPositionHandle(Target.lsJoint);
-                DrawRotationHandle(Target.lsJoint);
+                DrawPositionHandle(Target.link.transform);
+                DrawPositionHandle(Target.joint);
+                DrawRotationHandle(Target.joint);
             }
             else if (Target.editMode == EditMode.Hinge)
             {
@@ -58,17 +58,27 @@ namespace Mogoson.Machinery
             DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, AreaRadius);
             DrawSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, Blue, "Axis");
 
-            var offset = Target.linkBar.transform.position - Target.crank.transform.position;
+            var offset = Target.link.transform.position - Target.crank.transform.position;
             DrawSphereArrow(Target.crank.transform.position, offset, AreaRadius, NodeSize, Blue, string.Empty);
-            DrawSphereArrow(Target.crank.transform.position, Target.linkBar.transform.position, NodeSize, Blue, string.Empty);
-            DrawSphereArrow(Target.linkBar.transform.position, Target.lsJoint.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.crank.transform.position, Target.link.transform.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.link.transform.position, Target.joint.position, NodeSize, Blue, string.Empty);
 
-            var axis = Target.ProjectDirection(Target.lsJoint.forward);
-            Handles.DrawLine(ZeroPoint, Target.lsJoint.position);
+            var axis = Target.ProjectDirection(Target.joint.forward);
+            Handles.DrawLine(ZeroPoint, Target.joint.position);
             DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize, Blue, string.Empty);
             DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize, Blue, string.Empty);
 
-            DrawHingeEditor();
+            DrawSceneTool();
+        }
+
+        protected virtual void DrawSceneTool()
+        {
+            var rect = new Rect(Screen.width - 160, Screen.height - 95, 150, 45);
+            Handles.BeginGUI();
+            GUILayout.BeginArea(rect, "Hinge Editor", "Window");
+            DrawHingeEditorTool();
+            GUILayout.EndArea();
+            Handles.EndGUI();
         }
         #endregion
     }

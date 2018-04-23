@@ -16,7 +16,7 @@ using UnityEngine;
 namespace Mogoson.Machinery
 {
     /// <summary>
-    /// Hinge rotate around the axis base on rock joint.
+    /// Hinge rotate around the axis base on rocker joint.
     /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerHinge")]
     [ExecuteInEditMode]
@@ -47,7 +47,7 @@ namespace Mogoson.Machinery
 #if UNITY_EDITOR
         protected virtual void Update()
         {
-            if (!Application.isPlaying && rockJoint)
+            if (!Application.isPlaying && joint)
                 Drive();
         }
 #endif
@@ -59,8 +59,8 @@ namespace Mogoson.Machinery
         /// </summary>
         public override void Drive()
         {
-            rockJoint.position = transform.position;
-            var angle = -EVector3.ProjectAngle(rockJoint.forward, ZeroAxis, Axis);
+            joint.position = transform.position;
+            var angle = -EVector3.ProjectAngle(joint.forward, ZeroAxis, Axis);
             var euler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, angle);
             transform.localRotation = Quaternion.Euler(euler);
         }

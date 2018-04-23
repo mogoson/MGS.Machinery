@@ -14,42 +14,54 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Telescopic joint move on the axis Z.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/TelescopicJoint")]
     public class TelescopicJoint : TelescopicJointMechanism
     {
-        #region Protected Method
+        #region Field and Property
         /// <summary>
-        /// Move joint.
+        /// Local move axis.
         /// </summary>
-        /// <param name="moveSpeed">Move speed.</param>
-        protected virtual void DriveJoint(float moveSpeed)
+        protected Vector3 Aixs
         {
-            lockRecord = Displacement;
-            Displacement += moveSpeed * Time.deltaTime;
-            Displacement = Mathf.Clamp(Displacement, 0, stroke);
-            DriveJoint();
-
-            if (CheckRockersLock())
+            get
             {
-                Displacement = lockRecord;
-                DriveJoint();
+                if (transform.parent)
+                    return transform.parent.InverseTransformDirection(transform.forward);
+                else
+                    return transform.forward;
             }
         }
         #endregion
 
-        #region Public Method
+        #region Protected Method
         /// <summary>
-        /// Drive joint.
+        /// Move joint.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="moveSpeed">Speed of move joint.</param>
+        protected override void DriveJoint(float moveSpeed)
         {
-            DriveJoint(speed * speedRatio);
+            triggerRecord = Displacement;
+            Displacement += moveSpeed * Time.deltaTime;
+            Displacement = Mathf.Clamp(Displacement, stroke.min, stroke.max);
+            DriveJoint();
 
-            if (Displacement <= 0)
-                TState = TelescopicState.Shrink;
-            else if (Displacement >= stroke)
-                TState = TelescopicState.Extend;
+            if (CheckLimiterTrigger())
+            {
+                Displacement = triggerRecord;
+                DriveJoint();
+            }
+        }
+
+        /// <summary>
+        /// Move joint.
+        /// </summary>
+        protected virtual void DriveJoint()
+        {
+            transform.localPosition = StartPosition + Aixs * Displacement;
+            DriveRockers();
         }
         #endregion
     }

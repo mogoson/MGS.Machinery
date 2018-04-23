@@ -26,7 +26,7 @@ namespace Mogoson.Machinery
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            if (Target.rockJoint == null)
+            if (Target.joint == null)
                 return;
 
             Handles.color = Blue;

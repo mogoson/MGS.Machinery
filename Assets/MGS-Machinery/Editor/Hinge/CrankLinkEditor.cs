@@ -30,12 +30,8 @@ namespace Mogoson.Machinery
             Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.up * LineLength);
         }
 
-        protected void DrawHingeEditor()
+        protected void DrawHingeEditorTool()
         {
-            var rect = new Rect(Screen.width - 160, Screen.height - 95, 150, 45);
-            Handles.BeginGUI();
-            GUILayout.BeginArea(rect, "Hinge Editor", "Window");
-
             EditorGUI.BeginChangeCheck();
             Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
 
@@ -49,9 +45,6 @@ namespace Mogoson.Machinery
                 EditorUtility.SetDirty(Target);
                 MarkSceneDirty();
             }
-
-            GUILayout.EndArea();
-            Handles.EndGUI();
         }
         #endregion
     }

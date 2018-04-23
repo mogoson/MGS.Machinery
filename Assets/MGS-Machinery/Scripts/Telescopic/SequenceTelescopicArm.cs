@@ -14,24 +14,17 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Arm with sequence telescopic joints.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/SequenceTelescopicArm")]
     public class SequenceTelescopicArm : TelescopicArmMechanism
     {
         #region Field and Property
         /// <summary>
-        /// Current id of drive joint.
+        /// Current index of drive joint.
         /// </summary>
-        public int JointIndex { protected set; get; }
-        #endregion
-
-        #region Protected Method
-        /// <summary>
-        /// Clamp joint index in the range.
-        /// </summary>
-        protected virtual void ClampIndex()
-        {
-            JointIndex = Mathf.Clamp(JointIndex, 0, tJoints.Count - 1);
-        }
+        protected int jointIndex = 0;
         #endregion
 
         #region Public Method
@@ -41,19 +34,18 @@ namespace Mogoson.Machinery
         /// <param name="speedRatio">Speed ratio.</param>
         public override void Drive(float speedRatio)
         {
-            ClampIndex();
-            var currentJoint = tJoints[JointIndex];
+            var currentJoint = joints[ClampIndex(jointIndex)];
             currentJoint.Drive(speedRatio);
 
             if (currentJoint.speed * speedRatio >= 0)
             {
-                if (currentJoint.TState == TelescopicState.Extend)
-                    JointIndex++;
+                if (currentJoint.State == TelescopicState.Maximum)
+                    jointIndex++;
             }
             else
             {
-                if (currentJoint.TState == TelescopicState.Shrink)
-                    JointIndex--;
+                if (currentJoint.State == TelescopicState.Minimum)
+                    jointIndex--;
             }
         }
         #endregion

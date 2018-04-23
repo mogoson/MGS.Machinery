@@ -14,6 +14,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Rocker keep same position with joint.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerRivet")]
     [ExecuteInEditMode]
     public class RockerRivet : RockerMechanism
@@ -22,7 +25,7 @@ namespace Mogoson.Machinery
 #if UNITY_EDITOR
         protected virtual void Update()
         {
-            if (!Application.isPlaying && rockJoint)
+            if (!Application.isPlaying && joint)
                 Drive();
         }
 #endif
@@ -34,7 +37,7 @@ namespace Mogoson.Machinery
         /// </summary>
         public override void Drive()
         {
-            transform.position = rockJoint.position;
+            transform.position = joint.position;
         }
         #endregion
     }

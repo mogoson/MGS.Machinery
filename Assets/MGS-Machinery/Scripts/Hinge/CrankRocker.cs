@@ -21,29 +21,31 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Rocker of crankrocker.
+        /// Rocker joint.
         /// </summary>
         public RockerMechanism rocker;
 
         /// <summary>
-        /// Joint of link bar and rocker.
+        /// Joint for link and rocker.
         /// </summary>
-        public Transform lrJoint;
+        public Transform joint;
 
         /// <summary>
-        /// Use inertia to limit crankrocker.
+        /// Use inertia to limit.
         /// </summary>
-        public bool useInertia = false;
+        [HideInInspector]
+        public bool inertia = false;
 
         /// <summary>
-        /// Use virtual restrict to limit crankrocker.
+        /// Use virtual restrict to limit.
         /// </summary>
-        public bool useRestrict = false;
+        [HideInInspector]
+        public bool restrict = false;
 
         /// <summary>
-        /// All mechanism is set Intact.
+        /// All the joints of this mechanism are set intact.
         /// </summary>
-        public bool IsIntact { get { return crank && linkBar && rocker && lrJoint; } }
+        public bool IsIntact { get { return crank && link && rocker && joint; } }
 
         /// <summary>
         /// link bar start local position.
@@ -68,12 +70,19 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Radius of the circle that bese link bar.
         /// </summary>
-        protected double linkRadius;
+        protected double linkRadius = 1;
 
         /// <summary>
         /// Rocker and link bar joint is on the top of rocker on start.
         /// </summary>
-        protected bool isTop;
+        protected bool isTop = false;
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// This mechanism is initialized?
+        /// </summary>
+        private bool isInitialized = false;
+#endif
         #endregion
 
         #region Protected Method
@@ -86,9 +95,6 @@ namespace Mogoson.Machinery
         }
 
 #if UNITY_EDITOR
-        /// <summary>
-        /// Drive bars on editor node.
-        /// </summary>
         protected virtual void Update()
         {
             if (Application.isPlaying)
@@ -96,24 +102,23 @@ namespace Mogoson.Machinery
 
             if (IsIntact)
             {
-                if (!IsInitialized)
+                if (!isInitialized)
                     Initialize();
-
-                DriveLinkBars();
+                DriveLinkJoints();
             }
             else
-                IsInitialized = false;
+                isInitialized = false;
         }
 #endif
         /// <summary>
         /// Drive link bar and rocker.
         /// </summary>
-        protected override void DriveLinkBars()
+        protected override void DriveLinkJoints()
         {
             //Rivet joints.
-            lrJoint.localEulerAngles = Vector3.zero;
+            joint.localEulerAngles = Vector3.zero;
             crank.transform.localPosition = Vector3.zero;
-            linkBar.transform.localPosition = linkPosition;
+            link.transform.localPosition = linkPosition;
             rocker.transform.localPosition = rockerPosition;
 
             var linkPoint = CorrectPoint(GetLinkPosition());
@@ -132,8 +137,8 @@ namespace Mogoson.Machinery
             else
             {
                 //Adapt restrict and intertia.
-                var rID = useRestrict ? 1 : 0;
-                if (useInertia)
+                var rID = restrict ? 1 : 0;
+                if (inertia)
                     point = points[rID];
                 else
                 {
@@ -144,37 +149,31 @@ namespace Mogoson.Machinery
                         point = points[1 - rID];
                 }
             }
-            lrJoint.localPosition = new Vector3((float)point.x, (float)point.y);
+            joint.localPosition = new Vector3((float)point.x, (float)point.y);
 
             //Drive bars.
             rocker.Drive();
-            linkBar.Drive();
+            link.Drive();
         }
-        #endregion
 
-        #region Public Method
-        /// <summary>
-        /// Initialize mechanism.
-        /// </summary>
-        public override void Initialize()
+        protected void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
             crank.Awake();
 
             //Save start local position.
-            linkPosition = CorrectPosition(linkBar.transform.localPosition);
+            linkPosition = CorrectPosition(link.transform.localPosition);
             rockerPosition = CorrectPosition(rocker.transform.localPosition);
 
             //Initialize CrankRocker mathematical model.
             var rockerPoint = CorrectPoint(rocker.transform.localPosition);
-            var lrJointPoint = CorrectPoint(lrJoint.localPosition);
+            var lrJointPoint = CorrectPoint(joint.localPosition);
             var rockerRadius = Point.Distance(rockerPoint, lrJointPoint);
             var linkPoint = CorrectPoint(GetLinkPosition());
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
             rockerCircle = new Circle(rockerPoint, rockerRadius);
             linkRadius = Point.Distance(linkPoint, lrJointPoint);
-            IsInitialized = true;
         }
         #endregion
     }

@@ -33,8 +33,8 @@ namespace Mogoson.Machinery
                     DrawPositionHandle(rocker.transform);
                     DrawSphereArrow(driver.position, rocker.transform.position, NodeSize, Blue, string.Empty);
 
-                    if (rocker.rockJoint)
-                        DrawSphereArrow(rocker.transform.position, rocker.rockJoint.transform.position, NodeSize, Blue, string.Empty);
+                    if (rocker.joint)
+                        DrawSphereArrow(rocker.transform.position, rocker.joint.transform.position, NodeSize, Blue, string.Empty);
                 }
             }
         }

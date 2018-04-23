@@ -24,29 +24,27 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Rotate crank.
         /// </summary>
-        /// <param name="rotateSpeed">Rotate speed.</param>
-        protected virtual void DriveCrank(float rotateSpeed)
+        /// <param name="rotateSpeed">Rotate speed of crank.</param>
+        protected override void DriveCrank(float rotateSpeed)
         {
-            lockRecord = Angle;
+            triggerRecord = Angle;
             Angle += rotateSpeed * Time.deltaTime;
             DriveCrank();
 
-            if (CheckRockersLock())
+            if (CheckLimiterTrigger())
             {
-                Angle = lockRecord;
+                Angle = triggerRecord;
                 DriveCrank();
             }
         }
-        #endregion
 
-        #region Public Method
         /// <summary>
-        /// Drive crank.
+        /// Rotate crank.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        protected void DriveCrank()
         {
-            DriveCrank(speed * speedRatio);
+            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, Angle));
+            DriveRockers();
         }
         #endregion
     }
