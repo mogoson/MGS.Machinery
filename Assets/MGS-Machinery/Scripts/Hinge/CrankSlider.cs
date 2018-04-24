@@ -21,85 +21,54 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Joint of link bar and slider.
+        /// Joint of link and slider.
         /// </summary>
         public Transform joint;
 
         /// <summary>
-        /// All mechanism is set Intact.
+        /// All the joints of this mechanism are set intact.
         /// </summary>
-        public bool IsIntact { get { return crank && link && joint; } }
+        public override bool IsIntact { get { return crank && link && joint; } }
 
         /// <summary>
-        /// lsJoint start local position.
+        /// Start local position of joint.
         /// </summary>
         public Vector3 JointPosition { protected set; get; }
 
         /// <summary>
-        /// link bar start local position.
+        /// Start local position of link.
         /// </summary>
         protected Vector3 linkPosition;
 
         /// <summary>
-        /// lsJoint start local euler angles.
+        /// Start local euler angles of joint.
         /// </summary>
         protected Vector3 JointAngles;
 
         /// <summary>
-        /// Line from link bar to slider.
+        /// Line from link to joint.
         /// </summary>
 		protected Line linkLine;
 
         /// <summary>
-        /// Circle base link bar.
+        /// Circle base link.
         /// </summary>
 		protected Circle linkCircle;
 
         /// <summary>
-        /// Radius of the circle that base link bar.
+        /// Radius of the circle that base link.
         /// </summary>
 		protected double linkRadius;
 
         /// <summary>
-        /// Link bar and slider joint is on the right of link bar on start.
+        /// Joint of link and joint is on the right of link start.
         /// </summary>
 		protected bool isRight;
-
-#if UNITY_EDITOR
-        /// <summary>
-        /// This mechanism is initialized?
-        /// </summary>
-        private bool isInitialized = false;
-#endif
         #endregion
 
         #region Protected Method
-        protected virtual void Awake()
-        {
-#if UNITY_EDITOR
-            if (Application.isPlaying)
-#endif
-                Initialize();
-        }
-
-#if UNITY_EDITOR
-        protected virtual void Update()
-        {
-            if (Application.isPlaying)
-                return;
-
-            if (IsIntact)
-            {
-                if (!isInitialized)
-                    Initialize();
-                DriveLinkJoints();
-            }
-            else
-                isInitialized = false;
-        }
-#endif
         /// <summary>
-        /// Drive link bar and slider.
+        /// Drive joints those link with this mechanism.
         /// </summary>
 		protected override void DriveLinkJoints()
         {
@@ -123,9 +92,8 @@ namespace Mogoson.Machinery
                 point = points[0];
             else
                 point = isRight ? points[0] : points[1];
+            
             joint.localPosition = new Vector3((float)point.x, (float)point.y);
-
-            //Drive linkBar.
             link.Drive();
         }
 
@@ -138,8 +106,13 @@ namespace Mogoson.Machinery
         {
             return new Vector3(angles.x, 90);
         }
+        #endregion
 
-        protected void Initialize()
+        #region Public Method
+        /// <summary>
+        /// Initialize this mechanism.
+        /// </summary>
+        public override void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
@@ -162,9 +135,7 @@ namespace Mogoson.Machinery
             linkLine = Line.FromPoints(lsJointPoint, directionPoint);
             isRight = lsJointPoint.x - linkPoint.x >= 0;
         }
-        #endregion
 
-        #region Public Method
         /// <summary>
         /// Project direction vector on plane(Normal is transform.forward).
         /// </summary>

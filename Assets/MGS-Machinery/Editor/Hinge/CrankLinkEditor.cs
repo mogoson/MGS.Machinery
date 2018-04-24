@@ -36,9 +36,18 @@ namespace Mogoson.Machinery
             Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
 
             if (Target.editMode == EditMode.Free)
-                Target.enabled = false;
+            {
+                if (Target.enabled)
+                {
+                    Target.enabled = false;
+                    Target.isInitialized = false;
+                }
+            }
             else
-                Target.enabled = true;
+            {
+                if (!Target.enabled)
+                    Target.enabled = true;
+            }
 
             if (EditorGUI.EndChangeCheck())
             {

@@ -45,15 +45,15 @@ namespace Mogoson.Machinery
         /// <summary>
         /// All the joints of this mechanism are set intact.
         /// </summary>
-        public bool IsIntact { get { return crank && link && rocker && joint; } }
+        public override bool IsIntact { get { return crank && link && rocker && joint; } }
 
         /// <summary>
-        /// link bar start local position.
+        /// Start local position of link.
         /// </summary>
         protected Vector3 linkPosition;
 
         /// <summary>
-        /// rocker start local position.
+        /// Start local position of rocker.
         /// </summary>
         protected Vector3 rockerPosition;
 
@@ -63,55 +63,24 @@ namespace Mogoson.Machinery
         protected Circle rockerCircle;
 
         /// <summary>
-        /// Circle base link bar.
+        /// Circle base link.
         /// </summary>
         protected Circle linkCircle;
 
         /// <summary>
-        /// Radius of the circle that bese link bar.
+        /// Radius of the circle that bese link.
         /// </summary>
         protected double linkRadius = 1;
 
         /// <summary>
-        /// Rocker and link bar joint is on the top of rocker on start.
+        /// Joint of link and rocker is on the top of rocker start?
         /// </summary>
         protected bool isTop = false;
-
-#if UNITY_EDITOR
-        /// <summary>
-        /// This mechanism is initialized?
-        /// </summary>
-        private bool isInitialized = false;
-#endif
         #endregion
 
         #region Protected Method
-        protected void Awake()
-        {
-#if UNITY_EDITOR
-            if (Application.isPlaying)
-#endif
-                Initialize();
-        }
-
-#if UNITY_EDITOR
-        protected virtual void Update()
-        {
-            if (Application.isPlaying)
-                return;
-
-            if (IsIntact)
-            {
-                if (!isInitialized)
-                    Initialize();
-                DriveLinkJoints();
-            }
-            else
-                isInitialized = false;
-        }
-#endif
         /// <summary>
-        /// Drive link bar and rocker.
+        /// Drive joints those link with this mechanism.
         /// </summary>
         protected override void DriveLinkJoints()
         {
@@ -149,14 +118,18 @@ namespace Mogoson.Machinery
                         point = points[1 - rID];
                 }
             }
-            joint.localPosition = new Vector3((float)point.x, (float)point.y);
 
-            //Drive bars.
+            joint.localPosition = new Vector3((float)point.x, (float)point.y);
             rocker.Drive();
             link.Drive();
         }
+        #endregion
 
-        protected void Initialize()
+        #region Public Method
+        /// <summary>
+        /// Initialize this mechanism.
+        /// </summary>
+        public override void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);

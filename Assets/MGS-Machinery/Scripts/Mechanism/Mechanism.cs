@@ -220,7 +220,18 @@ namespace Mogoson.Machinery
         /// </summary>
         [HideInInspector]
         public EditMode editMode = EditMode.Lock;
+
+        /// <summary>
+        /// This mechanism is initialized? (Only work for editor script).
+        /// </summary>
+        [HideInInspector]
+        public bool isInitialized = false;
 #endif
+        /// <summary>
+        /// All the joints of this mechanism are set intact.
+        /// </summary>
+        public abstract bool IsIntact { get; }
+
         /// <summary>
         /// Is dead lock?
         /// </summary>
@@ -233,6 +244,34 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Protected Method
+        protected void Awake()
+        {
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+#endif
+                Initialize();
+        }
+
+#if UNITY_EDITOR
+        protected virtual void Update()
+        {
+            if (Application.isPlaying)
+                return;
+
+            if (IsIntact)
+            {
+                if (!isInitialized)
+                {
+                    Initialize();
+                    isInitialized = true;
+                }
+                DriveLinkJoints();
+            }
+            else
+                isInitialized = false;
+        }
+#endif
+
         /// <summary>
         /// Get local position of link rocker base on this transform.
         /// </summary>
@@ -276,6 +315,11 @@ namespace Mogoson.Machinery
         /// Drive joints those link with this mechanism.
         /// </summary>
         protected abstract void DriveLinkJoints();
+
+        /// <summary>
+        /// Initialize this mechanism.
+        /// </summary>
+        public abstract void Initialize();
         #endregion
 
         #region Public Method
