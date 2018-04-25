@@ -81,12 +81,24 @@ namespace Mogoson.Machinery
     /// </summary>
     public abstract class Mechanism : MonoBehaviour
     {
+        #region Protected Method
+        protected virtual void Awake()
+        {
+            Initialize();
+        }
+        #endregion
+
         #region Public Method
+        /// <summary>
+        /// Initialize mechanism.
+        /// </summary>
+        public virtual void Initialize() { }
+
         /// <summary>
         /// Drive mechanism.
         /// </summary>
         /// <param name="speedRatio">Speed ratio.</param>
-        public abstract void Drive(float speedControl);
+        public abstract void Drive(float speedRatio);
         #endregion
     }
 
@@ -113,16 +125,6 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Protected Method
-        protected virtual void Awake()
-        {
-            foreach (var rocker in rockers)
-            {
-                var limiter = rocker.GetComponent<LimiterMechanism>();
-                if (limiter)
-                    limiters.Add(limiter);
-            }
-        }
-
         /// <summary>
         /// Check limiter is triggered.
         /// </summary>
@@ -131,7 +133,7 @@ namespace Mogoson.Machinery
         {
             foreach (var limiter in limiters)
             {
-                if (limiter.IsTrigger)
+                if (limiter.IsTriggered)
                     return true;
             }
             return false;
@@ -145,6 +147,22 @@ namespace Mogoson.Machinery
             foreach (var rocker in rockers)
             {
                 rocker.Drive();
+            }
+        }
+        #endregion
+
+        #region Public Method
+        /// <summary>
+        /// Initialize mechanism.
+        /// </summary>
+        public override void Initialize()
+        {
+            limiters.Clear();
+            foreach (var rocker in rockers)
+            {
+                var limiter = rocker.GetComponent<LimiterMechanism>();
+                if (limiter)
+                    limiters.Add(limiter);
             }
         }
         #endregion
@@ -181,9 +199,12 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Public Method
-        public new virtual void Awake()
+        /// <summary>
+        /// Initialize crank.
+        /// </summary>
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
             StartAngles = transform.localEulerAngles;
         }
 
@@ -244,7 +265,7 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Protected Method
-        protected void Awake()
+        protected override void Awake()
         {
 #if UNITY_EDITOR
             if (Application.isPlaying)
@@ -315,11 +336,6 @@ namespace Mogoson.Machinery
         /// Drive joints those link with this mechanism.
         /// </summary>
         protected abstract void DriveLinkJoints();
-
-        /// <summary>
-        /// Initialize this mechanism.
-        /// </summary>
-        public abstract void Initialize();
         #endregion
 
         #region Public Method
@@ -359,6 +375,16 @@ namespace Mogoson.Machinery
         public Transform joint;
         #endregion
 
+        #region Protected Method
+#if UNITY_EDITOR
+        protected virtual void Update()
+        {
+            if (!Application.isPlaying && joint)
+                Drive();
+        }
+#endif
+        #endregion
+
         #region Public method
         /// <summary>
         /// Drive rocker.
@@ -374,9 +400,9 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Limiter is trigger?
+        /// Limiter is triggered?
         /// </summary>
-        public abstract bool IsTrigger { get; }
+        public abstract bool IsTriggered { get; }
         #endregion
     }
 
@@ -408,9 +434,9 @@ namespace Mogoson.Machinery
         {
             get
             {
-                if (Displacement == stroke.min)
+                if (Displacement <= stroke.min)
                     return TelescopicState.Minimum;
-                else if (Displacement == stroke.max)
+                else if (Displacement >= stroke.max)
                     return TelescopicState.Maximum;
                 else
                     return TelescopicState.Between;
@@ -424,12 +450,6 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Protected Method
-        protected override void Awake()
-        {
-            base.Awake();
-            StartPosition = transform.localPosition;
-        }
-
         /// <summary>
         /// Move joint.
         /// </summary>
@@ -438,6 +458,15 @@ namespace Mogoson.Machinery
         #endregion
 
         #region Public Method
+        /// <summary>
+        /// Initialize joint.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+            StartPosition = transform.localPosition;
+        }
+
         /// <summary>
         /// Drive joint.
         /// </summary>

@@ -33,9 +33,9 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (Input.GetKey(positiveKey))
-                mechanism.Drive(1.0f);
+                mechanism.Drive(1);
             else if (Input.GetKey(negativeKey))
-                mechanism.Drive(-1.0f);
+                mechanism.Drive(-1);
         }
         #endregion
     }

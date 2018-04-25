@@ -15,6 +15,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Crank rocker hinge.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/CrankRocker")]
     [ExecuteInEditMode]
     public class CrankRocker : CrankLinkMechanism
@@ -73,7 +76,7 @@ namespace Mogoson.Machinery
         protected double linkRadius = 1;
 
         /// <summary>
-        /// Joint of link and rocker is on the top of rocker start?
+        /// Joint of link and rocker is on the top of rocker at start?
         /// </summary>
         protected bool isTop = false;
         #endregion
@@ -85,10 +88,10 @@ namespace Mogoson.Machinery
         protected override void DriveLinkJoints()
         {
             //Rivet joints.
-            joint.localEulerAngles = Vector3.zero;
             crank.transform.localPosition = Vector3.zero;
             link.transform.localPosition = linkPosition;
             rocker.transform.localPosition = rockerPosition;
+            joint.localEulerAngles = Vector3.zero;
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
@@ -120,20 +123,20 @@ namespace Mogoson.Machinery
             }
 
             joint.localPosition = new Vector3((float)point.x, (float)point.y);
-            rocker.Drive();
             link.Drive();
+            rocker.Drive();
         }
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Initialize this mechanism.
+        /// Initialize mechanism.
         /// </summary>
         public override void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
-            crank.Awake();
+            crank.Initialize();
 
             //Save start local position.
             linkPosition = CorrectPosition(link.transform.localPosition);
@@ -142,11 +145,10 @@ namespace Mogoson.Machinery
             //Initialize CrankRocker mathematical model.
             var rockerPoint = CorrectPoint(rocker.transform.localPosition);
             var lrJointPoint = CorrectPoint(joint.localPosition);
-            var rockerRadius = Point.Distance(rockerPoint, lrJointPoint);
-            var linkPoint = CorrectPoint(GetLinkPosition());
+
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
-            rockerCircle = new Circle(rockerPoint, rockerRadius);
-            linkRadius = Point.Distance(linkPoint, lrJointPoint);
+            rockerCircle = new Circle(rockerPoint, Point.Distance(rockerPoint, lrJointPoint));
+            linkRadius = Point.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
         }
         #endregion
     }

@@ -22,7 +22,7 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Local move axis.
+        /// Local axis of move.
         /// </summary>
         protected Vector3 Aixs
         {
@@ -40,7 +40,7 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Move joint.
         /// </summary>
-        /// <param name="moveSpeed">Speed of move joint.</param>
+        /// <param name="moveSpeed">Move speed of joint.</param>
         protected override void DriveJoint(float moveSpeed)
         {
             triggerRecord = Displacement;

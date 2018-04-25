@@ -43,16 +43,6 @@ namespace Mogoson.Machinery
         }
         #endregion
 
-        #region Protected Method
-#if UNITY_EDITOR
-        protected virtual void Update()
-        {
-            if (!Application.isPlaying && joint)
-                Drive();
-        }
-#endif
-        #endregion
-
         #region Public Method
         /// <summary>
         /// Drive rocker.

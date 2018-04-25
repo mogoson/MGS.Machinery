@@ -22,7 +22,7 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Angle limit range.
+        /// Range limit of angle.
         /// </summary>
         public Range range = new Range(-45, 45);
         #endregion

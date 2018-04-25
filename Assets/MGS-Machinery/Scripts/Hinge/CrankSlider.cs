@@ -15,6 +15,9 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    /// <summary>
+    /// Crank slider hinge.
+    /// </summary>
     [AddComponentMenu("Mogoson/Machinery/CrankSlider")]
     [ExecuteInEditMode]
     public class CrankSlider : CrankLinkMechanism
@@ -43,7 +46,7 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Start local euler angles of joint.
         /// </summary>
-        protected Vector3 JointAngles;
+        protected Vector3 jointAngles;
 
         /// <summary>
         /// Line from link to joint.
@@ -61,7 +64,7 @@ namespace Mogoson.Machinery
 		protected double linkRadius;
 
         /// <summary>
-        /// Joint of link and joint is on the right of link start.
+        /// Joint is on the right of link at start.
         /// </summary>
 		protected bool isRight;
         #endregion
@@ -73,9 +76,9 @@ namespace Mogoson.Machinery
 		protected override void DriveLinkJoints()
         {
             //Rivet joints.
-            joint.localEulerAngles = JointAngles;
             crank.transform.localPosition = Vector3.zero;
             link.transform.localPosition = linkPosition;
+            joint.localEulerAngles = jointAngles;
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
@@ -92,7 +95,7 @@ namespace Mogoson.Machinery
                 point = points[0];
             else
                 point = isRight ? points[0] : points[1];
-            
+
             joint.localPosition = new Vector3((float)point.x, (float)point.y);
             link.Drive();
         }
@@ -101,8 +104,8 @@ namespace Mogoson.Machinery
         /// Clear angles z and set y to 90.
         /// </summary>
         /// <param name="angles">Local euler angles.</param>
-        /// <returns>Correct lsJoint angles.</returns>
-        protected Vector3 CorrectLSJointAngles(Vector3 angles)
+        /// <returns>Correct angles.</returns>
+        protected Vector3 CorrectJointAngles(Vector3 angles)
         {
             return new Vector3(angles.x, 90);
         }
@@ -110,17 +113,17 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Initialize this mechanism.
+        /// Initialize mechanism.
         /// </summary>
         public override void Initialize()
         {
             //Correct crank.
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
-            crank.Awake();
+            crank.Initialize();
 
-            //Correct lsJoint.
-            JointAngles = CorrectLSJointAngles(joint.localEulerAngles);
-            joint.localEulerAngles = JointAngles;
+            //Correct joint.
+            jointAngles = CorrectJointAngles(joint.localEulerAngles);
+            joint.localEulerAngles = jointAngles;
 
             //Save start local position.
             linkPosition = CorrectPosition(link.transform.localPosition);
@@ -129,10 +132,10 @@ namespace Mogoson.Machinery
             //Initialize CrankSlider mathematical model.
             var lsJointPoint = CorrectPoint(joint.localPosition);
             var linkPoint = CorrectPoint(GetLinkPosition());
-            var direction = transform.InverseTransformDirection(ProjectDirection(joint.forward));
-            var directionPoint = CorrectPoint(joint.localPosition + direction);
+
             linkRadius = Point.Distance(linkPoint, lsJointPoint);
-            linkLine = Line.FromPoints(lsJointPoint, directionPoint);
+            linkLine = Line.FromPoints(lsJointPoint, CorrectPoint(joint.localPosition +
+                transform.InverseTransformDirection(ProjectDirection(joint.forward))));
             isRight = lsJointPoint.x - linkPoint.x >= 0;
         }
 
@@ -143,10 +146,10 @@ namespace Mogoson.Machinery
         /// <returns>Project direction.</returns>
         public Vector3 ProjectDirection(Vector3 direction)
         {
-            direction = Vector3.ProjectOnPlane(direction, transform.forward);
-            if (direction == Vector3.zero)
-                direction = transform.right;
-            return direction;
+            var project = Vector3.ProjectOnPlane(direction, transform.forward);
+            if (project == Vector3.zero)
+                project = transform.right;
+            return project;
         }
         #endregion
     }
