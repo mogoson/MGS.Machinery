@@ -8,6 +8,11 @@
  *  Version      :  0.1.0
  *  Date         :  4/17/2018
  *  Description  :  Initial development version.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.1
+ *  Date         :  4/26/2018
+ *  Description  :  Optimize abstract mechanisms define.
  *************************************************************************/
 
 using Mogoson.Mathematics;
@@ -292,7 +297,6 @@ namespace Mogoson.Machinery
                 isInitialized = false;
         }
 #endif
-
         /// <summary>
         /// Get local position of link rocker base on this transform.
         /// </summary>

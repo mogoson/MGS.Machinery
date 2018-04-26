@@ -32,27 +32,35 @@ namespace Mogoson.Machinery
 
         protected void DrawHingeEditorTool()
         {
-            EditorGUI.BeginChangeCheck();
-            Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
-
-            if (Target.editMode == EditMode.Free)
+            if (Application.isPlaying)
             {
-                if (Target.enabled)
-                {
-                    Target.enabled = false;
-                    Target.isInitialized = false;
-                }
+                Target.editMode = EditMode.Lock;
+                GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
             }
             else
             {
-                if (!Target.enabled)
-                    Target.enabled = true;
-            }
+                EditorGUI.BeginChangeCheck();
+                Target.editMode = (EditMode)GUILayout.SelectionGrid((int)Target.editMode, HingeEditorButtons, HingeEditorButtons.Length);
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                EditorUtility.SetDirty(Target);
-                MarkSceneDirty();
+                if (Target.editMode == EditMode.Free)
+                {
+                    if (Target.enabled)
+                    {
+                        Target.enabled = false;
+                        Target.isInitialized = false;
+                    }
+                }
+                else
+                {
+                    if (!Target.enabled)
+                        Target.enabled = true;
+                }
+
+                if (EditorGUI.EndChangeCheck())
+                {
+                    EditorUtility.SetDirty(Target);
+                    MarkSceneDirty();
+                }
             }
         }
         #endregion
