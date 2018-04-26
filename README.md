@@ -18,19 +18,16 @@
 
 ## Achieve
 - Mechanism : Define abstract joint, hinge and mechanism.
-- VectorExtension : Calculate rotate angle base on normal.
-- Planimetry : Define and calculate planimetry.
 - FreeCrank : Free rotate around Z axis.
 - LimitCrank : Rotate around Z axis in the angle range. 
 - CrankRocker : Crank rocker mechanism.
 - CrankSlider : Crank slider mechanism.
 - RockerHinge : Hinge of roker, rotate around the axis follow roker.
 - RockerJoint : Roker joint, always look at target joint.
-- RockerLock : Lock of roker, limit the distance range of a pair rokers.
+- RockerLimiter : Limiter of roker, limit the distance of a pair rokers.
 - RockerRivet : Rivet of roker, keep the same position(world space) as the target joint.
 - TelescopicJoint : Telescopic joint.
-- CeTelescopicJoint : Telescopic joint base on center.
-- SeTelescopicArm : Sequence telescopic arm, drive from first joint to last joint.
+- SequenceTelescopicArm : Sequence telescopic arm, drive from first joint to last joint.
 - SynchroMechanism : Synchronous mechanism, drive multi mechanisms at the same time.
 - MeDriver : Universal mechanism driver.
 

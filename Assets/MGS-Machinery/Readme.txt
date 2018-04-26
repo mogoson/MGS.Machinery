@@ -1,7 +1,7 @@
 ﻿==========================================================================
   Copyright © 2017-2018 Mogoson. All rights reserved.
   Name: MGS-Machinery
-  Author: Mogoson   Version: 0.1.1   Date: 4/17/2018
+  Author: Mogoson   Version: 0.1.1   Date: 4/26/2018
 ==========================================================================
   [Summary]
     Unity plugin for binding machinery joint in scene.
@@ -31,10 +31,6 @@
   [Achieve]
     Mechanism : Define abstract joint, hinge and mechanism.
 
-    VectorExtension : Calculate rotate angle base on normal.
-
-    Planimetry : Define and calculate planimetry.
-
     FreeCrank : Free rotate around Z axis.
 
     LimitCrank : Rotate around Z axis in the angle range.
@@ -47,17 +43,15 @@
 
     RockerJoint : Roker joint, always look at target joint.
 
-    RockerLock : Lock of roker, limit the distance range of a pair rokers.
+    RockerLimiter : Limiter of roker, limit the distance of a pair rokers.
 
     RockerRivet : Rivet of roker, keep the same position(world space) as
     the target joint.
 
     TelescopicJoint : Telescopic joint.
 
-    CeTelescopicJoint : Telescopic joint base on center.
-
-    SeTelescopicArm : Sequence telescopic arm, drive from first joint to
-    last joint.
+    SequenceTelescopicArm : Sequence telescopic arm, drive from first
+    joint to last joint.
     
     SynchroMechanism : Synchronous mechanism, drive multi mechanisms at
     the same time.
