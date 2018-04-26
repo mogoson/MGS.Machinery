@@ -29,6 +29,7 @@ namespace Mogoson.Machinery
             Handles.color = Blue;
             DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawCircleCap(Target.transform.position, Target.transform.rotation, AreaRadius);
+
             Handles.DrawWireArc(Target.transform.position, Target.transform.right, Target.Axis, -180, AreaRadius);
             DrawSphereArrow(Target.transform.position, Target.transform.up, AreaRadius, NodeSize, Blue, string.Empty);
             DrawSphereArrow(Target.transform.position - Target.Axis * AreaRadius, Target.transform.position + Target.Axis * ArrowLength, NodeSize, Blue, "Axis");

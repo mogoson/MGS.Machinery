@@ -30,10 +30,10 @@ namespace Mogoson.Machinery
             {
                 if (Application.isPlaying)
                 {
-                    var point = Target.StartPosition;
                     if (Target.transform.parent)
-                        point = Target.transform.parent.TransformPoint(point);
-                    return point;
+                        return Target.transform.parent.TransformPoint(Target.StartPosition);
+                    else
+                        return Target.StartPosition;
                 }
                 else
                     return Target.transform.position;
