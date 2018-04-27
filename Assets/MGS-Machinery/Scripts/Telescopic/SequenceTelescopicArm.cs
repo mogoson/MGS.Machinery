@@ -34,7 +34,7 @@ namespace Mogoson.Machinery
         /// <param name="speedRatio">Speed ratio.</param>
         public override void Drive(float speedRatio)
         {
-            var currentJoint = joints[ClampIndex(jointIndex)];
+            var currentJoint = joints[jointIndex];
             currentJoint.Drive(speedRatio);
 
             if (currentJoint.speed * speedRatio >= 0)
@@ -47,6 +47,8 @@ namespace Mogoson.Machinery
                 if (currentJoint.State == TelescopicState.Minimum)
                     jointIndex--;
             }
+
+            jointIndex = ClampIndex(jointIndex);
         }
         #endregion
     }

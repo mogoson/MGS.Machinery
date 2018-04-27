@@ -272,9 +272,7 @@ namespace Mogoson.Machinery
         #region Protected Method
         protected override void Awake()
         {
-#if UNITY_EDITOR
-            if (Application.isPlaying)
-#endif
+            if (IsIntact)
                 Initialize();
         }
 
