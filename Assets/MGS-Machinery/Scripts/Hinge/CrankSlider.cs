@@ -109,6 +109,19 @@ namespace Mogoson.Machinery
         {
             return new Vector3(angles.x, 90);
         }
+
+        /// <summary>
+        /// Project direction vector on plane(Normal is transform.forward).
+        /// </summary>
+        /// <param name="direction">World space direction.</param>
+        /// <returns>Project direction.</returns>
+        protected Vector3 ProjectDirection(Vector3 direction)
+        {
+            var project = Vector3.ProjectOnPlane(direction, transform.forward);
+            if (project == Vector3.zero)
+                project = transform.right;
+            return project;
+        }
         #endregion
 
         #region Public Method
@@ -137,19 +150,6 @@ namespace Mogoson.Machinery
             linkLine = Line.FromPoints(lsJointPoint, CorrectPoint(joint.localPosition +
                 transform.InverseTransformDirection(ProjectDirection(joint.forward))));
             isRight = lsJointPoint.x - linkPoint.x >= 0;
-        }
-
-        /// <summary>
-        /// Project direction vector on plane(Normal is transform.forward).
-        /// </summary>
-        /// <param name="direction">World space direction.</param>
-        /// <returns>Project direction.</returns>
-        public Vector3 ProjectDirection(Vector3 direction)
-        {
-            var project = Vector3.ProjectOnPlane(direction, transform.forward);
-            if (project == Vector3.zero)
-                project = transform.right;
-            return project;
         }
         #endregion
     }

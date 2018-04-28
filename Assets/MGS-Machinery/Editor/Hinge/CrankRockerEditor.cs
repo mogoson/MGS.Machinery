@@ -37,9 +37,19 @@ namespace Mogoson.Machinery
                 DrawPositionHandle(Target.link.transform);
                 DrawPositionHandle(Target.rocker.transform);
                 DrawPositionHandle(Target.joint);
+
+                Target.crank.transform.localPosition = Vector3.zero;
+                Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
+                Target.link.transform.localPosition = CorrectPosition(Target.link.transform.localPosition);
+                Target.rocker.transform.localPosition = CorrectPosition(Target.rocker.transform.localPosition);
+                Target.joint.localPosition = CorrectPosition(Target.joint.transform.localPosition);
+                Target.joint.localEulerAngles = Vector3.zero;
             }
             else if (Target.editMode == EditMode.Hinge)
+            {
                 DrawRotationHandle(Target.crank.transform);
+                Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
+            }
 
             DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, AreaRadius);
             DrawSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, Blue, "Axis");

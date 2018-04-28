@@ -48,10 +48,17 @@ namespace Mogoson.Machinery
                 DrawPositionHandle(Target.link.transform);
                 DrawPositionHandle(Target.joint);
                 DrawRotationHandle(Target.joint);
+
+                Target.crank.transform.localPosition = Vector3.zero;
+                Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
+                Target.link.transform.localPosition = CorrectPosition(Target.link.transform.localPosition);
+                Target.joint.localPosition = CorrectPosition(Target.joint.localPosition);
+                Target.joint.localEulerAngles = CorrectJointAngles(Target.joint.localEulerAngles);
             }
             else if (Target.editMode == EditMode.Hinge)
             {
                 DrawRotationHandle(Target.crank.transform);
+                Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
             }
 
             DrawSphereCap(Target.crank.transform.position, Quaternion.identity, NodeSize);
@@ -63,7 +70,7 @@ namespace Mogoson.Machinery
             DrawSphereArrow(Target.crank.transform.position, Target.link.transform.position, NodeSize, Blue, string.Empty);
             DrawSphereArrow(Target.link.transform.position, Target.joint.position, NodeSize, Blue, string.Empty);
 
-            var axis = Target.ProjectDirection(Target.joint.forward);
+            var axis = ProjectDirection(Target.joint.forward);
             Handles.DrawLine(ZeroPoint, Target.joint.position);
             DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize, Blue, string.Empty);
             DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize, Blue, string.Empty);
@@ -79,6 +86,19 @@ namespace Mogoson.Machinery
             DrawHingeEditorTool();
             GUILayout.EndArea();
             Handles.EndGUI();
+        }
+
+        protected Vector3 CorrectJointAngles(Vector3 angles)
+        {
+            return new Vector3(angles.x, 90);
+        }
+
+        protected Vector3 ProjectDirection(Vector3 direction)
+        {
+            var project = Vector3.ProjectOnPlane(direction, Target.transform.forward);
+            if (project == Vector3.zero)
+                project = Target.transform.right;
+            return project;
         }
         #endregion
     }

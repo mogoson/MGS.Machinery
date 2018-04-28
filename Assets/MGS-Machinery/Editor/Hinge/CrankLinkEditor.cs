@@ -63,6 +63,16 @@ namespace Mogoson.Machinery
                 }
             }
         }
+
+        protected Vector3 CorrectAngles(Vector3 angles)
+        {
+            return new Vector3(0, 0, angles.z);
+        }
+
+        protected Vector3 CorrectPosition(Vector3 position)
+        {
+            return new Vector3(position.x, position.y);
+        }
         #endregion
     }
 }
