@@ -27,9 +27,9 @@ namespace Mogoson.UI
         #region Private Method
         private void OnGUI()
         {
-            GUILayout.Space(left);
-            GUILayout.BeginHorizontal();
             GUILayout.Space(top);
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(left);
             GUILayout.Label(info);
             GUILayout.EndHorizontal();
         }
