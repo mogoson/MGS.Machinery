@@ -31,13 +31,13 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive arm.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="velocity">Speed ratio.</param>
+        public override void Drive(float velocity)
         {
             var currentJoint = joints[jointIndex];
-            currentJoint.Drive(speedRatio);
+            currentJoint.Drive(velocity);
 
-            if (currentJoint.speed * speedRatio >= 0)
+            if (velocity >= 0)
             {
                 if (currentJoint.State == TelescopicState.Maximum)
                     jointIndex++;

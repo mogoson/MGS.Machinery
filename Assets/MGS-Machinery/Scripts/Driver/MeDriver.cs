@@ -18,6 +18,7 @@ namespace Mogoson.Machinery
     public class MeDriver : MonoBehaviour
     {
         #region Field and Property
+        public float velocity = 50;
         public KeyCode positiveKey = KeyCode.P;
         public KeyCode negativeKey = KeyCode.N;
 
@@ -33,9 +34,9 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (Input.GetKey(positiveKey))
-                mechanism.Drive(1);
+                mechanism.Drive(velocity);
             else if (Input.GetKey(negativeKey))
-                mechanism.Drive(-1);
+                mechanism.Drive(-velocity);
         }
         #endregion
     }

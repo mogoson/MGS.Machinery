@@ -102,8 +102,8 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive mechanism.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public abstract void Drive(float speedRatio);
+        /// <param name="velocity">Drive velocity.</param>
+        public abstract void Drive(float velocity);
         #endregion
     }
 
@@ -180,11 +180,6 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Rotate speed of crank.
-        /// </summary>
-        public float speed = 50;
-
-        /// <summary>
         /// Current rotate angle of crank.
         /// </summary>
         public float Angle { protected set; get; }
@@ -199,8 +194,8 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Rotate crank.
         /// </summary>
-        /// <param name="rotateSpeed">Rotate speed of crank.</param>
-        protected abstract void DriveCrank(float rotateSpeed);
+        /// <param name="velocity">Rotate velocity of crank.</param>
+        protected abstract void DriveCrank(float velocity);
         #endregion
 
         #region Public Method
@@ -216,10 +211,10 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive crank.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="velocity">Drive velocity.</param>
+        public override void Drive(float velocity)
         {
-            DriveCrank(speed * speedRatio);
+            DriveCrank(velocity);
         }
         #endregion
     }
@@ -344,10 +339,10 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive crank link mechanism.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="velocity">Drive velocity.</param>
+        public override void Drive(float velocity)
         {
-            if (crank.speed * speedRatio >= 0)
+            if (velocity >= 0)
             {
                 if (IsLock && isPositive)
                     return;
@@ -359,7 +354,7 @@ namespace Mogoson.Machinery
                     return;
                 isPositive = false;
             }
-            crank.Drive(speedRatio);
+            crank.Drive(velocity);
             DriveLinkJoints();
         }
         #endregion
@@ -420,11 +415,6 @@ namespace Mogoson.Machinery
         public Range stroke = new Range(-1, 1);
 
         /// <summary>
-        /// Move speed of joint.
-        /// </summary>
-        public float speed = 1;
-
-        /// <summary>
         /// Displacement of joint.
         /// </summary>
         public float Displacement { protected set; get; }
@@ -472,10 +462,10 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive joint.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="velocity">Drive velocity.</param>
+        public override void Drive(float velocity)
         {
-            DriveJoint(speed * speedRatio);
+            DriveJoint(velocity);
         }
         #endregion
     }
