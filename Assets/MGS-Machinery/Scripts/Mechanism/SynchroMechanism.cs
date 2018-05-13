@@ -30,14 +30,14 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive mechanism.
+        /// Drive mechanisms.
         /// </summary>
-        /// <param name="speedRatio">Speed ratio.</param>
-        public override void Drive(float speedRatio)
+        /// <param name="velocity">Drive velocity.</param>
+        public override void Drive(float velocity)
         {
             foreach (var mechanism in mechanisms)
             {
-                mechanism.Drive(speedRatio);
+                mechanism.Drive(velocity);
             }
         }
         #endregion

@@ -1,7 +1,7 @@
 ﻿==========================================================================
   Copyright © 2017-2018 Mogoson. All rights reserved.
   Name: MGS-Machinery
-  Author: Mogoson   Version: 0.2.0   Date: 4/29/2018
+  Author: Mogoson   Version: 0.2.1   Date: 5/13/2018
 ==========================================================================
   [Summary]
     Unity plugin for binding machinery joint in scene.
@@ -52,9 +52,12 @@
 
     SequenceTelescopicArm : Sequence telescopic arm, drive from first
     joint to last joint.
-    
-    SynchroMechanism : Synchronous mechanism, drive multi mechanisms at
+
+    SynchroMechanism : Synchronous mechanisms, drive multi mechanisms at
     the same time.
+
+    DifferentialMechanism : Differential mechanisms, drive multi
+    mechanisms by ratio velocity at the same time.
 
     MeDriver : Universal mechanism driver.
 --------------------------------------------------------------------------

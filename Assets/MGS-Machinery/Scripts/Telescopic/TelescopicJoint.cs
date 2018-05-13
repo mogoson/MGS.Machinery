@@ -40,11 +40,11 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Move joint.
         /// </summary>
-        /// <param name="moveSpeed">Move speed of joint.</param>
-        protected override void DriveJoint(float moveSpeed)
+        /// <param name="velocity">Move velocity.</param>
+        protected override void DriveJoint(float velocity)
         {
             triggerRecord = Displacement;
-            Displacement += moveSpeed * Time.deltaTime;
+            Displacement += velocity * Time.deltaTime;
             Displacement = Mathf.Clamp(Displacement, stroke.min, stroke.max);
             DriveJoint();
 

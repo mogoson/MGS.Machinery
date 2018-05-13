@@ -28,7 +28,8 @@
 - RockerRivet：摇杆铆钉，始终与目标关节位置（世界坐标）相同。
 - TelescopicJoint：伸缩关节。
 - SequenceTelescopicArm：序列伸缩臂。
-- SynchroMechanism：同步机构，同时驱动多个机构运转。
+- SynchroMechanism：同步机构，同时驱动多个机构等速运转。
+- DifferentialMechanism：差速机构，同时驱动多个机构差速运转。
 - MeDriver：通用机构驱动器。
 
 ## 案例

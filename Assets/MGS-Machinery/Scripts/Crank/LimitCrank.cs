@@ -31,11 +31,11 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Rotate crank in the range(minAngle~maxAngle).
         /// </summary>
-        /// <param name="rotateSpeed">Rotate speed of crank.</param>
-        protected override void DriveCrank(float rotateSpeed)
+        /// <param name="velocity">Rotate velocity.</param>
+        protected override void DriveCrank(float velocity)
         {
             triggerRecord = Angle;
-            Angle += rotateSpeed * Time.deltaTime;
+            Angle += velocity * Time.deltaTime;
             Angle = Mathf.Clamp(Angle, range.min, range.max);
             DriveCrank();
 

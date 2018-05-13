@@ -1,54 +1,44 @@
 ﻿/*************************************************************************
  *  Copyright © 2015-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  SequenceTelescopicArm.cs
- *  Description  :  Define SequenceTelescopicArm component.
+ *  File         :  DifferentialMechanism.cs
+ *  Description  :  Define DifferentialMechanism component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  4/17/2018
+ *  Date         :  5/13/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mogoson.Machinery
 {
     /// <summary>
-    /// Arm with sequence telescopic joints.
+    /// Differential mechanism group.
     /// </summary>
-    [AddComponentMenu("Mogoson/Machinery/SequenceTelescopicArm")]
-    public class SequenceTelescopicArm : TelescopicArmMechanism
+    [AddComponentMenu("Mogoson/Machinery/DifferentialMechanism")]
+    public class DifferentialMechanism : Mechanism
     {
         #region Field and Property
         /// <summary>
-        /// Current index of drive joint.
+        /// Mechanism units to drive.
         /// </summary>
-        protected int jointIndex = 0;
+        public List<MechanismUnit> mechanismUnits = new List<MechanismUnit>();
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Drive arm.
+        /// Drive mechanisms.
         /// </summary>
         /// <param name="velocity">Drive velocity.</param>
         public override void Drive(float velocity)
         {
-            var currentJoint = joints[jointIndex];
-            currentJoint.Drive(velocity);
-
-            if (velocity >= 0)
+            foreach (var unit in mechanismUnits)
             {
-                if (currentJoint.State == TelescopicState.Maximum)
-                    jointIndex++;
+                unit.mechanism.Drive(velocity * unit.coefficient);
             }
-            else
-            {
-                if (currentJoint.State == TelescopicState.Minimum)
-                    jointIndex--;
-            }
-
-            jointIndex = ClampIndex(jointIndex);
         }
         #endregion
     }

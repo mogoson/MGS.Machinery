@@ -24,11 +24,11 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Rotate crank.
         /// </summary>
-        /// <param name="rotateSpeed">Rotate speed of crank.</param>
-        protected override void DriveCrank(float rotateSpeed)
+        /// <param name="velocity">Rotate velocity.</param>
+        protected override void DriveCrank(float velocity)
         {
             triggerRecord = Angle;
-            Angle += rotateSpeed * Time.deltaTime;
+            Angle += velocity * Time.deltaTime;
             DriveCrank();
 
             if (CheckLimiterTrigger())

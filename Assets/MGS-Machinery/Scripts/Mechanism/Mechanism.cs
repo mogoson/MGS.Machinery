@@ -15,9 +15,9 @@
  *  Description  :  Optimize abstract mechanisms define.
  *************************************************************************/
 
-using Mogoson.Mathematics;
 using System;
 using System.Collections.Generic;
+using Mogoson.Mathematics;
 using UnityEngine;
 
 namespace Mogoson.Machinery
@@ -79,6 +79,38 @@ namespace Mogoson.Machinery
             this.min = min;
             this.max = max;
         }
+    }
+
+    /// <summary>
+    /// Mechanism unit.
+    /// </summary>
+    [Serializable]
+    public struct MechanismUnit
+    {
+        #region Field and Property
+        /// <summary>
+        /// Mechanism to drive.
+        /// </summary>
+        public Mechanism mechanism;
+
+        /// <summary>
+        /// Coefficient of velocity.
+        /// </summary>
+        public float coefficient;
+        #endregion
+
+        #region Public Method
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="mechanism">Mechanism to drive.</param>
+        /// <param name="coefficient">Coefficient of velocity.</param>
+        public MechanismUnit(Mechanism mechanism, float coefficient)
+        {
+            this.mechanism = mechanism;
+            this.coefficient = coefficient;
+        }
+        #endregion
     }
 
     /// <summary>
@@ -194,7 +226,7 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Rotate crank.
         /// </summary>
-        /// <param name="velocity">Rotate velocity of crank.</param>
+        /// <param name="velocity">Rotate velocity.</param>
         protected abstract void DriveCrank(float velocity);
         #endregion
 
@@ -445,8 +477,8 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Move joint.
         /// </summary>
-        /// <param name="moveSpeed">Speed of move joint.</param>
-        protected abstract void DriveJoint(float moveSpeed);
+        /// <param name="velocity">Move velocity.</param>
+        protected abstract void DriveJoint(float velocity);
         #endregion
 
         #region Public Method
