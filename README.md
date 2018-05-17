@@ -28,8 +28,8 @@
 - RockerRivet : Rivet of roker, keep the same position(world space) as the target joint.
 - TelescopicJoint : Telescopic joint.
 - SequenceTelescopicArm : Sequence telescopic arm, drive from first joint to last joint.
-- SynchroMechanism : Synchronous mechanisms, drive multi mechanisms at the same time.
-- DifferentialMechanism : Differential mechanisms, drive multi mechanisms by ratio velocity at the same time.
+- Synchronizer : Synchronous mechanisms, drive multi mechanisms at the same time.
+- Transmission : Differential mechanisms, drive multi mechanisms by ratio velocity at the same time.
 - MeDriver : Universal mechanism driver.
 
 ## Demo
