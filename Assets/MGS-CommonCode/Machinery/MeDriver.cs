@@ -19,6 +19,7 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         public float velocity = 50;
+        public DriveType type = DriveType.Ignore;
         public KeyCode positive = KeyCode.P;
         public KeyCode negative = KeyCode.N;
 
@@ -34,9 +35,9 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (Input.GetKey(positive))
-                mechanism.Drive(velocity);
+                mechanism.Drive(velocity, type);
             else if (Input.GetKey(negative))
-                mechanism.Drive(-velocity);
+                mechanism.Drive(-velocity, type);
         }
         #endregion
     }

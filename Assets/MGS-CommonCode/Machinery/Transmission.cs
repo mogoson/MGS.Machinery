@@ -30,14 +30,15 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive mechanisms.
+        /// Drive transmission by velocity.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        public override void Drive(float velocity)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity, DriveType type)
         {
             foreach (var unit in mechanismUnits)
             {
-                unit.mechanism.Drive(velocity * unit.coefficient);
+                unit.mechanism.Drive(velocity * unit.coefficient, type);
             }
         }
         #endregion

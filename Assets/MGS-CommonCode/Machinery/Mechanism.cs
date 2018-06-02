@@ -10,9 +10,14 @@
  *  Description  :  Initial development version.
  *  
  *  Author       :  Mogoson
- *  Version      :  0.1.0
+ *  Version      :  0.1.1
  *  Date         :  5/24/2018
  *  Description  :  Define mechanism interface.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.2
+ *  Date         :  6/3/2018
+ *  Description  :  Add interface and abstract class.
  *************************************************************************/
 
 using System;
@@ -20,18 +25,65 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    #region Enum
+    /// <summary>
+    /// Type of mechanism drive.
+    /// </summary>
+    public enum DriveType
+    {
+        /// <summary>
+        /// Ignore drive type.
+        /// </summary>
+        Ignore = 0,
+
+        /// <summary>
+        /// Linear drive.
+        /// </summary>
+        Linear = 1,
+
+        /// <summary>
+        /// Angular drive.
+        /// </summary>
+        Angular = 2
+    }
+    #endregion
+
+    #region Interface
     /// <summary>
     /// Mechanism interface.
     /// </summary>
     public interface IMechanism
     {
+        #region Method
         /// <summary>
-        /// Drive mechanism.
+        /// Initialize mechanism.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        void Drive(float velocity);
+        void Initialize();
+
+        /// <summary>
+        /// Drive mechanism by velocity.
+        /// </summary>
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        void Drive(float velocity, DriveType type);
+        #endregion
     }
 
+    /// <summary>
+    /// Trigger mechanism.
+    /// </summary>
+    public interface ITriggerMechanism : IMechanism
+    {
+        #region Property
+        /// <summary>
+        /// Trigger is triggered?
+        /// </summary>
+        bool IsTriggered { get; }
+        #endregion
+    }
+    #endregion
+
+    #region Abstract Class
     /// <summary>
     /// Base mechanism.
     /// </summary>
@@ -51,13 +103,29 @@ namespace Mogoson.Machinery
         public virtual void Initialize() { }
 
         /// <summary>
-        /// Drive mechanism.
+        /// Drive mechanism by velocity.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        public abstract void Drive(float velocity);
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public abstract void Drive(float velocity, DriveType type);
         #endregion
     }
 
+    /// <summary>
+    /// Trigger for mechanism.
+    /// </summary>
+    public abstract class TriggerMechanism : Mechanism, ITriggerMechanism
+    {
+        #region Field and Property
+        /// <summary>
+        /// Trigger is triggered?
+        /// </summary>
+        public abstract bool IsTriggered { get; }
+        #endregion
+    }
+    #endregion
+
+    #region Struct
     /// <summary>
     /// Mechanism unit.
     /// </summary>
@@ -89,4 +157,5 @@ namespace Mogoson.Machinery
         }
         #endregion
     }
+    #endregion
 }
