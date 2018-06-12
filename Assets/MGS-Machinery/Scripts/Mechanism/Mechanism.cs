@@ -93,26 +93,26 @@ namespace Mogoson.Machinery
         public List<RockerMechanism> rockers = new List<RockerMechanism>();
 
         /// <summary>
-        /// Limiters attached on link rockers.
+        /// Triggers attached on link rockers.
         /// </summary>
-        protected List<LimiterMechanism> limiters = new List<LimiterMechanism>();
+        protected List<TriggerMechanism> triggers = new List<TriggerMechanism>();
 
         /// <summary>
-        /// Record value on limiter is triggered.
+        /// Record value on trigger is triggered.
         /// </summary>
         protected float triggerRecord = 0;
         #endregion
 
         #region Protected Method
         /// <summary>
-        /// Check limiter is triggered.
+        /// Check trigger is triggered.
         /// </summary>
-        /// <returns>Return true if one of the limiters is triggered.</returns>
-        protected bool CheckLimiterTrigger()
+        /// <returns>Return true if one of the triggers is triggered.</returns>
+        protected bool CheckTriggers()
         {
-            foreach (var limiter in limiters)
+            foreach (var trigger in triggers)
             {
-                if (limiter.IsTriggered)
+                if (trigger.IsTriggered)
                     return true;
             }
             return false;
@@ -125,7 +125,7 @@ namespace Mogoson.Machinery
         {
             foreach (var rocker in rockers)
             {
-                rocker.Drive();
+                rocker.Drive(0, DriveType.Ignore);
             }
         }
         #endregion
@@ -136,12 +136,12 @@ namespace Mogoson.Machinery
         /// </summary>
         public override void Initialize()
         {
-            limiters.Clear();
+            triggers.Clear();
             foreach (var rocker in rockers)
             {
-                var limiter = rocker.GetComponent<LimiterMechanism>();
-                if (limiter)
-                    limiters.Add(limiter);
+                var trigger = rocker.GetComponent<TriggerMechanism>();
+                if (trigger)
+                    triggers.Add(trigger);
             }
         }
         #endregion
@@ -166,10 +166,11 @@ namespace Mogoson.Machinery
 
         #region Protected Method
         /// <summary>
-        /// Rotate crank.
+        /// Rotate crank by velocity.
         /// </summary>
-        /// <param name="velocity">Rotate velocity.</param>
-        protected abstract void DriveCrank(float velocity);
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        protected abstract void DriveCrank(float velocity, DriveType type);
         #endregion
 
         #region Public Method
@@ -183,12 +184,13 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Drive crank.
+        /// Drive crank by velocity.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        public override void Drive(float velocity)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity, DriveType type)
         {
-            DriveCrank(velocity);
+            DriveCrank(velocity, type);
         }
         #endregion
     }
@@ -311,10 +313,11 @@ namespace Mogoson.Machinery
 
         #region Public Method
         /// <summary>
-        /// Drive crank link mechanism.
+        /// Drive crank link mechanism by velocity.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        public override void Drive(float velocity)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity, DriveType type)
         {
             if (velocity >= 0)
             {
@@ -328,7 +331,7 @@ namespace Mogoson.Machinery
                     return;
                 isPositive = false;
             }
-            crank.Drive(velocity);
+            crank.Drive(velocity, type);
             DriveLinkJoints();
         }
         #endregion
@@ -337,7 +340,7 @@ namespace Mogoson.Machinery
     /// <summary>
     /// Rocker Mechanism.
     /// </summary>
-    public abstract class RockerMechanism : MonoBehaviour
+    public abstract class RockerMechanism : Mechanism
     {
         #region Field and Property
         /// <summary>
@@ -351,29 +354,18 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (!Application.isPlaying && joint)
-                Drive();
+                Drive(0, DriveType.Ignore);
         }
 #endif
         #endregion
 
-        #region Public method
+        #region Public Method
         /// <summary>
-        /// Drive rocker.
+        /// Drive rocker by velocity.
         /// </summary>
-        public abstract void Drive();
-        #endregion
-    }
-
-    /// <summary>
-    /// Limiter for mechanism.
-    /// </summary>
-    public abstract class LimiterMechanism : MonoBehaviour
-    {
-        #region Field and Property
-        /// <summary>
-        /// Limiter is triggered?
-        /// </summary>
-        public abstract bool IsTriggered { get; }
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override abstract void Drive(float velocity = 0, DriveType type = DriveType.Ignore);
         #endregion
     }
 
@@ -417,9 +409,9 @@ namespace Mogoson.Machinery
 
         #region Protected Method
         /// <summary>
-        /// Move joint.
+        /// Move joint by velocity.
         /// </summary>
-        /// <param name="velocity">Move velocity.</param>
+        /// <param name="velocity">Velocity of move.</param>
         protected abstract void DriveJoint(float velocity);
         #endregion
 
@@ -434,10 +426,11 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Drive joint.
+        /// Drive joint by velocity.
         /// </summary>
-        /// <param name="velocity">Drive velocity.</param>
-        public override void Drive(float velocity)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity, DriveType type = DriveType.Ignore)
         {
             DriveJoint(velocity);
         }
@@ -466,6 +459,15 @@ namespace Mogoson.Machinery
         {
             return Mathf.Clamp(index, 0, joints.Count - 1);
         }
+        #endregion
+
+        #region Public Method
+        /// <summary>
+        /// Drive arm by velocity.
+        /// </summary>
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override abstract void Drive(float velocity, DriveType type = DriveType.Ignore);
         #endregion
     }
 }

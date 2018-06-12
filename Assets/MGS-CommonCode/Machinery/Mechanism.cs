@@ -122,6 +122,15 @@ namespace Mogoson.Machinery
         /// </summary>
         public abstract bool IsTriggered { get; }
         #endregion
+
+        #region Public Method
+        /// <summary>
+        /// Drive trigger by velocity.
+        /// </summary>
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity = 0, DriveType type = DriveType.Ignore) { }
+        #endregion
     }
     #endregion
 

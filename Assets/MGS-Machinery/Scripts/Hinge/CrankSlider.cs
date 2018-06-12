@@ -97,7 +97,7 @@ namespace Mogoson.Machinery
                 point = isRight ? points[0] : points[1];
 
             joint.localPosition = new Vector3((float)point.x, (float)point.y);
-            link.Drive();
+            link.Drive(0, DriveType.Ignore);
         }
 
         /// <summary>

@@ -123,8 +123,8 @@ namespace Mogoson.Machinery
             }
 
             joint.localPosition = new Vector3((float)point.x, (float)point.y);
-            link.Drive();
-            rocker.Drive();
+            link.Drive(0, DriveType.Ignore);
+            rocker.Drive(0, DriveType.Ignore);
         }
         #endregion
 

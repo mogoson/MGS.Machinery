@@ -20,7 +20,7 @@ namespace Mogoson.Machinery
     [AddComponentMenu("Mogoson/Machinery/RockerLimiter")]
     [RequireComponent(typeof(RockerJoint))]
     [ExecuteInEditMode]
-    public class RockerLimiter : LimiterMechanism
+    public class RockerLimiter : TriggerMechanism
     {
         #region Field and Property
         /// <summary>
@@ -46,19 +46,20 @@ namespace Mogoson.Machinery
         public RockerJoint Rocker { protected set; get; }
         #endregion
 
-        #region Protected Method
-        protected virtual void Awake()
+        #region Public Method
+        /// <summary>
+        /// Initialize limiter.
+        /// </summary>
+        public override void Initialize()
         {
             Rocker = GetComponent<RockerJoint>();
         }
-        #endregion
 
-        #region Public Method
         /// <summary>
         /// Get distance from rocker to joint.
         /// </summary>
         /// <returns>Distance from rocker to joint.</returns>
-        public virtual float GetDistance()
+        public float GetDistance()
         {
             return Vector3.Distance(Rocker.transform.position, Rocker.joint.position);
         }

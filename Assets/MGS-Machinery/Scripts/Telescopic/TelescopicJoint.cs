@@ -48,7 +48,7 @@ namespace Mogoson.Machinery
             Displacement = Mathf.Clamp(Displacement, stroke.min, stroke.max);
             DriveJoint();
 
-            if (CheckLimiterTrigger())
+            if (CheckTriggers())
             {
                 Displacement = triggerRecord;
                 DriveJoint();

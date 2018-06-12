@@ -29,17 +29,18 @@ namespace Mogoson.Machinery
 
         #region Protected Method
         /// <summary>
-        /// Rotate crank in the range(minAngle~maxAngle).
+        /// Rotate crank by velocity.
         /// </summary>
-        /// <param name="velocity">Rotate velocity.</param>
-        protected override void DriveCrank(float velocity)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        protected override void DriveCrank(float velocity, DriveType type = DriveType.Ignore)
         {
             triggerRecord = Angle;
             Angle += velocity * Time.deltaTime;
             Angle = Mathf.Clamp(Angle, range.min, range.max);
             DriveCrank();
 
-            if (CheckLimiterTrigger())
+            if (CheckTriggers())
             {
                 Angle = triggerRecord;
                 DriveCrank();

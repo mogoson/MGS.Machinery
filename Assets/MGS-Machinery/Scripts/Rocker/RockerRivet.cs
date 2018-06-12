@@ -23,9 +23,11 @@ namespace Mogoson.Machinery
     {
         #region Public Method
         /// <summary>
-        /// Drive rocker.
+        /// Drive rocker by velocity.
         /// </summary>
-        public override void Drive()
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="type">Type of drive.</param>
+        public override void Drive(float velocity = 0, DriveType type = DriveType.Ignore)
         {
             transform.position = joint.position;
         }

@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
  *  Copyright © 2015-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  FreeCrank.cs
- *  Description  :  Define FreeCrank component.
+ *  File         :  GearCrank.cs
+ *  Description  :  Define GearCrank component.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
- *  Date         :  4/17/2018
+ *  Date         :  6/12/2018
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -17,9 +17,16 @@ namespace Mogoson.Machinery
     /// <summary>
     /// Crank free rotate around the axis Z.
     /// </summary>
-    [AddComponentMenu("Mogoson/Machinery/FreeCrank")]
-    public class FreeCrank : CrankMechanism
+    [AddComponentMenu("Mogoson/Machinery/GearCrank")]
+    public class GearCrank : FreeCrank
     {
+        #region Field and Property
+        /// <summary>
+        /// Radius of gear.
+        /// </summary>
+        public float radius = 0.5f;
+        #endregion
+
         #region Protected Method
         /// <summary>
         /// Rotate crank by velocity.
@@ -29,6 +36,12 @@ namespace Mogoson.Machinery
         protected override void DriveCrank(float velocity, DriveType type = DriveType.Ignore)
         {
             triggerRecord = Angle;
+
+            if (type == DriveType.Linear)
+                velocity *= Mathf.Rad2Deg / radius;
+            else
+                velocity *= Mathf.Deg2Rad * radius;
+
             Angle += velocity * Time.deltaTime;
             DriveCrank();
 
@@ -37,15 +50,6 @@ namespace Mogoson.Machinery
                 Angle = triggerRecord;
                 DriveCrank();
             }
-        }
-
-        /// <summary>
-        /// Rotate crank.
-        /// </summary>
-        protected void DriveCrank()
-        {
-            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, Angle));
-            DriveRockers();
         }
         #endregion
     }
