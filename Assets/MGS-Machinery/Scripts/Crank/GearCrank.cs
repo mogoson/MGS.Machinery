@@ -39,8 +39,6 @@ namespace Mogoson.Machinery
 
             if (type == DriveType.Linear)
                 velocity *= Mathf.Rad2Deg / radius;
-            else
-                velocity *= Mathf.Deg2Rad * radius;
 
             Angle += velocity * Time.deltaTime;
             DriveCrank();
