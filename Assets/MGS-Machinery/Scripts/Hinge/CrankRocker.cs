@@ -88,7 +88,7 @@ namespace Mogoson.Machinery
         protected override void DriveLinkJoints()
         {
             //Rivet joints.
-            crank.transform.localPosition = Vector3.zero;
+            crank.transform.localPosition = CorrectPosition(crank.transform.localPosition);
             link.transform.localPosition = linkPosition;
             rocker.transform.localPosition = rockerPosition;
             joint.localEulerAngles = Vector3.zero;

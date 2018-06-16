@@ -45,11 +45,12 @@ namespace Mogoson.Machinery
             if (Target.editMode == EditMode.Free)
             {
                 DrawRotationHandle(Target.crank.transform);
+                DrawPositionHandle(Target.crank.transform);
                 DrawPositionHandle(Target.link.transform);
                 DrawPositionHandle(Target.joint);
                 DrawRotationHandle(Target.joint);
 
-                Target.crank.transform.localPosition = Vector3.zero;
+                Target.crank.transform.localPosition = CorrectPosition(Target.crank.transform.localPosition);
                 Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
                 Target.link.transform.localPosition = CorrectPosition(Target.link.transform.localPosition);
                 Target.joint.localPosition = CorrectPosition(Target.joint.localPosition);
