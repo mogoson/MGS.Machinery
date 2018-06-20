@@ -8,6 +8,11 @@
  *  Version      :  0.1.0
  *  Date         :  4/11/2018
  *  Description  :  Initial development version.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.1
+ *  Date         :  6/20/2018
+ *  Description  :  Optimize display of node.
  *************************************************************************/
 
 using UnityEditor;
@@ -41,12 +46,11 @@ namespace Mogoson.Machinery
 
             Handles.color = Blue;
             Handles.DrawLine(nearMax, farMax);
-            DrawSphereCap(nearMin, Quaternion.identity, NodeSize);
-            DrawSphereCap(nearMax, Quaternion.identity, NodeSize);
-            DrawSphereCap(farMin, Quaternion.identity, NodeSize);
-            DrawSphereCap(farMax, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(nearMin, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(nearMax, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(farMin, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(farMax, Quaternion.identity, NodeSize);
 
-            GUI.color = Blue;
             Handles.Label(nearMin, "Near Min");
             Handles.Label(nearMax, "Near Max");
             Handles.Label(farMin, "Far Min");

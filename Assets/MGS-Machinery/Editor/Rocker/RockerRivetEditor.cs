@@ -30,9 +30,7 @@ namespace Mogoson.Machinery
                 return;
 
             Handles.color = Blue;
-            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
-
-            GUI.color = Blue;
+            DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             Handles.Label(Target.transform.position, "Rivet");
         }
         #endregion

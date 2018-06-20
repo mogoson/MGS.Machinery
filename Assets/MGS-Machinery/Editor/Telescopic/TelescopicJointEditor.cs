@@ -45,19 +45,18 @@ namespace Mogoson.Machinery
         protected virtual void OnSceneGUI()
         {
             Handles.color = Blue;
-            DrawSphereCap(ZeroPoint, Quaternion.identity, NodeSize);
-            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
-            DrawStroke();
-            DrawRockers(Target.rockers, Target.transform, Blue);
+            DrawAdaptiveSphereCap(ZeroPoint, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
 
-            GUI.color = Blue;
+            DrawStroke();
+            DrawRockers(Target.rockers, Target.transform);
             Handles.Label(ZeroPoint, "Zero");
         }
 
         protected virtual void DrawStroke()
         {
-            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.min, NodeSize, Blue, "Min");
-            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.max, NodeSize, Blue, "Max");
+            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.min, NodeSize, "Min");
+            DrawSphereArrow(ZeroPoint, Axis, Target.stroke.max, NodeSize, "Max");
         }
         #endregion
 

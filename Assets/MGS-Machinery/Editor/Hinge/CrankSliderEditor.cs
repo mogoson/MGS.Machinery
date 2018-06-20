@@ -8,6 +8,11 @@
  *  Version      :  0.1.0
  *  Date         :  4/21/2018
  *  Description  :  Initial development version.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.1
+ *  Date         :  6/20/2018
+ *  Description  :  Optimize display of crank and axis.
  *************************************************************************/
 
 using UnityEditor;
@@ -62,19 +67,18 @@ namespace Mogoson.Machinery
                 Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
             }
 
-            DrawSphereCap(Target.crank.transform.position, Quaternion.identity, NodeSize);
-            DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, AreaRadius);
-            DrawSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, Blue, "Axis");
+            var radius = Vector3.Distance(Target.crank.transform.position, Target.link.transform.position);
+            DrawAdaptiveSphereCap(Target.crank.transform.position, Quaternion.identity, NodeSize);
+            DrawCircleCap(Target.crank.transform.position, Target.crank.transform.rotation, radius);
+            DrawAdaptiveSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, "Axis");
 
-            var offset = Target.link.transform.position - Target.crank.transform.position;
-            DrawSphereArrow(Target.crank.transform.position, offset, AreaRadius, NodeSize, Blue, string.Empty);
-            DrawSphereArrow(Target.crank.transform.position, Target.link.transform.position, NodeSize, Blue, string.Empty);
-            DrawSphereArrow(Target.link.transform.position, Target.joint.position, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(Target.crank.transform.position, Target.link.transform.position, NodeSize);
+            DrawSphereArrow(Target.link.transform.position, Target.joint.position, NodeSize);
 
             var axis = ProjectDirection(Target.joint.forward);
             Handles.DrawLine(ZeroPoint, Target.joint.position);
-            DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize, Blue, string.Empty);
-            DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize, Blue, string.Empty);
+            DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize);
+            DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize);
 
             DrawSceneTool();
         }

@@ -37,10 +37,11 @@ namespace Mogoson.Machinery
 
             Handles.color = Blue;
             DrawPositionHandle(Target.joint);
-            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
-            DrawSphereCap(Target.joint.position, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(Target.joint.position, Quaternion.identity, NodeSize);
+
             Handles.DrawLine(Target.transform.position, Target.joint.position);
-            DrawSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, Blue, "Keep Up");
+            DrawAdaptiveSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, "Keep Up");
         }
         #endregion
 

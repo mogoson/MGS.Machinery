@@ -15,9 +15,9 @@
  *  Description  :  Optimize abstract mechanisms define.
  *************************************************************************/
 
+using Mogoson.Mathematics;
 using System;
 using System.Collections.Generic;
-using Mogoson.Mathematics;
 using UnityEngine;
 
 namespace Mogoson.Machinery

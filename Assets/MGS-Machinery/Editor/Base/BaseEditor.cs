@@ -12,29 +12,27 @@
 
 using Mogoson.UEditor;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    public class BaseEditor : GenericEditor
+    public partial class BaseEditor : GenericEditor
     {
         #region Protected Method
-        protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver, Color color)
+        protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver)
         {
             if (rockers == null)
                 return;
 
-            Handles.color = color;
             foreach (var rocker in rockers)
             {
                 if (rocker)
                 {
                     DrawPositionHandle(rocker.transform);
-                    DrawSphereArrow(driver.position, rocker.transform.position, NodeSize, Blue, string.Empty);
+                    DrawSphereArrow(driver.position, rocker.transform.position, NodeSize);
 
                     if (rocker.joint)
-                        DrawSphereArrow(rocker.transform.position, rocker.joint.transform.position, NodeSize, Blue, string.Empty);
+                        DrawSphereArrow(rocker.transform.position, rocker.joint.transform.position, NodeSize);
                 }
             }
         }

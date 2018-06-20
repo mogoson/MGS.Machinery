@@ -23,7 +23,7 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Mechanism drive by this transmission.
+        /// Mechanisms drive by this transmission.
         /// </summary>
         public List<MechanismUnit> mechanismUnits = new List<MechanismUnit>();
         #endregion

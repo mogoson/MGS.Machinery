@@ -8,6 +8,11 @@
  *  Version      :  0.1.0
  *  Date         :  4/11/2018
  *  Description  :  Initial development version.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.1
+ *  Date         :  6/20/2018
+ *  Description  :  Optimize display of node and axis.
  *************************************************************************/
 
 using UnityEditor;
@@ -45,19 +50,22 @@ namespace Mogoson.Machinery
         protected virtual void OnSceneGUI()
         {
             Handles.color = Blue;
-            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
-            DrawCircleCap(Target.transform.position, Target.transform.rotation, AreaRadius);
-            DrawSphereArrow(Target.transform.position, Axis, ArrowLength, NodeSize, Blue, "Axis");
-            DrawSphereArrow(Target.transform.position, ZeroAxis, ArrowLength, NodeSize, Blue, "Zero");
-            DrawSphereArrow(Target.transform.position, Target.transform.up, AreaRadius, NodeSize, Blue, string.Empty);
+            DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+            DrawCircleCap(Target.transform.position, Target.transform.rotation, FixedAreaRadius);
+
+            DrawAdaptiveSphereArrow(Target.transform.position, Axis, ArrowLength, NodeSize, "Axis");
+            DrawSphereArrow(Target.transform.position, ZeroAxis, FixedArrowLength, NodeSize, "Zero");
+            DrawSphereArrow(Target.transform.position, Target.transform.up, FixedAreaRadius, NodeSize);
             DrawArea();
-            DrawRockers(Target.rockers, Target.transform, Blue);
+
+            Handles.color = Blue;
+            DrawRockers(Target.rockers, Target.transform);
         }
 
         protected virtual void DrawArea()
         {
             Handles.color = TransparentBlue;
-            Handles.DrawSolidDisc(Target.transform.position, Axis, AreaRadius);
+            Handles.DrawSolidDisc(Target.transform.position, Axis, FixedAreaRadius);
         }
         #endregion
     }

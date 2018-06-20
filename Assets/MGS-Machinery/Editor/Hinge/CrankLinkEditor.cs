@@ -8,6 +8,11 @@
  *  Version      :  0.1.0
  *  Date         :  4/21/2018
  *  Description  :  Initial development version.
+ *  
+ *  Author       :  Mogoson
+ *  Version      :  0.1.1
+ *  Date         :  6/20/2018
+ *  Description  :  Optimize display of coordinate system.
  *************************************************************************/
 
 using UnityEditor;
@@ -26,8 +31,8 @@ namespace Mogoson.Machinery
         protected virtual void OnSceneGUI()
         {
             Handles.color = Blue;
-            Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.right * LineLength);
-            Handles.DrawLine(Target.transform.position, Target.transform.position + Target.transform.up * LineLength);
+            DrawAdaptiveSphereArrow(Target.transform.position, Target.transform.right, LineLength, 0, "x");
+            DrawAdaptiveSphereArrow(Target.transform.position, Target.transform.up, LineLength, 0, "y");
         }
 
         protected void DrawHingeEditorTool()

@@ -27,13 +27,18 @@ namespace Mogoson.Machinery
         protected override void OnSceneGUI()
         {
             Handles.color = Blue;
-            DrawSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
+            DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawCircleCap(Target.transform.position, Target.transform.rotation, Target.radius);
-            DrawSphereArrow(Target.transform.position, Axis, ArrowLength, NodeSize, Blue, "Axis");
-            DrawSphereArrow(Target.transform.position, ZeroAxis, Target.radius + 0.25f, NodeSize, Blue, "Zero");
-            DrawSphereArrow(Target.transform.position, Target.transform.up, Target.radius, NodeSize, Blue, string.Empty);
+            DrawAdaptiveSphereArrow(Target.transform.position, Axis, ArrowLength, NodeSize, "Axis");
+
+            var end = Target.transform.position + ZeroAxis * Target.radius;
+            Handles.DrawLine(Target.transform.position, end);
+            DrawAdaptiveSphereArrow(end, ZeroAxis, FixedArrowLength, NodeSize, "Zero");
+            DrawSphereArrow(Target.transform.position, Target.transform.up, Target.radius, NodeSize);
             DrawArea();
-            DrawRockers(Target.rockers, Target.transform, Blue);
+
+            Handles.color = Blue;
+            DrawRockers(Target.rockers, Target.transform);
         }
 
         protected override void DrawArea()

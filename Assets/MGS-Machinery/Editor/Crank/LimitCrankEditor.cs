@@ -30,10 +30,11 @@ namespace Mogoson.Machinery
             var maxAxis = Quaternion.AngleAxis(Target.range.max, Axis) * ZeroAxis;
 
             Handles.color = TransparentBlue;
-            Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.range.max - Target.range.min, AreaRadius);
+            Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.range.max - Target.range.min, FixedAreaRadius);
 
-            DrawSphereArrow(Target.transform.position, minAxis, ArrowLength, NodeSize, Blue, "Min");
-            DrawSphereArrow(Target.transform.position, maxAxis, ArrowLength, NodeSize, Blue, "Max");
+            Handles.color = Blue;
+            DrawSphereArrow(Target.transform.position, minAxis, FixedArrowLength, NodeSize, "Min");
+            DrawSphereArrow(Target.transform.position, maxAxis, FixedArrowLength, NodeSize, "Max");
         }
         #endregion
 
