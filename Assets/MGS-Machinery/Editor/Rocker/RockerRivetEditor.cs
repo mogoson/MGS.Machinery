@@ -17,7 +17,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerRivet), true)]
     [CanEditMultipleObjects]
-    public class RockerRivetEditor : BaseEditor
+    public class RockerRivetEditor : MechanismEditor
     {
         #region Field and Property
         protected RockerRivet Target { get { return target as RockerRivet; } }

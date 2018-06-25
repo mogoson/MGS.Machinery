@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
  *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  BaseEditor.cs
- *  Description  :  Custom base editor.
+ *  File         :  MechanismEditor.cs
+ *  Description  :  Custom base editor for mechanism.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    public partial class BaseEditor : GenericEditor
+    public partial class MechanismEditor : GenericEditor
     {
         #region Protected Method
         protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver)

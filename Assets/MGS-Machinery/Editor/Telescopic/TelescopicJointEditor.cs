@@ -17,7 +17,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(TelescopicJoint), true)]
     [CanEditMultipleObjects]
-    public class TelescopicJointEditor : BaseEditor
+    public class TelescopicJointEditor : MechanismEditor
     {
         #region Field and Property
         protected TelescopicJoint Target { get { return target as TelescopicJoint; } }

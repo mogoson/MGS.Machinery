@@ -22,7 +22,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerLimiter), true)]
     [CanEditMultipleObjects]
-    public class RockerLimiterEditor : BaseEditor
+    public class RockerLimiterEditor : MechanismEditor
     {
         #region Field and Property
         protected RockerLimiter Target { get { return target as RockerLimiter; } }

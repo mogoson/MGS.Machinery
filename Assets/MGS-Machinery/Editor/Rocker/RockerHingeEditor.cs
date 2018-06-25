@@ -22,7 +22,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerHinge), true)]
     [CanEditMultipleObjects]
-    public class RockerHingeEditor : BaseEditor
+    public class RockerHingeEditor : MechanismEditor
     {
         #region Field and Property
         protected RockerHinge Target { get { return target as RockerHinge; } }

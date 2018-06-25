@@ -17,7 +17,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(RockerJoint), true)]
     [CanEditMultipleObjects]
-    public class RockerJointEditor : BaseEditor
+    public class RockerJointEditor : MechanismEditor
     {
         #region Field and Property
         protected RockerJoint Target { get { return target as RockerJoint; } }

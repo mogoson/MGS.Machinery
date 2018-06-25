@@ -15,6 +15,7 @@
  *  Description  :  Add method for draw adaptive graph.
  *************************************************************************/
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace Mogoson.UEditor
 
         protected void DrawAdaptiveCircleCap(Vector3 position, Quaternion rotation, float size)
         {
-            DrawCircleCap(position, rotation, size * HandleUtility.GetHandleSize(position));
+            DrawCircleCap(position, rotation, size * GetHandleSize(position));
         }
 
         protected void DrawSphereCap(Vector3 position, Quaternion rotation, float size)
@@ -75,12 +76,22 @@ namespace Mogoson.UEditor
 
         protected void DrawAdaptiveSphereCap(Vector3 position, Quaternion rotation, float size)
         {
-            DrawSphereCap(position, rotation, size * HandleUtility.GetHandleSize(position));
+            DrawSphereCap(position, rotation, size * GetHandleSize(position));
         }
 
         protected void DrawAdaptiveWireArc(Vector3 center, Vector3 normal, Vector3 from, float angle, float radius)
         {
-            Handles.DrawWireArc(center, normal, from, angle, radius * HandleUtility.GetHandleSize(center));
+            Handles.DrawWireArc(center, normal, from, angle, radius * GetHandleSize(center));
+        }
+
+        protected void DrawAdaptiveSolidArc(Vector3 center, Vector3 normal, Vector3 from, float angle, float radius)
+        {
+            Handles.DrawSolidArc(center, normal, from, angle, radius * GetHandleSize(center));
+        }
+
+        protected void DrawAdaptiveSolidDisc(Vector3 center, Vector3 normal, float radius)
+        {
+            Handles.DrawSolidDisc(center, normal, radius * GetHandleSize(center));
         }
 
         protected void DrawSphereArrow(Vector3 start, Vector3 end, float size, string text = "")
@@ -97,7 +108,7 @@ namespace Mogoson.UEditor
 
         protected void DrawAdaptiveSphereArrow(Vector3 start, Vector3 direction, float length, float size, string text = "")
         {
-            DrawSphereArrow(start, direction, length * HandleUtility.GetHandleSize(start), size, text);
+            DrawSphereArrow(start, direction, length * GetHandleSize(start), size, text);
         }
 
         protected void DrawPositionHandle(Transform transform)
@@ -122,6 +133,36 @@ namespace Mogoson.UEditor
                 transform.rotation = rotation;
                 MarkSceneDirty();
             }
+        }
+
+        protected void DrawFreeMoveHandle(Vector3 position, Quaternion rotation, float size, Vector3 snap,
+            Handles.DrawCapFunction capFunc, Action<Vector3> callback)
+        {
+            EditorGUI.BeginChangeCheck();
+            var newPosition = Handles.FreeMoveHandle(position, Quaternion.identity, GetHandleSize(position) * size, snap, capFunc);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Move Handle");
+                callback.Invoke(newPosition);
+                MarkSceneDirty();
+            }
+        }
+
+        protected void DrawAdaptiveButton(Vector3 position, Quaternion direction, float size, float pickSize,
+            Handles.DrawCapFunction capFunc, Action callback)
+        {
+            var scale = GetHandleSize(position);
+            if (Handles.Button(position, direction, size * scale, pickSize * scale, capFunc))
+            {
+                Undo.RecordObject(target, "Click Button");
+                callback.Invoke();
+                MarkSceneDirty();
+            }
+        }
+
+        protected float GetHandleSize(Vector3 position)
+        {
+            return HandleUtility.GetHandleSize(position);
         }
 
         protected Quaternion GetPivotRotation(Transform transform)

@@ -22,7 +22,7 @@ namespace Mogoson.Machinery
 {
     [CustomEditor(typeof(FreeCrank), true)]
     [CanEditMultipleObjects]
-    public class FreeCrankEditor : BaseEditor
+    public class FreeCrankEditor : MechanismEditor
     {
         #region Field and Property
         protected FreeCrank Target { get { return target as FreeCrank; } }

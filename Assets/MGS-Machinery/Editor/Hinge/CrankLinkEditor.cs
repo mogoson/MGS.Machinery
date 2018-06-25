@@ -20,7 +20,7 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
-    public class CrankLinkEditor : BaseEditor
+    public class CrankLinkEditor : MechanismEditor
     {
         #region Field and Property
         protected CrankLinkMechanism Target { get { return target as CrankLinkMechanism; } }
