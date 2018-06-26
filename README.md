@@ -19,6 +19,7 @@
 ## Achieve
 - Mechanism : Define abstract joint, hinge and mechanism.
 - FreeCrank : Free rotate around Z axis.
+- GearCrank : Free rotate around Z axis, can be drived by linear velocity.
 - LimitCrank : Rotate around Z axis in the angle range. 
 - CrankRocker : Crank rocker mechanism.
 - CrankSlider : Crank slider mechanism.
@@ -53,6 +54,10 @@
 
 ![InternalGearing](./Attachments/README_Image/InternalGearing.gif)
 
+- Telescopic Mould
+
+![Telescopic Mould](./Attachments/README_Image/TelescopicMould.gif)
+
 - AirplaneEngine
 
 ![AirplaneEngine](./Attachments/README_Image/AirplaneEngine.gif)
@@ -80,6 +85,18 @@
 - Excavator
 
 ![Excavator](./Attachments/README_Image/Excavator.gif)
+
+- Dumper_H
+
+![Dumper_H](./Attachments/README_Image/Dumper_H.gif)
+
+- Dumper_P
+
+![Dumper_P](./Attachments/README_Image/Dumper_P.gif)
+
+- Helicopter
+
+![Helicopter](./Attachments/README_Image/Helicopter.gif)
 
 ## Contact
 - If you have any questions, feel free to contact me at mogoson@qq.com.

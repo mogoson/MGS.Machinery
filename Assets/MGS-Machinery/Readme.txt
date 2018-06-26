@@ -1,7 +1,7 @@
 ﻿==========================================================================
   Copyright © 2017-2018 Mogoson. All rights reserved.
   Name: MGS-Machinery
-  Author: Mogoson   Version: 0.2.1   Date: 5/13/2018
+  Author: Mogoson   Version: 0.2.2   Date: 6/26/2018
 ==========================================================================
   [Summary]
     Unity plugin for binding machinery joint in scene.
@@ -32,6 +32,8 @@
     Mechanism : Define abstract joint, hinge and mechanism.
 
     FreeCrank : Free rotate around Z axis.
+
+    GearCrank : Free rotate around Z axis, can be drived by linear velocity.
 
     LimitCrank : Rotate around Z axis in the angle range.
 

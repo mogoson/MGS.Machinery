@@ -19,6 +19,7 @@
 ## 实现
 - Mechanism：机械关节，铰链，机构抽象定义。
 - FreeCrank：自由曲柄，绕Z轴自由旋转。
+- GearCrank：自由曲柄，绕Z轴自由旋转，可以线速度驱动。
 - LimitCrank：受限曲柄，绕Z轴在指定角度范围内旋转。
 - CrankRocker：曲柄摇杆机构。
 - CrankSlider：曲柄滑块机构。
@@ -53,6 +54,10 @@
 
 ![InternalGearing](./Attachments/README_Image/InternalGearing.gif)
 
+- Telescopic Mould
+
+![Telescopic Mould](./Attachments/README_Image/TelescopicMould.gif)
+
 - AirplaneEngine
 
 ![AirplaneEngine](./Attachments/README_Image/AirplaneEngine.gif)
@@ -80,6 +85,18 @@
 - Excavator
 
 ![Excavator](./Attachments/README_Image/Excavator.gif)
+
+- Dumper_H
+
+![Dumper_H](./Attachments/README_Image/Dumper_H.gif)
+
+- Dumper_P
+
+![Dumper_P](./Attachments/README_Image/Dumper_P.gif)
+
+- Helicopter
+
+![Helicopter](./Attachments/README_Image/Helicopter.gif)
 
 ## 联系
 - 如果你有任何问题或者建议，欢迎通过mogoson@qq.com联系我。
