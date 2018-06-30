@@ -75,4 +75,74 @@ namespace Mogoson.Machinery
         bool IsTriggered { get; }
         #endregion
     }
+
+    /// <summary>
+    /// Mechanism with engaged mechanisms.
+    /// </summary>
+    public interface IEngageMechanism : IMechanism
+    {
+        /// <summary>
+        /// Build engage for mechanism.
+        /// </summary>
+        /// <param name="engage">Engage mechanism.</param>
+        void BuildEngage(IEngagedMechanism engage);
+
+        /// <summary>
+        /// Break engage.
+        /// </summary>
+        /// <param name="engage">Engage mechanism.</param>
+        void BreakEngage(IEngagedMechanism engage);
+    }
+
+    /// <summary>
+    /// Mechanism can be engaged to power mechanism.
+    /// </summary>
+    public interface IEngagedMechanism : IMechanism
+    {
+        /// <summary>
+        /// Engage this mechanism to power mechanism.
+        /// </summary>
+        /// <param name="engage">Power mechanism.</param>
+        void EngageTo(IEngageMechanism engage);
+
+        /// <summary>
+        /// Break engage from power mechanism.
+        /// </summary>
+        void EngageBreak();
+    }
+
+    /// <summary>
+    /// Mechanism with coaxed mechanisms.
+    /// </summary>
+    public interface ICoaxeMechanism : IMechanism
+    {
+        /// <summary>
+        /// Build coaxe for mechanism.
+        /// </summary>
+        /// <param name="coaxe">Coaxe mechanism.</param>
+        void BuildCoaxed(ICoaxedMechanism coaxe);
+
+        /// <summary>
+        /// Break coaxed.
+        /// </summary>
+        /// <param name="coaxe">Coaxe mechanism.</param>
+        void BreakCoaxed(ICoaxedMechanism coaxe);
+    }
+
+    /// <summary>
+    /// Mechanism can be coaxed to power mechanism.
+    /// </summary>
+    public interface ICoaxedMechanism : IMechanism
+    {
+        /// <summary>
+        /// Coaxe this mechanism to power mechanism.
+        /// </summary>
+        /// <param name="coaxe">Power mechanism.</param>
+        void CoaxeTo(ICoaxeMechanism coaxe);
+
+        /// <summary>
+        /// Break coaxed from power mechanism.
+        /// </summary>
+        void CoaxeBreak();
+    }
 }
