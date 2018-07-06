@@ -32,7 +32,7 @@ namespace Mogoson.Machinery
         /// Drive arm by velocity.
         /// </summary>
         /// <param name="velocity">Velocity of drive.</param>
-        /// <param name="type">Invalid parameter (SequenceTelescopicArm can only drived by linear velocity).</param>
+        /// <param name="type">Type of drive.</param>
         public override void Drive(float velocity, DriveType type = DriveType.Ignore)
         {
             var currentJoint = joints[jointIndex];
