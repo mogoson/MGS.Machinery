@@ -34,6 +34,8 @@ namespace Mogoson.Skin
         /// <summary>
         /// Mesh of skin.
         /// </summary>
+        [HideInInspector]
+        [SerializeField]
         protected Mesh mesh;
 
         /// <summary>
@@ -55,15 +57,15 @@ namespace Mogoson.Skin
         #region Protected Method
         protected virtual void Reset()
         {
-            Awake();
+            Rebuild();
         }
 
         protected virtual void Awake()
         {
             meshRenderer = GetComponent<SkinnedMeshRenderer>();
             meshCollider = GetComponent<MeshCollider>();
-
             mesh = new Mesh { name = "Skin" };
+
             Rebuild();
         }
 

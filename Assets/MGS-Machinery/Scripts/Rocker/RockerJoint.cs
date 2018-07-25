@@ -30,7 +30,6 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Reference forward as world up for look at.
         /// </summary>
-        [HideInInspector]
         public Transform reference;
 
         /// <summary>

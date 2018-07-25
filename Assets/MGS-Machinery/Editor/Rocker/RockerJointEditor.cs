@@ -21,15 +21,9 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         protected RockerJoint Target { get { return target as RockerJoint; } }
-        protected SerializedProperty reference;
         #endregion
 
         #region Protected Method
-        protected virtual void OnEnable()
-        {
-            reference = serializedObject.FindProperty("reference");
-        }
-
         protected virtual void OnSceneGUI()
         {
             if (Target.joint == null)
@@ -42,19 +36,6 @@ namespace Mogoson.Machinery
 
             Handles.DrawLine(Target.transform.position, Target.joint.position);
             DrawAdaptiveSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, "Keep Up");
-        }
-        #endregion
-
-        #region Public Method
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            if (Target.keepUp == KeepUpMode.ReferenceForward)
-            {
-                EditorGUILayout.PropertyField(reference);
-                serializedObject.ApplyModifiedProperties();
-            }
         }
         #endregion
     }
