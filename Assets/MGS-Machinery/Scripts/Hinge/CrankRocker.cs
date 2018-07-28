@@ -95,34 +95,34 @@ namespace Mogoson.Machinery
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
-            var points = Planimetry.GetIntersections(linkCircle, rockerCircle);
-            if (points == null)
+            var vectors = Planimetry.GetIntersections(linkCircle, rockerCircle);
+            if (vectors == null)
             {
                 IsLock = true;
                 return;
             }
 
             IsLock = false;
-            var point = Point.Zero;
-            if (points.Count == 1)
-                point = points[0];
+            var vector = Vector.Zero;
+            if (vectors.Count == 1)
+                vector = vectors[0];
             else
             {
                 //Adapt restrict and intertia.
                 var rID = restrict ? 1 : 0;
                 if (inertia)
-                    point = points[rID];
+                    vector = vectors[rID];
                 else
                 {
-                    var isPointTop = points[0].y - points[1].y >= 0;
-                    if (isPointTop == isTop)
-                        point = points[rID];
+                    var isVectorTop = vectors[0].y - vectors[1].y >= 0;
+                    if (isVectorTop == isTop)
+                        vector = vectors[rID];
                     else
-                        point = points[1 - rID];
+                        vector = vectors[1 - rID];
                 }
             }
 
-            joint.localPosition = new Vector3((float)point.x, (float)point.y);
+            joint.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveType.Ignore);
             rocker.Drive(0, DriveType.Ignore);
         }
@@ -147,8 +147,8 @@ namespace Mogoson.Machinery
             var lrJointPoint = CorrectPoint(joint.localPosition);
 
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
-            rockerCircle = new Circle(rockerPoint, Point.Distance(rockerPoint, lrJointPoint));
-            linkRadius = Point.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
+            rockerCircle = new Circle(rockerPoint, Vector.Distance(rockerPoint, lrJointPoint));
+            linkRadius = Vector.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
         }
         #endregion
     }

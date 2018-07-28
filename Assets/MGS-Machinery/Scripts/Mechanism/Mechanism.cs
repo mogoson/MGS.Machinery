@@ -280,9 +280,9 @@ namespace Mogoson.Machinery
         /// </summary>
         /// <param name="position">Local position.</param>
         /// <returns>Correct point.</returns>
-        protected Point CorrectPoint(Vector3 position)
+        protected Vector CorrectPoint(Vector3 position)
         {
-            return new Point(position.x, position.y);
+            return new Vector(position.x, position.y);
         }
 
         /// <summary>

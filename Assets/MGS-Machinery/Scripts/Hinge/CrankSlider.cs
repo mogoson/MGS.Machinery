@@ -82,21 +82,21 @@ namespace Mogoson.Machinery
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
-            var points = Planimetry.GetIntersections(linkCircle, linkLine);
-            if (points == null)
+            var vectors = Planimetry.GetIntersections(linkCircle, linkLine);
+            if (vectors == null)
             {
                 IsLock = true;
                 return;
             }
 
             IsLock = false;
-            var point = Point.Zero;
-            if (points.Count == 1)
-                point = points[0];
+            var vector = Vector.Zero;
+            if (vectors.Count == 1)
+                vector = vectors[0];
             else
-                point = isRight ? points[0] : points[1];
+                vector = isRight ? vectors[0] : vectors[1];
 
-            joint.localPosition = new Vector3((float)point.x, (float)point.y);
+            joint.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveType.Ignore);
         }
 
@@ -146,7 +146,7 @@ namespace Mogoson.Machinery
             var lsJointPoint = CorrectPoint(joint.localPosition);
             var linkPoint = CorrectPoint(GetLinkPosition());
 
-            linkRadius = Point.Distance(linkPoint, lsJointPoint);
+            linkRadius = Vector.Distance(linkPoint, lsJointPoint);
             linkLine = Line.FromPoints(lsJointPoint, CorrectPoint(joint.localPosition +
                 transform.InverseTransformDirection(ProjectDirection(joint.forward))));
             isRight = lsJointPoint.x - linkPoint.x >= 0;
