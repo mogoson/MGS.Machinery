@@ -19,7 +19,6 @@ namespace Mogoson.Machinery
     /// Rocker spring look at joint.
     /// </summary>
     [AddComponentMenu("Mogoson/Machinery/RockerSpring")]
-    [ExecuteInEditMode]
     public class RockerSpring : RockerJoint
     {
         #region Field and Property
@@ -46,7 +45,7 @@ namespace Mogoson.Machinery
         protected virtual void DriveSpring()
         {
 #if UNITY_EDITOR
-            if (spring == null)
+            if (!Application.isPlaying && spring == null)
                 return;
 #endif
             //Rivet spring.
