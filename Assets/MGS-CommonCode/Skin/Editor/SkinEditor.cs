@@ -35,7 +35,7 @@ namespace Mogoson.Skin
 
         protected virtual void OnDisable()
         {
-            EditorUtility.UnloadUnusedAssetsImmediate(true);
+            EditorUtility.UnloadUnusedAssetsImmediate(false);
             Undo.undoRedoPerformed = null;
         }
         #endregion

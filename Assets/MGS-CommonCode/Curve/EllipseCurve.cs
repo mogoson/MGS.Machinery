@@ -16,10 +16,10 @@ using UnityEngine;
 namespace Mogoson.Curve
 {
     /// <summary>
-    /// Info of ellipse.
+    /// Args of ellipse.
     /// </summary>
     [Serializable]
-    public struct EllipseInfo
+    public struct EllipseArgs
     {
         #region Field and Property
         /// <summary>
@@ -45,7 +45,7 @@ namespace Mogoson.Curve
         /// <param name="center">Center of ellipse.</param>
         /// <param name="semiMinorAxis">Semi minor axis of ellipse.</param>
         /// <param name="semiMajorAxis">Semi major axis of ellipse.</param>
-        public EllipseInfo(Vector3 center, float semiMinorAxis, float semiMajorAxis)
+        public EllipseArgs(Vector3 center, float semiMinorAxis, float semiMajorAxis)
         {
             this.center = center;
             this.semiMinorAxis = semiMinorAxis;
@@ -61,9 +61,9 @@ namespace Mogoson.Curve
     {
         #region Field and Property
         /// <summary>
-        /// Ellipse info of curve.
+        /// Args of ellipse curve.
         /// </summary>
-        public EllipseInfo ellipse;
+        public EllipseArgs args;
 
         /// <summary>
         /// Length of curve.
@@ -72,8 +72,8 @@ namespace Mogoson.Curve
         {
             get
             {
-                var minor = Mathf.Min(ellipse.semiMinorAxis, ellipse.semiMajorAxis);
-                var major = Mathf.Max(ellipse.semiMinorAxis, ellipse.semiMajorAxis);
+                var minor = Mathf.Min(args.semiMinorAxis, args.semiMajorAxis);
+                var major = Mathf.Max(args.semiMinorAxis, args.semiMajorAxis);
                 return 2 * Mathf.PI * minor + 4 * (major - minor);
             }
         }
@@ -90,16 +90,16 @@ namespace Mogoson.Curve
         /// </summary>
         public EllipseCurve()
         {
-            ellipse = new EllipseInfo();
+            args = new EllipseArgs();
         }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="ellipse">Ellipse info of curve.</param>
-        public EllipseCurve(EllipseInfo ellipse)
+        /// <param name="args">Args of ellipse curve.</param>
+        public EllipseCurve(EllipseArgs args)
         {
-            this.ellipse = ellipse;
+            this.args = args;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Mogoson.Curve
         /// <returns>The point on ellipse at around radian.</returns>
         public virtual Vector3 GetPointAt(float radian)
         {
-            return GetPointAt(ellipse, radian);
+            return GetPointAt(args, radian);
         }
         #endregion
 
@@ -117,12 +117,12 @@ namespace Mogoson.Curve
         /// <summary>
         /// Get point on ellipse at around radian.
         /// </summary>
-        /// <param name="ellipse">Ellipse info of curve.</param>
+        /// <param name="args">Args of ellipse curve.</param>
         /// <param name="radian">Around radian of ellipse.</param>
         /// <returns>The point on ellipse at around radian.</returns>
-        public static Vector3 GetPointAt(EllipseInfo ellipse, float radian)
+        public static Vector3 GetPointAt(EllipseArgs args, float radian)
         {
-            return ellipse.center + new Vector3(ellipse.semiMinorAxis * Mathf.Cos(radian), 0, ellipse.semiMajorAxis * Mathf.Sin(radian));
+            return args.center + new Vector3(args.semiMinorAxis * Mathf.Cos(radian), 0, args.semiMajorAxis * Mathf.Sin(radian));
         }
         #endregion
     }

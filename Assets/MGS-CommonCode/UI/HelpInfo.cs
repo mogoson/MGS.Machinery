@@ -14,6 +14,7 @@ using UnityEngine;
 
 namespace Mogoson.UI
 {
+    [AddComponentMenu("Mogoson/UI/HelpInfo")]
     public class HelpInfo : MonoBehaviour
     {
         #region Field and Property

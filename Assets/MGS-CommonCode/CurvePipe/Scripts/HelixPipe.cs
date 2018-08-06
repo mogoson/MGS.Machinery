@@ -23,14 +23,14 @@ namespace Mogoson.CurvePipe
     {
         #region Field and Property
         /// <summary>
-        /// Top ellipse info of curve.
+        /// Top ellipse args of curve.
         /// </summary>
-        public EllipseInfo topEllipse = new EllipseInfo(Vector3.up, 1.0f, 1.0f);
+        public EllipseArgs topEllipse = new EllipseArgs(Vector3.up, 1.0f, 1.0f);
 
         /// <summary>
-        /// Bottom ellipse info of curve.
+        /// Bottom ellipse args of curve.
         /// </summary>
-        public EllipseInfo bottomEllipse = new EllipseInfo(Vector3.zero, 1.0f, 1.0f);
+        public EllipseArgs bottomEllipse = new EllipseArgs(Vector3.zero, 1.0f, 1.0f);
 
         /// <summary>
         /// Max around radian of helix.
@@ -50,7 +50,7 @@ namespace Mogoson.CurvePipe
 
         #region Public Method
         /// <summary>
-        /// Rebuild path.
+        /// Rebuild pipe.
         /// </summary>
         public override void Rebuild()
         {
