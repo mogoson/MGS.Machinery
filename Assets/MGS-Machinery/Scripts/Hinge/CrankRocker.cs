@@ -90,11 +90,15 @@ namespace Mogoson.Machinery
             //Rivet joints.
             crank.transform.localPosition = CorrectPosition(crank.transform.localPosition);
             link.transform.localPosition = linkPosition;
-            rocker.transform.localPosition = rockerPosition;
+            rocker.transform.localPosition = CorrectPosition(rocker.transform.localPosition);
             joint.localEulerAngles = Vector3.zero;
 
             var linkPoint = CorrectPoint(GetLinkPosition());
             linkCircle = new Circle(linkPoint, linkRadius);
+
+            var rockerPoint = CorrectPoint(rocker.transform.localPosition);
+            rockerCircle = new Circle(rockerPoint, rockerCircle.r);
+
             var vectors = Planimetry.GetIntersections(linkCircle, rockerCircle);
             if (vectors == null)
             {
