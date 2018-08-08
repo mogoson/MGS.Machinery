@@ -51,29 +51,14 @@ namespace Mogoson.Machinery
         public override bool IsIntact { get { return crank && link && rocker && joint; } }
 
         /// <summary>
-        /// Start local position of link.
-        /// </summary>
-        protected Vector3 linkPosition;
-
-        /// <summary>
-        /// Start local position of rocker.
-        /// </summary>
-        protected Vector3 rockerPosition;
-
-        /// <summary>
-        /// Circle bese rocker.
-        /// </summary>
-        protected Circle rockerCircle;
-
-        /// <summary>
-        /// Circle base link.
-        /// </summary>
-        protected Circle linkCircle;
-
-        /// <summary>
         /// Radius of the circle that bese link.
         /// </summary>
-        protected double linkRadius = 1;
+        protected double linkRadius = 0;
+
+        /// <summary>
+        /// Radius of the circle that bese rocker.
+        /// </summary>
+        protected double rockerRadius = 0;
 
         /// <summary>
         /// Joint of link and rocker is on the top of rocker at start?
@@ -89,15 +74,11 @@ namespace Mogoson.Machinery
         {
             //Rivet joints.
             crank.transform.localPosition = CorrectPosition(crank.transform.localPosition);
-            link.transform.localPosition = linkPosition;
+            link.transform.localPosition = CorrectPosition(link.transform.localPosition);
             rocker.transform.localPosition = CorrectPosition(rocker.transform.localPosition);
-            joint.localEulerAngles = Vector3.zero;
 
-            var linkPoint = CorrectPoint(GetLinkPosition());
-            linkCircle = new Circle(linkPoint, linkRadius);
-
-            var rockerPoint = CorrectPoint(rocker.transform.localPosition);
-            rockerCircle = new Circle(rockerPoint, rockerCircle.r);
+            var linkCircle = new Circle(CorrectPoint(GetLinkPosition()), linkRadius);
+            var rockerCircle = new Circle(CorrectPoint(rocker.transform.localPosition), rockerRadius);
 
             var vectors = Planimetry.GetIntersections(linkCircle, rockerCircle);
             if (vectors == null)
@@ -142,17 +123,13 @@ namespace Mogoson.Machinery
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
             crank.Initialize();
 
-            //Save start local position.
-            linkPosition = CorrectPosition(link.transform.localPosition);
-            rockerPosition = CorrectPosition(rocker.transform.localPosition);
-
             //Initialize CrankRocker mathematical model.
             var rockerPoint = CorrectPoint(rocker.transform.localPosition);
             var lrJointPoint = CorrectPoint(joint.localPosition);
 
-            isTop = lrJointPoint.y - rockerPoint.y >= 0;
-            rockerCircle = new Circle(rockerPoint, Vector.Distance(rockerPoint, lrJointPoint));
             linkRadius = Vector.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
+            rockerRadius = Vector.Distance(rockerPoint, lrJointPoint);
+            isTop = lrJointPoint.y - rockerPoint.y >= 0;
         }
         #endregion
     }

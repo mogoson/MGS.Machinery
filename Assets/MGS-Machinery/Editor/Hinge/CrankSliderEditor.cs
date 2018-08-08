@@ -26,17 +26,6 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         protected new CrankSlider Target { get { return target as CrankSlider; } }
-
-        protected Vector3 ZeroPoint
-        {
-            get
-            {
-                if (Application.isPlaying)
-                    return Target.transform.TransformPoint(Target.JointPosition);
-                else
-                    return Target.joint.position;
-            }
-        }
         #endregion
 
         #region Protected Method
@@ -52,14 +41,14 @@ namespace Mogoson.Machinery
                 DrawRotationHandle(Target.crank.transform);
                 DrawPositionHandle(Target.crank.transform);
                 DrawPositionHandle(Target.link.transform);
-                DrawPositionHandle(Target.joint);
-                DrawRotationHandle(Target.joint);
+                DrawPositionHandle(Target.slider);
+                DrawRotationHandle(Target.slider);
 
                 Target.crank.transform.localPosition = CorrectPosition(Target.crank.transform.localPosition);
                 Target.crank.transform.localEulerAngles = CorrectAngles(Target.crank.transform.localEulerAngles);
                 Target.link.transform.localPosition = CorrectPosition(Target.link.transform.localPosition);
-                Target.joint.localPosition = CorrectPosition(Target.joint.localPosition);
-                Target.joint.localEulerAngles = CorrectJointAngles(Target.joint.localEulerAngles);
+                Target.slider.localPosition = CorrectPosition(Target.slider.localPosition);
+                Target.slider.localEulerAngles = CorrectJointAngles(Target.slider.localEulerAngles);
             }
             else if (Target.editMode == EditMode.Hinge)
             {
@@ -73,12 +62,12 @@ namespace Mogoson.Machinery
             DrawAdaptiveSphereArrow(Target.crank.transform.position, Target.crank.transform.forward, ArrowLength, NodeSize, "Axis");
 
             DrawSphereArrow(Target.crank.transform.position, Target.link.transform.position, NodeSize);
-            DrawSphereArrow(Target.link.transform.position, Target.joint.position, NodeSize);
+            DrawSphereArrow(Target.link.transform.position, Target.slider.position, NodeSize);
 
-            var axis = ProjectDirection(Target.joint.forward);
-            Handles.DrawLine(ZeroPoint, Target.joint.position);
-            DrawSphereArrow(ZeroPoint, axis, ArrowLength, NodeSize);
-            DrawSphereArrow(ZeroPoint, -axis, ArrowLength, NodeSize);
+            var axis = ProjectDirection(Target.slider.forward);
+            Handles.DrawLine(Target.slider.position, Target.slider.position);
+            DrawSphereArrow(Target.slider.position, axis, ArrowLength, NodeSize);
+            DrawSphereArrow(Target.slider.position, -axis, ArrowLength, NodeSize);
 
             DrawSceneTool();
         }

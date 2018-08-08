@@ -24,49 +24,24 @@ namespace Mogoson.Machinery
     {
         #region Field and Property
         /// <summary>
-        /// Joint of link and slider.
+        /// Slider joint.
         /// </summary>
-        public Transform joint;
+        public Transform slider;
 
         /// <summary>
         /// All the joints of this mechanism are set intact.
         /// </summary>
-        public override bool IsIntact { get { return crank && link && joint; } }
-
-        /// <summary>
-        /// Start local position of joint.
-        /// </summary>
-        public Vector3 JointPosition { protected set; get; }
-
-        /// <summary>
-        /// Start local position of link.
-        /// </summary>
-        protected Vector3 linkPosition;
-
-        /// <summary>
-        /// Start local euler angles of joint.
-        /// </summary>
-        protected Vector3 jointAngles;
-
-        /// <summary>
-        /// Line from link to joint.
-        /// </summary>
-		protected Line linkLine;
-
-        /// <summary>
-        /// Circle base link.
-        /// </summary>
-		protected Circle linkCircle;
+        public override bool IsIntact { get { return crank && link && slider; } }
 
         /// <summary>
         /// Radius of the circle that base link.
         /// </summary>
-		protected double linkRadius;
+		protected double linkRadius = 0;
 
         /// <summary>
-        /// Joint is on the right of link at start.
+        /// Slider is on the right of link at start.
         /// </summary>
-		protected bool isRight;
+		protected bool isRight = false;
         #endregion
 
         #region Protected Method
@@ -77,12 +52,14 @@ namespace Mogoson.Machinery
         {
             //Rivet joints.
             crank.transform.localPosition = CorrectPosition(crank.transform.localPosition);
-            link.transform.localPosition = linkPosition;
-            joint.localEulerAngles = jointAngles;
+            link.transform.localPosition = CorrectPosition(link.transform.localPosition);
+            slider.localEulerAngles = CorrectJointAngles(slider.localEulerAngles);
 
-            var linkPoint = CorrectPoint(GetLinkPosition());
-            linkCircle = new Circle(linkPoint, linkRadius);
-            var vectors = Planimetry.GetIntersections(linkCircle, linkLine);
+            var linkCircle = new Circle(CorrectPoint(GetLinkPosition()), linkRadius);
+            var slideLine = Line.FromPoints(CorrectPoint(slider.localPosition),
+                CorrectPoint(slider.localPosition + transform.InverseTransformDirection(ProjectDirection(slider.forward))));
+
+            var vectors = Planimetry.GetIntersections(linkCircle, slideLine);
             if (vectors == null)
             {
                 IsLock = true;
@@ -96,7 +73,7 @@ namespace Mogoson.Machinery
             else
                 vector = isRight ? vectors[0] : vectors[1];
 
-            joint.localPosition = new Vector3((float)vector.x, (float)vector.y);
+            slider.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveType.Ignore);
         }
 
@@ -134,21 +111,11 @@ namespace Mogoson.Machinery
             crank.transform.localEulerAngles = CorrectAngles(crank.transform.localEulerAngles);
             crank.Initialize();
 
-            //Correct joint.
-            jointAngles = CorrectJointAngles(joint.localEulerAngles);
-            joint.localEulerAngles = jointAngles;
-
-            //Save start local position.
-            linkPosition = CorrectPosition(link.transform.localPosition);
-            JointPosition = CorrectPosition(joint.localPosition);
-
             //Initialize CrankSlider mathematical model.
-            var lsJointPoint = CorrectPoint(joint.localPosition);
+            var lsJointPoint = CorrectPoint(slider.localPosition);
             var linkPoint = CorrectPoint(GetLinkPosition());
 
             linkRadius = Vector.Distance(linkPoint, lsJointPoint);
-            linkLine = Line.FromPoints(lsJointPoint, CorrectPoint(joint.localPosition +
-                transform.InverseTransformDirection(ProjectDirection(joint.forward))));
             isRight = lsJointPoint.x - linkPoint.x >= 0;
         }
         #endregion
