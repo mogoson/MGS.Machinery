@@ -14,6 +14,7 @@ using UnityEngine;
 
 namespace Mogoson.Machinery
 {
+    [AddComponentMenu("Mogoson/Machinery/MeDriver")]
     [RequireComponent(typeof(Mechanism))]
     public class MeDriver : MonoBehaviour
     {
