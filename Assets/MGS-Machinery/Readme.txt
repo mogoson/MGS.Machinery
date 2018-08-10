@@ -1,7 +1,7 @@
 ﻿==========================================================================
   Copyright © 2017-2018 Mogoson. All rights reserved.
   Name: MGS-Machinery
-  Author: Mogoson   Version: 0.2.2   Date: 6/26/2018
+  Author: Mogoson   Version: 0.2.3   Date: 8/10/2018
 ==========================================================================
   [Summary]
     Unity plugin for binding machinery joint in scene.
@@ -14,6 +14,8 @@
     waist articulation of road roller.
 
     Binding hydraulic cylinder.
+
+    Binding dynamic spring.
 
     Binding crank roker, example: scraper bucket of loader, bucket of
     excavator.
@@ -50,6 +52,8 @@
     RockerRivet : Rivet of roker, keep the same position(world space) as
     the target joint.
 
+    RockerSpring : Rocker spring look at joint.
+
     TelescopicJoint : Telescopic joint.
 
     SequenceTelescopicArm : Sequence telescopic arm, drive from first
@@ -58,8 +62,8 @@
     Synchronizer : Synchronous mechanisms, drive multi mechanisms at
     the same time.
 
-    Transmission : Differential mechanisms, drive multi
-    mechanisms by ratio velocity at the same time.
+    Transmission : Differential mechanisms, drive multi mechanisms
+    by ratio velocity at the same time.
 
     MeDriver : Universal mechanism driver.
 --------------------------------------------------------------------------
@@ -100,5 +104,5 @@
     https://github.com/mogoson/MGS-Machinery.
 --------------------------------------------------------------------------
   [Contact]
-    If you have any questions, feel free to contact me at mogoson@qq.com.
+    If you have any questions, feel free to contact me at mogoson@outlook.com.
 --------------------------------------------------------------------------

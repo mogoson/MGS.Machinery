@@ -27,6 +27,7 @@
 - RockerJoint：摇杆关节，始终朝向目标关节。
 - RockerLimiter：摇杆限位器，限定一对摇杆之间的距离范围。
 - RockerRivet：摇杆铆钉，始终与目标关节位置（世界坐标）相同。
+- RockerSpring：摇杆弹簧，动态弹簧始终朝向目标关节。
 - TelescopicJoint：伸缩关节。
 - SequenceTelescopicArm：序列伸缩臂。
 - Synchronizer：同步机构，同时驱动多个机构等速运转。
@@ -107,4 +108,4 @@
 ![Helicopter](./Attachments/README_Image/Helicopter.gif)
 
 ## 联系
-- 如果你有任何问题或者建议，欢迎通过mogoson@qq.com联系我。
+- 如果你有任何问题或者建议，欢迎通过mogoson@outlook.com联系我。
