@@ -6,7 +6,7 @@
 
 ## 需求
 - 绑定曲柄，即旋转关节，例如：起重机的上车部分以及大臂部分，外啮合齿轮，内啮合齿轮等。
-- 绑定伸缩关节，例如：起重机的伸缩力臂和横向/纵向支腿，压路机的腰部铰接等。
+- 绑定伸缩滑块，例如：起重机的伸缩力臂和横向/纵向支腿，压路机的腰部铰接等。
 - 绑定液压油缸，例如：挖掘机的力臂驱动油缸，平地机的刮刀偏移驱动油缸等。
 - 绑定曲柄摇杆机构，即平面四杆铰链，例如：装载机的铲斗，挖掘机的挖斗等。
 - 绑定曲柄滑块机构，例如：往复活塞式内燃机，飞机行星发动机等。
@@ -28,8 +28,8 @@
 - RockerLimiter：摇杆限位器，限定一对摇杆之间的距离范围。
 - RockerRivet：摇杆铆钉，始终与目标关节位置（世界坐标）相同。
 - RockerSpring：摇杆弹簧，动态弹簧始终朝向目标关节。
-- TelescopicJoint：伸缩关节。
-- SequenceTelescopicArm：序列伸缩臂。
+- Slider ：伸缩滑块关节。
+- SliderArm：序列伸缩臂。
 - Synchronizer：同步机构，同时驱动多个机构等速运转。
 - Transmission：差速机构，同时驱动多个机构差速运转。
 - MeDriver：通用机构驱动器。
@@ -39,49 +39,49 @@
 - “MGS-Machinery/Scenes”目录下存有上述机械关节和完整机械绑定的演示案例，供读者参考。
 
 ## 预览
-- CrankRocker
+- Crank Rocker
 
-![CrankRocker](./Attachments/README_Image/CrankRocker.gif)
+![Crank Rocker](./Attachments/README_Image/CrankRocker.gif)
 
-- CrankSlider
+- Crank Slider
 
-![CrankSlider](./Attachments/README_Image/CrankSlider.gif)
+![Crank Slider](./Attachments/README_Image/CrankSlider.gif)
 
-- RockerSpring
+- Rocker Spring
 
-![RockerSpring](./Attachments/README_Image/RockerSpring.gif)
+![Rocker Spring](./Attachments/README_Image/RockerSpring.gif)
 
-- Telescopic Mould
+- Extend Mould
 
-![Telescopic Mould](./Attachments/README_Image/TelescopicMould.gif)
+![Extend Mould](./Attachments/README_Image/ExtendMould.gif)
 
 - Cross Extender
 
-![CrossExtender](./Attachments/README_Image/CrossExtender.gif)
+![Cross Extender](./Attachments/README_Image/CrossExtender.gif)
 
-- RockerHinge
+- Rocker Hinge
 
-![RockerHinge](./Attachments/README_Image/RockerHinge.gif)
+![Rocker Hinge](./Attachments/README_Image/RockerHinge.gif)
 
-- InternalGearing
+- Internal Gearing
 
-![InternalGearing](./Attachments/README_Image/InternalGearing.gif)
+![Internal Gearing](./Attachments/README_Image/InternalGearing.gif)
 
-- AirplaneEngine
+- Airplane Engine
 
-![AirplaneEngine](./Attachments/README_Image/AirplaneEngine.gif)
+![Airplane Engine](./Attachments/README_Image/AirplaneEngine.gif)
 
-- GasEngine
+- Gas Engine
 
-![GasEngine](./Attachments/README_Image/GasEngine.gif)
+![Gas Engine](./Attachments/README_Image/GasEngine.gif)
 
 - Crane
 
 ![Crane](./Attachments/README_Image/Crane.gif)
 
-- RoadRoller
+- Road Roller
 
-![RoadRoller](./Attachments/README_Image/RoadRoller.gif)
+![Road Roller](./Attachments/README_Image/RoadRoller.gif)
 
 - Loader
 
