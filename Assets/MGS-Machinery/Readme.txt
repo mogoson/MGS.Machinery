@@ -10,7 +10,7 @@
     Binding rotate joints, example: upcar of crane, external gearing and
     inner gearing.
 
-    Binding telescopic joints, example: big arm and landing legs of crane,
+    Binding slider joints, example: big arm and landing legs of crane,
     waist articulation of road roller.
 
     Binding hydraulic cylinder.
@@ -54,10 +54,9 @@
 
     RockerSpring : Rocker spring look at joint.
 
-    TelescopicJoint : Telescopic joint.
+    Slider : Slider joint.
 
-    SequenceTelescopicArm : Sequence telescopic arm, drive from first
-    joint to last joint.
+    SliderArm : Sequence slider arm, drive from first joint to last joint.
 
     Synchronizer : Synchronous mechanisms, drive multi mechanisms at
     the same time.
