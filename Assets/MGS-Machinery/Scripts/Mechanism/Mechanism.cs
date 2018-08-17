@@ -370,23 +370,23 @@ namespace Mogoson.Machinery
     }
 
     /// <summary>
-    /// Telescopic joint mechanism.
+    /// Slider joint mechanism.
     /// </summary>
-    public abstract class TelescopicJointMechanism : RockerLinkMechanism
+    public abstract class SliderMechanism : RockerLinkMechanism
     {
         #region Field and Property
         /// <summary>
-        /// Stroke of joint.
+        /// Stroke of slider.
         /// </summary>
         public Range stroke = new Range(-1, 1);
 
         /// <summary>
-        /// Displacement of joint.
+        /// Displacement of slider.
         /// </summary>
         public float Displacement { protected set; get; }
 
         /// <summary>
-        /// Telescopic state of joint.
+        /// Telescopic state of slider.
         /// </summary>
         public TelescopicState State
         {
@@ -402,17 +402,17 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Start position of joint.
+        /// Start position of slider.
         /// </summary>
         public Vector3 StartPosition { protected set; get; }
         #endregion
 
         #region Protected Method
         /// <summary>
-        /// Move joint by velocity.
+        /// Move slider by velocity.
         /// </summary>
         /// <param name="velocity">Velocity of move.</param>
-        protected abstract void DriveJoint(float velocity);
+        protected abstract void DriveSlider(float velocity);
         #endregion
 
         #region Public Method
@@ -426,38 +426,38 @@ namespace Mogoson.Machinery
         }
 
         /// <summary>
-        /// Drive joint by velocity.
+        /// Drive slider by velocity.
         /// </summary>
         /// <param name="velocity">Velocity of drive.</param>
         /// <param name="type">Type of drive.</param>
         public override void Drive(float velocity, DriveType type = DriveType.Ignore)
         {
-            DriveJoint(velocity);
+            DriveSlider(velocity);
         }
         #endregion
     }
 
     /// <summary>
-    /// Arm with telescopic joints.
+    /// Arm with slider joints.
     /// </summary>
-	public abstract class TelescopicArmMechanism : Mechanism
+	public abstract class SliderArmMechanism : Mechanism
     {
         #region Field and Property
         /// <summary>
-        /// Telescopic joints of arm.
+        /// Slider joints of arm.
         /// </summary>
-        public List<TelescopicJointMechanism> joints = new List<TelescopicJointMechanism>();
+        public List<SliderMechanism> sliders = new List<SliderMechanism>();
         #endregion
 
         #region Protected Method
         /// <summary>
-        /// Clamp joint index in the range.
+        /// Clamp slider index in the range.
         /// </summary>
-        /// <param name="index">Index of joint.</param>
-        /// <returns>Correct index of joint.</returns>
+        /// <param name="index">Index of slider.</param>
+        /// <returns>Correct index of slider.</returns>
         protected int ClampIndex(int index)
         {
-            return Mathf.Clamp(index, 0, joints.Count - 1);
+            return Mathf.Clamp(index, 0, sliders.Count - 1);
         }
         #endregion
 
