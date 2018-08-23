@@ -95,13 +95,13 @@
 
 ![Excavator](./Attachments/README_Image/Excavator.gif)
 
-- Dumper_H
+- Dumper
 
-![Dumper_H](./Attachments/README_Image/Dumper_H.gif)
+![Dumper](./Attachments/README_Image/Dumper_H.gif)
 
-- Dumper_P
+- Dumper
 
-![Dumper_P](./Attachments/README_Image/Dumper_P.gif)
+![Dumper](./Attachments/README_Image/Dumper_P.gif)
 
 - Helicopter
 
