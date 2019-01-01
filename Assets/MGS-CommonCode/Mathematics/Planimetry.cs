@@ -331,16 +331,16 @@ namespace Mogoson.Mathematics
              *      \/ A + B                \/ 1 + k
              */
 
+            var dis = 0d;
             if (L1.k == L2.k)
             {
-                var dB = Math.Abs(L2.b - L1.b);
-                if (L1.k == 0 || L1.k == double.PositiveInfinity)
-                    return dB;
-                else
-                    return dB / Math.Sqrt(1 + Math.Pow(L1.k, 2));
+                dis = Math.Abs(L2.b - L1.b);
+                if (L1.k != 0 && L1.k != double.PositiveInfinity)
+                {
+                    dis /= Math.Sqrt(1 + Math.Pow(L1.k, 2));
+                }
             }
-            else
-                return 0;
+            return dis;
         }
 
         /// <summary>
@@ -362,12 +362,20 @@ namespace Mogoson.Mathematics
              *      \/ A + B                    \/ 1 + k
              */
 
+            var dis = 0d;
             if (L.k == 0)
-                return Math.Abs(v.y - L.b);
+            {
+                dis = Math.Abs(v.y - L.b);
+            }
             else if (L.k == double.PositiveInfinity)
-                return Math.Abs(v.x - L.b);
+            {
+                dis = Math.Abs(v.x - L.b);
+            }
             else
-                return Math.Abs(L.k * v.x - v.y + L.b) / Math.Sqrt(1 + Math.Pow(L.k, 2));
+            {
+                dis = Math.Abs(L.k * v.x - v.y + L.b) / Math.Sqrt(1 + Math.Pow(L.k, 2));
+            }
+            return dis;
         }
         #endregion
 
@@ -386,22 +394,34 @@ namespace Mogoson.Mathematics
             var rp = Math.Abs(c1.r - c2.r);
 
             if (cd > rd)
+            {
                 re = Relation.External;
+            }
             else if (cd == rd)
+            {
                 re = Relation.OutsideTangent;
+            }
             else
             {
                 if (cd > rp)
+                {
                     re = Relation.Intersect;
+                }
                 else if (cd == rp)
                 {
                     if (rp == 0)
+                    {
                         re = Relation.Coincidence;
+                    }
                     else
+                    {
                         re = Relation.InsideTangent;
+                    }
                 }
                 else
+                {
                     re = Relation.Internal;
+                }
             }
             return re;
         }
@@ -418,11 +438,17 @@ namespace Mogoson.Mathematics
             var d = GetDistance(c.c, L);
 
             if (d > c.r)
+            {
                 re = Relation.External;
+            }
             else if (d == c.r)
+            {
                 re = Relation.OutsideTangent;
+            }
             else
+            {
                 re = Relation.Intersect;
+            }
             return re;
         }
 
@@ -438,11 +464,17 @@ namespace Mogoson.Mathematics
             var cp = Vector.Distance(c.c, v);
 
             if (cp > c.r)
+            {
                 re = Relation.External;
+            }
             else if (cp == c.r)
+            {
                 re = Relation.Coincidence;
+            }
             else
+            {
                 re = Relation.Internal;
+            }
             return re;
         }
 
@@ -458,12 +490,18 @@ namespace Mogoson.Mathematics
             if (L1.k == L2.k)
             {
                 if (L1.b == L2.b)
+                {
                     re = Relation.Coincidence;
+                }
                 else
+                {
                     re = Relation.Parallel;
+                }
             }
             else
+            {
                 re = Relation.Intersect;
+            }
             return re;
         }
 
@@ -479,16 +517,24 @@ namespace Mogoson.Mathematics
             if (L.k == double.PositiveInfinity)
             {
                 if (v.x == L.b)
+                {
                     re = Relation.Coincidence;
+                }
                 else
+                {
                     re = Relation.External;
+                }
             }
             else
             {
                 if (v.y == L.k * v.x + L.b)
+                {
                     re = Relation.Coincidence;
+                }
                 else
+                {
                     re = Relation.External;
+                }
             }
             return re;
         }
@@ -531,8 +577,7 @@ namespace Mogoson.Mathematics
                 var b = 0d;
                 var dx = c2.c.x - c1.c.x;
                 var dy = c2.c.y - c1.c.y;
-                var temp = Math.Pow(c2.c.x, 2) + Math.Pow(c2.c.y, 2) + Math.Pow(c1.r, 2)
-                          - Math.Pow(c1.c.x, 2) - Math.Pow(c1.c.y, 2) - Math.Pow(c2.r, 2);
+                var temp = Math.Pow(c2.c.x, 2) + Math.Pow(c2.c.y, 2) + Math.Pow(c1.r, 2) - Math.Pow(c1.c.x, 2) - Math.Pow(c1.c.y, 2) - Math.Pow(c2.r, 2);
                 if (dy == 0)
                 {
                     k = double.PositiveInfinity;
@@ -545,8 +590,7 @@ namespace Mogoson.Mathematics
                 }
                 return GetIntersections(c1, new Line(k, b));
             }
-            else
-                return null;
+            return null;
         }
 
         /// <summary>
@@ -580,7 +624,6 @@ namespace Mogoson.Mathematics
             if (re == Relation.OutsideTangent || re == Relation.Intersect)
             {
                 var points = new List<Vector>();
-
                 if (L.k == double.PositiveInfinity)
                 {
                     var x1 = L.b;
@@ -615,8 +658,7 @@ namespace Mogoson.Mathematics
                 }
                 return points;
             }
-            else
-                return null;
+            return null;
         }
 
         /// <summary>
@@ -636,7 +678,9 @@ namespace Mogoson.Mathematics
              */
 
             if (L1.k == L2.k)
+            {
                 return null;
+            }
 
             var x = 0d;
             var y = 0d;

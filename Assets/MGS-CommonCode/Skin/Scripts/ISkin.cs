@@ -21,19 +21,14 @@ namespace Mogoson.Skin
     {
         #region Property
         /// <summary>
-        /// Mesh renderer of skin.
+        /// Skinned mesh renderer of skin.
         /// </summary>
-        Renderer Renderer { get; }
+        SkinnedMeshRenderer Renderer { get; }
 
         /// <summary>
         /// Mesh collider of skin.
         /// </summary>
-        Collider Collider { get; }
-
-        /// <summary>
-        /// Mesh of skin.
-        /// </summary>
-        Mesh Mesh { get; }
+        MeshCollider Collider { get; }
         #endregion
 
         #region Method

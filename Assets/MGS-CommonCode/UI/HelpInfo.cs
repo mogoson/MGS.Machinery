@@ -28,6 +28,11 @@ namespace Mogoson.UI
         #region Private Method
         private void OnGUI()
         {
+            DrawHelpInfoUI();
+        }
+
+        private void DrawHelpInfoUI()
+        {
             GUILayout.Space(top);
             GUILayout.BeginHorizontal();
             GUILayout.Space(left);

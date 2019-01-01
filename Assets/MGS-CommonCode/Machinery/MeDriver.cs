@@ -30,15 +30,29 @@ namespace Mogoson.Machinery
         #region Protected Method
         protected virtual void Start()
         {
-            mechanism = GetComponent<Mechanism>();
+            Initialize();
         }
 
         protected virtual void Update()
         {
+            DriveMechanism();
+        }
+
+        protected virtual void Initialize()
+        {
+            mechanism = GetComponent<Mechanism>();
+        }
+
+        protected void DriveMechanism()
+        {
             if (Input.GetKey(positive))
+            {
                 mechanism.Drive(velocity, type);
+            }
             else if (Input.GetKey(negative))
+            {
                 mechanism.Drive(-velocity, type);
+            }
         }
         #endregion
     }

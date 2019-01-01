@@ -102,8 +102,9 @@ namespace Mogoson.Curve
         public static Vector3 GetPointAt(EllipseArgs topEllipse, EllipseArgs bottomEllipse, float maxRadian, float radian)
         {
             if (maxRadian == 0)
+            {
                 maxRadian = Mathf.Epsilon;
-
+            }
             return Vector3.Lerp(EllipseCurve.GetPointAt(bottomEllipse, radian), EllipseCurve.GetPointAt(topEllipse, radian), radian / maxRadian);
         }
         #endregion

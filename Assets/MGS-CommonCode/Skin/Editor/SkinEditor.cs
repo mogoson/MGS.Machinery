@@ -29,7 +29,7 @@ namespace Mogoson.Skin
             if (!Application.isPlaying)
             {
                 Target.Rebuild();
-                Undo.undoRedoPerformed = () => { Target.Rebuild(); };
+                Undo.undoRedoPerformed = () => Target.Rebuild();
             }
         }
 
@@ -46,7 +46,9 @@ namespace Mogoson.Skin
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck())
+            {
                 Target.Rebuild();
+            }
         }
         #endregion
     }

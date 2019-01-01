@@ -36,20 +36,21 @@ namespace Mogoson.Skin
         /// </summary>
         protected Mesh mesh;
 
+#if UNITY_EDITOR
+        /// <summary>
+        /// Mono skin is initialized?
+        /// </summary>
+        private bool isInitialized = false;
+#endif
         /// <summary>
         /// Skinned mesh renderer of skin.
         /// </summary>
-        public Renderer Renderer { get { return meshRenderer; } }
+        public SkinnedMeshRenderer Renderer { get { return meshRenderer; } }
 
         /// <summary>
         /// Mesh collider of skin.
         /// </summary>
-        public Collider Collider { get { return meshCollider; } }
-
-        /// <summary>
-        /// Mesh of skin.
-        /// </summary>
-        public Mesh Mesh { get { return mesh; } }
+        public MeshCollider Collider { get { return meshCollider; } }
         #endregion
 
         #region Protected Method
@@ -60,24 +61,31 @@ namespace Mogoson.Skin
 
         protected virtual void Awake()
         {
-            meshRenderer = GetComponent<SkinnedMeshRenderer>();
-            meshCollider = GetComponent<MeshCollider>();
-            mesh = new Mesh { name = "Skin" };
-
+            Initialize();
             Rebuild();
         }
 
         /// <summary>
-        /// Create vertices of skin mesh.
+        /// Initialize mono skin.
         /// </summary>
-        /// <returns></returns>
-        protected abstract Vector3[] CreateVertices();
+        protected virtual void Initialize()
+        {
+#if UNITY_EDITOR
+            if (isInitialized)
+            {
+                return;
+            }
+            isInitialized = true;
+#endif
+            meshRenderer = GetComponent<SkinnedMeshRenderer>();
+            meshCollider = GetComponent<MeshCollider>();
+            mesh = new Mesh { name = "Skin" };
+        }
 
         /// <summary>
-        /// Create triangles of skin mesh.
+        /// Rebuild the mesh of skin.
         /// </summary>
-        /// <returns>Triangles of skin mesh.</returns>
-        protected abstract int[] CreateTriangles();
+        protected abstract void RebuildMesh();
         #endregion
 
         #region Public Method
@@ -87,27 +95,20 @@ namespace Mogoson.Skin
         public virtual void Rebuild()
         {
 #if UNITY_EDITOR
-            if (meshRenderer == null)
-                meshRenderer = GetComponent<SkinnedMeshRenderer>();
-
-            if (meshCollider == null)
-                meshCollider = GetComponent<MeshCollider>();
-
-            if (mesh == null)
-                mesh = new Mesh { name = "Skin" };
+            if (!Application.isPlaying)
+            {
+                Initialize();
+            }
 #endif
-            mesh.Clear();
-            mesh.vertices = CreateVertices();
-            mesh.triangles = CreateTriangles();
-
-            mesh.RecalculateNormals();
-            mesh.RecalculateBounds();
-
+            RebuildMesh();
             meshRenderer.sharedMesh = mesh;
             meshRenderer.localBounds = mesh.bounds;
 
             if (meshCollider)
+            {
+                meshCollider.sharedMesh = null;
                 meshCollider.sharedMesh = mesh;
+            }
         }
 
         /// <summary>
@@ -115,14 +116,10 @@ namespace Mogoson.Skin
         /// </summary>
         public void AttachCollider()
         {
-            if (meshCollider)
-                return;
-            else
+            meshCollider = GetComponent<MeshCollider>();
+            if (meshCollider == null)
             {
-                var collider = GetComponent<MeshCollider>();
-                if (collider == null)
-                    collider = gameObject.AddComponent<MeshCollider>();
-                this.meshCollider = collider;
+                meshCollider = gameObject.AddComponent<MeshCollider>();
             }
         }
 

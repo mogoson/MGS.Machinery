@@ -35,7 +35,9 @@ namespace Mogoson.Extention
 
             //Project is Vector3.zero.
             if (from == Vector3.zero || to == Vector3.zero)
+            {
                 return 0;
+            }
 
             //Calculate reference.
             var ftCross = Vector3.Cross(from, to);
@@ -46,7 +48,9 @@ namespace Mogoson.Extention
             //Convert to rotate angle.
             var angle = Vector3.Angle(from, to);
             if ((ncDot > 0 && tcDot >= 0) || (ncDot < 0 && tcDot <= 0))
+            {
                 angle = 360 - angle;
+            }
             return angle;
         }
         #endregion

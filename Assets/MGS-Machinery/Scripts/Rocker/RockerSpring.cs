@@ -10,7 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using Mogoson.CurvePipe;
+using Mogoson.CurveHose;
 using UnityEngine;
 
 namespace Mogoson.Machinery
@@ -25,7 +25,7 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Spring of rocker.
         /// </summary>
-        public HelixPipe spring;
+        public HelixHose spring;
 
         /// <summary>
         /// Top padding of spring.

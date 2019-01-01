@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
  *  Copyright © 2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  HelixPipe.cs
- *  Description  :  Render dynamic pipe mesh base on helix curve.
+ *  File         :  EllipseHose.cs
+ *  Description  :  Render dynamic hose mesh base on ellipse curve.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
@@ -13,50 +13,44 @@
 using Mogoson.Curve;
 using UnityEngine;
 
-namespace Mogoson.CurvePipe
+namespace Mogoson.CurveHose
 {
     /// <summary>
-    /// Render dynamic pipe mesh base on helix curve.
+    /// Render dynamic hose mesh base on ellipse curve.
     /// </summary>
-    [AddComponentMenu("Mogoson/CurvePipe/HelixPipe")]
-    public class HelixPipe : MonoCurvePipe
+    [AddComponentMenu("Mogoson/CurveHose/EllipseHose")]
+    public class EllipseHose : MonoCurveHose
     {
         #region Field and Property
         /// <summary>
-        /// Top ellipse args of curve.
+        /// Semi minor axis of ellipse.
         /// </summary>
-        public EllipseArgs topEllipse = new EllipseArgs(Vector3.up, 1.0f, 1.0f);
+        public float semiMinorAxis = 1.0f;
 
         /// <summary>
-        /// Bottom ellipse args of curve.
+        /// Semi major axis of ellipse.
         /// </summary>
-        public EllipseArgs bottomEllipse = new EllipseArgs(Vector3.zero, 1.0f, 1.0f);
+        public float semiMajorAxis = 1.5f;
 
         /// <summary>
-        /// Max around radian of helix.
-        /// </summary>
-        public float maxRadian = 6 * Mathf.PI;
-
-        /// <summary>
-        /// Curve for pipe.
+        /// Curve for hose.
         /// </summary>
         protected override ICurve Curve { get { return curve; } }
 
         /// <summary>
-        /// Curve of pipe.
+        /// Curve of hose.
         /// </summary>
-        protected HelixCurve curve = new HelixCurve();
+        protected EllipseCurve curve = new EllipseCurve();
         #endregion
 
         #region Public Method
         /// <summary>
-        /// Rebuild pipe.
+        /// Rebuild hose.
         /// </summary>
         public override void Rebuild()
         {
-            curve.topEllipse = topEllipse;
-            curve.bottomEllipse = bottomEllipse;
-            curve.MaxKey = maxRadian;
+            curve.args.semiMinorAxis = semiMinorAxis;
+            curve.args.semiMajorAxis = semiMajorAxis;
             base.Rebuild();
         }
         #endregion
