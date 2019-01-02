@@ -69,9 +69,13 @@ namespace Mogoson.Machinery
             IsLock = false;
             var vector = Vector.Zero;
             if (vectors.Count == 1)
+            {
                 vector = vectors[0];
+            }
             else
+            {
                 vector = isRight ? vectors[0] : vectors[1];
+            }
 
             slider.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveType.Ignore);
@@ -96,7 +100,9 @@ namespace Mogoson.Machinery
         {
             var project = Vector3.ProjectOnPlane(direction, transform.forward);
             if (project == Vector3.zero)
+            {
                 project = transform.right;
+            }
             return project;
         }
         #endregion

@@ -38,12 +38,12 @@ namespace Mogoson.Machinery
             triggerRecord = Angle;
             Angle += velocity * Time.deltaTime;
             Angle = Mathf.Clamp(Angle, range.min, range.max);
-            DriveCrank();
+            RotateCrank(Angle);
 
             if (CheckTriggers())
             {
                 Angle = triggerRecord;
-                DriveCrank();
+                RotateCrank(Angle);
             }
         }
         #endregion

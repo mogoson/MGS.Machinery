@@ -113,7 +113,9 @@ namespace Mogoson.Machinery
             foreach (var trigger in triggers)
             {
                 if (trigger.IsTriggered)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -141,7 +143,9 @@ namespace Mogoson.Machinery
             {
                 var trigger = rocker.GetComponent<TriggerMechanism>();
                 if (trigger)
+                {
                     triggers.Add(trigger);
+                }
             }
         }
         #endregion
@@ -244,14 +248,18 @@ namespace Mogoson.Machinery
         protected override void Awake()
         {
             if (IsIntact)
+            {
                 Initialize();
+            }
         }
 
 #if UNITY_EDITOR
         protected virtual void Update()
         {
             if (Application.isPlaying)
+            {
                 return;
+            }
 
             if (IsIntact)
             {
@@ -263,7 +271,9 @@ namespace Mogoson.Machinery
                 DriveLinkJoints();
             }
             else
+            {
                 isInitialized = false;
+            }
         }
 #endif
         /// <summary>
@@ -322,13 +332,17 @@ namespace Mogoson.Machinery
             if (velocity >= 0)
             {
                 if (IsLock && isPositive)
+                {
                     return;
+                }
                 isPositive = true;
             }
             else
             {
                 if (IsLock && !isPositive)
+                {
                     return;
+                }
                 isPositive = false;
             }
             crank.Drive(velocity, type);
@@ -354,7 +368,9 @@ namespace Mogoson.Machinery
         protected virtual void Update()
         {
             if (!Application.isPlaying && joint)
+            {
                 Drive(0, DriveType.Ignore);
+            }
         }
 #endif
         #endregion
@@ -392,12 +408,16 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var state = TelescopicState.Between;
                 if (Displacement <= stroke.min)
-                    return TelescopicState.Minimum;
+                {
+                    state = TelescopicState.Minimum;
+                }
                 else if (Displacement >= stroke.max)
-                    return TelescopicState.Maximum;
-                else
-                    return TelescopicState.Between;
+                {
+                    state = TelescopicState.Maximum;
+                }
+                return state;
             }
         }
 

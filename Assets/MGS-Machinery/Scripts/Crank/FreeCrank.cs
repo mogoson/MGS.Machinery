@@ -30,21 +30,22 @@ namespace Mogoson.Machinery
         {
             triggerRecord = Angle;
             Angle += velocity * Time.deltaTime;
-            DriveCrank();
+            RotateCrank(Angle);
 
             if (CheckTriggers())
             {
                 Angle = triggerRecord;
-                DriveCrank();
+                RotateCrank(Angle);
             }
         }
 
         /// <summary>
         /// Rotate crank.
         /// </summary>
-        protected void DriveCrank()
+        /// <param name="angle">Current rotate angle of crank.</param>
+        protected void RotateCrank(float angle)
         {
-            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, Angle));
+            transform.localRotation = Quaternion.Euler(StartAngles + new Vector3(0, 0, angle));
             DriveRockers();
         }
         #endregion

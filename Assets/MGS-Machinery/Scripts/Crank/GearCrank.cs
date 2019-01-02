@@ -36,17 +36,17 @@ namespace Mogoson.Machinery
         protected override void DriveCrank(float velocity, DriveType type = DriveType.Ignore)
         {
             triggerRecord = Angle;
-
             if (type == DriveType.Linear)
+            {
                 velocity *= Mathf.Rad2Deg / radius;
-
+            }
             Angle += velocity * Time.deltaTime;
-            DriveCrank();
+            RotateCrank(Angle);
 
             if (CheckTriggers())
             {
                 Angle = triggerRecord;
-                DriveCrank();
+                RotateCrank(Angle);
             }
         }
         #endregion

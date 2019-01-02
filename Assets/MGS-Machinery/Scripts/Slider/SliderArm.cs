@@ -37,18 +37,20 @@ namespace Mogoson.Machinery
         {
             var currentJoint = sliders[sliderIndex];
             currentJoint.Drive(velocity, DriveType.Ignore);
-
             if (velocity >= 0)
             {
                 if (currentJoint.State == TelescopicState.Maximum)
+                {
                     sliderIndex++;
+                }
             }
             else
             {
                 if (currentJoint.State == TelescopicState.Minimum)
+                {
                     sliderIndex--;
+                }
             }
-
             sliderIndex = ClampIndex(sliderIndex);
         }
         #endregion

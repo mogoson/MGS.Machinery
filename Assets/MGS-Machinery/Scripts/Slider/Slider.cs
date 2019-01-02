@@ -28,10 +28,12 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var axis = transform.forward;
                 if (transform.parent)
-                    return transform.parent.InverseTransformDirection(transform.forward);
-                else
-                    return transform.forward;
+                {
+                    axis = transform.parent.InverseTransformDirection(axis);
+                }
+                return axis;
             }
         }
         #endregion
@@ -46,21 +48,22 @@ namespace Mogoson.Machinery
             triggerRecord = Displacement;
             Displacement += velocity * Time.deltaTime;
             Displacement = Mathf.Clamp(Displacement, stroke.min, stroke.max);
-            DriveSlider();
+            MoveSlider(Displacement);
 
             if (CheckTriggers())
             {
                 Displacement = triggerRecord;
-                DriveSlider();
+                MoveSlider(Displacement);
             }
         }
 
         /// <summary>
         /// Move slider.
         /// </summary>
-        protected virtual void DriveSlider()
+        /// <param name="displacement">Displacement of slider.</param>
+        protected void MoveSlider(float displacement)
         {
-            transform.localPosition = StartPosition + Aixs * Displacement;
+            transform.localPosition = StartPosition + Aixs * displacement;
             DriveRockers();
         }
         #endregion

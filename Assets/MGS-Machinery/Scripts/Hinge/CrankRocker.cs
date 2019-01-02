@@ -90,20 +90,28 @@ namespace Mogoson.Machinery
             IsLock = false;
             var vector = Vector.Zero;
             if (vectors.Count == 1)
+            {
                 vector = vectors[0];
+            }
             else
             {
                 //Adapt restrict and intertia.
                 var rID = restrict ? 1 : 0;
                 if (inertia)
+                {
                     vector = vectors[rID];
+                }
                 else
                 {
                     var isVectorTop = vectors[0].y - vectors[1].y >= 0;
                     if (isVectorTop == isTop)
+                    {
                         vector = vectors[rID];
+                    }
                     else
+                    {
                         vector = vectors[1 - rID];
+                    }
                 }
             }
 
