@@ -28,15 +28,16 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var position = Target.transform.position;
                 if (Application.isPlaying)
                 {
+                    position = Target.StartPosition;
                     if (Target.transform.parent)
-                        return Target.transform.parent.TransformPoint(Target.StartPosition);
-                    else
-                        return Target.StartPosition;
+                    {
+                        position = Target.transform.parent.TransformPoint(position);
+                    }
                 }
-                else
-                    return Target.transform.position;
+                return position;
             }
         }
         #endregion
@@ -66,7 +67,9 @@ namespace Mogoson.Machinery
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck())
+            {
                 Target.stroke.max = Mathf.Clamp(Target.stroke.max, Target.stroke.min, float.MaxValue);
+            }
         }
         #endregion
     }

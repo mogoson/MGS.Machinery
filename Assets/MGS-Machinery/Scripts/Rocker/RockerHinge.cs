@@ -35,10 +35,12 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var axis = Vector3.up;
                 if (transform.parent)
-                    return transform.parent.up;
-                else
-                    return Vector3.up;
+                {
+                    axis = transform.parent.up;
+                }
+                return axis;
             }
         }
         #endregion

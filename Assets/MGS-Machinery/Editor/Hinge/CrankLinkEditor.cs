@@ -58,7 +58,9 @@ namespace Mogoson.Machinery
                 else
                 {
                     if (!Target.enabled)
+                    {
                         Target.enabled = true;
+                    }
                 }
 
                 if (EditorGUI.EndChangeCheck())

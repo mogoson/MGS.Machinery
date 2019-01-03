@@ -44,7 +44,9 @@ namespace Mogoson.Machinery
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck())
+            {
                 Target.range.max = Mathf.Clamp(Target.range.max, Target.range.min, float.MaxValue);
+            }
         }
         #endregion
     }

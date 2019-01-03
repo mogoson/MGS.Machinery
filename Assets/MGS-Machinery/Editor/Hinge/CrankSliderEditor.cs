@@ -34,7 +34,9 @@ namespace Mogoson.Machinery
             base.OnSceneGUI();
 
             if (!Target.IsIntact)
+            {
                 return;
+            }
 
             if (Target.editMode == EditMode.Free)
             {
@@ -69,10 +71,10 @@ namespace Mogoson.Machinery
             DrawSphereArrow(Target.slider.position, axis, ArrowLength, NodeSize);
             DrawSphereArrow(Target.slider.position, -axis, ArrowLength, NodeSize);
 
-            DrawSceneTool();
+            DrawSceneGUI();
         }
 
-        protected virtual void DrawSceneTool()
+        protected void DrawSceneGUI()
         {
             var rect = new Rect(Screen.width - 160, Screen.height - 95, 150, 45);
             Handles.BeginGUI();
@@ -91,7 +93,9 @@ namespace Mogoson.Machinery
         {
             var project = Vector3.ProjectOnPlane(direction, Target.transform.forward);
             if (project == Vector3.zero)
+            {
                 project = Target.transform.right;
+            }
             return project;
         }
         #endregion

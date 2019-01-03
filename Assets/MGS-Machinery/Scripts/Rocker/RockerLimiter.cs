@@ -35,8 +35,8 @@ namespace Mogoson.Machinery
         {
             get
             {
-                var currentDistance = GetDistance();
-                return currentDistance <= distance.min || currentDistance >= distance.max;
+                var currentDis = GetDistance();
+                return currentDis <= distance.min || currentDis >= distance.max;
             }
         }
 

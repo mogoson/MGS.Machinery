@@ -19,10 +19,12 @@ namespace Mogoson.Machinery
     public partial class MechanismEditor : GenericEditor
     {
         #region Protected Method
-        protected virtual void DrawRockers(List<RockerMechanism> rockers, Transform driver)
+        protected void DrawRockers(List<RockerMechanism> rockers, Transform driver)
         {
             if (rockers == null)
+            {
                 return;
+            }
 
             foreach (var rocker in rockers)
             {
@@ -32,7 +34,9 @@ namespace Mogoson.Machinery
                     DrawSphereArrow(driver.position, rocker.transform.position, NodeSize);
 
                     if (rocker.joint)
+                    {
                         DrawSphereArrow(rocker.transform.position, rocker.joint.transform.position, NodeSize);
+                    }
                 }
             }
         }

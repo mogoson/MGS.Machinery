@@ -33,7 +33,9 @@ namespace Mogoson.Machinery
         protected virtual void OnSceneGUI()
         {
             if (Target.Rocker.joint == null)
+            {
                 return;
+            }
 
             var offset = Target.Rocker.joint.position - Target.transform.position;
             var center = Target.transform.position + offset * Half;
@@ -56,10 +58,10 @@ namespace Mogoson.Machinery
             Handles.Label(farMin, "Far Min");
             Handles.Label(farMax, "Far Max");
 
-            DrawSceneTool();
+            DrawSceneGUI();
         }
 
-        protected virtual void DrawSceneTool()
+        protected void DrawSceneGUI()
         {
             var rect = new Rect(Screen.width - 195, Screen.height - 115, 185, 65);
             GUI.color = Color.white;

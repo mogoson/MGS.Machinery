@@ -27,7 +27,9 @@ namespace Mogoson.Machinery
         protected virtual void OnSceneGUI()
         {
             if (Target.joint == null)
+            {
                 return;
+            }
 
             Handles.color = Blue;
             DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);

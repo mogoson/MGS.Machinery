@@ -33,15 +33,16 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var axis = Target.transform.up;
                 if (Application.isPlaying)
                 {
-                    var up = Quaternion.Euler(Target.StartAngles) * Vector3.up;
+                    axis = Quaternion.Euler(Target.StartAngles) * Vector3.up;
                     if (Target.transform.parent)
-                        up = Target.transform.parent.rotation * up;
-                    return up;
+                    {
+                        axis = Target.transform.parent.rotation * axis;
+                    }
                 }
-                else
-                    return Target.transform.up;
+                return axis;
             }
         }
         #endregion

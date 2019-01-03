@@ -42,11 +42,13 @@ namespace Mogoson.Machinery
         /// <summary>
         /// Drive spring.
         /// </summary>
-        protected virtual void DriveSpring()
+        protected void DriveSpring()
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying && spring == null)
+            {
                 return;
+            }
 #endif
             //Rivet spring.
             spring.transform.localPosition = Vector3.zero;

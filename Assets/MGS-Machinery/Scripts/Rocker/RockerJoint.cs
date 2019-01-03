@@ -39,10 +39,12 @@ namespace Mogoson.Machinery
         {
             get
             {
+                var up = transform.up;
                 if (keepUp == KeepUpMode.ReferenceForward && reference)
-                    return reference.forward;
-                else
-                    return transform.up;
+                {
+                    up = reference.forward;
+                }
+                return up;
             }
         }
         #endregion
