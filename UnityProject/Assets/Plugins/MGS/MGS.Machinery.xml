@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MGS.Machinery</name>
+    </assembly>
+    <members>
+        <member name="T:MGS.Machinery.Mechanism">
+            <summary>
+            Base mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Mechanism.Awake">
+            <summary>
+            Awake mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Mechanism.Initialize">
+            <summary>
+            Initialize mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Mechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive mechanism by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.TriggerMechanism">
+            <summary>
+            Trigger for mechanism.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.TriggerMechanism.IsTriggered">
+            <summary>
+            Trigger is triggered?
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.TriggerMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive trigger by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.ICoaxedMechanism">
+            <summary>
+            Mechanism can be coaxed to power mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.ICoaxedMechanism.CoaxeTo(MGS.Machinery.ICoaxeMechanism)">
+            <summary>
+            Coaxe this mechanism to power mechanism.
+            </summary>
+            <param name="coaxe">Power mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.ICoaxedMechanism.CoaxeBreak">
+            <summary>
+            Break coaxed from power mechanism.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.ICoaxeMechanism">
+            <summary>
+            Mechanism with coaxed mechanisms.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.ICoaxeMechanism.BuildCoaxed(MGS.Machinery.ICoaxedMechanism)">
+            <summary>
+            Build coaxe for mechanism.
+            </summary>
+            <param name="coaxe">Coaxe mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.ICoaxeMechanism.BreakCoaxed(MGS.Machinery.ICoaxedMechanism)">
+            <summary>
+            Break coaxed.
+            </summary>
+            <param name="coaxe">Coaxe mechanism.</param>
+        </member>
+        <member name="T:MGS.Machinery.IEngagedMechanism">
+            <summary>
+            Mechanism can be engaged to power mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.IEngagedMechanism.EngageTo(MGS.Machinery.IEngageMechanism)">
+            <summary>
+            Engage this mechanism to power mechanism.
+            </summary>
+            <param name="engage">Power mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.IEngagedMechanism.EngageBreak">
+            <summary>
+            Break engage from power mechanism.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.IEngageMechanism">
+            <summary>
+            Mechanism with engaged mechanisms.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.IEngageMechanism.BuildEngage(MGS.Machinery.IEngagedMechanism)">
+            <summary>
+            Build engage for mechanism.
+            </summary>
+            <param name="engage">Engage mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.IEngageMechanism.BreakEngage(MGS.Machinery.IEngagedMechanism)">
+            <summary>
+            Break engage.
+            </summary>
+            <param name="engage">Engage mechanism.</param>
+        </member>
+        <member name="T:MGS.Machinery.IMechanism">
+            <summary>
+            Mechanism interface.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.IMechanism.Initialize">
+            <summary>
+            Initialize mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.IMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive mechanism by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.DriveType">
+            <summary>
+            Type of mechanism drive.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Ignore">
+            <summary>
+            Ignore drive type.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Linear">
+            <summary>
+            Linear drive.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Angular">
+            <summary>
+            Angular drive.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.ITriggerMechanism">
+            <summary>
+            Trigger mechanism.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.ITriggerMechanism.IsTriggered">
+            <summary>
+            Trigger is triggered?
+            </summary>
+        </member>
+    </members>
+</doc>

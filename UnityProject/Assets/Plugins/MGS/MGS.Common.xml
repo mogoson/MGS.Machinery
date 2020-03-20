@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MGS.Common</name>
+    </assembly>
+    <members>
+        <member name="T:MGS.Common.Converter.ArrayConverter">
+            <summary>
+            Converter of array.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Converter.ArrayConverter.ToTwoDimention``1(``0[],System.Int32,System.Int32)">
+            <summary>
+            Convert one dimention array to two dimentions array.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+            <param name="array">Source array.</param>
+            <param name="row">Two dimention array's row.</param>
+            <param name="column">Two dimention array's column.</param>
+            <returns>Two dimentions array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ArrayConverter.ToThreeDimention``1(``0[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Convert one dimention array to three dimentions array.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+            <param name="array">Source array.</param>
+            <param name="layer">Three dimention array's layer.</param>
+            <param name="row">Three dimention array's row.</param>
+            <param name="column">Three dimention array's column.</param>
+            <returns>Three dimentions array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ArrayConverter.ToOneDimention``1(``0[0:,0:])">
+            <summary>
+            Convert two dimention array to one dimentions array.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+            <param name="array">Source array.</param>
+            <returns>One dimentions array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ArrayConverter.ToOneDimention``1(``0[0:,0:,0:])">
+            <summary>
+            Convert three dimention array to one dimentions array.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+            <param name="array">Source array.</param>
+            <returns>One dimentions array.</returns>
+        </member>
+        <member name="T:MGS.Common.Converter.ByteConverter">
+            <summary>
+            Converter of byte array.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToBoolean(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to boolean array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Boolean count.</param>
+            <returns>Boolean array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToInt16(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to Int16 array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Int16 count.</param>
+            <returns>Int16 array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToInt32(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to Int32 array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Int32 count.</param>
+            <returns>Int32 array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToInt64(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to Int64 array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Int64 count.</param>
+            <returns>Int64 array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToChar(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to char array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Char count.</param>
+            <returns>Char array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToSingle(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to single array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Single count.</param>
+            <returns>Single array.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.ByteConverter.ToDouble(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert byte array to double array.
+            </summary>
+            <param name="bytes">Bytes array.</param>
+            <param name="start">Start index.</param>
+            <param name="count">Convert Double count.</param>
+            <returns>Double array.</returns>
+        </member>
+        <member name="T:MGS.Common.Converter.StructureConverter">
+            <summary>
+            Converter of structure.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Converter.StructureConverter.FromByteArray``1(System.Byte[])">
+            <summary>
+            Convert byte array to structure.
+            </summary>
+            <typeparam name="T">Structure type.</typeparam>
+            <param name="byteArray">Byte array.</param>
+            <returns>Structure.</returns>
+        </member>
+        <member name="M:MGS.Common.Converter.StructureConverter.ToByteArray``1(``0)">
+            <summary>
+            Convert structure to byte array.
+            </summary>
+            <typeparam name="T">Structure type.</typeparam>
+            <param name="structure">Structure.</param>
+            <returns>Byte array.</returns>
+        </member>
+        <member name="T:MGS.Common.DesignPattern.ObjectPool`1">
+            <summary>
+            Generic object pool.
+            </summary>
+            <typeparam name="T">Specified type of object.</typeparam>
+        </member>
+        <member name="P:MGS.Common.DesignPattern.ObjectPool`1.MaxCount">
+            <summary>
+            Max count limit of objects in pool.
+            </summary>
+        </member>
+        <member name="P:MGS.Common.DesignPattern.ObjectPool`1.CurrentCount">
+            <summary>
+            Current count of objects in pool.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.DesignPattern.ObjectPool`1.objectStack">
+            <summary>
+            Stack store objects.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.DesignPattern.ObjectPool`1.createFunc">
+            <summary>
+            Function of create new object.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.DesignPattern.ObjectPool`1.resetAction">
+            <summary>
+            Action of reset object to default.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.DesignPattern.ObjectPool`1.disposeAction">
+            <summary>
+            Action of dispose object.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.DesignPattern.ObjectPool`1.#ctor(System.Func{`0},System.Action{`0},System.Action{`0},System.Int32)">
+            <summary>
+            Constructor of ObjectPool.
+            </summary>
+            <param name="create">Function of create new object.</param>
+            <param name="reset">Action of reset object to default.</param>
+            <param name="dispose">Action of dispose object.</param>
+            <param name="maxCount">Max count limit of objects in pool.</param>
+        </member>
+        <member name="M:MGS.Common.DesignPattern.ObjectPool`1.Take">
+            <summary>
+            Take a object from pool.
+            </summary>
+            <returns>A object.</returns>
+        </member>
+        <member name="M:MGS.Common.DesignPattern.ObjectPool`1.Recycle(`0)">
+            <summary>
+            Recycle object to pool.
+            </summary>
+            <param name="obj">Object to recycle.</param>
+        </member>
+        <member name="M:MGS.Common.DesignPattern.ObjectPool`1.Clear">
+            <summary>
+            Clear all objects.
+            </summary>
+        </member>
+        <member name="T:MGS.Common.DesignPattern.Singleton`1">
+            <summary>
+            Provide a single instance of the specified type T.
+            </summary>
+            <typeparam name="T">Specified type.</typeparam>
+        </member>
+        <member name="T:MGS.Common.DesignPattern.Singleton`1.InnerSingleton">
+            <summary>
+            Inner singleton provide instance.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.DesignPattern.Singleton`1.InnerSingleton.Instance">
+            <summary>
+            Single instance of the specified type T created by that type's default constructor.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.DesignPattern.Singleton`1.InnerSingleton.#cctor">
+            <summary>
+            Explicit static constructor to tell C# compiler not to mark type as beforefieldinit.
+            </summary>
+        </member>
+        <member name="P:MGS.Common.DesignPattern.Singleton`1.Instance">
+            <summary>
+            Single instance of the specified type T.
+            </summary>
+        </member>
+        <member name="T:MGS.Common.Generic.GenericEvent">
+            <summary>
+            Generic event.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.Generic.GenericEvent.callback">
+            <summary>
+            Event callback.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent.AddListener(System.Action)">
+            <summary>
+            Add event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent.RemoveListener(System.Action)">
+            <summary>
+            Remove event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent.RemoveListeners">
+            <summary>
+            Remove all event listeners.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent.Invoke">
+            <summary>
+            Invoke event.
+            </summary>
+        </member>
+        <member name="T:MGS.Common.Generic.GenericEvent`1">
+            <summary>
+            Generic event.
+            </summary>
+            <typeparam name="T">Specified type of event arg.</typeparam>
+        </member>
+        <member name="F:MGS.Common.Generic.GenericEvent`1.callback">
+            <summary>
+            Event callback.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`1.AddListener(System.Action{`0})">
+            <summary>
+            Add event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`1.RemoveListener(System.Action{`0})">
+            <summary>
+            Remove event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`1.RemoveListeners">
+            <summary>
+            Remove all event listeners.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`1.Invoke(`0)">
+            <summary>
+            Invoke event.
+            </summary>
+            <param name="arg">Arg of event.</param>
+        </member>
+        <member name="T:MGS.Common.Generic.GenericEvent`2">
+            <summary>
+            Generic event.
+            </summary>
+            <typeparam name="T1">Specified type of event arg1.</typeparam>
+            <typeparam name="T2">Specified type of event arg2.</typeparam>
+        </member>
+        <member name="F:MGS.Common.Generic.GenericEvent`2.callback">
+            <summary>
+            Event callback.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`2.AddListener(System.Action{`0,`1})">
+            <summary>
+            Add event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`2.RemoveListener(System.Action{`0,`1})">
+            <summary>
+            Remove event listener.
+            </summary>
+            <param name="callback">Event callback.</param>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`2.RemoveListeners">
+            <summary>
+            Remove all event listeners.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Generic.GenericEvent`2.Invoke(`0,`1)">
+            <summary>
+            Invoke event.
+            </summary>
+            <param name="arg1">Arg1 of event.</param>
+            <param name="arg2">Arg2 of event.</param>
+        </member>
+        <member name="T:MGS.Common.IO.DirectoryUtility">
+            <summary>
+            Utility for directory.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.IO.DirectoryUtility.RequirePath(System.String,System.String@)">
+            <summary>
+            Require the directory path exist.
+            </summary>
+            <param name="path">Directory path.</param>
+            <param name="error">Error message.</param>
+            <returns>Create directory path succeed?</returns>
+        </member>
+        <member name="M:MGS.Common.IO.DirectoryUtility.RequirePath(System.String)">
+            <summary>
+            Require the directory path exist.
+            </summary>
+            <param name="path">Directory path.</param>
+            <returns>Create directory path succeed?</returns>
+        </member>
+        <member name="T:MGS.Common.IO.FileUtility">
+            <summary>
+            Utility for file.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.IO.FileUtility.CalPageCount(System.String,System.Int32)">
+            <summary>
+            Calculate page count of file.
+            </summary>
+            <param name="filePath">Path of target file.</param>
+            <param name="pageSize">Size of page.</param>
+            <returns>Page count of file.</returns>
+        </member>
+        <member name="M:MGS.Common.IO.FileUtility.ReadPage(System.String,System.Int32,System.Int32)">
+            <summary>
+            Read the index page of file.
+            </summary>
+            <param name="filePath">Path of target file.</param>
+            <param name="pageSize">Size of page.</param>
+            <param name="pageIndex">Index of page.</param>
+            <returns>Index page bytes.</returns>
+        </member>
+        <member name="M:MGS.Common.IO.FileUtility.ReadAllLines(System.String,System.Text.Encoding)">
+            <summary>
+            Read all lines of file.
+            </summary>
+            <param name="filePath">Path of target file.</param>
+            <param name="encoding">Encoding of target file.</param>
+            <returns>All lines from file.</returns>
+        </member>
+        <member name="T:MGS.Common.Logger.FileLogger">
+            <summary>
+            Loggger for log to local file.
+            </summary>
+        </member>
+        <member name="P:MGS.Common.Logger.FileLogger.LogPath">
+            <summary>
+            Root path of log files.
+            </summary>
+        </member>
+        <member name="F:MGS.Common.Logger.FileLogger.logPath">
+            <summary>
+            Root path of log files.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Logger.FileLogger.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Logger.FileLogger.LogToFile(System.String,System.String,System.Object[])">
+            <summary>
+            Logs a formatted message to local file.
+            </summary>
+            <param name="tag">Tag of log message.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.FileLogger.Log(System.String,System.Object[])">
+            <summary>
+            Logs a formatted message to local file.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.FileLogger.LogError(System.String,System.Object[])">
+            <summary>
+            Logs a formatted error message to local file.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.FileLogger.LogWarning(System.String,System.Object[])">
+            <summary>
+            Logs a formatted warning message to local file.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="T:MGS.Common.Logger.ILogger">
+            <summary>
+            Interface of logger.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Logger.ILogger.Log(System.String,System.Object[])">
+            <summary>
+            Logs a formatted message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.ILogger.LogError(System.String,System.Object[])">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.ILogger.LogWarning(System.String,System.Object[])">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="T:MGS.Common.Logger.LogUtility">
+            <summary>
+            Utility for log output.
+            </summary>
+        </member>
+        <member name="P:MGS.Common.Logger.LogUtility.Logger">
+            <summary>
+            Logger of utility.
+            </summary>
+        </member>
+        <member name="M:MGS.Common.Logger.LogUtility.Log(System.String,System.Object[])">
+            <summary>
+            Logs a formatted message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.LogUtility.LogError(System.String,System.Object[])">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+        <member name="M:MGS.Common.Logger.LogUtility.LogWarning(System.String,System.Object[])">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">Format arguments.</param>
+        </member>
+    </members>
+</doc>
