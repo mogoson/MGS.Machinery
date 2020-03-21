@@ -4,6 +4,129 @@
         <name>MGS.Machinery</name>
     </assembly>
     <members>
+        <member name="T:MGS.Machinery.CrankLinkMechanism">
+            <summary>
+            Crank mechanism with link joints.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankLinkMechanism.crank">
+            <summary>
+            Power crank.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankLinkMechanism.link">
+            <summary>
+            Link rocker.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankLinkMechanism.editMode">
+            <summary>
+            Edit mode of Hinge Editor.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankLinkMechanism.isInitialized">
+            <summary>
+            This mechanism is initialized?
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankLinkMechanism.IsIntact">
+            <summary>
+            All the joints of this mechanism are set intact.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankLinkMechanism.IsLock">
+            <summary>
+            Is dead lock?
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankLinkMechanism.isPositive">
+            <summary>
+            Drive speed is positive?
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.Awake">
+            <summary>
+            Awake mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.Update">
+            <summary>
+            Update mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.GetLinkPosition">
+            <summary>
+            Get local position of link rocker base on this transform.
+            </summary>
+            <returns>Local position of link rocker.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.CorrectPoint(UnityEngine.Vector3)">
+            <summary>
+            Correct position to project point.
+            </summary>
+            <param name="position">Local position.</param>
+            <returns>Correct point.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.CorrectAngles(UnityEngine.Vector3)">
+            <summary>
+            Clear angles x and y.
+            </summary>
+            <param name="angles">Local euler angles.</param>
+            <returns>Correct angles.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.CorrectPosition(UnityEngine.Vector3)">
+            <summary>
+            Clear position Z.
+            </summary>
+            <param name="position">Local position.</param>
+            <returns>Correct position.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.DriveLinkJoints">
+            <summary>
+            Drive joints those link with this mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankLinkMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive crank link mechanism by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.CrankMechanism">
+            <summary>
+            Crank mechanism.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankMechanism.Angle">
+            <summary>
+            Current rotate angle of crank.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankMechanism.StartAngles">
+            <summary>
+            Start eulerAngles.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankMechanism.DriveCrank(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Rotate crank by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.CrankMechanism.Initialize">
+            <summary>
+            Initialize crank.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive crank by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
         <member name="T:MGS.Machinery.Mechanism">
             <summary>
             Base mechanism.
@@ -26,6 +149,131 @@
             <param name="velocity">Velocity of drive.</param>
             <param name="type">Type of drive.</param>
         </member>
+        <member name="T:MGS.Machinery.RockerLinkMechanism">
+            <summary>
+            Mechanism with link rockers.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerLinkMechanism.rockers">
+            <summary>
+            Rockers that link with this mechanism. 
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerLinkMechanism.triggers">
+            <summary>
+            Triggers attached on link rockers.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerLinkMechanism.triggerRecord">
+            <summary>
+            Record value on trigger is triggered.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerLinkMechanism.CheckTriggers">
+            <summary>
+            Check trigger is triggered.
+            </summary>
+            <returns>Return true if one of the triggers is triggered.</returns>
+        </member>
+        <member name="M:MGS.Machinery.RockerLinkMechanism.DriveRockers">
+            <summary>
+            Drive the rockers that join at this mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerLinkMechanism.Initialize">
+            <summary>
+            Initialize mechanism.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.RockerMechanism">
+            <summary>
+            Rocker mechanism.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerMechanism.joint">
+            <summary>
+            Look at joint.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerMechanism.Update">
+            <summary>
+            Update mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive rocker by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.SliderArmMechanism">
+            <summary>
+            Arm with slider joints.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.SliderArmMechanism.sliders">
+            <summary>
+            Slider joints of arm.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.SliderArmMechanism.ClampIndex(System.Int32)">
+            <summary>
+            Clamp slider index in the range.
+            </summary>
+            <param name="index">Index of slider.</param>
+            <returns>Correct index of slider.</returns>
+        </member>
+        <member name="M:MGS.Machinery.SliderArmMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive arm by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.SliderMechanism">
+            <summary>
+            Slider joint mechanism.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.SliderMechanism.stroke">
+            <summary>
+            Stroke of slider.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.SliderMechanism.Displacement">
+            <summary>
+            Displacement of slider.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.SliderMechanism.State">
+            <summary>
+            Telescopic state of slider.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.SliderMechanism.StartPosition">
+            <summary>
+            Start position of slider.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.SliderMechanism.DriveSlider(System.Single)">
+            <summary>
+            Move slider by velocity.
+            </summary>
+            <param name="velocity">Velocity of move.</param>
+        </member>
+        <member name="M:MGS.Machinery.SliderMechanism.Initialize">
+            <summary>
+            Initialize joint.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.SliderMechanism.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive slider by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
         <member name="T:MGS.Machinery.TriggerMechanism">
             <summary>
             Trigger for mechanism.
@@ -42,6 +290,81 @@
             </summary>
             <param name="velocity">Velocity of drive.</param>
             <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.DriveType">
+            <summary>
+            Type of mechanism drive.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Ignore">
+            <summary>
+            Ignore drive type.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Linear">
+            <summary>
+            Linear drive.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.DriveType.Angular">
+            <summary>
+            Angular drive.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.EditMode">
+            <summary>
+            Edit mode of Hinge Editor.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.EditMode.Free">
+            <summary>
+            Free mode.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.EditMode.Hinge">
+            <summary>
+            Hinge mode.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.EditMode.Lock">
+            <summary>
+            Lock mode.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.KeepUpMode">
+            <summary>
+            Mode of keep up.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.KeepUpMode.TransformUp">
+            <summary>
+            Base on transform up aixs.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.KeepUpMode.ReferenceForward">
+            <summary>
+            Base on reference transform forward aixs.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.TelescopicState">
+            <summary>
+            State of telescopic joint.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.TelescopicState.Minimum">
+            <summary>
+            Minimum state.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.TelescopicState.Between">
+            <summary>
+            State between minimum and maximum.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.TelescopicState.Maximum">
+            <summary>
+            Maximum state.
+            </summary>
         </member>
         <member name="T:MGS.Machinery.ICoaxedMechanism">
             <summary>
@@ -126,26 +449,6 @@
             <param name="velocity">Velocity of drive.</param>
             <param name="type">Type of drive.</param>
         </member>
-        <member name="T:MGS.Machinery.DriveType">
-            <summary>
-            Type of mechanism drive.
-            </summary>
-        </member>
-        <member name="F:MGS.Machinery.DriveType.Ignore">
-            <summary>
-            Ignore drive type.
-            </summary>
-        </member>
-        <member name="F:MGS.Machinery.DriveType.Linear">
-            <summary>
-            Linear drive.
-            </summary>
-        </member>
-        <member name="F:MGS.Machinery.DriveType.Angular">
-            <summary>
-            Angular drive.
-            </summary>
-        </member>
         <member name="T:MGS.Machinery.ITriggerMechanism">
             <summary>
             Trigger mechanism.
@@ -155,6 +458,381 @@
             <summary>
             Trigger is triggered?
             </summary>
+        </member>
+        <member name="T:MGS.Machinery.FreeCrank">
+            <summary>
+            Crank free rotate around the axis Z.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.FreeCrank.DriveCrank(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Rotate crank by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.FreeCrank.RotateCrank(System.Single)">
+            <summary>
+            Rotate crank.
+            </summary>
+            <param name="angle">Current rotate angle of crank.</param>
+        </member>
+        <member name="T:MGS.Machinery.GearCrank">
+            <summary>
+            Crank free rotate around the axis Z.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.GearCrank.radius">
+            <summary>
+            Radius of gear.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.GearCrank.DriveCrank(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Rotate crank by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.LimitCrank">
+            <summary>
+            Crank rotate around the axis Z in the limit range.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.LimitCrank.range">
+            <summary>
+            Range limit of angle.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.LimitCrank.DriveCrank(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Rotate crank by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.CrankRocker">
+            <summary>
+            Crank rocker hinge.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.rocker">
+            <summary>
+            Rocker joint.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.joint">
+            <summary>
+            Joint for link and rocker.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.inertia">
+            <summary>
+            Use inertia to limit.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.restrict">
+            <summary>
+            Use virtual restrict to limit.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankRocker.IsIntact">
+            <summary>
+            All the joints of this mechanism are set intact.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.linkRadius">
+            <summary>
+            Radius of the circle that bese link.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.rockerRadius">
+            <summary>
+            Radius of the circle that bese rocker.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankRocker.isTop">
+            <summary>
+            Joint of link and rocker is on the top of rocker at start?
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankRocker.DriveLinkJoints">
+            <summary>
+            Drive joints those link with this mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankRocker.Initialize">
+            <summary>
+            Initialize mechanism.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.CrankSlider">
+            <summary>
+            Crank slider hinge.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankSlider.slider">
+            <summary>
+            Slider joint.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CrankSlider.IsIntact">
+            <summary>
+            All the joints of this mechanism are set intact.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankSlider.linkRadius">
+            <summary>
+            Radius of the circle that base link.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CrankSlider.isRight">
+            <summary>
+            Slider is on the right of link at start.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankSlider.DriveLinkJoints">
+            <summary>
+            Drive joints those link with this mechanism.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CrankSlider.CorrectJointAngles(UnityEngine.Vector3)">
+            <summary>
+            Clear angles z and set y to 90.
+            </summary>
+            <param name="angles">Local euler angles.</param>
+            <returns>Correct angles.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankSlider.ProjectDirection(UnityEngine.Vector3)">
+            <summary>
+            Project direction vector on plane(Normal is transform.forward).
+            </summary>
+            <param name="direction">World space direction.</param>
+            <returns>Project direction.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CrankSlider.Initialize">
+            <summary>
+            Initialize mechanism.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.RockerHinge">
+            <summary>
+            Hinge rotate around the axis base on rocker joint.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.RockerHinge.Axis">
+            <summary>
+            Rotate Axis.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.RockerHinge.ZeroAxis">
+            <summary>
+            Zero Axis.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerHinge.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive rocker by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.RockerJoint">
+            <summary>
+            Rocker look at joint.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerJoint.keepUp">
+            <summary>
+            Keep up mode.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerJoint.reference">
+            <summary>
+            Reference forward as world up for look at.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.RockerJoint.WorldUp">
+            <summary>
+            World up for look at.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerJoint.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive rocker by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.RockerLimiter">
+            <summary>
+            Limiter for RockerJoint.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerLimiter.distance">
+            <summary>
+            Distance range of rocker.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.RockerLimiter.IsTriggered">
+            <summary>
+            Limiter is triggered?
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.RockerLimiter.Rocker">
+            <summary>
+            Target rocker of limiter.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerLimiter.Initialize">
+            <summary>
+            Initialize limiter.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerLimiter.GetDistance">
+            <summary>
+            Get distance from rocker to joint.
+            </summary>
+            <returns>Distance from rocker to joint.</returns>
+        </member>
+        <member name="T:MGS.Machinery.RockerRivet">
+            <summary>
+            Rocker keep same position with joint.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerRivet.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive rocker by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.RockerSpring">
+            <summary>
+            Rocker spring look at joint.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerSpring.spring">
+            <summary>
+            Spring of rocker.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerSpring.top">
+            <summary>
+            Top padding of spring.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.RockerSpring.bottom">
+            <summary>
+            Bottom padding of spring.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerSpring.DriveSpring">
+            <summary>
+            Drive spring.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.RockerSpring.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive rocker by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Slider">
+            <summary>
+            Slider joint move on the axis Z.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.Slider.Aixs">
+            <summary>
+            Local axis of move.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Slider.DriveSlider(System.Single)">
+            <summary>
+            Move slider.
+            </summary>
+            <param name="velocity">Move velocity.</param>
+        </member>
+        <member name="M:MGS.Machinery.Slider.MoveSlider(System.Single)">
+            <summary>
+            Move slider.
+            </summary>
+            <param name="displacement">Displacement of slider.</param>
+        </member>
+        <member name="T:MGS.Machinery.SliderArm">
+            <summary>
+            Arm with sequence slider joints.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.SliderArm.sliderIndex">
+            <summary>
+            Current index of drive slider.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.SliderArm.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive arm by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Synchronizer">
+            <summary>
+            Synchronizer for mechanisms.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Synchronizer.mechanisms">
+            <summary>
+            Mechanisms drive by this synchronizer.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Synchronizer.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive synchronizer by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Transmission">
+            <summary>
+            Transmission for mechanisms.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Transmission.mechanismUnits">
+            <summary>
+            Mechanisms drive by this transmission.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Transmission.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive transmission by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.MechanismUnit">
+            <summary>
+            Mechanism unit.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.MechanismUnit.mechanism">
+            <summary>
+            Mechanism to drive.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.MechanismUnit.coefficient">
+            <summary>
+            Coefficient of velocity.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.MechanismUnit.#ctor(MGS.Machinery.Mechanism,System.Single)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="mechanism">Mechanism to drive.</param>
+            <param name="coefficient">Coefficient of velocity.</param>
         </member>
     </members>
 </doc>
