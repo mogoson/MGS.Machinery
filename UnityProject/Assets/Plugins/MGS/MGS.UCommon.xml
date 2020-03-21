@@ -1447,6 +1447,11 @@
             Mesh of skin.
             </summary>
         </member>
+        <member name="F:MGS.UCommon.Skin.MonoSkin.isInitialized">
+            <summary>
+            Skin is initialized?
+            </summary>
+        </member>
         <member name="P:MGS.UCommon.Skin.MonoSkin.Renderer">
             <summary>
             Skinned mesh renderer of skin.
