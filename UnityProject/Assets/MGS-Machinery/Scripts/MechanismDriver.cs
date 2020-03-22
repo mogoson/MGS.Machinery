@@ -1,7 +1,7 @@
 ﻿/*************************************************************************
  *  Copyright © 2016-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  MeDriver.cs
+ *  File         :  MechanismDriver.cs
  *  Description  :  Define driver for test mechanism quickly.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
@@ -14,9 +14,9 @@ using UnityEngine;
 
 namespace MGS.Machinery
 {
-    [AddComponentMenu("MGS/Machinery/MeDriver")]
+    [AddComponentMenu("MGS/Machinery/MechanismDriver")]
     [RequireComponent(typeof(Mechanism))]
-    public class MeDriver : MonoBehaviour
+    public class MechanismDriver : MonoBehaviour
     {
         #region Field and Property
         public float velocity = 50;

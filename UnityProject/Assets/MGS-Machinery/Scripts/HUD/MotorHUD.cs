@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
  *  Copyright © 2017-2018 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  EngineHUD.cs
- *  Description  :  Draw scene HUD to control Engine.
+ *  File         :  MotorHUD.cs
+ *  Description  :  Draw scene HUD to control motor.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  0.1.0
@@ -14,21 +14,21 @@ using UnityEngine;
 
 namespace MGS.Machinery
 {
-    [AddComponentMenu("MGS/Machinery/EngineHUD")]
-    [RequireComponent(typeof(Engine))]
-    public class EngineHUD : MonoBehaviour
+    [AddComponentMenu("MGS/Machinery/MotorHUD")]
+    [RequireComponent(typeof(Motor))]
+    public class MotorHUD : MonoBehaviour
     {
         #region Field and Property
         public float top = 10;
         public float left = 10;
 
-        private Engine engine;
+        private Motor motor;
         #endregion
 
         #region Private Method
         private void Start()
         {
-            engine = GetComponent<Engine>();
+            motor = GetComponent<Motor>();
         }
 
         private void OnGUI()
@@ -36,13 +36,13 @@ namespace MGS.Machinery
             GUILayout.Space(top);
             GUILayout.BeginHorizontal();
             GUILayout.Space(left);
-            if (GUILayout.Button("Turn On Engine"))
+            if (GUILayout.Button("Turn On Motor"))
             {
-                engine.TurnOn();
+                motor.TurnOn();
             }
-            if (GUILayout.Button("Turn Off Engine"))
+            if (GUILayout.Button("Turn Off Motor"))
             {
-                engine.TurnOff();
+                motor.TurnOff();
             }
             GUILayout.EndHorizontal();
         }

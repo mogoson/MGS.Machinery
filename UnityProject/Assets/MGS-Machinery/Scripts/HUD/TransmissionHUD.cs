@@ -26,6 +26,7 @@ namespace MGS.Machinery
         public Gear synchronizer;
 
         private Vector3 defaultPosition;
+        private ICoaxeMechanism coaxe;
         #endregion
 
         #region Private Method
@@ -45,13 +46,22 @@ namespace MGS.Machinery
                 if (GUILayout.Button(grade.info))
                 {
                     synchronizer.transform.localPosition = grade.adsorb;
-                    synchronizer.CoaxeTo(grade.gear);
+                    if (coaxe != null)
+                    {
+                        coaxe.BreakCoaxe(synchronizer);
+                    }
+
+                    coaxe = grade.gear;
+                    coaxe.LinkCoaxe(synchronizer);
                 }
             }
             if (GUILayout.Button("Default"))
             {
                 synchronizer.transform.localPosition = defaultPosition;
-                synchronizer.CoaxeBreak();
+                if (coaxe != null)
+                {
+                    coaxe.BreakCoaxe(synchronizer);
+                }
             }
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();

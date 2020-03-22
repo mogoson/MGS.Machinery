@@ -279,7 +279,7 @@
             Trigger for mechanism.
             </summary>
         </member>
-        <member name="P:MGS.Machinery.TriggerMechanism.IsTriggered">
+        <member name="P:MGS.Machinery.TriggerMechanism.IsTriggerEnter">
             <summary>
             Trigger is triggered?
             </summary>
@@ -366,71 +366,39 @@
             Maximum state.
             </summary>
         </member>
-        <member name="T:MGS.Machinery.ICoaxedMechanism">
-            <summary>
-            Mechanism can be coaxed to power mechanism.
-            </summary>
-        </member>
-        <member name="M:MGS.Machinery.ICoaxedMechanism.CoaxeTo(MGS.Machinery.ICoaxeMechanism)">
-            <summary>
-            Coaxe this mechanism to power mechanism.
-            </summary>
-            <param name="coaxe">Power mechanism.</param>
-        </member>
-        <member name="M:MGS.Machinery.ICoaxedMechanism.CoaxeBreak">
-            <summary>
-            Break coaxed from power mechanism.
-            </summary>
-        </member>
         <member name="T:MGS.Machinery.ICoaxeMechanism">
             <summary>
-            Mechanism with coaxed mechanisms.
+            Interface for coaxe mechanism.
             </summary>
         </member>
-        <member name="M:MGS.Machinery.ICoaxeMechanism.BuildCoaxed(MGS.Machinery.ICoaxedMechanism)">
+        <member name="M:MGS.Machinery.ICoaxeMechanism.LinkCoaxe(MGS.Machinery.IMechanism)">
             <summary>
-            Build coaxe for mechanism.
+            Link coaxe.
             </summary>
-            <param name="coaxe">Coaxe mechanism.</param>
+            <param name="mechanism">Target mechanism.</param>
         </member>
-        <member name="M:MGS.Machinery.ICoaxeMechanism.BreakCoaxed(MGS.Machinery.ICoaxedMechanism)">
+        <member name="M:MGS.Machinery.ICoaxeMechanism.BreakCoaxe(MGS.Machinery.IMechanism)">
             <summary>
-            Break coaxed.
+            Break coaxe.
             </summary>
-            <param name="coaxe">Coaxe mechanism.</param>
-        </member>
-        <member name="T:MGS.Machinery.IEngagedMechanism">
-            <summary>
-            Mechanism can be engaged to power mechanism.
-            </summary>
-        </member>
-        <member name="M:MGS.Machinery.IEngagedMechanism.EngageTo(MGS.Machinery.IEngageMechanism)">
-            <summary>
-            Engage this mechanism to power mechanism.
-            </summary>
-            <param name="engage">Power mechanism.</param>
-        </member>
-        <member name="M:MGS.Machinery.IEngagedMechanism.EngageBreak">
-            <summary>
-            Break engage from power mechanism.
-            </summary>
+            <param name="mechanism">Target mechanism.</param>
         </member>
         <member name="T:MGS.Machinery.IEngageMechanism">
             <summary>
-            Mechanism with engaged mechanisms.
+            Interface for engage mechanism.
             </summary>
         </member>
-        <member name="M:MGS.Machinery.IEngageMechanism.BuildEngage(MGS.Machinery.IEngagedMechanism)">
+        <member name="M:MGS.Machinery.IEngageMechanism.LinkEngage(MGS.Machinery.IMechanism)">
             <summary>
-            Build engage for mechanism.
+            Link engage.
             </summary>
-            <param name="engage">Engage mechanism.</param>
+            <param name="mechanism">Target mechanism.</param>
         </member>
-        <member name="M:MGS.Machinery.IEngageMechanism.BreakEngage(MGS.Machinery.IEngagedMechanism)">
+        <member name="M:MGS.Machinery.IEngageMechanism.BreakEngage(MGS.Machinery.IMechanism)">
             <summary>
             Break engage.
             </summary>
-            <param name="engage">Engage mechanism.</param>
+            <param name="mechanism">Target mechanism.</param>
         </member>
         <member name="T:MGS.Machinery.IMechanism">
             <summary>
@@ -454,10 +422,60 @@
             Trigger mechanism.
             </summary>
         </member>
-        <member name="P:MGS.Machinery.ITriggerMechanism.IsTriggered">
+        <member name="P:MGS.Machinery.ITriggerMechanism.IsTriggerEnter">
             <summary>
-            Trigger is triggered?
+            Trigger is enter?
             </summary>
+        </member>
+        <member name="T:MGS.Machinery.Belt">
+            <summary>
+            Belt with UV animation.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Belt.engages">
+            <summary>
+            Engaged mechanisms.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Belt.coefficient">
+            <summary>
+            Coefficient of velocity.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Belt.beltRenderer">
+            <summary>
+            Renderer of belt.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Belt.DriveEngages(System.Single)">
+            <summary>
+            Drive engage mechanisms by linear velocity.
+            </summary>
+            <param name="velocity">Linear velocity of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.Belt.Initialize">
+            <summary>
+            Initialize belt.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Belt.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive belt by linear velocity.
+            </summary>
+            <param name="velocity">Linear velocity of drive.</param>
+            <param name="type">Invalid parameter (Belt can only drived by linear velocity).</param>
+        </member>
+        <member name="M:MGS.Machinery.Belt.LinkEngage(MGS.Machinery.IMechanism)">
+            <summary>
+            Link engage.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.Belt.BreakEngage(MGS.Machinery.IMechanism)">
+            <summary>
+            Break engage.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
         </member>
         <member name="T:MGS.Machinery.FreeCrank">
             <summary>
@@ -510,6 +528,131 @@
             </summary>
             <param name="velocity">Velocity of drive.</param>
             <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Axle">
+            <summary>
+            Axle rotate around axis Z.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Axle.coaxes">
+            <summary>
+            Coaxed mechanisms.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Axle.DriveCoaxes(System.Single)">
+            <summary>
+            Drive coaxial mechanisms by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.Axle.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive axle by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+            <param name="type">Invalid parameter (Axle can only drived by angular velocity).</param>
+        </member>
+        <member name="M:MGS.Machinery.Axle.LinkCoaxe(MGS.Machinery.IMechanism)">
+            <summary>
+            Link coaxe.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.Axle.BreakCoaxe(MGS.Machinery.IMechanism)">
+            <summary>
+            Break coaxe.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
+        </member>
+        <member name="T:MGS.Machinery.CoaxeGear">
+            <summary>
+            Coaxe gear with the same axis as another gear.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CoaxeGear.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive gear by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Gear">
+            <summary>
+            Gear rotate around axis Z.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Gear.engages">
+            <summary>
+            Engaged mechanisms.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Gear.radius">
+            <summary>
+            Radius of gear.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Gear.DriveEngages(System.Single)">
+            <summary>
+            Drive engage mechanisms by linear velocity.
+            </summary>
+            <param name="velocity">Linear velocity of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.Gear.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive gear by velocity.
+            </summary>
+            <param name="velocity">Velocity of drive.</param>
+            <param name="type">Type of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.Gear.LinkEngage(MGS.Machinery.IMechanism)">
+            <summary>
+            Link engage.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
+        </member>
+        <member name="M:MGS.Machinery.Gear.BreakEngage(MGS.Machinery.IMechanism)">
+            <summary>
+            Break engage.
+            </summary>
+            <param name="mechanism">Target mechanism.</param>
+        </member>
+        <member name="T:MGS.Machinery.WormGear">
+            <summary>
+            Worm gear.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.WormGear.teeth">
+            <summary>
+            Count of gear teeth.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.WormShaft">
+            <summary>
+            Worm shaft.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.WormShaft.gears">
+            <summary>
+            Gears drived by this worm.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.WormShaft.threads">
+            <summary>
+            Count of worm threads.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.WormShaft.DriveGears(System.Single)">
+            <summary>
+            Drive worm gears by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+        </member>
+        <member name="M:MGS.Machinery.WormShaft.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive worm shaft by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+            <param name="type">Invalid parameter (WormShaft can only drived by angular velocity).</param>
         </member>
         <member name="T:MGS.Machinery.CrankRocker">
             <summary>
@@ -674,7 +817,7 @@
             Distance range of rocker.
             </summary>
         </member>
-        <member name="P:MGS.Machinery.RockerLimiter.IsTriggered">
+        <member name="P:MGS.Machinery.RockerLimiter.IsTriggerEnter">
             <summary>
             Limiter is triggered?
             </summary>
@@ -777,6 +920,194 @@
             </summary>
             <param name="velocity">Velocity of drive.</param>
             <param name="type">Type of drive.</param>
+        </member>
+        <member name="T:MGS.Machinery.Differential">
+            <summary>
+            Ordinary differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.leftGear">
+            <summary>
+            Left gear of differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.rightGear">
+            <summary>
+            Right gear of differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.leftAxle">
+            <summary>
+            Left axle of differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.rightAxle">
+            <summary>
+            Right axle of differential.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.Differential.Coefficient">
+            <summary>
+            Offset coefficient of differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.coefficient">
+            <summary>
+            Offset coefficient of differential.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.leftCoefficient">
+            <summary>
+            Offset coefficient of left axle.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Differential.rightCoefficient">
+            <summary>
+            Offset coefficient of right axle.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Differential.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive differential by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+            <param name="type">Invalid parameter (Differential can only drived by angular velocity).</param>
+        </member>
+        <member name="T:MGS.Machinery.Motor">
+            <summary>
+            Motor provide power to drive axle.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.Motor.MaxRPM">
+            <summary>
+            Max revolution velocity (r/min).
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.maxRPM">
+            <summary>
+            Max revolution velocity.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.targetRPM">
+            <summary>
+            Target revolution velocity.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.currentRPM">
+            <summary>
+            Current revolution velocity.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.threshold">
+            <summary>
+            Threshold of lerp rpm.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.damper">
+            <summary>
+            Damper of engine rpm.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.axle">
+            <summary>
+            Axle drive by this motor.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Motor.Update">
+            <summary>
+            Update motor.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Motor.TurnOn">
+            <summary>
+            Turn on motor.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.Motor.TurnOff">
+            <summary>
+            Turn off motor.
+            </summary>
+        </member>
+        <member name="T:MGS.Machinery.CentrifugalVibrator">
+            <summary>
+            Centrifugal vibrator.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CentrifugalVibrator.amplitudeRadius">
+            <summary>
+            Amplitude radius of vibrator.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.CentrifugalVibrator.StartPosition">
+            <summary>
+            Start loacal position.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.CentrifugalVibrator.currentAngle">
+            <summary>
+            Current rotate angle.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CentrifugalVibrator.GetLocalDirection(UnityEngine.Vector3)">
+            <summary>
+            Get local direction from wold direction.
+            </summary>
+            <param name="direction">Wold direction.</param>
+            <returns>Local direction.</returns>
+        </member>
+        <member name="M:MGS.Machinery.CentrifugalVibrator.Initialize">
+            <summary>
+            Initialize vibrator.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.CentrifugalVibrator.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive vibrator by angular velocity.
+            </summary>
+            <param name="velocity">Angular velocity of drive.</param>
+            <param name="type">Invalid parameter (CentrifugalVibrator can only drived by angular velocity).</param>
+        </member>
+        <member name="T:MGS.Machinery.LinearVibrator">
+            <summary>
+            Linear vibrator.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.LinearVibrator.amplitudeRadius">
+            <summary>
+            Amplitude radius of vibrator.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.LinearVibrator.StartPosition">
+            <summary>
+            Start loacal position.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.LinearVibrator.LocalAxis">
+            <summary>
+            Vibrate local axis.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.LinearVibrator.currentOffset">
+            <summary>
+            Current offset base on start position.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.LinearVibrator.direction">
+            <summary>
+            Vibrate direction.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.LinearVibrator.Initialize">
+            <summary>
+            Initialize vibrator.
+            </summary>
+        </member>
+        <member name="M:MGS.Machinery.LinearVibrator.Drive(System.Single,MGS.Machinery.DriveType)">
+            <summary>
+            Drive vibrator by linear velocity.
+            </summary>
+            <param name="velocity">Linear velocity of drive.</param>
+            <param name="type">Invalid parameter (LinearVibrator can only drived by linear velocity).</param>
         </member>
         <member name="T:MGS.Machinery.Synchronizer">
             <summary>
