@@ -25,6 +25,18 @@
 
     Binding complete construction machinery, example crane, road roller,
     loader, grader and excavator.
+
+    Binding mesh Gear.
+
+    Binding worm gear.
+
+    Binding belt flywheel.
+
+    Binding vibrator.
+
+    Binding differential.
+
+    Binding transmission.
 --------------------------------------------------------------------------
   [Environment]
     Unity 5.0 or above.
@@ -64,7 +76,27 @@
     Transmission : Differential mechanisms, drive multi mechanisms
     by ratio velocity at the same time.
 
-    MeDriver : Universal mechanism driver.
+    MechanismDriver : Driver for test mechanism quickly.
+
+    Gear : Gear rotate around axis Z.
+
+    Axle : Axle rotate around axis Z.
+
+    CoaxeGear : Coaxe gear with the same axis as another gear.
+
+    WormGear : Worm gear mechanism.
+
+    WormShaft : Worm shaft mechanism.
+
+    Belt : Move texture UV on X axis.
+
+    LinearVibrator : Reciprocating motion on Z axis.
+
+    CentrifugalVibrator : Eccentric motion around Z axis.
+
+    Engine : Unified engine drive all mechanisms. 
+
+    Differential : Ordinary differential.
 --------------------------------------------------------------------------
   [Usage]
     Reference the prefabs and demos to binding machinery joint in your
@@ -82,18 +114,29 @@
     Always select the "Lock" mode of "Hinge Editor" when you finish
     binding a CrankRocker or CrankSlider.
 
-    You can attach the MeDriver component to a mechanism to test it when
-    you finished binding.
+    You can attach the MechanismDriver component to a mechanism to
+    test it when you finished binding.
 --------------------------------------------------------------------------
   [Suggest]
-    The MeDriver component only used to test drive mechanisms in demos.
-    you can use it to test your binding mechanisms, but should not use
-    in your project development.
+    The MechanismDriver component only used to test drive mechanisms
+    in demos. you can use it to test your binding mechanisms, but should
+    not use in your project development.
 
     In fact, you should write a controller component for your machinery
     to unified control all the mechanisms. example: write CraneController
     component for crane to manage and drive the upcar, big arm and
     landing legs.
+
+    The radius of gear should be set precisely.
+
+    UV of belt model should be transverse arrangement, the texture of
+    belt is preferably all sides continuous.
+
+    Make sure the gear engages perfectly with the worm when building
+    model.
+
+    The amplitude radius of CentrifugalVibrator or LinearVibrator
+    usually set a small value.
 --------------------------------------------------------------------------
   [Demo]
     Prefabs in the path "MGS-Machinery/Prefabs" provide reference to you.

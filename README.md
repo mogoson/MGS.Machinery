@@ -13,6 +13,12 @@
 - Binding crank roker, example: scraper bucket of loader, bucket of excavator.
 - Binding crank slider, example: reciprocating engine, aircraft planetary engine.
 - Binding complete construction machinery, example crane, road roller, loader, grader and excavator.
+- Binding mesh Gear.
+- Binding worm gear.
+- Binding belt flywheel.
+- Binding vibrator.
+- Binding differential.
+- Binding transmission.
 
 ## Environment
 - Unity 5.0 or above.
@@ -34,7 +40,17 @@
 - SliderArm : Sequence slider arm, drive from first joint to last joint.
 - Synchronizer : Synchronous mechanisms, drive multi mechanisms at the same time.
 - Transmission : Differential mechanisms, drive multi mechanisms by ratio velocity at the same time.
-- MeDriver : Universal mechanism driver.
+- MechanismDriver : Universal mechanism driver.
+- Gear : Gear rotate around axis Z.
+- Axle : Axle rotate around axis Z.
+- CoaxialGear : Coaxial gear with the same axis as another gear.
+- WormGear : Worm gear mechanism.
+- WormShaft : Worm shaft mechanism.
+- Belt : Move texture UV on X axis.
+- LinearVibrator : Reciprocating motion on Z axis.
+- CentrifugalVibrator : Eccentric motion around Z axis.
+- Motor : Motor provide power to drive axle. 
+- Differential : Ordinary differential.
 
 ## Demo
 - Prefabs in the path "MGS-Machinery/Prefabs" provide reference to you.
@@ -108,6 +124,34 @@
 - Helicopter
 
 ![Helicopter](./Attachment/README_Image/Helicopter.gif)
+
+- Mesh Gears
+
+![Mesh Gears](./Attachment/README_Image/MeshGears_E.gif)
+
+- Mesh Gears
+
+![Mesh Gears](./Attachment/README_Image/MeshGears_C.gif)
+
+- Belt
+
+![Belt](./Attachment/README_Image/Belt.gif)
+
+- Worm Gear
+
+![Worm Gear](./Attachment/README_Image/WormGear.gif)
+
+- Vibrosieve
+
+![Vibrosieve](./Attachment/README_Image/Vibrosieve.gif)
+
+- Differential
+
+![Differential](./Attachment/README_Image/Differential.gif)
+
+- Transmission
+
+![Transmission](./Attachment/README_Image/Transmission.gif)
 
 ## Contact
 - If you have any questions, feel free to contact me at mogoson@outlook.com.

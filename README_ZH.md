@@ -12,6 +12,12 @@
 - 绑定曲柄摇杆机构，即平面四杆铰链，例如：装载机的铲斗，挖掘机的挖斗等。
 - 绑定曲柄滑块机构，例如：往复活塞式内燃机，飞机行星发动机等。
 - 绑定完整的工程机械，例如：起重机，压路机，装载机，平地机，挖掘机等。
+- 绑定啮合齿轮传动机构。
+- 绑定蜗轮蜗杆传动机构。
+- 绑定皮带飞轮传动机构。
+- 绑定差速器传动机构。
+- 绑定变速器传动机构。
+- 绑定振荡器。
 
 ## 环境
 - Unity 5.0 或更高版本。
@@ -31,9 +37,19 @@
 - RockerSpring：摇杆弹簧，动态弹簧始终朝向目标关节。
 - Slider ：伸缩滑块关节。
 - SliderArm：序列伸缩臂。
-- Synchronizer：同步机构，同时驱动多个机构等速运转。
-- Transmission：差速机构，同时驱动多个机构差速运转。
-- MeDriver：通用机构驱动器。
+- Synchronizer：同步器，统一线速度驱动同步器的所有机构。
+- Transmission：变速器，按指定比例线速度驱动变速器的相应机构，用于协调多个机构的运转。
+- MechanismDriver：通用机构驱动器。
+- Gear：齿轮，绕Z轴向作圆周运动。
+- Axle：转轴，绕Z轴向作圆周运动。
+- CoaxialGear ：共轴轮，与另一个齿轮共轴，只输出转速，不转动。
+- WormGear：绑定蜗轮。
+- WormShaft：绑定蜗杆。
+- Belt：传送带，UV沿X方向移动模拟运转。
+- LinearVibrator：线性振动器，沿Z轴向作往复运动。
+- CentrifugalVibrator：离心振动器，绕Z轴向作离心运动。
+- Motor：马达，提供动力驱动转轴。
+- Differential：普通差速器。
 
 ## 案例
 - “MGS-Machinery/Prefabs”目录下存有上述机械关节和完整机械绑定的预制，供读者参考。
@@ -107,6 +123,34 @@
 - Helicopter
 
 ![Helicopter](./Attachment/README_Image/Helicopter.gif)
+
+- Mesh Gears
+
+![Mesh Gears](./Attachment/README_Image/MeshGears_E.gif)
+
+- Mesh Gears
+
+![Mesh Gears](./Attachment/README_Image/MeshGears_C.gif)
+
+- Belt
+
+![Belt](./Attachment/README_Image/Belt.gif)
+
+- Worm Gear
+
+![Worm Gear](./Attachment/README_Image/WormGear.gif)
+
+- Vibrosieve
+
+![Vibrosieve](./Attachment/README_Image/Vibrosieve.gif)
+
+- Differential
+
+![Differential](./Attachment/README_Image/Differential.gif)
+
+- Transmission
+
+![Transmission](./Attachment/README_Image/Transmission.gif)
 
 ## 联系
 - 如果你有任何问题或者建议，欢迎通过mogoson@outlook.com联系我。
