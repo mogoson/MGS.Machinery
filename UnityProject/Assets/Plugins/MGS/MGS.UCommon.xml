@@ -448,6 +448,21 @@
             Component-Luminosity Mode.
             </summary>
         </member>
+        <member name="T:MGS.UCommon.Generic.LerpMode">
+            <summary>
+            Lerp mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.LerpMode.Lerp">
+            <summary>
+            Lerp mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.LerpMode.Towards">
+            <summary>
+            Towards mode.
+            </summary>
+        </member>
         <member name="T:MGS.UCommon.Generic.MirrorMode">
             <summary>
             Mode of mirror.
@@ -600,7 +615,7 @@
             </summary>
             <param name="mode">Mode of mirror.</param>
         </member>
-        <member name="M:MGS.UCommon.UI.UIElement.Language(System.String)">
+        <member name="M:MGS.UCommon.UI.UIElement.SetLanguage(System.String)">
             <summary>
             Set language of UI.
             </summary>
@@ -678,7 +693,7 @@
             Interface for multilingual UI.
             </summary>
         </member>
-        <member name="M:MGS.UCommon.UI.IMultilingualUI.Language(System.String)">
+        <member name="M:MGS.UCommon.UI.IMultilingualUI.SetLanguage(System.String)">
             <summary>
             Set language of UI.
             </summary>

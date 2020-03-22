@@ -434,7 +434,7 @@
         </member>
         <member name="F:MGS.Machinery.Belt.engages">
             <summary>
-            Engaged mechanisms.
+            Engage mechanisms.
             </summary>
         </member>
         <member name="F:MGS.Machinery.Belt.coefficient">
@@ -536,7 +536,7 @@
         </member>
         <member name="F:MGS.Machinery.Axle.coaxes">
             <summary>
-            Coaxed mechanisms.
+            Coaxe mechanisms.
             </summary>
         </member>
         <member name="M:MGS.Machinery.Axle.DriveCoaxes(System.Single)">
@@ -583,7 +583,7 @@
         </member>
         <member name="F:MGS.Machinery.Gear.engages">
             <summary>
-            Engaged mechanisms.
+            Engage mechanisms.
             </summary>
         </member>
         <member name="F:MGS.Machinery.Gear.radius">
@@ -978,24 +978,9 @@
             Motor provide power to drive axle.
             </summary>
         </member>
-        <member name="P:MGS.Machinery.Motor.MaxRPM">
-            <summary>
-            Max revolution velocity (r/min).
-            </summary>
-        </member>
         <member name="F:MGS.Machinery.Motor.maxRPM">
             <summary>
             Max revolution velocity.
-            </summary>
-        </member>
-        <member name="F:MGS.Machinery.Motor.targetRPM">
-            <summary>
-            Target revolution velocity.
-            </summary>
-        </member>
-        <member name="F:MGS.Machinery.Motor.currentRPM">
-            <summary>
-            Current revolution velocity.
             </summary>
         </member>
         <member name="F:MGS.Machinery.Motor.threshold">
@@ -1011,6 +996,21 @@
         <member name="F:MGS.Machinery.Motor.axle">
             <summary>
             Axle drive by this motor.
+            </summary>
+        </member>
+        <member name="P:MGS.Machinery.Motor.MaxRPM">
+            <summary>
+            Max revolution velocity (r/min).
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.targetRPM">
+            <summary>
+            Target revolution velocity.
+            </summary>
+        </member>
+        <member name="F:MGS.Machinery.Motor.currentRPM">
+            <summary>
+            Current revolution velocity.
             </summary>
         </member>
         <member name="M:MGS.Machinery.Motor.Update">
