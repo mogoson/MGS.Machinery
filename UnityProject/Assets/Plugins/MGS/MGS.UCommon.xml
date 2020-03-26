@@ -4,783 +4,6 @@
         <name>MGS.UCommon</name>
     </assembly>
     <members>
-        <member name="T:MGS.UCommon.UAnimation.MonoAnimation">
-            <summary>
-            Mono animation.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.UAnimation.MonoAnimation.speed">
-            <summary>
-            Speed of animation.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.UAnimation.MonoAnimation.loop">
-            <summary>
-            Loop mode of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.MonoAnimation.Speed">
-            <summary>
-            Speed of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.MonoAnimation.LoopMode">
-            <summary>
-            Loop mode of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.MonoAnimation.IsPlaying">
-            <summary>
-            Animation is playing?
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.MonoAnimation.Play">
-            <summary>
-            Play animation.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.MonoAnimation.Pause">
-            <summary>
-            Pause animation.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.MonoAnimation.Rewind(System.Single)">
-            <summary>
-            Rewind animation.
-            </summary>
-            <param name="progress">Progress of animation in the range[0~1]</param>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.MonoAnimation.Stop">
-            <summary>
-            Stop animation.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.UAnimation.IAnimation">
-            <summary>
-            Interface of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.IAnimation.Speed">
-            <summary>
-            Speed of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.IAnimation.LoopMode">
-            <summary>
-            Loop mode of animation.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UAnimation.IAnimation.IsPlaying">
-            <summary>
-            Animation is playing?
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.IAnimation.Play">
-            <summary>
-            Play animation.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.IAnimation.Pause">
-            <summary>
-            Pause animation.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.IAnimation.Rewind(System.Single)">
-            <summary>
-            Rewind animation.
-            </summary>
-            <param name="progress">Progress of animation in the range[0~1]</param>
-        </member>
-        <member name="M:MGS.UCommon.UAnimation.IAnimation.Stop">
-            <summary>
-            Stop animation.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.UAnimation.LoopMode">
-            <summary>
-            Loop mode of animation.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.UAnimation.LoopMode.Once">
-            <summary>
-            Animation just play once.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.UAnimation.LoopMode.Loop">
-            <summary>
-            Animation loop play.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.UAnimation.LoopMode.PingPong">
-            <summary>
-            Animation play like ping pong.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Event.MonoEventTrigger">
-            <summary>
-            Event trigger for UI behaviour.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerEnter">
-            <summary>
-            On pointer enter event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerExit">
-            <summary>
-            On pointer exit event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerDown">
-            <summary>
-            On pointer down event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerUp">
-            <summary>
-            On pointer up event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerClick">
-            <summary>
-            On pointer click event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onBeginDrag">
-            <summary>
-            On begin drag event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onInitializePotentialDrag">
-            <summary>
-            On initialize potential drag event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDrag">
-            <summary>
-            On drag event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onEndDrag">
-            <summary>
-            On end drag event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDrop">
-            <summary>
-            On drop event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onScroll">
-            <summary>
-            On scroll event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onUpdateSelected">
-            <summary>
-            On update selected event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onSelect">
-            <summary>
-            On select event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDeselect">
-            <summary>
-            On deselect event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onMove">
-            <summary>
-            On move event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onSubmit">
-            <summary>
-            On submit event.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onCancel">
-            <summary>
-            On cancel event.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerEnter(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On pointer enter.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerExit(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On pointer exit.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerDown(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On pointer down.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerUp(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On pointer up.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerClick(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On pointer click.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnBeginDrag(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On begin drag.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnInitializePotentialDrag(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On initialize potential drag.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDrag(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On drag.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnEndDrag(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On end drag.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDrop(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On drop.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnScroll(UnityEngine.EventSystems.PointerEventData)">
-            <summary>
-            On scroll.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnUpdateSelected(UnityEngine.EventSystems.BaseEventData)">
-            <summary>
-            On update selected.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnSelect(UnityEngine.EventSystems.BaseEventData)">
-            <summary>
-            On select.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDeselect(UnityEngine.EventSystems.BaseEventData)">
-            <summary>
-            On deselect.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnMove(UnityEngine.EventSystems.AxisEventData)">
-            <summary>
-            On move.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnSubmit(UnityEngine.EventSystems.BaseEventData)">
-            <summary>
-            On submit.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnCancel(UnityEngine.EventSystems.BaseEventData)">
-            <summary>
-            On cancel.
-            </summary>
-            <param name="eventData">Pointer event data.</param>
-        </member>
-        <member name="T:MGS.UCommon.Generic.ColorBlendMode">
-            <summary>
-            Mode of color blend.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Normal">
-            <summary>
-            Normal-Normal Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Dissolve">
-            <summary>
-            Normal-Dissolve Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Darken">
-            <summary>
-            Darken-Darken Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Multiply">
-            <summary>
-            Darken-Multiply Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.ColorBurn">
-            <summary>
-            Darken-ColorBurn Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearBurn">
-            <summary>
-            Darken-LinearBurn Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.DarkerColor">
-            <summary>
-            Darken-DarkerColor Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Lighten">
-            <summary>
-            Lighten-Lighten Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Screen">
-            <summary>
-            Lighten-Screen Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.ColorDodge">
-            <summary>
-            Lighten-ColorDodge Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearDodge">
-            <summary>
-            Lighten-LinearDodge Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LighterColor">
-            <summary>
-            Lighten-LighterColor Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Overlay">
-            <summary>
-            Contrast-Overlay Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.SoftLight">
-            <summary>
-            Contrast-SoftLight Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.HardLight">
-            <summary>
-            Contrast-HardLight Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.VividLight">
-            <summary>
-            Contrast-VividLight Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearLight">
-            <summary>
-            Contrast-LinearLight Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.PinLight">
-            <summary>
-            Contrast-PinLight Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.HardMix">
-            <summary>
-            Contrast-HardMix Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Difference">
-            <summary>
-            Cancelation-Difference Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Exclusion">
-            <summary>
-            Cancelation-Exclusion Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Subtract">
-            <summary>
-            Cancelation-Subtract Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Divide">
-            <summary>
-            Cancelation-Divide Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Hue">
-            <summary>
-            Component-Hue Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Color">
-            <summary>
-            Component-Color Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Saturation">
-            <summary>
-            Component-Saturation Mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Luminosity">
-            <summary>
-            Component-Luminosity Mode.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Generic.LerpMode">
-            <summary>
-            Lerp mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.LerpMode.Lerp">
-            <summary>
-            Lerp mode.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.LerpMode.Towards">
-            <summary>
-            Towards mode.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Generic.MirrorMode">
-            <summary>
-            Mode of mirror.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.MirrorMode.Horizontal">
-            <summary>
-            Horizontal mirror.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.MirrorMode.Vertical">
-            <summary>
-            Vertical mirror.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.MirrorMode.Both">
-            <summary>
-            Both horizontal and vertical mirror.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Generic.Range">
-            <summary>
-            Range form min to max.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.Range.min">
-            <summary>
-            Min value of range.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.Range.max">
-            <summary>
-            Max value of range.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Generic.Range.Length">
-            <summary>
-            Length of range from min to max.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Generic.Range.#ctor(System.Single,System.Single)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="min">Min value of range.</param>
-            <param name="max">Max value of range.</param>
-        </member>
-        <member name="T:MGS.UCommon.Generic.PlaneArea">
-            <summary>
-            Rectangle area on plane.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.PlaneArea.center">
-            <summary>
-            Center of area.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.PlaneArea.width">
-            <summary>
-            Width of area.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Generic.PlaneArea.length">
-            <summary>
-            Length of area.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Generic.PlaneArea.#ctor(UnityEngine.Transform,System.Single,System.Single)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="center">Center of area.</param>
-            <param name="width">Width of area.</param>
-            <param name="length">Length of area.</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.InteractableUI">
-            <summary>
-            Base class for interactable UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.InteractableUI.Interactable">
-            <summary>
-            UI is interactable?
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.UI.MonoUI">
-            <summary>
-            Base class for mono UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.RectTrans">
-            <summary>
-            RectTransform component of UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.ParentTrans">
-            <summary>
-            RectTransform component of parent UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.IsOpen">
-            <summary>
-            UI is open?
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.IsDisposed">
-            <summary>
-            UI is disposed?
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.OnOpen">
-            <summary>
-            Event on open UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.MonoUI.OnClose">
-            <summary>
-            Event on close UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.MonoUI.Awake">
-            <summary>
-            Awake UI component.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.MonoUI.OnDestroy">
-            <summary>
-            On destroy UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.MonoUI.Open">
-            <summary>
-            Open UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.MonoUI.Close(System.Boolean)">
-            <summary>
-            Close UI.
-            </summary>
-            <param name="dispose">Dispose UI on close?</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.UIElement">
-            <summary>
-            Base class for UI element.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.UIElement.Mirror(MGS.UCommon.Generic.MirrorMode)">
-            <summary>
-            Mirror UI.
-            </summary>
-            <param name="mode">Mode of mirror.</param>
-        </member>
-        <member name="M:MGS.UCommon.UI.UIElement.SetLanguage(System.String)">
-            <summary>
-            Set language of UI.
-            </summary>
-            <param name="name">Language name.</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.IInteractableUI">
-            <summary>
-            Interface for interactable UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IInteractableUI.Interactable">
-            <summary>
-            UI is interactable?
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.UI.IMonoUI">
-            <summary>
-            Interface for mono UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.RectTrans">
-            <summary>
-            RectTransform component of UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.ParentTrans">
-            <summary>
-            RectTransform component of parent UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.IsOpen">
-            <summary>
-            UI is open?
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.IsDisposed">
-            <summary>
-            UI is disposed?
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.OnOpen">
-            <summary>
-            Event on open UI.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.UI.IMonoUI.OnClose">
-            <summary>
-            Event on close UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.IMonoUI.Open">
-            <summary>
-            Open UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.IMonoUI.Close(System.Boolean)">
-            <summary>
-            Close UI.
-            </summary>
-            <param name="dispose">Dispose UI on close?</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.IMirrorableUI">
-            <summary>
-            Interface for mirrorable UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.IMirrorableUI.Mirror(MGS.UCommon.Generic.MirrorMode)">
-            <summary>
-            Mirror UI.
-            </summary>
-            <param name="mode">Mode of mirror.</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.IMultilingualUI">
-            <summary>
-            Interface for multilingual UI.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.UI.IMultilingualUI.SetLanguage(System.String)">
-            <summary>
-            Set language of UI.
-            </summary>
-            <param name="name">Language name.</param>
-        </member>
-        <member name="T:MGS.UCommon.UI.IUIElement">
-            <summary>
-            Interface for UI element.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Extension.GameObjectExtention">
-            <summary>
-            Extention for UnityEngine.GameObject.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Extension.GameObjectExtention.BroadcastLayer(UnityEngine.GameObject,System.Int32)">
-            <summary>
-            Set layer include it's children.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Extension.TerrainExtension">
-            <summary>
-            Extension for UnityEngine.Terrain.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Extension.TerrainExtension.NormalizeRelativePosition(UnityEngine.Terrain,UnityEngine.Vector3)">
-            <summary>
-            Normalize position relative to terrain.
-            </summary>
-            <param name="terrain">Base terrain.</param>
-            <param name="woldPos">Position in wold space.</param>
-            <returns>Normalize position.</returns>
-        </member>
-        <member name="M:MGS.UCommon.Extension.TerrainExtension.MapRelativePosition(UnityEngine.Terrain,UnityEngine.Vector3,UnityEngine.Vector3)">
-            <summary>
-            Position relative to terrain map.
-            </summary>
-            <param name="terrain">Base terrain.</param>
-            <param name="mapSize">Map size(x is width, z is height).</param>
-            <param name="normalizePos">Normalize position relative to terrain.</param>
-            <returns>Relative position.</returns>
-        </member>
-        <member name="T:MGS.UCommon.Extension.Texture2DExtention">
-            <summary>
-            Extention for UnityEngine.Texture2D.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color[],System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Update the pixels of Texture2D.
-            </summary>
-            <param name="texture2D">Base Texture2D.</param>
-            <param name="colorArray">Color array for pixels.</param>
-            <param name="mipLevel">The mip level of the texture to write to.</param>
-            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
-            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
-        </member>
-        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color[0:,0:],System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Update the pixels of Texture2D.
-            </summary>
-            <param name="texture2D">Base Texture2D.</param>
-            <param name="colorArray">Color array for pixels.</param>
-            <param name="mipLevel">The mip level of the texture to write to.</param>
-            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
-            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
-        </member>
-        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color32[],System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Update the pixels of Texture2D.
-            </summary>
-            <param name="texture2D">Base Texture2D.</param>
-            <param name="colorArray">Color array for pixels.</param>
-            <param name="mipLevel">The mip level of the texture to write to.</param>
-            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
-            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
-        </member>
-        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color32[0:,0:],System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Update the pixels of Texture2D.
-            </summary>
-            <param name="texture2D">Base Texture2D.</param>
-            <param name="colorArray">Color array for pixels.</param>
-            <param name="mipLevel">The mip level of the texture to write to.</param>
-            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
-            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
-        </member>
         <member name="T:MGS.UCommon.Curve.LinearBezierAnchor">
             <summary>
             Anchor points of linear bezier curve.
@@ -1266,6 +489,28 @@
             <param name="close">Curve is close?</param>
             <returns>New curve.</returns>
         </member>
+        <member name="T:MGS.UCommon.Curve.ICurve">
+            <summary>
+            Interface of curve.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Curve.ICurve.Length">
+            <summary>
+            Length of curve.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Curve.ICurve.MaxKey">
+            <summary>
+            Max key of curve.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Curve.ICurve.GetPointAt(System.Single)">
+            <summary>
+            Get point on curve at key.
+            </summary>
+            <param name="key">Key of curve.</param>
+            <returns>The point on curve at key.</returns>
+        </member>
         <member name="T:MGS.UCommon.Curve.SinArgs">
             <summary>
             Args of sin.
@@ -1359,27 +604,504 @@
             <param name="x">Value of x axis.</param>
             <returns>The point on sin curve at x.</returns>
         </member>
-        <member name="T:MGS.UCommon.Curve.ICurve">
+        <member name="T:MGS.UCommon.Event.MonoEventTrigger">
             <summary>
-            Interface of curve.
+            Event trigger for UI behaviour.
             </summary>
         </member>
-        <member name="P:MGS.UCommon.Curve.ICurve.Length">
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerEnter">
             <summary>
-            Length of curve.
+            On pointer enter event.
             </summary>
         </member>
-        <member name="P:MGS.UCommon.Curve.ICurve.MaxKey">
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerExit">
             <summary>
-            Max key of curve.
+            On pointer exit event.
             </summary>
         </member>
-        <member name="M:MGS.UCommon.Curve.ICurve.GetPointAt(System.Single)">
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerDown">
             <summary>
-            Get point on curve at key.
+            On pointer down event.
             </summary>
-            <param name="key">Key of curve.</param>
-            <returns>The point on curve at key.</returns>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerUp">
+            <summary>
+            On pointer up event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onPointerClick">
+            <summary>
+            On pointer click event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onBeginDrag">
+            <summary>
+            On begin drag event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onInitializePotentialDrag">
+            <summary>
+            On initialize potential drag event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDrag">
+            <summary>
+            On drag event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onEndDrag">
+            <summary>
+            On end drag event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDrop">
+            <summary>
+            On drop event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onScroll">
+            <summary>
+            On scroll event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onUpdateSelected">
+            <summary>
+            On update selected event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onSelect">
+            <summary>
+            On select event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onDeselect">
+            <summary>
+            On deselect event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onMove">
+            <summary>
+            On move event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onSubmit">
+            <summary>
+            On submit event.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Event.MonoEventTrigger.onCancel">
+            <summary>
+            On cancel event.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerEnter(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On pointer enter.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerExit(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On pointer exit.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerDown(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On pointer down.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerUp(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On pointer up.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnPointerClick(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On pointer click.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnBeginDrag(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On begin drag.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnInitializePotentialDrag(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On initialize potential drag.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDrag(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On drag.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnEndDrag(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On end drag.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDrop(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On drop.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnScroll(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            On scroll.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnUpdateSelected(UnityEngine.EventSystems.BaseEventData)">
+            <summary>
+            On update selected.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnSelect(UnityEngine.EventSystems.BaseEventData)">
+            <summary>
+            On select.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnDeselect(UnityEngine.EventSystems.BaseEventData)">
+            <summary>
+            On deselect.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnMove(UnityEngine.EventSystems.AxisEventData)">
+            <summary>
+            On move.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnSubmit(UnityEngine.EventSystems.BaseEventData)">
+            <summary>
+            On submit.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="M:MGS.UCommon.Event.MonoEventTrigger.OnCancel(UnityEngine.EventSystems.BaseEventData)">
+            <summary>
+            On cancel.
+            </summary>
+            <param name="eventData">Pointer event data.</param>
+        </member>
+        <member name="T:MGS.UCommon.Generic.ColorBlendMode">
+            <summary>
+            Mode of color blend.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Normal">
+            <summary>
+            Normal-Normal Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Dissolve">
+            <summary>
+            Normal-Dissolve Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Darken">
+            <summary>
+            Darken-Darken Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Multiply">
+            <summary>
+            Darken-Multiply Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.ColorBurn">
+            <summary>
+            Darken-ColorBurn Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearBurn">
+            <summary>
+            Darken-LinearBurn Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.DarkerColor">
+            <summary>
+            Darken-DarkerColor Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Lighten">
+            <summary>
+            Lighten-Lighten Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Screen">
+            <summary>
+            Lighten-Screen Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.ColorDodge">
+            <summary>
+            Lighten-ColorDodge Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearDodge">
+            <summary>
+            Lighten-LinearDodge Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LighterColor">
+            <summary>
+            Lighten-LighterColor Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Overlay">
+            <summary>
+            Contrast-Overlay Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.SoftLight">
+            <summary>
+            Contrast-SoftLight Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.HardLight">
+            <summary>
+            Contrast-HardLight Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.VividLight">
+            <summary>
+            Contrast-VividLight Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.LinearLight">
+            <summary>
+            Contrast-LinearLight Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.PinLight">
+            <summary>
+            Contrast-PinLight Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.HardMix">
+            <summary>
+            Contrast-HardMix Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Difference">
+            <summary>
+            Cancelation-Difference Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Exclusion">
+            <summary>
+            Cancelation-Exclusion Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Subtract">
+            <summary>
+            Cancelation-Subtract Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Divide">
+            <summary>
+            Cancelation-Divide Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Hue">
+            <summary>
+            Component-Hue Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Color">
+            <summary>
+            Component-Color Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Saturation">
+            <summary>
+            Component-Saturation Mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.ColorBlendMode.Luminosity">
+            <summary>
+            Component-Luminosity Mode.
+            </summary>
+        </member>
+        <member name="T:MGS.UCommon.Generic.LerpMode">
+            <summary>
+            Lerp mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.LerpMode.Lerp">
+            <summary>
+            Lerp mode.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.LerpMode.Towards">
+            <summary>
+            Towards mode.
+            </summary>
+        </member>
+        <member name="T:MGS.UCommon.Generic.MirrorMode">
+            <summary>
+            Mode of mirror.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.MirrorMode.Horizontal">
+            <summary>
+            Horizontal mirror.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.MirrorMode.Vertical">
+            <summary>
+            Vertical mirror.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.MirrorMode.Both">
+            <summary>
+            Both horizontal and vertical mirror.
+            </summary>
+        </member>
+        <member name="T:MGS.UCommon.Generic.Range">
+            <summary>
+            Range form min to max.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.Range.min">
+            <summary>
+            Min value of range.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.Range.max">
+            <summary>
+            Max value of range.
+            </summary>
+        </member>
+        <member name="P:MGS.UCommon.Generic.Range.Length">
+            <summary>
+            Length of range from min to max.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Generic.Range.#ctor(System.Single,System.Single)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="min">Min value of range.</param>
+            <param name="max">Max value of range.</param>
+        </member>
+        <member name="T:MGS.UCommon.Generic.PlaneArea">
+            <summary>
+            Rectangle area on plane.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.PlaneArea.center">
+            <summary>
+            Center of area.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.PlaneArea.width">
+            <summary>
+            Width of area.
+            </summary>
+        </member>
+        <member name="F:MGS.UCommon.Generic.PlaneArea.length">
+            <summary>
+            Length of area.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Generic.PlaneArea.#ctor(UnityEngine.Transform,System.Single,System.Single)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="center">Center of area.</param>
+            <param name="width">Width of area.</param>
+            <param name="length">Length of area.</param>
+        </member>
+        <member name="T:MGS.UCommon.Extension.GameObjectExtention">
+            <summary>
+            Extention for UnityEngine.GameObject.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Extension.GameObjectExtention.BroadcastLayer(UnityEngine.GameObject,System.Int32)">
+            <summary>
+            Set layer include it's children.
+            </summary>
+        </member>
+        <member name="T:MGS.UCommon.Extension.TerrainExtension">
+            <summary>
+            Extension for UnityEngine.Terrain.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Extension.TerrainExtension.NormalizeRelativePosition(UnityEngine.Terrain,UnityEngine.Vector3)">
+            <summary>
+            Normalize position relative to terrain.
+            </summary>
+            <param name="terrain">Base terrain.</param>
+            <param name="woldPos">Position in wold space.</param>
+            <returns>Normalize position.</returns>
+        </member>
+        <member name="M:MGS.UCommon.Extension.TerrainExtension.MapRelativePosition(UnityEngine.Terrain,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Position relative to terrain map.
+            </summary>
+            <param name="terrain">Base terrain.</param>
+            <param name="mapSize">Map size(x is width, z is height).</param>
+            <param name="normalizePos">Normalize position relative to terrain.</param>
+            <returns>Relative position.</returns>
+        </member>
+        <member name="T:MGS.UCommon.Extension.Texture2DExtention">
+            <summary>
+            Extention for UnityEngine.Texture2D.
+            </summary>
+        </member>
+        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color[],System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Update the pixels of Texture2D.
+            </summary>
+            <param name="texture2D">Base Texture2D.</param>
+            <param name="colorArray">Color array for pixels.</param>
+            <param name="mipLevel">The mip level of the texture to write to.</param>
+            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
+            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
+        </member>
+        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color[0:,0:],System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Update the pixels of Texture2D.
+            </summary>
+            <param name="texture2D">Base Texture2D.</param>
+            <param name="colorArray">Color array for pixels.</param>
+            <param name="mipLevel">The mip level of the texture to write to.</param>
+            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
+            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
+        </member>
+        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color32[],System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Update the pixels of Texture2D.
+            </summary>
+            <param name="texture2D">Base Texture2D.</param>
+            <param name="colorArray">Color array for pixels.</param>
+            <param name="mipLevel">The mip level of the texture to write to.</param>
+            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
+            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
+        </member>
+        <member name="M:MGS.UCommon.Extension.Texture2DExtention.UpdatePixels(UnityEngine.Texture2D,UnityEngine.Color32[0:,0:],System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Update the pixels of Texture2D.
+            </summary>
+            <param name="texture2D">Base Texture2D.</param>
+            <param name="colorArray">Color array for pixels.</param>
+            <param name="mipLevel">The mip level of the texture to write to.</param>
+            <param name="updateMipmaps">When set to true, mipmap levels are recalculated.</param>
+            <param name="makeNointerReadable">When set to true, system memory copy of a texture is released.</param>
         </member>
         <member name="T:MGS.UCommon.DesignPattern.SingleBehaviour">
             <summary>
@@ -1410,107 +1132,6 @@
         <member name="P:MGS.UCommon.DesignPattern.SingleMonoBehaviour`1.Instance">
             <summary>
             Single instance of the specified type T.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Skin.ISkin">
-            <summary>
-            Interface of skinned mesh.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Skin.ISkin.Renderer">
-            <summary>
-            Skinned mesh renderer of skin.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Skin.ISkin.Collider">
-            <summary>
-            Mesh collider of skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.ISkin.Rebuild">
-            <summary>
-            Rebuild the mesh of skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.ISkin.AttachCollider">
-            <summary>
-            Attach collider to skin mesh.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.ISkin.RemoveCollider">
-            <summary>
-            Remove collider from skin mesh.
-            </summary>
-        </member>
-        <member name="T:MGS.UCommon.Skin.MonoSkin">
-            <summary>
-            Render dynamic skinned mesh.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Skin.MonoSkin.meshRenderer">
-            <summary>
-            Skinned mesh renderer of skin.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Skin.MonoSkin.meshCollider">
-            <summary>
-            Mesh collider of skin.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Skin.MonoSkin.mesh">
-            <summary>
-            Mesh of skin.
-            </summary>
-        </member>
-        <member name="F:MGS.UCommon.Skin.MonoSkin.isInitialized">
-            <summary>
-            Skin is initialized?
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Skin.MonoSkin.Renderer">
-            <summary>
-            Skinned mesh renderer of skin.
-            </summary>
-        </member>
-        <member name="P:MGS.UCommon.Skin.MonoSkin.Collider">
-            <summary>
-            Mesh collider of skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.Reset">
-            <summary>
-            Reset component.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.Awake">
-            <summary>
-            Awake component.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.Initialize">
-            <summary>
-            Initialize mono skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.RebuildMesh(UnityEngine.Mesh)">
-            <summary>
-            Rebuild the mesh of skin.
-            </summary>
-            <param name="mesh">Mesh of skin.</param>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.Rebuild">
-            <summary>
-            Rebuild the mesh of skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.AttachCollider">
-            <summary>
-            Attach MeshCollider to skin.
-            </summary>
-        </member>
-        <member name="M:MGS.UCommon.Skin.MonoSkin.RemoveCollider">
-            <summary>
-            Remove MeshCollider from skin.
             </summary>
         </member>
         <member name="T:MGS.UCommon.Utility.ColorBlendUtility">
