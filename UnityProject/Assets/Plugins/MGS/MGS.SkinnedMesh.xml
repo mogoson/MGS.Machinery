@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MGS.SkinnedMesh</name>
+    </assembly>
+    <members>
+        <member name="T:MGS.SkinnedMesh.MonoSkinnedMesh">
+            <summary>
+            Render dynamic skinned mesh.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoSkinnedMesh.meshRenderer">
+            <summary>
+            Skinned mesh renderer of skin.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoSkinnedMesh.meshCollider">
+            <summary>
+            Mesh collider of skin.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoSkinnedMesh.mesh">
+            <summary>
+            Mesh of skin.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoSkinnedMesh.isInitialized">
+            <summary>
+            Skin is initialized?
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoSkinnedMesh.Renderer">
+            <summary>
+            Skinned mesh renderer of skin.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoSkinnedMesh.Collider">
+            <summary>
+            Mesh collider of skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.Reset">
+            <summary>
+            Reset component.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.Awake">
+            <summary>
+            Awake component.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.Initialize">
+            <summary>
+            Initialize mono skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.RebuildMesh(UnityEngine.Mesh)">
+            <summary>
+            Rebuild the mesh of skin.
+            </summary>
+            <param name="mesh">Mesh of skin.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.Rebuild">
+            <summary>
+            Rebuild the mesh of skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.AttachCollider">
+            <summary>
+            Attach MeshCollider to skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoSkinnedMesh.RemoveCollider">
+            <summary>
+            Remove MeshCollider from skin.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.MonoCurveHose">
+            <summary>
+            Render dynamic hose mesh base on center curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.polygon">
+            <summary>
+            Polygon of hose cross section.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.segment">
+            <summary>
+            Segment length of subdivide hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.radius">
+            <summary>
+            Radius of hose mesh.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.seal">
+            <summary>
+            Is seal at both ends of hose?
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Polygon">
+            <summary>
+            Polygon of hose cross section.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Segment">
+            <summary>
+             Segment length of subdivide hose.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Radius">
+            <summary>
+            Radius of hose mesh.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Seal">
+            <summary>
+            Is seal at both ends of hose?
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.MaxKey">
+            <summary>
+            Max key of hose center curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Length">
+            <summary>
+            Length of hose center curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.MonoCurveHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.CircleRadian">
+            <summary>
+            Radian of circle.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.Delta">
+            <summary>
+            Delta to calculate tangent.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.length">
+            <summary>
+            Length of hose center curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.MonoCurveHose.segmentCount">
+            <summary>
+            Segment count of subdivide hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.RebuildMesh(UnityEngine.Mesh)">
+            <summary>
+            Rebuild the mesh of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.CreateVertices(System.Boolean)">
+            <summary>
+            Create the vertices of hose mesh.
+            </summary>
+            <param name="isSeal">Is seal at both ends of hose?</param>
+            <returns>Vertices array.</returns>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.CreateTriangles(System.Boolean)">
+            <summary>
+            Create triangles of hose mesh.
+            </summary>
+            <param name="isSeal">Is seal at both ends of hose?</param>
+            <returns>Triangles array.</returns>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.CreateSideTriangles">
+            <summary>
+            Create triangles of hose side mesh.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.CreateUV(System.Boolean)">
+            <summary>
+            Create uv of hose mesh.
+            </summary>
+            <param name="isSeal">Is seal at both ends of hose?</param>
+            <returns>UV array.</returns>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.Rebuild">
+            <summary>
+            Rebuild the mesh of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.MonoCurveHose.GetPointAt(System.Single)">
+            <summary>
+            Get point from center curve of hose at key.
+            </summary>
+            <param name="key">Key of hose center curve.</param>
+            <returns>Point on hose curve at key.</returns>
+        </member>
+        <member name="T:MGS.SkinnedMesh.BezierHose">
+            <summary>
+            Render dynamic hose mesh base on cubic bezier curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.BezierHose.anchor">
+            <summary>
+            Anchor points of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.BezierHose.StartPoint">
+            <summary>
+            Start point of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.BezierHose.EndPoint">
+            <summary>
+            End point of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.BezierHose.StartTangentPoint">
+            <summary>
+            Start tangent point of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.BezierHose.EndTangentPoint">
+            <summary>
+            End tangent point of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.BezierHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.BezierHose.curve">
+            <summary>
+            Curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.BezierHose.Rebuild">
+            <summary>
+            Rebuild the mesh of hose.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.CircleHose">
+            <summary>
+            Render dynamic hose mesh base on circle curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.CircleHose.extendRadius">
+            <summary>
+            Extend radius of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.CircleHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.CircleHose.curve">
+            <summary>
+            Curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.CircleHose.Rebuild">
+            <summary>
+            Rebuild the mesh of hose.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.EllipseHose">
+            <summary>
+            Render dynamic hose mesh base on ellipse curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.EllipseHose.semiMinorAxis">
+            <summary>
+            Semi minor axis of ellipse.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.EllipseHose.semiMajorAxis">
+            <summary>
+            Semi major axis of ellipse.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.EllipseHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.EllipseHose.curve">
+            <summary>
+            Curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.EllipseHose.Rebuild">
+            <summary>
+            Rebuild hose.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.HelixHose">
+            <summary>
+            Render dynamic hose mesh base on helix curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HelixHose.topEllipse">
+            <summary>
+            Top ellipse args of curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HelixHose.bottomEllipse">
+            <summary>
+            Bottom ellipse args of curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HelixHose.maxRadian">
+            <summary>
+            Max around radian of helix.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.HelixHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HelixHose.curve">
+            <summary>
+            Curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HelixHose.Rebuild">
+            <summary>
+            Rebuild hose.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.HermiteHose">
+            <summary>
+            Render dynamic hose mesh base on hermite curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HermiteHose.close">
+            <summary>
+            Hose curve is close?
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HermiteHose.anchors">
+            <summary>
+            Anchors of hose curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.HermiteHose.AnchorsCount">
+            <summary>
+            Count of hose curve anchors.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.HermiteHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.HermiteHose.curve">
+            <summary>
+            Anchor curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.Rebuild">
+            <summary>
+            Rebuild the mesh of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.AddAnchor(UnityEngine.Vector3)">
+            <summary>
+            Add anchor item.
+            </summary>
+            <param name="item">Anchor item.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.InsertAnchor(System.Int32,UnityEngine.Vector3)">
+            <summary>
+            Insert Anchor item at index.
+            </summary>
+            <param name="index">Index of anchor.</param>
+            <param name="item">Anchor item.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.SetAnchorAt(System.Int32,UnityEngine.Vector3)">
+            <summary>
+            Set the anchor item at index.
+            </summary>
+            <param name="index">Index of anchor.</param>
+            <param name="item">Anchor item.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.GetAnchorAt(System.Int32)">
+            <summary>
+            Get the anchor item at index.
+            </summary>
+            <param name="index">Anchor index.</param>
+            <returns>Anchor item.</returns>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.RemoveAnchor(UnityEngine.Vector3)">
+            <summary>
+            Remove the anchor item.
+            </summary>
+            <param name="item">Anchor item.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.RemoveAnchorAt(System.Int32)">
+            <summary>
+            Remove the anchor item at index.
+            </summary>
+            <param name="index">Anchor index.</param>
+        </member>
+        <member name="M:MGS.SkinnedMesh.HermiteHose.ClearAnchors">
+            <summary>
+            Clear all anchor items.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.ICurveHose">
+            <summary>
+            Interface of curve hose.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ICurveHose.Polygon">
+            <summary>
+            Polygon of hose cross section.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ICurveHose.Segment">
+            <summary>
+            Segment length of subdivide hose.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ICurveHose.Radius">
+            <summary>
+            Radius of hose mesh.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ICurveHose.Seal">
+            <summary>
+            Is seal at both ends of hose?
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.SinHose">
+            <summary>
+            Render dynamic hose mesh base on sin curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.SinHose.args">
+            <summary>
+            Args of sin curve.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.SinHose.maxKey">
+            <summary>
+            Max key of sin curve.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.SinHose.Curve">
+            <summary>
+            Curve for hose.
+            </summary>
+        </member>
+        <member name="F:MGS.SkinnedMesh.SinHose.curve">
+            <summary>
+            Curve of hose.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.SinHose.Rebuild">
+            <summary>
+            Rebuild hose.
+            </summary>
+        </member>
+        <member name="T:MGS.SkinnedMesh.ISkinnedMesh">
+            <summary>
+            Interface of skinned mesh.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ISkinnedMesh.Renderer">
+            <summary>
+            Skinned mesh renderer of skin.
+            </summary>
+        </member>
+        <member name="P:MGS.SkinnedMesh.ISkinnedMesh.Collider">
+            <summary>
+            Mesh collider of skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.ISkinnedMesh.Rebuild">
+            <summary>
+            Rebuild the mesh of skin.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.ISkinnedMesh.AttachCollider">
+            <summary>
+            Attach collider to skin mesh.
+            </summary>
+        </member>
+        <member name="M:MGS.SkinnedMesh.ISkinnedMesh.RemoveCollider">
+            <summary>
+            Remove collider from skin mesh.
+            </summary>
+        </member>
+    </members>
+</doc>
