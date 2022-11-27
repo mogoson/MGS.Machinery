@@ -23,15 +23,18 @@ namespace MGS.Machinery.Demo
 
         public GradeConfig[] grades;
         public Gear synchronizer;
+        public MeshRenderer[] syncRenderers;
 
         private Vector3 defaultPosition;
         private ICoaxeMechanism coaxe;
+        private Color synchronizerColor;
         #endregion
 
         #region Private Method
         private void Start()
         {
             defaultPosition = synchronizer.transform.localPosition;
+            synchronizerColor = syncRenderers[0].material.color;
         }
 
         private void OnGUI()
@@ -45,6 +48,12 @@ namespace MGS.Machinery.Demo
                 if (GUILayout.Button(grade.info))
                 {
                     synchronizer.transform.localPosition = grade.adsorb;
+
+                    foreach (var renderer in syncRenderers)
+                    {
+                        renderer.material.color = grade.color;
+                    }
+
                     if (coaxe != null)
                     {
                         coaxe.BreakCoaxe(synchronizer);
@@ -57,6 +66,11 @@ namespace MGS.Machinery.Demo
             if (GUILayout.Button("Default"))
             {
                 synchronizer.transform.localPosition = defaultPosition;
+                foreach (var renderer in syncRenderers)
+                {
+                    renderer.material.color = synchronizerColor;
+                }
+
                 if (coaxe != null)
                 {
                     coaxe.BreakCoaxe(synchronizer);
@@ -69,10 +83,11 @@ namespace MGS.Machinery.Demo
     }
 
     [Serializable]
-    public struct GradeConfig
+    public class GradeConfig
     {
         public string info;
         public Gear gear;
+        public Color color = Color.blue;
         public Vector3 adsorb;
     }
 }

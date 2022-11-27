@@ -10,6 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using MGS.Mathematics;
 using UnityEngine;
 
 namespace MGS.Machinery
@@ -138,9 +139,9 @@ namespace MGS.Machinery
         /// </summary>
         /// <param name="position">Local position.</param>
         /// <returns>Correct point.</returns>
-        protected Vector2 CorrectPoint(Vector3 position)
+        protected Vector2D CorrectPoint(Vector3 position)
         {
-            return new Vector2(position.x, position.y);
+            return new Vector2D(position.x, position.y);
         }
 
         /// <summary>

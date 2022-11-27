@@ -10,8 +10,8 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MGS.Mathematics
 {
@@ -27,7 +27,7 @@ namespace MGS.Mathematics
         /// <param name="L1">line L1.</param>
         /// <param name="L2">line L2.</param>
         /// <returns>The distance from line L1 to line L2.</returns>
-        public static float GetDistance(Line L1, Line L2)
+        public static double GetDistance(Line L1, Line L2)
         {
             /*
              *  y = kx + b <=> kx - y + b = 0
@@ -40,13 +40,13 @@ namespace MGS.Mathematics
              *      \/ A + B                \/ 1 + k
              */
 
-            var dis = 0f;
+            var dis = 0d;
             if (L1.k == L2.k)
             {
-                dis = Mathf.Abs(L2.b - L1.b);
-                if (L1.k != 0 && L1.k != float.PositiveInfinity)
+                dis = Math.Abs(L2.b - L1.b);
+                if (L1.k != 0 && L1.k != double.PositiveInfinity)
                 {
-                    dis /= Mathf.Sqrt(1 + Mathf.Pow(L1.k, 2));
+                    dis /= Math.Sqrt(1 + Math.Pow(L1.k, 2));
                 }
             }
             return dis;
@@ -55,10 +55,10 @@ namespace MGS.Mathematics
         /// <summary>
         /// Gets the distance from vector to line.
         /// </summary>
-        /// <param name="p">Vector2.</param>
+        /// <param name="v">Vector.</param>
         /// <param name="L">Line.</param>
         /// <returns>The distance from vector to line.</returns>
-		public static float GetDistance(Vector2 p, Line L)
+		public static double GetDistance(Vector2D v, Line L)
         {
             /*
              *  y = kx + b <=> kx - y + b = 0
@@ -71,18 +71,18 @@ namespace MGS.Mathematics
              *      \/ A + B                    \/ 1 + k
              */
 
-            var dis = 0f;
+            var dis = 0d;
             if (L.k == 0)
             {
-                dis = Mathf.Abs(p.y - L.b);
+                dis = Math.Abs(v.y - L.b);
             }
-            else if (L.k == float.PositiveInfinity)
+            else if (L.k == double.PositiveInfinity)
             {
-                dis = Mathf.Abs(p.x - L.b);
+                dis = Math.Abs(v.x - L.b);
             }
             else
             {
-                dis = Mathf.Abs(L.k * p.x - p.y + L.b) / Mathf.Sqrt(1 + Mathf.Pow(L.k, 2));
+                dis = Math.Abs(L.k * v.x - v.y + L.b) / Math.Sqrt(1 + Math.Pow(L.k, 2));
             }
             return dis;
         }
@@ -98,9 +98,9 @@ namespace MGS.Mathematics
         public static Relation GetRelation(Circle c1, Circle c2)
         {
             var re = Relation.Undefined;
-            var cd = Vector2.Distance(c1.c, c2.c);
+            var cd = Vector2D.Distance(c1.c, c2.c);
             var rd = c1.r + c2.r;
-            var rp = Mathf.Abs(c1.r - c2.r);
+            var rp = Math.Abs(c1.r - c2.r);
 
             if (cd > rd)
             {
@@ -165,12 +165,12 @@ namespace MGS.Mathematics
         /// Get relation of circle and vector.
         /// </summary>
         /// <param name="c">Circle.</param>
-        /// <param name="v">Vector2.</param>
+        /// <param name="v">Vector.</param>
         /// <returns>Relation of circle and vector.</returns>
-        public static Relation GetRelation(Circle c, Vector2 v)
+        public static Relation GetRelation(Circle c, Vector2D v)
         {
             var re = Relation.Undefined;
-            var cp = Vector2.Distance(c.c, v);
+            var cp = Vector2D.Distance(c.c, v);
 
             if (cp > c.r)
             {
@@ -218,12 +218,12 @@ namespace MGS.Mathematics
         /// Get relation of line and vector.
         /// </summary>
         /// <param name="L">Line.</param>
-        /// <param name="v">Vector2.</param>
+        /// <param name="v">Vector.</param>
         /// <returns>Relation of line and vector.</returns>
-        public static Relation GetRelation(Line L, Vector2 v)
+        public static Relation GetRelation(Line L, Vector2D v)
         {
             var re = Relation.Undefined;
-            if (L.k == float.PositiveInfinity)
+            if (L.k == double.PositiveInfinity)
             {
                 if (v.x == L.b)
                 {
@@ -256,7 +256,7 @@ namespace MGS.Mathematics
         /// <param name="c1">Circle c1.</param>
         /// <param name="c2">Circle c2.</param>
         /// <returns>Intersections of two circles.</returns>
-        public static List<Vector2> GetIntersections(Circle c1, Circle c2)
+        public static List<Vector2D> GetIntersections(Circle c1, Circle c2)
         {
             /*
              *               2          2    2          2          2    2
@@ -282,14 +282,14 @@ namespace MGS.Mathematics
             var re = GetRelation(c1, c2);
             if (re == Relation.InsideTangent || re == Relation.OutsideTangent || re == Relation.Intersect)
             {
-                var k = 0f;
-                var b = 0f;
+                var k = 0d;
+                var b = 0d;
                 var dx = c2.c.x - c1.c.x;
                 var dy = c2.c.y - c1.c.y;
-                var temp = Mathf.Pow(c2.c.x, 2) + Mathf.Pow(c2.c.y, 2) + Mathf.Pow(c1.r, 2) - Mathf.Pow(c1.c.x, 2) - Mathf.Pow(c1.c.y, 2) - Mathf.Pow(c2.r, 2);
+                var temp = Math.Pow(c2.c.x, 2) + Math.Pow(c2.c.y, 2) + Math.Pow(c1.r, 2) - Math.Pow(c1.c.x, 2) - Math.Pow(c1.c.y, 2) - Math.Pow(c2.r, 2);
                 if (dy == 0)
                 {
-                    k = float.PositiveInfinity;
+                    k = double.PositiveInfinity;
                     b = temp / (2 * dx);
                 }
                 else
@@ -308,7 +308,7 @@ namespace MGS.Mathematics
         /// <param name="C">Circle.</param>
         /// <param name="L">Line.</param>
         /// <returns>Intersections of circle and line.</returns>
-        public static List<Vector2> GetIntersections(Circle C, Line L)
+        public static List<Vector2D> GetIntersections(Circle C, Line L)
         {
             /*
              *          2          2   2
@@ -332,37 +332,37 @@ namespace MGS.Mathematics
             var re = GetRelation(C, L);
             if (re == Relation.OutsideTangent || re == Relation.Intersect)
             {
-                var points = new List<Vector2>();
-                if (L.k == float.PositiveInfinity)
+                var points = new List<Vector2D>();
+                if (L.k == double.PositiveInfinity)
                 {
                     var x1 = L.b;
-                    var dy = Mathf.Sqrt(Mathf.Pow(C.r, 2) - Mathf.Pow(x1 - C.c.x, 2));
+                    var dy = Math.Sqrt(Math.Pow(C.r, 2) - Math.Pow(x1 - C.c.x, 2));
                     var y1 = dy + C.c.y;
-                    points.Add(new Vector2(x1, y1));
+                    points.Add(new Vector2D(x1, y1));
 
                     if (re == Relation.Intersect)
                     {
                         var x2 = x1;
                         var y2 = -dy + C.c.y;
-                        points.Add(new Vector2(x2, y2));
+                        points.Add(new Vector2D(x2, y2));
                     }
                 }
                 else
                 {
-                    var a = 1 + Mathf.Pow(L.k, 2);
+                    var a = 1 + Math.Pow(L.k, 2);
                     var b = 2 * (L.k * (L.b - C.c.y) - C.c.x);
-                    var c = Mathf.Pow(C.c.x, 2) + Mathf.Pow(L.b - C.c.y, 2) - Mathf.Pow(C.r, 2);
-                    var delta = Mathf.Pow(b, 2) - 4 * a * c;
+                    var c = Math.Pow(C.c.x, 2) + Math.Pow(L.b - C.c.y, 2) - Math.Pow(C.r, 2);
+                    var delta = Math.Pow(b, 2) - 4 * a * c;
 
-                    var x1 = (-b + Mathf.Sqrt(delta)) / (2 * a);
+                    var x1 = (-b + Math.Sqrt(delta)) / (2 * a);
                     var y1 = L.k * x1 + L.b;
-                    points.Add(new Vector2(x1, y1));
+                    points.Add(new Vector2D(x1, y1));
 
                     if (re == Relation.Intersect)
                     {
-                        var x2 = (-b - Mathf.Sqrt(delta)) / (2 * a);
+                        var x2 = (-b - Math.Sqrt(delta)) / (2 * a);
                         var y2 = L.k * x2 + L.b;
-                        points.Add(new Vector2(x2, y2));
+                        points.Add(new Vector2D(x2, y2));
                     }
                 }
                 return points;
@@ -376,7 +376,7 @@ namespace MGS.Mathematics
         /// <param name="L1">Line L1.</param>
         /// <param name="L2">Line L2.</param>
         /// <returns>Intersection of two lines.</returns>
-        public static List<Vector2> GetIntersections(Line L1, Line L2)
+        public static List<Vector2D> GetIntersections(Line L1, Line L2)
         {
             /*
              *  y1 = k1x + b1, y2 = k2x + b2
@@ -391,14 +391,14 @@ namespace MGS.Mathematics
                 return null;
             }
 
-            var x = 0f;
-            var y = 0f;
-            if (L1.k == float.PositiveInfinity)
+            var x = 0d;
+            var y = 0d;
+            if (L1.k == double.PositiveInfinity)
             {
                 x = L1.b;
                 y = L2.k * x + L2.b;
             }
-            else if (L2.k == float.PositiveInfinity)
+            else if (L2.k == double.PositiveInfinity)
             {
                 x = L2.b;
                 y = L1.k * x + L1.b;
@@ -408,7 +408,7 @@ namespace MGS.Mathematics
                 x = (L1.b - L2.b) / (L2.k - L1.k);
                 y = L1.k * x + L1.b;
             }
-            return new List<Vector2> { new Vector2(x, y) };
+            return new List<Vector2D> { new Vector2D(x, y) };
         }
         #endregion
     }

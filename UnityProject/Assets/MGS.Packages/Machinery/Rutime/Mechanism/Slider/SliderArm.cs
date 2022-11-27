@@ -26,6 +26,30 @@ namespace MGS.Machinery
 
         #region Protected Method
         /// <summary>
+        /// Check all the sliders are stuck.
+        /// </summary>
+        /// <returns>All the sliders are stuck?</returns>
+        protected override bool CheckSlidersStuck()
+        {
+            foreach (var slider in sliders)
+            {
+                if (!slider.IsStuck)
+                {
+                    return false;
+                }
+                else
+                {
+                    var current = sliders[sliderIndex];
+                    if (slider != current && slider.State != current.State)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Drive mechanism by velocity.
         /// </summary>
         /// <param name="velocity">Velocity of drive.</param>

@@ -69,12 +69,11 @@ namespace MGS.Machinery
             }
 
             //Rivet spring.
-            spring.transform.localPosition = Vector3.zero;
-            spring.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            spring.transform.localPosition = Vector3.forward * bottom;
+            spring.transform.localRotation = Quaternion.identity;
 
             //Rebuild spring.
-            spring.transform.localPosition = Vector3.up * bottom;
-            spring.altitude = Vector3.Distance(transform.position, joint.position) - top;
+            spring.altitude = Vector3.Distance(transform.position, joint.position) - (top + bottom);
             spring.Rebuild();
             return true;
         }

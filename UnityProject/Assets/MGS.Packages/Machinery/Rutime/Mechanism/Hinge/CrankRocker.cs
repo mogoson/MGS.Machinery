@@ -69,12 +69,12 @@ namespace MGS.Machinery
         /// <summary>
         /// Radius of the circle that bese link.
         /// </summary>
-        protected float linkRadius = 0;
+        protected double linkRadius = 0;
 
         /// <summary>
         /// Radius of the circle that bese rocker.
         /// </summary>
-        protected float rockerRadius = 0;
+        protected double rockerRadius = 0;
 
         /// <summary>
         /// Joint of link and rocker is on the top of rocker at start?
@@ -103,7 +103,7 @@ namespace MGS.Machinery
                 return false;
             }
 
-            var vector = Vector2.zero;
+            var vector = Vector2D.Zero;
             if (vectors.Count == 1)
             {
                 vector = vectors[0];
@@ -130,7 +130,7 @@ namespace MGS.Machinery
                 }
             }
 
-            joint.localPosition = vector;
+            joint.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveMode.Ignore);
             rocker.Drive(0, DriveMode.Ignore);
             return true;
@@ -153,8 +153,8 @@ namespace MGS.Machinery
             var rockerPoint = CorrectPoint(rocker.transform.localPosition);
             var lrJointPoint = CorrectPoint(joint.localPosition);
 
-            linkRadius = Vector2.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
-            rockerRadius = Vector2.Distance(rockerPoint, lrJointPoint);
+            linkRadius = Vector2D.Distance(CorrectPoint(GetLinkPosition()), lrJointPoint);
+            rockerRadius = Vector2D.Distance(rockerPoint, lrJointPoint);
             isTop = lrJointPoint.y - rockerPoint.y >= 0;
         }
         #endregion

@@ -36,7 +36,7 @@ namespace MGS.Machinery
         /// <summary>
         /// Radius of the circle that base link.
         /// </summary>
-		protected float linkRadius = 0;
+		protected double linkRadius = 0;
 
         /// <summary>
         /// Slider is on the right of link at start.
@@ -66,7 +66,7 @@ namespace MGS.Machinery
                 return false;
             }
 
-            var vector = Vector2.zero;
+            var vector = Vector2D.Zero;
             if (vectors.Count == 1)
             {
                 vector = vectors[0];
@@ -76,7 +76,7 @@ namespace MGS.Machinery
                 vector = isRight ? vectors[0] : vectors[1];
             }
 
-            slider.localPosition = vector;
+            slider.localPosition = new Vector3((float)vector.x, (float)vector.y);
             link.Drive(0, DriveMode.Ignore);
             return true;
         }
@@ -123,7 +123,7 @@ namespace MGS.Machinery
             var lsJointPoint = CorrectPoint(slider.localPosition);
             var linkPoint = CorrectPoint(GetLinkPosition());
 
-            linkRadius = Vector2.Distance(linkPoint, lsJointPoint);
+            linkRadius = Vector2D.Distance(linkPoint, lsJointPoint);
             isRight = lsJointPoint.x - linkPoint.x >= 0;
         }
         #endregion

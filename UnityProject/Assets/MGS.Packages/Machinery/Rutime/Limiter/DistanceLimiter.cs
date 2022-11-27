@@ -29,14 +29,14 @@ namespace MGS.Machinery
         /// <summary>
         /// First anchor of limiter.
         /// </summary>
-        [Tooltip("Distance range of limiter.")]
-        public Transform firstAnchor;
+        [Tooltip("First anchor of limiter.")]
+        public Transform from;
 
         /// <summary>
         /// Second anchor of limiter.
         /// </summary>
-        [Tooltip("Distance range of limiter.")]
-        public Transform secondAnchor;
+        [Tooltip("Second anchor of limiter.")]
+        public Transform to;
 
         /// <summary>
         /// Limiter is triggered?
@@ -55,7 +55,7 @@ namespace MGS.Machinery
         /// </summary>
         public float CurrentDistance
         {
-            get { return Vector3.Distance(firstAnchor.position, secondAnchor.position); }
+            get { return Vector3.Distance(from.position, to.position); }
         }
         #endregion
     }

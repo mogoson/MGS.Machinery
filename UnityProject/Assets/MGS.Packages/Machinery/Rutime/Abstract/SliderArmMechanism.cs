@@ -48,7 +48,7 @@ namespace MGS.Machinery
         /// Check all the sliders are stuck.
         /// </summary>
         /// <returns>All the sliders are stuck?</returns>
-        protected bool CheckSlidersStuck()
+        protected virtual bool CheckSlidersStuck()
         {
             foreach (var slider in sliders)
             {

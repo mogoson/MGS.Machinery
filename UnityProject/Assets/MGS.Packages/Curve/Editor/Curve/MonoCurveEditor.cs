@@ -19,7 +19,9 @@ namespace MGS.Curve.Editors
     [CustomEditor(typeof(MonoCurve), true)]
     public class MonoCurveEditor : SceneEditor
     {
+        protected readonly Vector3 MoveSnap = Vector3.one;
         protected const int DETAILS_MAX = 2048;
+
         protected MonoCurve Target { get { return target as MonoCurve; } }
 
         protected virtual void OnEnable()

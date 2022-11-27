@@ -10,6 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using MGS.Common.Editors;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace MGS.Machinery
     public partial class MechanismEditor : SceneEditor
     {
         protected readonly Color Blue = new Color(0, 1, 1, 1);
+
         protected readonly Color TransparentBlue = new Color(0, 1, 1, 0.1f);
 
         #region Protected Method
