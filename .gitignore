@@ -35,3 +35,7 @@ sysinfo.txt
 *.unitypackage
 /Assets/ScriptTemplateToolkit.meta
 /Assets/ScriptTemplateToolkit
+/UnityProject/.vs
+/UnityProject/Temp
+/UnityProject/Library
+/UnityProject/obj
