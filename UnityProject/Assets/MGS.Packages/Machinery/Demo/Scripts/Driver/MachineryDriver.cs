@@ -10,27 +10,44 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System;
 using UnityEngine;
 
 namespace MGS.Machineries.Demo
 {
+    [RequireComponent(typeof(Machinery))]
     public class MachineryDriver : MonoBehaviour
     {
         public MechanismSettings[] settings;
+        protected Machinery machinery;
+
+        protected virtual void Awake()
+        {
+            machinery = GetComponent<Machinery>();
+        }
 
         protected virtual void Update()
         {
-            foreach (var setting in settings)
+            foreach (var s in settings)
             {
-                if (Input.GetKey(setting.positive))
+                if (Input.GetKey(s.positive))
                 {
-                    setting.mechanism.Drive(setting.velocity, DriveMode.Ignore);
+                    machinery.Drive(s.mechanism, s.velocity, DriveMode.Ignore);
                 }
-                else if (Input.GetKey(setting.negative))
+                else if (Input.GetKey(s.negative))
                 {
-                    setting.mechanism.Drive(-setting.velocity, DriveMode.Ignore);
+                    machinery.Drive(s.mechanism, -s.velocity, DriveMode.Ignore);
                 }
             }
         }
+    }
+
+    [Serializable]
+    public struct MechanismSettings
+    {
+        public string mechanism;
+        public float velocity;
+        public KeyCode positive;
+        public KeyCode negative;
     }
 }

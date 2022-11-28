@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace MGS.Machineries.Demo
 {
-    //[RequireComponent(typeof(Mechanism))]
+    [RequireComponent(typeof(Mechanism))]
     public class MechanismDriver : MonoBehaviour
     {
         #region Field and Property
@@ -27,22 +27,12 @@ namespace MGS.Machineries.Demo
         #endregion
 
         #region Protected Method
-        protected virtual void Start()
-        {
-            Initialize();
-        }
-
-        protected virtual void Update()
-        {
-            DriveMechanism();
-        }
-
-        protected virtual void Initialize()
+        protected virtual void Awake()
         {
             mechanism = GetComponent<Mechanism>();
         }
 
-        protected void DriveMechanism()
+        protected virtual void Update()
         {
             if (Input.GetKey(positive))
             {
