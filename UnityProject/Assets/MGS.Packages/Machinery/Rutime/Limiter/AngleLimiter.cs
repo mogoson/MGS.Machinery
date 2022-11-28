@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     /// <summary>
     /// Angle limiter.

@@ -12,7 +12,7 @@
 
 using System;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     /// <summary>
     /// Range form min to max.

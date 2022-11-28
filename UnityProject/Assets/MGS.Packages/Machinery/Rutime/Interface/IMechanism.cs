@@ -25,7 +25,7 @@
  *  Description  :  Migrate Code.
  *************************************************************************/
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     /// <summary>
     /// Mechanism interface.
@@ -55,7 +55,7 @@ namespace MGS.Machinery
         /// </summary>
         /// <param name="velocity">Velocity of drive.</param>
         /// <param name="mode">Mode of drive.</param>
-        /// <returns>Drive is unrestricted?</returns>
+        /// <returns>Drive is effective?</returns>
         bool Drive(float velocity, DriveMode mode);
         #endregion
     }

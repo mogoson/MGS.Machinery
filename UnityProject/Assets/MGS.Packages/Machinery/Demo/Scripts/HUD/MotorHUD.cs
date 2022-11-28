@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace MGS.Machinery.Demo
+namespace MGS.Machineries.Demo
 {
     [RequireComponent(typeof(Motor))]
     public class MotorHUD : MonoBehaviour

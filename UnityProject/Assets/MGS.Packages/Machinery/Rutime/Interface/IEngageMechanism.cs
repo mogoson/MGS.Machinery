@@ -10,7 +10,7 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     /// <summary>
     /// Interface for engage mechanism.

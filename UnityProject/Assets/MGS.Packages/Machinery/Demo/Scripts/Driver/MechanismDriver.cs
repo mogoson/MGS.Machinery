@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace MGS.Machinery.Demo
+namespace MGS.Machineries.Demo
 {
-    [RequireComponent(typeof(Mechanism))]
+    //[RequireComponent(typeof(Mechanism))]
     public class MechanismDriver : MonoBehaviour
     {
         #region Field and Property

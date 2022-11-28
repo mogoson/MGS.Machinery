@@ -13,7 +13,7 @@
 using System;
 using UnityEngine;
 
-namespace MGS.Machinery.Demo
+namespace MGS.Machineries.Demo
 {
     public class TransmissionHUD : MonoBehaviour
     {

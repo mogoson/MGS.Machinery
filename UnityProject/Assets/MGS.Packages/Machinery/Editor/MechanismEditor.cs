@@ -14,7 +14,7 @@ using MGS.Common.Editors;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     public partial class MechanismEditor : SceneEditor
     {

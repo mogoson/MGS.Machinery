@@ -12,7 +12,7 @@
 
 using System;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     /// <summary>
     /// Mechanism unit.
@@ -54,7 +54,7 @@ namespace MGS.Machinery
         /// </summary>
         /// <param name="velocity">Velocity of drive.</param>
         /// <param name="mode">Mode of drive.</param>
-        /// <returns>Drive is unrestricted?</returns>
+        /// <returns>Drive is effective?</returns>
         public bool Drive(float velocity, DriveMode mode)
         {
             return mechanism.Drive(velocity * coefficient, mode);

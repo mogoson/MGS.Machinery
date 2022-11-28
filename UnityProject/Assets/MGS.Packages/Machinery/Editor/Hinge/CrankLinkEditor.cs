@@ -19,7 +19,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     public class CrankLinkEditor : MechanismEditor
     {

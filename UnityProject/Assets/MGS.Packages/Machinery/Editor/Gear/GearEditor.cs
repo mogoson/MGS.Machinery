@@ -13,7 +13,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace MGS.Machinery
+namespace MGS.Machineries
 {
     [CustomEditor(typeof(Gear), true)]
     [CanEditMultipleObjects]
