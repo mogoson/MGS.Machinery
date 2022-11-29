@@ -88,12 +88,102 @@ namespace MGS.Mathematics
         }
 
         /// <summary>
+        /// Add key frames to curve.
+        /// </summary>
+        /// <param name="frames"></param>
+        public void AddFrames(IEnumerable<KeyFrame> frames)
+        {
+            this.frames.AddRange(frames);
+        }
+
+        /// <summary>
+        /// Remove key frame.
+        /// </summary>
+        /// <param name="frame">Key frame to remove.</param>
+        public void RemoveFrame(KeyFrame frame)
+        {
+            frames.Remove(frame);
+        }
+
+        /// <summary>
         /// Remove key frame at index.
         /// </summary>
-        /// <param name="index">Index of key frame.</param>
-        public void RemoveKeyFrameAt(int index)
+        /// <param name="index">Index of frame.</param>
+        public void RemoveFrame(int index)
         {
             frames.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Clear frames.
+        /// </summary>
+        public void ClearFrames()
+        {
+            frames.Clear();
+        }
+
+        /// <summary>
+        /// Smooth in and out tangents.
+        /// </summary>
+        /// <param name="weight"></param>
+        public void SmoothTangents(float weight = 0)
+        {
+            for (int i = 0; i < frames.Count; i++)
+            {
+                SmoothTangents(i, weight);
+            }
+        }
+
+        /// <summary>
+        /// Smooth in and out tangents.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="weight"></param>
+        public void SmoothTangents(int index, float weight)
+        {
+            if (index < 0 || index > frames.Count - 1)
+            {
+                return;
+            }
+
+            //Designed By Mogoson.
+            KeyFrame k0, k1, k2;
+            if (index == 0 || index == frames.Count - 1)
+            {
+                if (frames.Count < 2 || frames[0].value != frames[frames.Count - 1].value)
+                {
+                    var frame = frames[index];
+                    frame.inTangent = frame.outTangent = 0;
+                    frames[index] = frame;
+                    return;
+                }
+
+                k0 = frames[frames.Count - 2];
+                k1 = frames[index];
+                k2 = frames[1];
+
+                if (index == 0)
+                {
+                    k0.time -= frames[frames.Count - 1].time;
+                }
+                else
+                {
+                    k2.time += frames[frames.Count - 1].time;
+                }
+            }
+            else
+            {
+                k0 = frames[index - 1];
+                k1 = frames[index];
+                k2 = frames[index + 1];
+            }
+
+            var weight01 = (1 + weight) / 2;
+            var weight12 = (1 - weight) / 2;
+            var t01 = (k1.value - k0.value) / (k1.time - k0.time);
+            var t12 = (k2.value - k1.value) / (k2.time - k1.time);
+            k1.inTangent = k1.outTangent = t01 * weight01 + t12 * weight12;
+            frames[index] = k1;
         }
         #endregion
 
@@ -142,7 +232,7 @@ namespace MGS.Mathematics
                 {
                     for (int i = 0; i < frames.Length; i++)
                     {
-                        if (i == frames[i].time)
+                        if (t == frames[i].time)
                         {
                             value = frames[i].value;
                             break;
