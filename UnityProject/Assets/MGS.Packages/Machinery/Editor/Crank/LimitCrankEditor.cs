@@ -29,10 +29,10 @@ namespace MGS.Machineries
             var minAxis = Quaternion.AngleAxis(Target.range.min, Axis) * ZeroAxis;
             var maxAxis = Quaternion.AngleAxis(Target.range.max, Axis) * ZeroAxis;
 
-            Handles.color = TransparentBlue;
+            Handles.color = AreaColor;
             Handles.DrawSolidArc(Target.transform.position, Axis, minAxis, Target.range.max - Target.range.min, FixedAreaRadius);
 
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawSphereArrow(Target.transform.position, minAxis, FixedArrowLength, NodeSize, "Min");
             DrawSphereArrow(Target.transform.position, maxAxis, FixedArrowLength, NodeSize, "Max");
         }

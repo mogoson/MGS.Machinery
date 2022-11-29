@@ -31,7 +31,7 @@ namespace MGS.Machineries
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawAdaptiveSphereArrow(Target.transform.position, Target.transform.right, LineLength, 0, "x");
             DrawAdaptiveSphereArrow(Target.transform.position, Target.transform.up, LineLength, 0, "y");
         }

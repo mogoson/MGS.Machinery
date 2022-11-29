@@ -26,7 +26,7 @@ namespace MGS.Machineries
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawAdaptiveCircleCap(Target.transform.position, Target.transform.rotation, NodeSize * 2);
             DrawAdaptiveSphereArrow(Target.transform.position, Target.transform.forward, ArrowLength, NodeSize, "Axis");

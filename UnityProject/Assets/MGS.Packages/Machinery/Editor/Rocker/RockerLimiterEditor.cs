@@ -46,7 +46,7 @@ namespace MGS.Machineries
             var farMin = center + minOffset;
             var farMax = center + maxOffset;
 
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             Handles.DrawLine(nearMax, farMax);
             DrawAdaptiveSphereCap(nearMin, Quaternion.identity, NodeSize);
             DrawAdaptiveSphereCap(nearMax, Quaternion.identity, NodeSize);

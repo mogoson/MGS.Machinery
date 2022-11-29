@@ -50,7 +50,7 @@ namespace MGS.Machineries
         #region Protected Method
         protected virtual void OnSceneGUI()
         {
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawCircleCap(Target.transform.position, Target.transform.rotation, FixedAreaRadius);
 
@@ -59,13 +59,13 @@ namespace MGS.Machineries
             DrawSphereArrow(Target.transform.position, Target.transform.up, FixedAreaRadius, NodeSize);
             DrawArea();
 
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawRockers(Target.rockers, Target.transform);
         }
 
         protected virtual void DrawArea()
         {
-            Handles.color = TransparentBlue;
+            Handles.color = AreaColor;
             Handles.DrawSolidDisc(Target.transform.position, Axis, FixedAreaRadius);
         }
         #endregion

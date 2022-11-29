@@ -31,7 +31,7 @@ namespace MGS.Machineries
                 return;
             }
 
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             Handles.Label(Target.transform.position, "Rivet");
         }

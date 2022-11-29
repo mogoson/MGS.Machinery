@@ -18,9 +18,9 @@ namespace MGS.Machineries
 {
     public partial class MechanismEditor : SceneEditor
     {
-        protected readonly Color Blue = new Color(0, 1, 1, 1);
+        protected readonly Color HandleColor = Color.white;
 
-        protected readonly Color TransparentBlue = new Color(0, 1, 1, 0.1f);
+        protected readonly Color AreaColor = new Color(1, 1, 1, 0.1f);
 
         #region Protected Method
         protected void DrawRockers(List<RockerMechanism> rockers, Transform driver)
@@ -34,7 +34,10 @@ namespace MGS.Machineries
             {
                 if (rocker)
                 {
-                    DrawPositionHandle(rocker.transform);
+                    if (Event.current.command)
+                    {
+                        DrawPositionHandle(rocker.transform);
+                    }
                     DrawSphereArrow(driver.position, rocker.transform.position, NodeSize);
 
                     if (rocker.joint)

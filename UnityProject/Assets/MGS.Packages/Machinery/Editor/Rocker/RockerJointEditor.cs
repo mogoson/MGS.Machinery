@@ -31,13 +31,13 @@ namespace MGS.Machineries
                 return;
             }
 
-            Handles.color = Blue;
+            Handles.color = HandleColor;
             DrawPositionHandle(Target.joint);
             DrawAdaptiveSphereCap(Target.transform.position, Quaternion.identity, NodeSize);
             DrawAdaptiveSphereCap(Target.joint.position, Quaternion.identity, NodeSize);
 
             Handles.DrawLine(Target.transform.position, Target.joint.position);
-            DrawAdaptiveSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, "Keep Up");
+            DrawAdaptiveSphereArrow(Target.transform.position, Target.WorldUp, ArrowLength, NodeSize, "Up");
         }
         #endregion
     }
