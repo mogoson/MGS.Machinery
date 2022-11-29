@@ -41,7 +41,7 @@ namespace MGS.Curve.Editors
 
         protected virtual void DrawMoveEditor()
         {
-            Handles.color = Color.white;
+            Handles.color = NormalColor;
             var from = Target.From;
             DrawFreeMoveHandle(from.point, Quaternion.identity, NodeSize, MoveSnap, SphereCap, position =>
             {
@@ -69,7 +69,7 @@ namespace MGS.Curve.Editors
 
         protected virtual void DrawTangentEditor()
         {
-            Handles.color = Color.cyan;
+            Handles.color = TangentColor;
             var from = Target.From;
             var frTangent = from.point + from.tangent;
             Handles.DrawLine(from.point, frTangent);

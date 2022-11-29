@@ -33,6 +33,7 @@ namespace MGS.Common.Editors
         protected const float AreaRadius = 1.25f;
         protected const float ArrowLength = 2f;
         protected const float LineLength = 10;
+
         protected const float FixedAreaRadius = 0.5f;
         protected const float FixedArrowLength = 0.75f;
 

@@ -19,10 +19,16 @@ namespace MGS.Curve.Editors
     [CustomEditor(typeof(MonoCurve), true)]
     public class MonoCurveEditor : SceneEditor
     {
-        protected readonly Vector3 MoveSnap = Vector3.one;
-        protected const int DETAILS_MAX = 2048;
-
         protected MonoCurve Target { get { return target as MonoCurve; } }
+
+        protected readonly Vector3 MoveSnap = Vector3.one;
+        protected readonly Color NormalColor = Color.white;
+        protected readonly Color InsertColor = Color.green;
+        protected readonly Color SelectColor = Color.blue;
+        protected readonly Color DeleteColor = Color.red;
+        protected readonly Color TangentColor = Color.cyan;
+        protected readonly Color SeparateColor = Color.green;
+        protected const int DETAILS_MAX = 2048;
 
         protected virtual void OnEnable()
         {
@@ -47,7 +53,7 @@ namespace MGS.Curve.Editors
         {
             if (Target.Length > 0)
             {
-                Handles.color = Color.white;
+                Handles.color = NormalColor;
                 var len = 0f;
                 var p0 = Target.Evaluate(len);
                 var differ = Mathf.Max(Target.Length / DETAILS_MAX, GetHandleSize(Target.transform.position) * 0.1f);

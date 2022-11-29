@@ -158,7 +158,7 @@ namespace MGS.Curve.Editors
 
         protected virtual void DrawInsertEditor(int index, HermiteAnchor anchor)
         {
-            Handles.color = Color.green;
+            Handles.color = InsertColor;
             DrawAdaptiveButton(anchor.point, Quaternion.identity, NodeSize, NodeSize, SphereCap, () =>
             {
                 var offset = Vector3.zero;
@@ -184,7 +184,7 @@ namespace MGS.Curve.Editors
 
         protected virtual void DrawRemoveEditor(int index, HermiteAnchor anchor)
         {
-            Handles.color = Color.red;
+            Handles.color = DeleteColor;
             DrawAdaptiveButton(anchor.point, Quaternion.identity, NodeSize, NodeSize, SphereCap, () =>
             {
                 if (select >= index)
@@ -215,13 +215,13 @@ namespace MGS.Curve.Editors
                 }
             }
 
-            Handles.color = Color.blue;
+            Handles.color = SelectColor;
             DrawAdaptiveButton(anchor.point, Target.transform.rotation, nodeSize, nodeSize, SphereCap, () => select = index);
         }
 
         protected virtual void DrawMoveEditor(int index, HermiteAnchor anchor)
         {
-            Handles.color = Color.white;
+            Handles.color = NormalColor;
             if (index == 0 || index == Target.AnchorsCount - 1)
             {
                 var nodeSize = NodeSize;
@@ -264,7 +264,7 @@ namespace MGS.Curve.Editors
 
         protected virtual void DrawUnifyTangentEditor(int index, HermiteAnchor anchor)
         {
-            Handles.color = Color.cyan;
+            Handles.color = TangentColor;
             if (index > 0)
             {
                 var inTangent = anchor.point - anchor.inTangent;
@@ -306,7 +306,7 @@ namespace MGS.Curve.Editors
         {
             if (index > 0)
             {
-                Handles.color = Color.cyan;
+                Handles.color = TangentColor;
                 var inTangent = anchor.point - anchor.inTangent;
                 Handles.DrawLine(anchor.point, inTangent);
                 DrawFreeMoveHandle(inTangent, Quaternion.identity, NodeSize, MoveSnap, SphereCap, position =>
@@ -319,7 +319,7 @@ namespace MGS.Curve.Editors
 
             if (index < Target.AnchorsCount - 1)
             {
-                Handles.color = Color.green;
+                Handles.color = SeparateColor;
                 var outTangent = anchor.point + anchor.outTangent;
                 Handles.DrawLine(anchor.point, outTangent);
                 DrawFreeMoveHandle(outTangent, Quaternion.identity, NodeSize, MoveSnap, SphereCap, position =>
