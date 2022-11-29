@@ -60,6 +60,10 @@
 ## Demo
 - Demos in the path "MGS.Packages/Machinery/Demo/" provide reference to you.
 
+## Source
+
+- https://github.com/mogoson/MGS.Machinery
+
 ------
 
 Copyright © 2022 Mogoson.	mogoson@outlook.com

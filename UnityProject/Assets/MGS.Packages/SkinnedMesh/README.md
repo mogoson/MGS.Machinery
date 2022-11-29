@@ -6,14 +6,18 @@
 
 - Unity plugin for create skinned mesh in scene.
 
-## Platform
-
-- Windows
-
 ## Environment
 
 - .Net Framework 3.5 or above.
 - Unity 5.0 or above.
+
+## Platform
+
+- Windows
+
+## Version
+
+- 1.2.1
 
 ## Technology
 
@@ -184,10 +188,6 @@ curve.Rebuild();//The mono curve hose component will auto Rebuild.
 ## Source
 
 - https://github.com/mogoson/MGS.SkinnedMesh.
-
-------
-
-[Previous](../../README.md)
 
 ------
 
