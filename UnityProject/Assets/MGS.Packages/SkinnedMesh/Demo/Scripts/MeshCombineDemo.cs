@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace MGS.SkinnedMesh.demo
+namespace MGS.SkinnedMesh.Demo
 {
     public class MeshCombineDemo : MonoBehaviour
     {

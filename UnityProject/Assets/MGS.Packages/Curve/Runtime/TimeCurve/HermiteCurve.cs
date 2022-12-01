@@ -292,8 +292,7 @@ namespace MGS.Curve
         /// <returns></returns>
         public static Vector3 Evaluate(float t0, Vector3 v0, Vector3 m0, float t1, Vector3 v1, Vector3 m1, float t)
         {
-            /*  Designed By Mogoson.
-             *  Hermite Polynomial Structure
+            /*  Hermite Polynomial Structure
              *  Base: H(t) = v0a0(t) + v1a1(t) + m0b0(t) + m1b1(t)
              * 
              *                     t-t0    t-t1  2

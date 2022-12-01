@@ -97,7 +97,7 @@ namespace MGS.Machineries
             var linkCircle = new Circle(CorrectPoint(GetLinkPosition()), linkRadius);
             var rockerCircle = new Circle(CorrectPoint(rocker.transform.localPosition), rockerRadius);
 
-            var vectors = Geometry.GetIntersections(linkCircle, rockerCircle);
+            var vectors = Mathematics.GeometryUtility.GetIntersections(linkCircle, rockerCircle);
             if (vectors == null)
             {
                 return false;

@@ -20,7 +20,7 @@ namespace MGS.Mathematics
     [Serializable]
     public struct Vector2D
     {
-        /*  Vector Definition
+        /*  Vector2D Definition
          * 
          *             |
          *           y |________.vector

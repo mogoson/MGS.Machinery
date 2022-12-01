@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace MGS.Common.Utility
+namespace MGS.Mathematics
 {
     /// <summary>
     /// Utility for unity vector.

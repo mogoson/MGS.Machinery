@@ -1,8 +1,8 @@
 ﻿/*************************************************************************
  *  Copyright © 2015-2019 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  Geometry.cs
- *  Description  :  Define geometry.
+ *  File         :  GeometryUtility.cs
+ *  Description  :  Utility for geometry.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0
@@ -16,9 +16,9 @@ using System.Collections.Generic;
 namespace MGS.Mathematics
 {
     /// <summary>
-    /// Geometry.
+    /// Utility for geometry.
     /// </summary>
-    public sealed class Geometry
+    public sealed class GeometryUtility
     {
         #region Distance
         /// <summary>

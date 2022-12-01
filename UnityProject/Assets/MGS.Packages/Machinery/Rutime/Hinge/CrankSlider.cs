@@ -60,7 +60,7 @@ namespace MGS.Machineries
             var slideLine = Line.FromPoints(CorrectPoint(slider.localPosition),
                 CorrectPoint(slider.localPosition + transform.InverseTransformDirection(ProjectDirection(slider.forward))));
 
-            var vectors = Geometry.GetIntersections(linkCircle, slideLine);
+            var vectors = Mathematics.GeometryUtility.GetIntersections(linkCircle, slideLine);
             if (vectors == null)
             {
                 return false;

@@ -32,7 +32,7 @@ namespace MGS.Mathematics.Demo
 
                 var c0 = new Circle(new Vector2D(circle0.position.x, circle0.position.y), circle0.localScale.z * 0.5f);
                 var c1 = new Circle(new Vector2D(circle1.position.x, circle1.position.y), circle1.localScale.z * 0.5f);
-                var psCC = Geometry.GetIntersections(c0, c1);
+                var psCC = GeometryUtility.GetIntersections(c0, c1);
                 if (psCC != null && psCC.Count > 0)
                 {
                     Intersections[0].gameObject.SetActive(true);
@@ -48,7 +48,7 @@ namespace MGS.Mathematics.Demo
                 var p0 = new Vector2D(line.position.x, line.position.y);
                 var p1 = new Vector2D(offset.x, offset.y);
                 var L = Line.FromPoints(p0, p1);
-                var psCL = Geometry.GetIntersections(c1, L);
+                var psCL = GeometryUtility.GetIntersections(c1, L);
                 if (psCL != null && psCL.Count > 0)
                 {
                     Intersections[2].gameObject.SetActive(true);
