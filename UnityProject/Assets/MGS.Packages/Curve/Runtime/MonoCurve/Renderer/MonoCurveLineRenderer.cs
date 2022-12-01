@@ -51,17 +51,26 @@ namespace MGS.Curve
             if (curve == null || curve.Length == 0)
             {
                 Segments = 0;
-                lineRenderer.SetVertexCount(0);
+                SetVertexCount(lineRenderer, Segments);
                 return;
             }
 
             var differ = 0f;
             Segments = MonoCurveUtility.GetSegmentCount(curve, segment, out differ) + 1;
-            lineRenderer.SetVertexCount(Segments);
+            SetVertexCount(lineRenderer, Segments);
             for (int i = 0; i < Segments; i++)
             {
                 lineRenderer.SetPosition(i, curve.LocalEvaluate(i * differ));
             }
+        }
+
+        protected void SetVertexCount(LineRenderer lineRenderer, int count)
+        {
+#if UNITY_5_6_OR_NEWER
+            lineRenderer.positionCount = count;
+#else
+            lineRenderer.SetVertexCount(count);
+#endif
         }
     }
 }
