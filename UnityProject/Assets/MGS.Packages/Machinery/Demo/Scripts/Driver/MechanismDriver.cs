@@ -36,11 +36,11 @@ namespace MGS.Machineries.Demo
         {
             if (Input.GetKey(positive))
             {
-                mechanism.Drive(velocity, mode);
+                mechanism.Drive(velocity * Time.deltaTime, mode);
             }
             else if (Input.GetKey(negative))
             {
-                mechanism.Drive(-velocity, mode);
+                mechanism.Drive(-velocity * Time.deltaTime, mode);
             }
         }
         #endregion

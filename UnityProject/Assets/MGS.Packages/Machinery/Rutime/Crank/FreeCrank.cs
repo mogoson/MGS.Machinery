@@ -28,7 +28,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode)
         {
-            Angle += velocity * Time.deltaTime;
+            Angle += velocity;
             RotateCrank(Angle);
             return DriveRockers(velocity, mode);
         }

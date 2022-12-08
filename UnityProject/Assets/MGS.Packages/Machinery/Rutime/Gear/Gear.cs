@@ -87,7 +87,7 @@ namespace MGS.Machineries
                 linear = velocity * Mathf.Deg2Rad * radius;
             }
 
-            transform.Rotate(Vector3.forward, angular * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.forward, angular, Space.Self);
             if (!DriveCoaxes(angular))
             {
                 return false;

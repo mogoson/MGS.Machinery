@@ -46,7 +46,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode)
         {
-            Displacement += velocity * Time.deltaTime;
+            Displacement += velocity;
             Displacement = Mathf.Clamp(Displacement, stroke.min, stroke.max);
 
             MoveSlider(Displacement);

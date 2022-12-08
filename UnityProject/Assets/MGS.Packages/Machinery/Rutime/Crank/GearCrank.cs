@@ -41,7 +41,7 @@ namespace MGS.Machineries
                 velocity *= Mathf.Rad2Deg / radius;
             }
 
-            Angle += velocity * Time.deltaTime;
+            Angle += velocity;
             RotateCrank(Angle);
             return DriveRockers(velocity, mode);
         }

@@ -53,13 +53,18 @@ namespace MGS.Machineries
         }
 
         /// <summary>
-        /// Rotate crank.
+        /// Drive mechanism by velocity.
         /// </summary>
-        /// <param name="angle">Current rotate angle of crank.</param>
-        protected override void RotateCrank(float angle)
+        /// <param name="velocity">Velocity of drive.</param>
+        /// <param name="mode">Mode of drive.</param>
+        /// <returns>Drive is effective?</returns>
+        protected override bool OnDrive(float velocity, DriveMode mode)
         {
-            angle = Mathf.Clamp(Angle, range.min, range.max);
-            base.RotateCrank(angle);
+            Angle += velocity;
+            Angle = Mathf.Clamp(Angle, range.min, range.max);
+
+            RotateCrank(Angle);
+            return DriveRockers(velocity, mode);
         }
         #endregion
     }

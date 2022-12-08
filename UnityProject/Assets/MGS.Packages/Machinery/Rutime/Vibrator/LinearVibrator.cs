@@ -67,7 +67,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode = DriveMode.Ignore)
         {
-            currentOffset += velocity * Mathf.Deg2Rad * direction * Time.deltaTime;
+            currentOffset += velocity * Mathf.Deg2Rad * direction;
             if (currentOffset < -amplitudeRadius || currentOffset > amplitudeRadius)
             {
                 direction *= -1;

@@ -69,7 +69,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode = DriveMode.Ignore)
         {
-            transform.Rotate(Vector3.forward, velocity * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.forward, velocity, Space.Self);
             return DriveCoaxes(velocity);
         }
 

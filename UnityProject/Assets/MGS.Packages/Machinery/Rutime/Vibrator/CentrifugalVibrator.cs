@@ -46,7 +46,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode = DriveMode.Ignore)
         {
-            currentAngle += velocity * Time.deltaTime;
+            currentAngle += velocity;
             var direction = Quaternion.AngleAxis(currentAngle, transform.forward) * transform.right;
             transform.localPosition = StartPosition + GetLocalDirection(direction) * amplitudeRadius;
             return true;

@@ -96,7 +96,9 @@ namespace MGS.Machineries
                     return;
                 }
 
-                axle.Drive(currentRPM * 6, DriveMode.Angular);
+                //angle/s = RPM * 360 / 60;
+                var velocity = currentRPM * 6 * Time.deltaTime;
+                axle.Drive(velocity, DriveMode.Angular);
             }
         }
         #endregion

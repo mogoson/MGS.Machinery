@@ -81,7 +81,7 @@ namespace MGS.Machineries
         /// <returns>Drive is effective?</returns>
         protected override bool OnDrive(float velocity, DriveMode mode = DriveMode.Ignore)
         {
-            beltRenderer.material.mainTextureOffset += new Vector2(velocity * coefficient * Time.deltaTime, 0);
+            beltRenderer.material.mainTextureOffset += new Vector2(velocity * coefficient, 0);
             return DriveEngages(-velocity);
         }
 

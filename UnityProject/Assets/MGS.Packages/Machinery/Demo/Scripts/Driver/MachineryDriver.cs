@@ -32,11 +32,11 @@ namespace MGS.Machineries.Demo
             {
                 if (Input.GetKey(s.positive))
                 {
-                    machinery.Drive(s.mechanism, s.velocity, DriveMode.Ignore);
+                    machinery.Drive(s.mechanism, s.velocity * Time.deltaTime, DriveMode.Ignore);
                 }
                 else if (Input.GetKey(s.negative))
                 {
-                    machinery.Drive(s.mechanism, -s.velocity, DriveMode.Ignore);
+                    machinery.Drive(s.mechanism, -s.velocity * Time.deltaTime, DriveMode.Ignore);
                 }
             }
         }
