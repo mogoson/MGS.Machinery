@@ -106,11 +106,8 @@ namespace MGS.Chain
             var nextLen = (motion + (node.ID + 1) * piece) % Length;
             var nextPos = curve.Evaluate(nextLen);
 
-            var secant = (nextPos - nodePos).normalized;
-            var worldUp = Vector3.Cross(secant, transform.up);
-
             node.transform.position = nodePos;
-            node.transform.LookAt(nextPos, worldUp);
+            node.transform.LookAt(nextPos, transform.forward);
         }
     }
 }
