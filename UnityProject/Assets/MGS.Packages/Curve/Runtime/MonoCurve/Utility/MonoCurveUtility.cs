@@ -25,14 +25,14 @@ namespace MGS.Curve
         /// </summary>
         /// <param name="curve"></param>
         /// <param name="segment"></param>
-        /// <param name="differ">Differentiation.</param>
+        /// <param name="piece"></param>
         /// <returns>Detail count of mono curve.</returns>
-        public static int GetSegmentCount(IMonoCurve curve, float segment, out float differ)
+        public static int GetSegmentCount(IMonoCurve curve, float segment, out float piece)
         {
             //AwayFromZero means that 12.5 -> 13
             var count = (int)Math.Round(curve.Length / segment, MidpointRounding.AwayFromZero);
             count = Mathf.Max(count, 1);
-            differ = curve.Length / count;
+            piece = curve.Length / count;
             return count;
         }
     }

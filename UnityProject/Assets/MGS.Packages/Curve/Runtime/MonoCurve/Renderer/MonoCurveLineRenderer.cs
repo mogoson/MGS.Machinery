@@ -55,12 +55,12 @@ namespace MGS.Curve
                 return;
             }
 
-            var differ = 0f;
-            Segments = MonoCurveUtility.GetSegmentCount(curve, segment, out differ) + 1;
+            var piece = 0f;
+            Segments = MonoCurveUtility.GetSegmentCount(curve, segment, out piece) + 1;
             SetVertexCount(lineRenderer, Segments);
             for (int i = 0; i < Segments; i++)
             {
-                lineRenderer.SetPosition(i, curve.LocalEvaluate(i * differ));
+                lineRenderer.SetPosition(i, curve.LocalEvaluate(i * piece));
             }
         }
 

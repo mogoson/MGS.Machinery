@@ -29,6 +29,8 @@ namespace MGS.Machineries
         protected override bool OnDrive(float velocity, DriveMode mode)
         {
             Angle += velocity;
+            Angle %= 3600;
+
             RotateCrank(Angle);
             return DriveRockers(velocity, mode);
         }

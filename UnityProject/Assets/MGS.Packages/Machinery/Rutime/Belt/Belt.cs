@@ -10,7 +10,6 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MGS.Machineries
@@ -19,16 +18,9 @@ namespace MGS.Machineries
     /// Belt with UV animation.
     /// </summary>
     [RequireComponent(typeof(Renderer))]
-    public class Belt : Mechanism, IEngageMechanism
+    public class Belt : EngageMechanism
     {
         #region Field and Property
-        /// <summary>
-        /// Engage mechanisms.
-        /// </summary>
-        [Tooltip("Engage mechanisms.")]
-        [SerializeField]
-        protected List<Mechanism> engages;
-
         /// <summary>
         /// Coefficient of velocity.
         /// </summary>
@@ -84,23 +76,6 @@ namespace MGS.Machineries
             beltRenderer.material.mainTextureOffset += new Vector2(velocity * coefficient, 0);
             return DriveEngages(-velocity);
         }
-
-        /// <summary>
-        /// Drive engage mechanisms by linear velocity.
-        /// </summary>
-        /// <param name="velocity">Linear velocity of drive.</param>
-        /// <returns>Drive is effective?</returns>
-        protected bool DriveEngages(float velocity)
-        {
-            foreach (var engage in engages)
-            {
-                if (!engage.Drive(velocity, DriveMode.Linear))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
         #endregion
 
         #region Public Method
@@ -110,30 +85,7 @@ namespace MGS.Machineries
         public override void Initialize()
         {
             beltRenderer = GetComponent<Renderer>();
-        }
-
-        /// <summary>
-        /// Link engage.
-        /// </summary>
-        /// <param name="mechanism">Target mechanism.</param>
-        public void LinkEngage(IMechanism mechanism)
-        {
-            var engage = mechanism as Mechanism;
-            if (engage == null || engages.Contains(engage))
-            {
-                return;
-            }
-
-            engages.Add(engage);
-        }
-
-        /// <summary>
-        /// Break engage.
-        /// </summary>
-        /// <param name="mechanism">Target mechanism.</param>
-        public void BreakEngage(IMechanism mechanism)
-        {
-            engages.Remove(mechanism as Mechanism);
+            IsInitialized = true;
         }
         #endregion
     }

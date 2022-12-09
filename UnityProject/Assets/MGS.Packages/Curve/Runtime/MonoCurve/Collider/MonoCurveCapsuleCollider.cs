@@ -53,10 +53,10 @@ namespace MGS.Curve
         /// </summary>
         protected override void RebuildCollider(IMonoCurve curve)
         {
-            var differ = 0f;
-            Segments = MonoCurveUtility.GetSegmentCount(curve, segment, out differ);
+            var piece = 0f;
+            Segments = MonoCurveUtility.GetSegmentCount(curve, segment, out piece);
             RequireCapsules(Segments);
-            SetCapsules(curve, Segments, differ);
+            SetCapsules(curve, Segments, piece);
         }
 
         /// <summary>
@@ -77,21 +77,21 @@ namespace MGS.Curve
         /// </summary>
         /// <param name="curve"></param>
         /// <param name="segments"></param>
-        /// <param name="differ"></param>
-        protected virtual void SetCapsules(IMonoCurve curve, int segments, float differ)
+        /// <param name="piece"></param>
+        protected virtual void SetCapsules(IMonoCurve curve, int segments, float piece)
         {
             for (int i = 0; i < segments; i++)
             {
                 var node = colliderGroup.GetChild(i);
-                node.position = curve.Evaluate((i + 0.5f) * differ);
-                var tangent = (curve.Evaluate((i + 1) * differ) - curve.Evaluate(i * differ));
+                node.position = curve.Evaluate((i + 0.5f) * piece);
+                var tangent = (curve.Evaluate((i + 1) * piece) - curve.Evaluate(i * piece));
                 node.LookAt(node.position + tangent);
 
                 var capsule = node.GetComponent<CapsuleCollider>();
                 capsule.enabled = enabled;
                 capsule.center = Vector3.zero;
                 capsule.direction = 2;
-                capsule.height = differ + radius * 2;
+                capsule.height = piece + radius * 2;
                 capsule.radius = radius;
                 capsule.isTrigger = isTrigger;
                 capsule.material = material;

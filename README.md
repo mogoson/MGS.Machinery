@@ -18,6 +18,7 @@
 - Binding vibrator.
 - Binding differential.
 - Binding transmission.
+- Binding chain belt.
 
 ## Environment
 - Unity 5.0 or above.
@@ -56,6 +57,7 @@
 - CentrifugalVibrator : Eccentric motion around Z axis.
 - Motor : Motor provide power to drive axle. 
 - Differential : Ordinary differential.
+- ChainBelt: Belt base curve chain.
 
 ## Demo
 - Demos in the path "MGS.Packages/Machinery/Demo/" provide reference to you.

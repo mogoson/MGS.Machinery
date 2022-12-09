@@ -10,7 +10,6 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MGS.Machineries
@@ -18,16 +17,9 @@ namespace MGS.Machineries
     /// <summary>
     /// Axle rotate around axis Z.
     /// </summary>
-    public class Axle : Mechanism, ICoaxeMechanism
+    public class Axle : CoaxeMechanism
     {
         #region Field and Property
-        /// <summary>
-        /// Coaxe mechanisms.
-        /// </summary>
-        [Tooltip("Coaxe mechanisms.")]
-        [SerializeField]
-        protected List<Mechanism> coaxes;
-
         /// <summary>
         /// Mechanism is stuck?
         /// </summary>
@@ -71,49 +63,6 @@ namespace MGS.Machineries
         {
             transform.Rotate(Vector3.forward, velocity, Space.Self);
             return DriveCoaxes(velocity);
-        }
-
-        /// <summary>
-        /// Drive coaxial mechanisms by angular velocity.
-        /// </summary>
-        /// <param name="velocity">Angular velocity of drive.</param>
-        /// <returns>Drive is effective?</returns>
-        protected bool DriveCoaxes(float velocity)
-        {
-            foreach (var coaxe in coaxes)
-            {
-                if (!coaxe.Drive(velocity, DriveMode.Angular))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        #endregion
-
-        #region Public Method
-        /// <summary>
-        /// Link coaxe.
-        /// </summary>
-        /// <param name="mechanism">Target mechanism.</param>
-        public void LinkCoaxe(IMechanism mechanism)
-        {
-            var coaxe = mechanism as Mechanism;
-            if (coaxe == null || coaxes.Contains(coaxe))
-            {
-                return;
-            }
-
-            coaxes.Add(coaxe);
-        }
-
-        /// <summary>
-        /// Break coaxe.
-        /// </summary>
-        /// <param name="mechanism">Target mechanism.</param>
-        public void BreakCoaxe(IMechanism mechanism)
-        {
-            coaxes.Remove(mechanism as Mechanism);
         }
         #endregion
     }
