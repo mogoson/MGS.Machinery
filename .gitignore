@@ -41,3 +41,6 @@ sysinfo.txt
 /UnityProject/obj
 /UnityProject/Assets/MGS.Packages/ScriptTemplateEditor.meta
 /UnityProject/Assets/MGS.Packages/ScriptTemplateEditor
+/Logs
+/*.vsconfig
+/UserSettings

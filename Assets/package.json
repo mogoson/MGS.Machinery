@@ -1,0 +1,7 @@
+{
+    "description": "Unity plugin for binding machinery joint in scene.",
+    "displayName": "Machinery",
+    "name": "com.mgs.machinery",
+    "unity": "2021.3",
+    "version": "1.0.0"
+}
